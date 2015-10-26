@@ -13,7 +13,7 @@ namespace DocumentCentreTests.Pages
     [Header("browser", "version", "platform")] // name of the parameters in the rows
     [Row("internet explorer", "11", "Windows 7")] // run all tests in the fixture against IE 11 for windows 7
     [Row("chrome", "35", "linux")] // run all tests in the fixture against chrome 35 for linux
-    [Row("safari", "6", "OS X 10.8")] // run all tests in the fixture against safari 6 and mac OS X 10.8
+    [Row("safari", "8", "OS X 10.10")] // run all tests in the fixture against safari 6 and mac OS X 10.8
     public class DocumentCentreTests
     {
         #region Setup and Teardown
@@ -66,49 +66,36 @@ namespace DocumentCentreTests.Pages
 
         #region Tests
 
-        /// <summary>Assert Login to LBMX web01 test site works</summary>
+        /// <summary>
+        /// Test if Member login works
+        /// </summary>
+        /// <param name="browser">Browser to test against</param>
+        /// <param name="version">Browser version</param>
+        /// <param name="platform">OS to run tests on - includes version #</param>
         [Test, Parallelizable]
-        public void LoginWorks(string browser, string version, string platform)
+        public void MemberLoginWorks(string browser, string version, string platform)
         {
+            //HomePage page = null;
             var _Driver = _Setup(browser, version, platform);
-            HomePage page = null;
 
             // attempt a login
             LoginPage newLogin = new LoginPage(_Driver, "member");
-            page = newLogin.LoginAs(Constants.MEM_PORTAL_USER, Constants.MEM_PORTAL_PASS);
+            HomePage page = newLogin.LoginAs(Constants.MEM_PORTAL_USER, Constants.MEM_PORTAL_PASS);
+
+            // assert that a class was created (homepage reached)
+            // TODO: more checks?
             Assert.IsNotNull(page);
 
             CleanUp(_Driver);
         }
 
-        /// <summary>Assert Login to LBMX web01 test site works</summary>
         //[Test, Parallelizable]
-        //public void MemberOrderFromCatalog(string browser, string version, string platform)
-        //{
-        //    var _Driver = _Setup(browser, version, platform);
-        //    // attempt a login
-        //    HelperMethods.Login(_Driver, Constants.MEM_PORTAL_USER, Constants.MEM_PORTAL_PASS);
-        //    // navigate to orders
-        //    var ordersDropdown = _Driver.FindElement(By.LinkText("My Orders"));
-        //    ordersDropdown.Click();
-        //    var newOrder = _Driver.FindElement(By.LinkText("Order from Catalog"));
-        //    newOrder.Click();
-        //    // check if correct page
-        //    bool reached = false;
-        //    if (_Driver.FindElement(By.Id("searchTerm")) != null)
-        //    {
-        //        reached = true;
-        //        Assert.IsTrue(reached);
-        //        // correct page
-        //        CleanUp(_Driver);
-        //    }
-        //    else
-        //    {
-        //        // test failed
-        //        Assert.Fail("Error in MemberOrderFromCatalog test");
-        //        CleanUp(_Driver);
-        //    }
-        //}
+        public void MemberOrdersSearch(string browser, string version, string platform)
+        {
+            
+            var _Driver = _Setup(browser, version, platform);
+            
+        }
 
         #endregion
     }

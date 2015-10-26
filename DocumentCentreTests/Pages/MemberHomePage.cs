@@ -12,21 +12,20 @@ namespace DocumentCentreTests.Pages
     {
         private IWebDriver driver;
 
+        /// <summary>
+        /// Member home page constructor
+        /// </summary>
+        /// <param name="driver"></param>
         public MemberHomePage(IWebDriver driver)
         {
             this.driver = driver;
 
             // check if on correct page
-            if (!"Document Centre".Equals(driver.Title))
+            if (HelperMethods.FindElement(driver, "id", "userActionsButton") == null)
             {
                 // TODO: logic to navigate back to login page
-                throw new InvalidOperationException("Login page not found");
+                throw new InvalidOperationException("Member homepage not found");
             }
-        }
-
-        public override void NavigateToPage(IWebDriver driver)
-        {
-
         }
     }
 }

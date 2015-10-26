@@ -8,8 +8,12 @@ using System;
 
 namespace DocumentCentreTests.Pages
 {
+    /// <summary>
+    /// Abstract class representing generic home page (can be either member, vendor, or group).
+    /// Abstract functionality to share common return types for method returns/signatures.
+    /// </summary>
     public abstract class HomePage
     {
-        public abstract void NavigateToPage(IWebDriver driver);
+       
     }
 }

@@ -81,13 +81,14 @@ namespace DocumentCentreTests.Pages
 
         /// <summary>
         /// Login page allows user to submit form knowing that an invalid username
-        /// and/or password entered
+        /// and/or password will be entered
         /// </summary>
-        /// <returns>New page object representing the destination</returns>
+        /// <returns>New page object representing the destination page.</returns>
         public LoginPage SubmitLoginExpectingFailure()
         {
             loginButtonLocator.Click();
-            return new LoginPage(driver, loginPageType);
+            LoginPage newLogin = new LoginPage(driver, loginPageType);
+            return newLogin;
         }
 
         /// <summary>
@@ -96,6 +97,7 @@ namespace DocumentCentreTests.Pages
         /// </summary>
         /// <param name="username">string representing the username</param>
         /// <param name="password">string representing the password</param>
+        /// <returns>New page object representing the destination page.</returns>
         public HomePage LoginAs(string username, string password)
         {
             TypeUsername(username);
