@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<report xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.gallio.org/">
+  <testPackage shadowCopy="false" debug="false">
+    <files>
+      <file>C:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\bin\Debug\DocumentCentreTests.dll</file>
+    </files>
+    <hintDirectories />
+    <excludedFrameworkIds />
+    <properties />
+  </testPackage>
+  <testModel>
+    <test id="c2722843734a7a54" name="Root" fullName="" isTestCase="false">
+      <codeReference />
+      <codeLocation />
+      <metadata>
+        <entry key="TestKind">
+          <value>Root</value>
+        </entry>
+      </metadata>
+      <children>
+        <test id="c1d55da997a3b89b" name="DocumentCentreTests" fullName="DocumentCentreTests" isTestCase="false">
+          <codeReference assembly="DocumentCentreTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+          <codeLocation path="C:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\bin\Debug\DocumentCentreTests.DLL" />
+          <metadata>
+            <entry key="TestKind">
+              <value>MbUnit v3 Assembly</value>
+            </entry>
+            <entry key="File">
+              <value>C:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\bin\Debug\DocumentCentreTests.DLL</value>
+            </entry>
+            <entry key="CodeBase">
+              <value>C:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\bin\Debug\DocumentCentreTests.DLL</value>
+            </entry>
+            <entry key="Copyright">
+              <value>Copyright ©  2015</value>
+            </entry>
+            <entry key="FileVersion">
+              <value>1.0.0.0</value>
+            </entry>
+            <entry key="Product">
+              <value>DocumentCentreTests</value>
+            </entry>
+            <entry key="Title">
+              <value>DocumentCentreTests</value>
+            </entry>
+            <entry key="Version">
+              <value>1.0.0.0</value>
+            </entry>
+            <entry key="Framework">
+              <value>MbUnit v3.4 build 11</value>
+            </entry>
+          </metadata>
+          <children>
+            <test id="354ab0d18f85c7a3" name="DocumentCentreTests" fullName="DocumentCentreTests/DocumentCentreTests" isTestCase="false">
+              <codeReference assembly="DocumentCentreTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" namespace="DocumentCentreTests" type="DocumentCentreTests.DocumentCentreTests" />
+              <codeLocation path="c:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\DocumentCentreTests.cs" />
+              <metadata>
+                <entry key="TestKind">
+                  <value>Fixture</value>
+                </entry>
+              </metadata>
+              <children>
+                <test id="82c1667e46755a27" name="LoginWorks" fullName="DocumentCentreTests/DocumentCentreTests/LoginWorks" isTestCase="true">
+                  <codeReference assembly="DocumentCentreTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" namespace="DocumentCentreTests" type="DocumentCentreTests.DocumentCentreTests" member="LoginWorks" />
+                  <codeLocation path="c:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\DocumentCentreTests.cs" line="72" />
+                  <metadata>
+                    <entry key="TestKind">
+                      <value>Test</value>
+                    </entry>
+                  </metadata>
+                  <children />
+                  <parameters>
+                    <parameter id="82c1667e46755a27@browser" name="browser">
+                      <codeReference assembly="DocumentCentreTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" namespace="DocumentCentreTests" type="DocumentCentreTests.DocumentCentreTests" member="LoginWorks" parameter="browser" />
+                      <codeLocation />
+                      <metadata />
+                    </parameter>
+                    <parameter id="82c1667e46755a27@version" name="version">
+                      <codeReference assembly="DocumentCentreTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" namespace="DocumentCentreTests" type="DocumentCentreTests.DocumentCentreTests" member="LoginWorks" parameter="version" />
+                      <codeLocation />
+                      <metadata />
+                    </parameter>
+                    <parameter id="82c1667e46755a27@platform" name="platform">
+                      <codeReference assembly="DocumentCentreTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" namespace="DocumentCentreTests" type="DocumentCentreTests.DocumentCentreTests" member="LoginWorks" parameter="platform" />
+                      <codeLocation />
+                      <metadata />
+                    </parameter>
+                  </parameters>
+                </test>
+              </children>
+              <parameters />
+            </test>
+          </children>
+          <parameters />
+        </test>
+      </children>
+      <parameters />
+    </test>
+    <annotations />
+  </testModel>
+  <testPackageRun startTime="2015-10-21T10:37:50.1177361-04:00" endTime="2015-10-21T10:38:21.4542862-04:00">
+    <testStepRun startTime="2015-10-21T10:37:51.6561635-04:00" endTime="2015-10-21T10:38:21.4542862-04:00">
+      <testStep id="150876fba9aad9f6" name="Root" fullName="" testId="c2722843734a7a54" isPrimary="true" isTestCase="false" isDynamic="false">
+        <codeReference />
+        <codeLocation />
+        <metadata>
+          <entry key="TestKind">
+            <value>Root</value>
+          </entry>
+        </metadata>
+      </testStep>
+      <children>
+        <testStepRun startTime="2015-10-21T10:37:51.7021953-04:00" endTime="2015-10-21T10:38:21.3782342-04:00">
+          <testStep id="ddfa53cf985e316f" name="DocumentCentreTests" fullName="DocumentCentreTests" testId="c1d55da997a3b89b" isPrimary="true" isTestCase="false" isDynamic="false">
+            <codeReference assembly="DocumentCentreTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+            <codeLocation path="C:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\bin\Debug\DocumentCentreTests.DLL" />
+            <metadata>
+              <entry key="TestKind">
+                <value>MbUnit v3 Assembly</value>
+              </entry>
+              <entry key="File">
+                <value>C:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\bin\Debug\DocumentCentreTests.DLL</value>
+              </entry>
+              <entry key="CodeBase">
+                <value>C:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\bin\Debug\DocumentCentreTests.DLL</value>
+              </entry>
+              <entry key="Copyright">
+                <value>Copyright ©  2015</value>
+              </entry>
+              <entry key="FileVersion">
+                <value>1.0.0.0</value>
+              </entry>
+              <entry key="Product">
+                <value>DocumentCentreTests</value>
+              </entry>
+              <entry key="Title">
+                <value>DocumentCentreTests</value>
+              </entry>
+              <entry key="Version">
+                <value>1.0.0.0</value>
+              </entry>
+              <entry key="Framework">
+                <value>MbUnit v3.4 build 11</value>
+              </entry>
+            </metadata>
+          </testStep>
+          <children>
+            <testStepRun startTime="2015-10-21T10:37:51.7272135-04:00" endTime="2015-10-21T10:38:21.3742305-04:00">
+              <testStep id="f98de682e274d1e8" name="DocumentCentreTests" fullName="DocumentCentreTests/DocumentCentreTests" testId="354ab0d18f85c7a3" isPrimary="true" isTestCase="false" isDynamic="false">
+                <codeReference assembly="DocumentCentreTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" namespace="DocumentCentreTests" type="DocumentCentreTests.DocumentCentreTests" />
+                <codeLocation path="c:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\DocumentCentreTests.cs" />
+                <metadata>
+                  <entry key="TestKind">
+                    <value>Fixture</value>
+                  </entry>
+                </metadata>
+              </testStep>
+              <children>
+                <testStepRun startTime="2015-10-21T10:37:51.7452253-04:00" endTime="2015-10-21T10:38:21.3251964-04:00">
+                  <testStep id="5296d87729721eeb" name="LoginWorks" fullName="DocumentCentreTests/DocumentCentreTests/LoginWorks" testId="82c1667e46755a27" isPrimary="true" isTestCase="false" isDynamic="false">
+                    <codeReference assembly="DocumentCentreTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" namespace="DocumentCentreTests" type="DocumentCentreTests.DocumentCentreTests" member="LoginWorks" />
+                    <codeLocation path="c:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\DocumentCentreTests.cs" line="72" />
+                    <metadata>
+                      <entry key="TestKind">
+                        <value>Test</value>
+                      </entry>
+                    </metadata>
+                  </testStep>
+                  <children>
+                    <testStepRun startTime="2015-10-21T10:37:51.7932589-04:00" endTime="2015-10-21T10:38:21.3182089-04:00">
+                      <testStep id="12586d4579c3871f" name="LoginWorks(&quot;safari&quot;, &quot;6&quot;, &quot;OS X 10.8&quot;)" fullName="DocumentCentreTests/DocumentCentreTests/LoginWorks/LoginWorks(&quot;safari&quot;, &quot;6&quot;, &quot;OS X 10.8&quot;)" testId="82c1667e46755a27" isPrimary="false" isTestCase="true" isDynamic="false">
+                        <codeReference assembly="DocumentCentreTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" namespace="DocumentCentreTests" type="DocumentCentreTests.DocumentCentreTests" member="LoginWorks" />
+                        <codeLocation path="c:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\DocumentCentreTests.cs" line="72" />
+                        <metadata>
+                          <entry key="TestKind">
+                            <value>Test</value>
+                          </entry>
+                        </metadata>
+                      </testStep>
+                      <children />
+                      <result assertCount="0" duration="29.520797599999998">
+                        <outcome status="passed" />
+                      </result>
+                      <testLog>
+                        <streams />
+                        <attachments />
+                      </testLog>
+                    </testStepRun>
+                    <testStepRun startTime="2015-10-21T10:37:51.7942594-04:00" endTime="2015-10-21T10:38:09.2974366-04:00">
+                      <testStep id="f33284a4d27e00a6" name="LoginWorks(&quot;chrome&quot;, &quot;35&quot;, &quot;linux&quot;)" fullName="DocumentCentreTests/DocumentCentreTests/LoginWorks/LoginWorks(&quot;chrome&quot;, &quot;35&quot;, &quot;linux&quot;)" testId="82c1667e46755a27" isPrimary="false" isTestCase="true" isDynamic="false">
+                        <codeReference assembly="DocumentCentreTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" namespace="DocumentCentreTests" type="DocumentCentreTests.DocumentCentreTests" member="LoginWorks" />
+                        <codeLocation path="c:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\DocumentCentreTests.cs" line="72" />
+                        <metadata>
+                          <entry key="TestKind">
+                            <value>Test</value>
+                          </entry>
+                        </metadata>
+                      </testStep>
+                      <children />
+                      <result assertCount="0" duration="17.5009715">
+                        <outcome status="passed" />
+                      </result>
+                      <testLog>
+                        <streams />
+                        <attachments />
+                      </testLog>
+                    </testStepRun>
+                    <testStepRun startTime="2015-10-21T10:37:51.7952603-04:00" endTime="2015-10-21T10:38:11.856695-04:00">
+                      <testStep id="63359803e786532d" name="LoginWorks(&quot;internet explorer&quot;, &quot;11&quot;, &quot;Windows 7&quot;)" fullName="DocumentCentreTests/DocumentCentreTests/LoginWorks/LoginWorks(&quot;internet explorer&quot;, &quot;11&quot;, &quot;Windows 7&quot;)" testId="82c1667e46755a27" isPrimary="false" isTestCase="true" isDynamic="false">
+                        <codeReference assembly="DocumentCentreTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" namespace="DocumentCentreTests" type="DocumentCentreTests.DocumentCentreTests" member="LoginWorks" />
+                        <codeLocation path="c:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\DocumentCentreTests.cs" line="72" />
+                        <metadata>
+                          <entry key="TestKind">
+                            <value>Test</value>
+                          </entry>
+                        </metadata>
+                      </testStep>
+                      <children />
+                      <result assertCount="0" duration="20.0570068">
+                        <outcome status="passed" />
+                      </result>
+                      <testLog>
+                        <streams />
+                        <attachments />
+                      </testLog>
+                    </testStepRun>
+                  </children>
+                  <result assertCount="0" duration="29.5706955">
+                    <outcome status="passed" />
+                  </result>
+                  <testLog>
+                    <streams />
+                    <attachments />
+                  </testLog>
+                </testStepRun>
+              </children>
+              <result assertCount="0" duration="29.645325">
+                <outcome status="passed" />
+              </result>
+              <testLog>
+                <streams />
+                <attachments />
+              </testLog>
+            </testStepRun>
+          </children>
+          <result assertCount="0" duration="29.6765992">
+            <outcome status="passed" />
+          </result>
+          <testLog>
+            <streams />
+            <attachments />
+          </testLog>
+        </testStepRun>
+      </children>
+      <result assertCount="0" duration="31.3349136">
+        <outcome status="passed" />
+      </result>
+      <testLog>
+        <streams />
+        <attachments />
+      </testLog>
+    </testStepRun>
+    <statistics assertCount="0" duration="31.3371215" runCount="3" passedCount="3" failedCount="0" inconclusiveCount="0" skippedCount="0" testCount="3" stepCount="7">
+      <outcomeSummaries>
+        <outcomeSummary count="3">
+          <outcome status="passed" />
+        </outcomeSummary>
+      </outcomeSummaries>
+    </statistics>
+  </testPackageRun>
+  <logEntries>
+    <logEntry severity="info" message="Host started at 10/21/15 10:37:50 AM." />
+    <logEntry severity="info" message="Running under CLR v4.0.30319 runtime." />
+    <logEntry severity="debug" message="Listening for connections on IPC port: 'IsolatedProcessHost.a5315c87da6f660a'" />
+    <logEntry severity="info" message="Host stopped at 10/21/15 10:38:21 AM." />
+    <logEntry severity="info" message="Host process exited with code: 0" />
+  </logEntries>
+</report>

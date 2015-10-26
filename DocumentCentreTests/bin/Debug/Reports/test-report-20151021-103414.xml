@@ -1,0 +1,654 @@
+<?xml version="1.0" encoding="utf-8"?>
+<report xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.gallio.org/">
+  <testPackage shadowCopy="false" debug="false">
+    <files>
+      <file>C:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\bin\Debug\DocumentCentreTests.dll</file>
+    </files>
+    <hintDirectories />
+    <excludedFrameworkIds />
+    <properties />
+  </testPackage>
+  <testModel>
+    <test id="c2722843734a7a54" name="Root" fullName="" isTestCase="false">
+      <codeReference />
+      <codeLocation />
+      <metadata>
+        <entry key="TestKind">
+          <value>Root</value>
+        </entry>
+      </metadata>
+      <children>
+        <test id="c1d55da997a3b89b" name="DocumentCentreTests" fullName="DocumentCentreTests" isTestCase="false">
+          <codeReference assembly="DocumentCentreTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+          <codeLocation path="C:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\bin\Debug\DocumentCentreTests.DLL" />
+          <metadata>
+            <entry key="TestKind">
+              <value>MbUnit v3 Assembly</value>
+            </entry>
+            <entry key="File">
+              <value>C:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\bin\Debug\DocumentCentreTests.DLL</value>
+            </entry>
+            <entry key="CodeBase">
+              <value>C:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\bin\Debug\DocumentCentreTests.DLL</value>
+            </entry>
+            <entry key="Copyright">
+              <value>Copyright ©  2015</value>
+            </entry>
+            <entry key="FileVersion">
+              <value>1.0.0.0</value>
+            </entry>
+            <entry key="Product">
+              <value>DocumentCentreTests</value>
+            </entry>
+            <entry key="Title">
+              <value>DocumentCentreTests</value>
+            </entry>
+            <entry key="Version">
+              <value>1.0.0.0</value>
+            </entry>
+            <entry key="Framework">
+              <value>MbUnit v3.4 build 11</value>
+            </entry>
+          </metadata>
+          <children>
+            <test id="354ab0d18f85c7a3" name="DocumentCentreTests" fullName="DocumentCentreTests/DocumentCentreTests" isTestCase="false">
+              <codeReference assembly="DocumentCentreTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" namespace="DocumentCentreTests" type="DocumentCentreTests.DocumentCentreTests" />
+              <codeLocation path="c:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\DocumentCentreTests.cs" />
+              <metadata>
+                <entry key="TestKind">
+                  <value>Fixture</value>
+                </entry>
+              </metadata>
+              <children>
+                <test id="82c1667e46755a27" name="LoginWorks" fullName="DocumentCentreTests/DocumentCentreTests/LoginWorks" isTestCase="true">
+                  <codeReference assembly="DocumentCentreTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" namespace="DocumentCentreTests" type="DocumentCentreTests.DocumentCentreTests" member="LoginWorks" />
+                  <codeLocation path="c:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\DocumentCentreTests.cs" line="72" />
+                  <metadata>
+                    <entry key="TestKind">
+                      <value>Test</value>
+                    </entry>
+                  </metadata>
+                  <children />
+                  <parameters>
+                    <parameter id="82c1667e46755a27@browser" name="browser">
+                      <codeReference assembly="DocumentCentreTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" namespace="DocumentCentreTests" type="DocumentCentreTests.DocumentCentreTests" member="LoginWorks" parameter="browser" />
+                      <codeLocation />
+                      <metadata />
+                    </parameter>
+                    <parameter id="82c1667e46755a27@version" name="version">
+                      <codeReference assembly="DocumentCentreTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" namespace="DocumentCentreTests" type="DocumentCentreTests.DocumentCentreTests" member="LoginWorks" parameter="version" />
+                      <codeLocation />
+                      <metadata />
+                    </parameter>
+                    <parameter id="82c1667e46755a27@platform" name="platform">
+                      <codeReference assembly="DocumentCentreTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" namespace="DocumentCentreTests" type="DocumentCentreTests.DocumentCentreTests" member="LoginWorks" parameter="platform" />
+                      <codeLocation />
+                      <metadata />
+                    </parameter>
+                  </parameters>
+                </test>
+              </children>
+              <parameters />
+            </test>
+          </children>
+          <parameters />
+        </test>
+      </children>
+      <parameters />
+    </test>
+    <annotations />
+  </testModel>
+  <testPackageRun startTime="2015-10-21T10:34:14.1590882-04:00" endTime="2015-10-21T10:35:22.0852789-04:00">
+    <testStepRun startTime="2015-10-21T10:34:15.7719201-04:00" endTime="2015-10-21T10:35:22.0862794-04:00">
+      <testStep id="abea16dad04253f5" name="Root" fullName="" testId="c2722843734a7a54" isPrimary="true" isTestCase="false" isDynamic="false">
+        <codeReference />
+        <codeLocation />
+        <metadata>
+          <entry key="TestKind">
+            <value>Root</value>
+          </entry>
+        </metadata>
+      </testStep>
+      <children>
+        <testStepRun startTime="2015-10-21T10:34:15.8119477-04:00" endTime="2015-10-21T10:35:22.0232363-04:00">
+          <testStep id="490aadee2b049157" name="DocumentCentreTests" fullName="DocumentCentreTests" testId="c1d55da997a3b89b" isPrimary="true" isTestCase="false" isDynamic="false">
+            <codeReference assembly="DocumentCentreTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+            <codeLocation path="C:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\bin\Debug\DocumentCentreTests.DLL" />
+            <metadata>
+              <entry key="TestKind">
+                <value>MbUnit v3 Assembly</value>
+              </entry>
+              <entry key="File">
+                <value>C:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\bin\Debug\DocumentCentreTests.DLL</value>
+              </entry>
+              <entry key="CodeBase">
+                <value>C:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\bin\Debug\DocumentCentreTests.DLL</value>
+              </entry>
+              <entry key="Copyright">
+                <value>Copyright ©  2015</value>
+              </entry>
+              <entry key="FileVersion">
+                <value>1.0.0.0</value>
+              </entry>
+              <entry key="Product">
+                <value>DocumentCentreTests</value>
+              </entry>
+              <entry key="Title">
+                <value>DocumentCentreTests</value>
+              </entry>
+              <entry key="Version">
+                <value>1.0.0.0</value>
+              </entry>
+              <entry key="Framework">
+                <value>MbUnit v3.4 build 11</value>
+              </entry>
+            </metadata>
+          </testStep>
+          <children>
+            <testStepRun startTime="2015-10-21T10:34:15.8319638-04:00" endTime="2015-10-21T10:35:22.0202332-04:00">
+              <testStep id="40acf151f5dc0572" name="DocumentCentreTests" fullName="DocumentCentreTests/DocumentCentreTests" testId="354ab0d18f85c7a3" isPrimary="true" isTestCase="false" isDynamic="false">
+                <codeReference assembly="DocumentCentreTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" namespace="DocumentCentreTests" type="DocumentCentreTests.DocumentCentreTests" />
+                <codeLocation path="c:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\DocumentCentreTests.cs" />
+                <metadata>
+                  <entry key="TestKind">
+                    <value>Fixture</value>
+                  </entry>
+                </metadata>
+              </testStep>
+              <children>
+                <testStepRun startTime="2015-10-21T10:34:15.8469745-04:00" endTime="2015-10-21T10:35:22.0112271-04:00">
+                  <testStep id="19c987ecc8995218" name="LoginWorks" fullName="DocumentCentreTests/DocumentCentreTests/LoginWorks" testId="82c1667e46755a27" isPrimary="true" isTestCase="false" isDynamic="false">
+                    <codeReference assembly="DocumentCentreTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" namespace="DocumentCentreTests" type="DocumentCentreTests.DocumentCentreTests" member="LoginWorks" />
+                    <codeLocation path="c:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\DocumentCentreTests.cs" line="72" />
+                    <metadata>
+                      <entry key="TestKind">
+                        <value>Test</value>
+                      </entry>
+                    </metadata>
+                  </testStep>
+                  <children>
+                    <testStepRun startTime="2015-10-21T10:34:15.8890023-04:00" endTime="2015-10-21T10:35:21.9011524-04:00">
+                      <testStep id="6e228266bc4ebb5a" name="LoginWorks(&quot;internet explorer&quot;, &quot;11&quot;, &quot;Windows 7&quot;)" fullName="DocumentCentreTests/DocumentCentreTests/LoginWorks/LoginWorks(&quot;internet explorer&quot;, &quot;11&quot;, &quot;Windows 7&quot;)" testId="82c1667e46755a27" isPrimary="false" isTestCase="true" isDynamic="false">
+                        <codeReference assembly="DocumentCentreTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" namespace="DocumentCentreTests" type="DocumentCentreTests.DocumentCentreTests" member="LoginWorks" />
+                        <codeLocation path="c:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\DocumentCentreTests.cs" line="72" />
+                        <metadata>
+                          <entry key="TestKind">
+                            <value>Test</value>
+                          </entry>
+                        </metadata>
+                      </testStep>
+                      <children />
+                      <result assertCount="0" duration="65.9589026">
+                        <outcome status="failed" />
+                      </result>
+                      <testLog>
+                        <streams>
+                          <stream name="Failures">
+                            <body>
+                              <contents>
+                                <section name="Execute">
+                                  <contents>
+                                    <marker class="Exception">
+                                      <contents>
+                                        <marker class="ExceptionType">
+                                          <contents>
+                                            <text><![CDATA[OpenQA.Selenium.WebDriverTimeoutException]]></text>
+                                          </contents>
+                                          <attributes />
+                                        </marker>
+                                        <text><![CDATA[: ]]></text>
+                                        <marker class="ExceptionMessage">
+                                          <contents>
+                                            <text><![CDATA[Timed out after 20 seconds]]></text>
+                                          </contents>
+                                          <attributes />
+                                        </marker>
+                                        <text><![CDATA[ ---> ]]></text>
+                                        <marker class="Exception">
+                                          <contents>
+                                            <marker class="ExceptionType">
+                                              <contents>
+                                                <text><![CDATA[OpenQA.Selenium.NoSuchElementException]]></text>
+                                              </contents>
+                                              <attributes />
+                                            </marker>
+                                            <text><![CDATA[: ]]></text>
+                                            <marker class="ExceptionMessage">
+                                              <contents>
+                                                <text><![CDATA[Unable to find element with id == userActionsButton (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 30.26 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.40.0', revision: 'fbe29a9', time: '2014-02-19 20:54:28'
+System info: host: 'WIN-8LIIH1BGM1D', ip: '172.20.17.111', os.name: 'Windows Server 2008 R2', os.arch: 'x86', os.version: '6.1', java.version: '1.8.0_45'
+Driver info: org.openqa.selenium.ie.InternetExplorerDriver
+Capabilities [{browserAttachTimeout=0, enablePersistentHover=true, ie.forceCreateProcessApi=false, ie.usePerProcessProxy=false, ignoreZoomSetting=false, handlesAlerts=true, version=11, platform=WINDOWS, nativeEvents=true, ie.ensureCleanSession=false, elementScrollBehavior=0, ie.browserCommandLineSwitches=, requireWindowFocus=false, browserName=internet explorer, initialBrowserUrl=about:blank, takesScreenshot=true, javascriptEnabled=true, ignoreProtectedModeSettings=false, enableElementCacheCleanup=true, cssSelectorsEnabled=true, unexpectedAlertBehaviour=dismiss}]
+Session ID: XXXXXXXX-XXXX-XXXX-XXXX-XXXX2e4c19d0]]></text>
+                                              </contents>
+                                              <attributes />
+                                            </marker>
+                                            <text><![CDATA[
+]]></text>
+                                            <marker class="ExceptionPropertyName">
+                                              <contents>
+                                                <text><![CDATA[HResult]]></text>
+                                              </contents>
+                                              <attributes />
+                                            </marker>
+                                            <text><![CDATA[: ]]></text>
+                                            <marker class="ExceptionPropertyValue">
+                                              <contents>
+                                                <text><![CDATA[-2146233088]]></text>
+                                              </contents>
+                                              <attributes />
+                                            </marker>
+                                            <text><![CDATA[
+]]></text>
+                                            <marker class="StackTrace">
+                                              <contents>
+                                                <text><![CDATA[   at OpenQA.Selenium.Remote.RemoteWebDriver.UnpackAndThrowOnError(Response errorResponse)
+   at OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)
+   at OpenQA.Selenium.Remote.RemoteWebDriver.FindElement(String mechanism, String value)
+   at OpenQA.Selenium.Support.UI.DefaultWait`1.Until[TResult](Func`2 condition)]]></text>
+                                              </contents>
+                                              <attributes />
+                                            </marker>
+                                          </contents>
+                                          <attributes />
+                                        </marker>
+                                        <text><![CDATA[
+   --- End of inner exception stack trace ---
+]]></text>
+                                        <marker class="ExceptionPropertyName">
+                                          <contents>
+                                            <text><![CDATA[HResult]]></text>
+                                          </contents>
+                                          <attributes />
+                                        </marker>
+                                        <text><![CDATA[: ]]></text>
+                                        <marker class="ExceptionPropertyValue">
+                                          <contents>
+                                            <text><![CDATA[-2146233088]]></text>
+                                          </contents>
+                                          <attributes />
+                                        </marker>
+                                        <text><![CDATA[
+]]></text>
+                                        <marker class="StackTrace">
+                                          <contents>
+                                            <text><![CDATA[   at OpenQA.Selenium.Support.UI.DefaultWait`1.ThrowTimeoutException(String exceptionMessage, Exception lastException)
+   at OpenQA.Selenium.Support.UI.DefaultWait`1.Until[TResult](Func`2 condition)
+   at DocumentCentreTests.HelperMethods.Login(IWebDriver driver, String username, String password) in ]]></text>
+                                            <marker class="CodeLocation">
+                                              <contents>
+                                                <text><![CDATA[c:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\HelperMethods.cs:line 33]]></text>
+                                              </contents>
+                                              <attributes>
+                                                <attribute name="line" value="33" />
+                                                <attribute name="path" value="c:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\HelperMethods.cs" />
+                                              </attributes>
+                                            </marker>
+                                            <text><![CDATA[
+   at DocumentCentreTests.DocumentCentreTests.LoginWorks(String browser, String version, String platform) in ]]></text>
+                                            <marker class="CodeLocation">
+                                              <contents>
+                                                <text><![CDATA[c:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\DocumentCentreTests.cs:line 76]]></text>
+                                              </contents>
+                                              <attributes>
+                                                <attribute name="line" value="76" />
+                                                <attribute name="path" value="c:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\DocumentCentreTests.cs" />
+                                              </attributes>
+                                            </marker>
+                                          </contents>
+                                          <attributes />
+                                        </marker>
+                                      </contents>
+                                      <attributes />
+                                    </marker>
+                                  </contents>
+                                </section>
+                              </contents>
+                            </body>
+                          </stream>
+                        </streams>
+                        <attachments />
+                      </testLog>
+                    </testStepRun>
+                    <testStepRun startTime="2015-10-21T10:34:15.8900028-04:00" endTime="2015-10-21T10:35:22.0052216-04:00">
+                      <testStep id="9a889faff43bc57d" name="LoginWorks(&quot;chrome&quot;, &quot;35&quot;, &quot;linux&quot;)" fullName="DocumentCentreTests/DocumentCentreTests/LoginWorks/LoginWorks(&quot;chrome&quot;, &quot;35&quot;, &quot;linux&quot;)" testId="82c1667e46755a27" isPrimary="false" isTestCase="true" isDynamic="false">
+                        <codeReference assembly="DocumentCentreTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" namespace="DocumentCentreTests" type="DocumentCentreTests.DocumentCentreTests" member="LoginWorks" />
+                        <codeLocation path="c:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\DocumentCentreTests.cs" line="72" />
+                        <metadata>
+                          <entry key="TestKind">
+                            <value>Test</value>
+                          </entry>
+                        </metadata>
+                      </testStep>
+                      <children />
+                      <result assertCount="0" duration="66.0737128">
+                        <outcome status="failed" />
+                      </result>
+                      <testLog>
+                        <streams>
+                          <stream name="Failures">
+                            <body>
+                              <contents>
+                                <section name="Execute">
+                                  <contents>
+                                    <marker class="Exception">
+                                      <contents>
+                                        <marker class="ExceptionType">
+                                          <contents>
+                                            <text><![CDATA[OpenQA.Selenium.WebDriverTimeoutException]]></text>
+                                          </contents>
+                                          <attributes />
+                                        </marker>
+                                        <text><![CDATA[: ]]></text>
+                                        <marker class="ExceptionMessage">
+                                          <contents>
+                                            <text><![CDATA[Timed out after 20 seconds]]></text>
+                                          </contents>
+                                          <attributes />
+                                        </marker>
+                                        <text><![CDATA[ ---> ]]></text>
+                                        <marker class="Exception">
+                                          <contents>
+                                            <marker class="ExceptionType">
+                                              <contents>
+                                                <text><![CDATA[OpenQA.Selenium.NoSuchElementException]]></text>
+                                              </contents>
+                                              <attributes />
+                                            </marker>
+                                            <text><![CDATA[: ]]></text>
+                                            <marker class="ExceptionMessage">
+                                              <contents>
+                                                <text><![CDATA[no such element
+  (Session info: chrome=35.0.1916.153)
+  (Driver info: chromedriver=2.10.267517,platform=Linux 3.13.0-32-generic x86)]]></text>
+                                              </contents>
+                                              <attributes />
+                                            </marker>
+                                            <text><![CDATA[
+]]></text>
+                                            <marker class="ExceptionPropertyName">
+                                              <contents>
+                                                <text><![CDATA[HResult]]></text>
+                                              </contents>
+                                              <attributes />
+                                            </marker>
+                                            <text><![CDATA[: ]]></text>
+                                            <marker class="ExceptionPropertyValue">
+                                              <contents>
+                                                <text><![CDATA[-2146233088]]></text>
+                                              </contents>
+                                              <attributes />
+                                            </marker>
+                                            <text><![CDATA[
+]]></text>
+                                            <marker class="StackTrace">
+                                              <contents>
+                                                <text><![CDATA[   at OpenQA.Selenium.Remote.RemoteWebDriver.UnpackAndThrowOnError(Response errorResponse)
+   at OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)
+   at OpenQA.Selenium.Remote.RemoteWebDriver.FindElement(String mechanism, String value)
+   at OpenQA.Selenium.Support.UI.DefaultWait`1.Until[TResult](Func`2 condition)]]></text>
+                                              </contents>
+                                              <attributes />
+                                            </marker>
+                                          </contents>
+                                          <attributes />
+                                        </marker>
+                                        <text><![CDATA[
+   --- End of inner exception stack trace ---
+]]></text>
+                                        <marker class="ExceptionPropertyName">
+                                          <contents>
+                                            <text><![CDATA[HResult]]></text>
+                                          </contents>
+                                          <attributes />
+                                        </marker>
+                                        <text><![CDATA[: ]]></text>
+                                        <marker class="ExceptionPropertyValue">
+                                          <contents>
+                                            <text><![CDATA[-2146233088]]></text>
+                                          </contents>
+                                          <attributes />
+                                        </marker>
+                                        <text><![CDATA[
+]]></text>
+                                        <marker class="StackTrace">
+                                          <contents>
+                                            <text><![CDATA[   at OpenQA.Selenium.Support.UI.DefaultWait`1.ThrowTimeoutException(String exceptionMessage, Exception lastException)
+   at OpenQA.Selenium.Support.UI.DefaultWait`1.Until[TResult](Func`2 condition)
+   at DocumentCentreTests.HelperMethods.Login(IWebDriver driver, String username, String password) in ]]></text>
+                                            <marker class="CodeLocation">
+                                              <contents>
+                                                <text><![CDATA[c:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\HelperMethods.cs:line 33]]></text>
+                                              </contents>
+                                              <attributes>
+                                                <attribute name="line" value="33" />
+                                                <attribute name="path" value="c:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\HelperMethods.cs" />
+                                              </attributes>
+                                            </marker>
+                                            <text><![CDATA[
+   at DocumentCentreTests.DocumentCentreTests.LoginWorks(String browser, String version, String platform) in ]]></text>
+                                            <marker class="CodeLocation">
+                                              <contents>
+                                                <text><![CDATA[c:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\DocumentCentreTests.cs:line 76]]></text>
+                                              </contents>
+                                              <attributes>
+                                                <attribute name="line" value="76" />
+                                                <attribute name="path" value="c:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\DocumentCentreTests.cs" />
+                                              </attributes>
+                                            </marker>
+                                          </contents>
+                                          <attributes />
+                                        </marker>
+                                      </contents>
+                                      <attributes />
+                                    </marker>
+                                  </contents>
+                                </section>
+                              </contents>
+                            </body>
+                          </stream>
+                        </streams>
+                        <attachments />
+                      </testLog>
+                    </testStepRun>
+                    <testStepRun startTime="2015-10-21T10:34:15.8910033-04:00" endTime="2015-10-21T10:35:19.425923-04:00">
+                      <testStep id="8a6729e38afc8ba6" name="LoginWorks(&quot;safari&quot;, &quot;6&quot;, &quot;OS X 10.8&quot;)" fullName="DocumentCentreTests/DocumentCentreTests/LoginWorks/LoginWorks(&quot;safari&quot;, &quot;6&quot;, &quot;OS X 10.8&quot;)" testId="82c1667e46755a27" isPrimary="false" isTestCase="true" isDynamic="false">
+                        <codeReference assembly="DocumentCentreTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" namespace="DocumentCentreTests" type="DocumentCentreTests.DocumentCentreTests" member="LoginWorks" />
+                        <codeLocation path="c:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\DocumentCentreTests.cs" line="72" />
+                        <metadata>
+                          <entry key="TestKind">
+                            <value>Test</value>
+                          </entry>
+                        </metadata>
+                      </testStep>
+                      <children />
+                      <result assertCount="0" duration="63.481800199999995">
+                        <outcome status="failed" />
+                      </result>
+                      <testLog>
+                        <streams>
+                          <stream name="Failures">
+                            <body>
+                              <contents>
+                                <section name="Execute">
+                                  <contents>
+                                    <marker class="Exception">
+                                      <contents>
+                                        <marker class="ExceptionType">
+                                          <contents>
+                                            <text><![CDATA[OpenQA.Selenium.WebDriverTimeoutException]]></text>
+                                          </contents>
+                                          <attributes />
+                                        </marker>
+                                        <text><![CDATA[: ]]></text>
+                                        <marker class="ExceptionMessage">
+                                          <contents>
+                                            <text><![CDATA[Timed out after 20 seconds]]></text>
+                                          </contents>
+                                          <attributes />
+                                        </marker>
+                                        <text><![CDATA[ ---> ]]></text>
+                                        <marker class="Exception">
+                                          <contents>
+                                            <marker class="ExceptionType">
+                                              <contents>
+                                                <text><![CDATA[OpenQA.Selenium.NoSuchElementException]]></text>
+                                              </contents>
+                                              <attributes />
+                                            </marker>
+                                            <text><![CDATA[: ]]></text>
+                                            <marker class="ExceptionMessage">
+                                              <contents>
+                                                <text><![CDATA[Could not find element: {"using":"id","value":"userActionsButton"} (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 30.07 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.40.0', revision: 'fbe29a9', time: '2014-02-19 20:54:28'
+System info: host: 'itako42225.prod.miso', ip: '172.20.42.225', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.8.5', java.version: '1.8.0_60'
+Driver info: org.openqa.selenium.safari.SafariDriver
+Capabilities [{browserName=safari, takesScreenshot=true, javascriptEnabled=true, version=6.2.7, cssSelectorsEnabled=true, platform=MAC, secureSsl=true}]
+Session ID: null]]></text>
+                                              </contents>
+                                              <attributes />
+                                            </marker>
+                                            <text><![CDATA[
+]]></text>
+                                            <marker class="ExceptionPropertyName">
+                                              <contents>
+                                                <text><![CDATA[HResult]]></text>
+                                              </contents>
+                                              <attributes />
+                                            </marker>
+                                            <text><![CDATA[: ]]></text>
+                                            <marker class="ExceptionPropertyValue">
+                                              <contents>
+                                                <text><![CDATA[-2146233088]]></text>
+                                              </contents>
+                                              <attributes />
+                                            </marker>
+                                            <text><![CDATA[
+]]></text>
+                                            <marker class="StackTrace">
+                                              <contents>
+                                                <text><![CDATA[   at OpenQA.Selenium.Remote.RemoteWebDriver.UnpackAndThrowOnError(Response errorResponse)
+   at OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)
+   at OpenQA.Selenium.Remote.RemoteWebDriver.FindElement(String mechanism, String value)
+   at OpenQA.Selenium.Support.UI.DefaultWait`1.Until[TResult](Func`2 condition)]]></text>
+                                              </contents>
+                                              <attributes />
+                                            </marker>
+                                          </contents>
+                                          <attributes />
+                                        </marker>
+                                        <text><![CDATA[
+   --- End of inner exception stack trace ---
+]]></text>
+                                        <marker class="ExceptionPropertyName">
+                                          <contents>
+                                            <text><![CDATA[HResult]]></text>
+                                          </contents>
+                                          <attributes />
+                                        </marker>
+                                        <text><![CDATA[: ]]></text>
+                                        <marker class="ExceptionPropertyValue">
+                                          <contents>
+                                            <text><![CDATA[-2146233088]]></text>
+                                          </contents>
+                                          <attributes />
+                                        </marker>
+                                        <text><![CDATA[
+]]></text>
+                                        <marker class="StackTrace">
+                                          <contents>
+                                            <text><![CDATA[   at OpenQA.Selenium.Support.UI.DefaultWait`1.ThrowTimeoutException(String exceptionMessage, Exception lastException)
+   at OpenQA.Selenium.Support.UI.DefaultWait`1.Until[TResult](Func`2 condition)
+   at DocumentCentreTests.HelperMethods.Login(IWebDriver driver, String username, String password) in ]]></text>
+                                            <marker class="CodeLocation">
+                                              <contents>
+                                                <text><![CDATA[c:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\HelperMethods.cs:line 33]]></text>
+                                              </contents>
+                                              <attributes>
+                                                <attribute name="line" value="33" />
+                                                <attribute name="path" value="c:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\HelperMethods.cs" />
+                                              </attributes>
+                                            </marker>
+                                            <text><![CDATA[
+   at DocumentCentreTests.DocumentCentreTests.LoginWorks(String browser, String version, String platform) in ]]></text>
+                                            <marker class="CodeLocation">
+                                              <contents>
+                                                <text><![CDATA[c:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\DocumentCentreTests.cs:line 76]]></text>
+                                              </contents>
+                                              <attributes>
+                                                <attribute name="line" value="76" />
+                                                <attribute name="path" value="c:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\DocumentCentreTests.cs" />
+                                              </attributes>
+                                            </marker>
+                                          </contents>
+                                          <attributes />
+                                        </marker>
+                                      </contents>
+                                      <attributes />
+                                    </marker>
+                                  </contents>
+                                </section>
+                              </contents>
+                            </body>
+                          </stream>
+                        </streams>
+                        <attachments />
+                      </testLog>
+                    </testStepRun>
+                  </children>
+                  <result assertCount="0" duration="66.1160319">
+                    <outcome status="failed" />
+                  </result>
+                  <testLog>
+                    <streams />
+                    <attachments />
+                  </testLog>
+                </testStepRun>
+              </children>
+              <result assertCount="0" duration="66.1505798">
+                <outcome status="failed" />
+              </result>
+              <testLog>
+                <streams />
+                <attachments />
+              </testLog>
+            </testStepRun>
+          </children>
+          <result assertCount="0" duration="66.1742179">
+            <outcome status="failed" />
+          </result>
+          <testLog>
+            <streams />
+            <attachments />
+          </testLog>
+        </testStepRun>
+      </children>
+      <result assertCount="0" duration="67.9255568">
+        <outcome status="failed" />
+      </result>
+      <testLog>
+        <streams />
+        <attachments />
+      </testLog>
+    </testStepRun>
+    <statistics assertCount="0" duration="67.9270741" runCount="3" passedCount="0" failedCount="3" inconclusiveCount="0" skippedCount="0" testCount="3" stepCount="7">
+      <outcomeSummaries>
+        <outcomeSummary count="3">
+          <outcome status="failed" />
+        </outcomeSummary>
+      </outcomeSummaries>
+    </statistics>
+  </testPackageRun>
+  <logEntries>
+    <logEntry severity="info" message="Host started at 10/21/15 10:34:14 AM." />
+    <logEntry severity="info" message="Running under CLR v4.0.30319 runtime." />
+    <logEntry severity="debug" message="Listening for connections on IPC port: 'IsolatedProcessHost.2c42a3db5a850a4f'" />
+    <logEntry severity="info" message="Host stopped at 10/21/15 10:35:22 AM." />
+    <logEntry severity="info" message="Host process exited with code: 0" />
+  </logEntries>
+</report>
