@@ -70,12 +70,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Constants.cs" />
+    <Compile Include="Util\Constants.cs" />
     <Compile Include="DocumentCentreTests.cs" />
-    <Compile Include="HelperMethods.cs" />
+    <Compile Include="Util\HelperMethods.cs" />
     <Compile Include="Pages\HomePage.cs" />
     <Compile Include="Pages\LoginPage.cs" />
     <Compile Include="Pages\MemberHomePage.cs" />
+    <Compile Include="Pages\ViewOrdersPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
