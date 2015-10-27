@@ -14,6 +14,6 @@ namespace DocumentCentreTests.Pages
     /// </summary>
     public abstract class HomePage
     {
-       
+        public abstract void NavigateToViewOrders();
     }
 }

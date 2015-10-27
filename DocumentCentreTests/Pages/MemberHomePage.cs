@@ -8,24 +8,42 @@ using System;
 
 namespace DocumentCentreTests.Pages
 {
+    /// <summary>class representing Doc Centre Member Portal</summary>
     public class MemberHomePage : HomePage
     {
         private IWebDriver driver;
+        private IWebElement ordersDropdownLocator;
 
         /// <summary>
         /// Member home page constructor
         /// </summary>
-        /// <param name="driver"></param>
+        /// <param name="driver">Main interface for testing, represents idealised web browser</param>
         public MemberHomePage(IWebDriver driver)
         {
-            this.driver = driver;
-
             // check if on correct page
             if (HelperMethods.FindElement(driver, "id", "userActionsButton") == null)
             {
                 // TODO: logic to navigate back to login page
                 throw new InvalidOperationException("Member homepage not found");
             }
+            this.driver = driver;
+            this.ordersDropdownLocator = HelperMethods.FindElement(driver, "linktext", "My Orders");
+        }
+
+        public override void NavigateToViewOrders()
+        {
+            //ViewOrdersPage viewOrdersPage = new ViewOrdersPage();
+
+            this.ordersDropdownLocator.Click();
+            var viewOrdersLink = HelperMethods.FindElement(driver, "linktext", "View Orders");
+            viewOrdersLink.Click();
+            // check if on correct page
+            if (!"My Orders".Equals(driver.Title))
+            {
+                // TODO: logic to navigate back to login page
+                throw new InvalidOperationException("Login page not found");
+            }
+            //return ViewOrdersPage
         }
     }
 }
