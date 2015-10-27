@@ -40,34 +40,5 @@ namespace DocumentCentreTests
             else
                 throw new InvalidElementStateException("Element not found.");
         }
-
-        /// <summary>
-        /// Method used to login to http://portal.test-web01.lbmx.com/login?redirect=%2f
-        /// </summary>
-        //public static void Login(IWebDriver driver, string username, string password)
-        //{
-        //    // find login box
-        //    var usernameTextbox = driver.FindElement(By.Name("UserName"));
-        //    usernameTextbox.Clear();
-        //    usernameTextbox.SendKeys(username);
-        //    // find password box
-        //    var passwordTextbox = driver.FindElement(By.Name("Password"));
-        //    passwordTextbox.Clear();
-        //    passwordTextbox.SendKeys(password);
-        //    // find Log In button
-        //    var loginButton = driver.FindElement(By.Id("loginButton"));
-        //    loginButton.Click();
-            
-        //    // verify the browser was navigated to the correct page
-        //    WebDriverWait wait = new WebDriverWait(driver, System.TimeSpan.FromSeconds(20));
-        //    IWebElement messageElement = wait.Until(ExpectedConditions.ElementExists(By.Id("userActionsButton")));
-
-        //    //if (wait.)
-        //    //{
-
-        //    //}
-
-        //    //Assert.FullMatch(driver.Url, "http://portal.test-web01.lbmx.com/");
-        //}
     }
 }
