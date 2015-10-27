@@ -6,7 +6,10 @@ using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.UI;
 using System;
 
-namespace DocumentCentreTests.Pages
+using DocumentCentreTests.Pages;
+using DocumentCentreTests.Util;
+
+namespace DocumentCentreTests
 {
     /// <summary>tests for the sauce labs guinea pig page</summary>
     [TestFixture]
@@ -98,7 +101,8 @@ namespace DocumentCentreTests.Pages
             LoginPage newLogin = new LoginPage(_Driver, "member");
             HomePage page = newLogin.LoginAs(Constants.MEM_PORTAL_USER, Constants.MEM_PORTAL_PASS);
 
-            page.NavigateToViewOrders();
+            ViewOrdersPage voPage = page.NavigateToViewOrders();
+            Assert.IsNotNull(voPage);
         }
 
         #endregion
