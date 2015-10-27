@@ -72,10 +72,9 @@ namespace DocumentCentreTests.Pages
         /// <param name="browser">Browser to test against</param>
         /// <param name="version">Browser version</param>
         /// <param name="platform">OS to run tests on - includes version #</param>
-        [Test, Parallelizable]
+        //[Test, Parallelizable]
         public void MemberLoginWorks(string browser, string version, string platform)
         {
-            //HomePage page = null;
             var _Driver = _Setup(browser, version, platform);
 
             // attempt a login
@@ -89,12 +88,17 @@ namespace DocumentCentreTests.Pages
             CleanUp(_Driver);
         }
 
-        //[Test, Parallelizable]
+        [Test, Parallelizable]
         public void MemberOrdersSearch(string browser, string version, string platform)
         {
             
             var _Driver = _Setup(browser, version, platform);
-            
+
+            // login as member
+            LoginPage newLogin = new LoginPage(_Driver, "member");
+            HomePage page = newLogin.LoginAs(Constants.MEM_PORTAL_USER, Constants.MEM_PORTAL_PASS);
+
+            page.NavigateToViewOrders();
         }
 
         #endregion
