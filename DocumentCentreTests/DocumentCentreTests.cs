@@ -75,7 +75,7 @@ namespace DocumentCentreTests
         /// <param name="browser">Browser to test against</param>
         /// <param name="version">Browser version</param>
         /// <param name="platform">OS to run tests on - includes version #</param>
-        //[Test, Parallelizable]
+        [Test, Parallelizable]
         public void MemberLoginWorks(string browser, string version, string platform)
         {
             var _Driver = _Setup(browser, version, platform);
@@ -103,6 +103,8 @@ namespace DocumentCentreTests
 
             ViewOrdersPage voPage = page.NavigateToViewOrders();
             Assert.IsNotNull(voPage);
+
+            CleanUp(_Driver);
         }
 
         #endregion

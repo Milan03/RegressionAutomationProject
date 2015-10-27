@@ -69,16 +69,11 @@ namespace DocumentCentreTests.Pages
         /// <returns>New page object representing the destination.</returns>
         public HomePage SubmitLogin()
         {
-            
             loginButtonLocator.Click();
             if (loginPageType.Equals("member"))
-            {
-                HomePage newHomePage = new MemberHomePage(driver);
-                return newHomePage;
-            }
+                return new MemberHomePage(driver);
             else
-                return null;
-                
+                return null;      
         }
 
         /// <summary>
@@ -89,8 +84,7 @@ namespace DocumentCentreTests.Pages
         public LoginPage SubmitLoginExpectingFailure()
         {
             loginButtonLocator.Click();
-            LoginPage newLogin = new LoginPage(driver, loginPageType);
-            return newLogin;
+            return new LoginPage(driver, loginPageType);
         }
 
         /// <summary>

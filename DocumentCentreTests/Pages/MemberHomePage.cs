@@ -37,9 +37,8 @@ namespace DocumentCentreTests.Pages
         /// <returns>New page object representing the destination.</returns>
         public override ViewOrdersPage NavigateToViewOrders()
         {
-            ViewOrdersPage voPage = new ViewOrdersPage(driver);
-
-            this.ordersDropdownLocator.Click();
+            // open dropdown
+            ordersDropdownLocator.Click();
             var viewOrdersLink = HelperMethods.FindElement(driver, "linktext", "View Orders");
             viewOrdersLink.Click();
             // check if on correct page
@@ -47,7 +46,7 @@ namespace DocumentCentreTests.Pages
             {
                 throw new NoSuchWindowException("View Orders page not found");
             }
-            return voPage;
+            return new ViewOrdersPage(driver);
         }
     }
 }
