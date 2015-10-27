@@ -6,6 +6,8 @@ using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.UI;
 using System;
 
+using DocumentCentreTests.Util;
+
 namespace DocumentCentreTests.Pages
 {
     public class LoginPage

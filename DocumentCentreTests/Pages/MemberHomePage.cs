@@ -6,6 +6,8 @@ using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.UI;
 using System;
 
+using DocumentCentreTests.Util;
+
 namespace DocumentCentreTests.Pages
 {
     /// <summary>class representing Doc Centre Member Portal</summary>
@@ -29,9 +31,13 @@ namespace DocumentCentreTests.Pages
             this.ordersDropdownLocator = HelperMethods.FindElement(driver, "linktext", "My Orders");
         }
 
-        public override void NavigateToViewOrders()
+        /// <summary>
+        /// Logic to navigate to View Orders page
+        /// </summary>
+        /// <returns>New page object representing the destination.</returns>
+        public override ViewOrdersPage NavigateToViewOrders()
         {
-            //ViewOrdersPage viewOrdersPage = new ViewOrdersPage();
+            ViewOrdersPage voPage = new ViewOrdersPage(driver);
 
             this.ordersDropdownLocator.Click();
             var viewOrdersLink = HelperMethods.FindElement(driver, "linktext", "View Orders");
@@ -41,7 +47,7 @@ namespace DocumentCentreTests.Pages
             {
                 throw new NoSuchWindowException("View Orders page not found");
             }
-            //return ViewOrdersPage
+            return voPage;
         }
     }
 }
