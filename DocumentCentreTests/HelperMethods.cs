@@ -11,7 +11,6 @@ namespace DocumentCentreTests
     /// <summary>contains functional methods frequently used during test</summary>
     internal class HelperMethods
     {
-
         /// <summary>
         /// Helper method for finding elements
         /// </summary>
@@ -38,7 +37,7 @@ namespace DocumentCentreTests
                 return foundElement;
             }
             else
-                throw new InvalidElementStateException("Element not found.");
+                throw new NoSuchElementException("Element not found.");
         }
     }
 }

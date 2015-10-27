@@ -23,8 +23,7 @@ namespace DocumentCentreTests.Pages
             // check if on correct page
             if (HelperMethods.FindElement(driver, "id", "userActionsButton") == null)
             {
-                // TODO: logic to navigate back to login page
-                throw new InvalidOperationException("Member homepage not found");
+                throw new NoSuchWindowException("Member homepage not found");
             }
             this.driver = driver;
             this.ordersDropdownLocator = HelperMethods.FindElement(driver, "linktext", "My Orders");
@@ -40,8 +39,7 @@ namespace DocumentCentreTests.Pages
             // check if on correct page
             if (!"My Orders".Equals(driver.Title))
             {
-                // TODO: logic to navigate back to login page
-                throw new InvalidOperationException("Login page not found");
+                throw new NoSuchWindowException("View Orders page not found");
             }
             //return ViewOrdersPage
         }

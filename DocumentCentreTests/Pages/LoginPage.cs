@@ -33,7 +33,7 @@ namespace DocumentCentreTests.Pages
             if (!"User Login".Equals(driver.Title))
             {
                 // TODO: logic to navigate back to login page
-                throw new InvalidOperationException("Login page not found");
+                throw new NoSuchWindowException("Login page not found");
             }
         }
 
@@ -75,7 +75,7 @@ namespace DocumentCentreTests.Pages
                 return newHomePage;
             }
             else
-                throw new InvalidOperationException("Homepage not found.");
+                return null;
                 
         }
 
