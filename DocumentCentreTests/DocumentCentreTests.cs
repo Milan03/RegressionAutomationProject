@@ -14,9 +14,9 @@ namespace DocumentCentreTests
     /// <summary>tests for the sauce labs guinea pig page</summary>
     [TestFixture]
     [Header("browser", "version", "platform")] // name of the parameters in the rows
-    [Row("internet explorer", "11", "Windows 7")] // run all tests in the fixture against IE 11 for windows 7
+    //[Row("internet explorer", "11", "Windows 7")] // run all tests in the fixture against IE 11 for windows 7
     [Row("chrome", "35", "linux")] // run all tests in the fixture against chrome 35 for linux
-    [Row("safari", "8", "OS X 10.10")] // run all tests in the fixture against safari 6 and mac OS X 10.8
+    //[Row("safari", "8", "OS X 10.10")] // run all tests in the fixture against safari 6 and mac OS X 10.8
     public class DocumentCentreTests
     {
         #region Setup and Teardown
@@ -75,7 +75,7 @@ namespace DocumentCentreTests
         /// <param name="browser">Browser to test against</param>
         /// <param name="version">Browser version</param>
         /// <param name="platform">OS to run tests on - includes version #</param>
-        [Test, Parallelizable]
+        //[Test, Parallelizable]
         public void MemberLoginWorks(string browser, string version, string platform)
         {
             var _Driver = _Setup(browser, version, platform);
