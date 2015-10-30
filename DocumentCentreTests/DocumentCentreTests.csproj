@@ -70,6 +70,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Tables\OrderTable.cs" />
     <Compile Include="Util\Constants.cs" />
     <Compile Include="DocumentCentreTests.cs" />
     <Compile Include="Util\HelperMethods.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Pages\MemberHomePage.cs" />
     <Compile Include="Pages\ViewOrdersPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tables\HtmlTable.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
