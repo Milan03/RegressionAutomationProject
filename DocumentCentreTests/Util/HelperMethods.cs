@@ -36,6 +36,16 @@ namespace DocumentCentreTests.Util
                 var foundElement = driver.FindElement(By.LinkText(element));
                 return foundElement;
             }
+            else if ("tagname".Equals(type))
+            {
+                var foundElement = driver.FindElement(By.TagName(element));
+                return foundElement;
+            }
+            else if ("css".Equals(type))
+            {
+                var foundElement = driver.FindElement(By.CssSelector(element));
+                return foundElement;
+            }
             else
                 throw new NoSuchElementException("Element not found.");
         }
