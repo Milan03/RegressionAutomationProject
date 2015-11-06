@@ -18,19 +18,19 @@ namespace DocumentCentreTests
     {
         #region Setup and Teardown
 
-        private IWebDriver _driver;
+        private IWebDriver Driver;
 
         [SetUp]
         public void LoadDriver()
         {
-            _driver = new FirefoxDriver();
-            _driver.Navigate().GoToUrl("http://portal.test-web01.lbmx.com/login?redirect=%2f");
+            Driver = new FirefoxDriver();
+            Driver.Navigate().GoToUrl("http://portal.test-web01.lbmx.com/login?redirect=%2f");
         }
 
         [TearDown]
         public void CleanUp()
         {
-            _driver.Quit();
+            Driver.Quit();
         }
 
         #endregion
@@ -44,26 +44,27 @@ namespace DocumentCentreTests
         //public void MemberLoginWorks()
         //{
         //    LoadDriver();
-        //    _driver.Navigate().GoToUrl("http://portal.test-web01.lbmx.com/login?redirect=%2f");
+        //    Driver.Navigate().GoToUrl("http://portal.test-web01.lbmx.com/login?redirect=%2f");
 
         //    // attempt a login
-        //    LoginPage newLogin = new LoginPage(_driver, "member");
+        //    LoginPage newLogin = new LoginPage(Driver, "member");
         //    HomePage mem = newLogin.LoginAs(Constants.MEM_PORTAL_USER, Constants.MEM_PORTAL_PASS);
 
         //    CleanUp();
         //}
 
         [Test]
-        public void MemberOrdersSearch(string browser, string version, string platform)
+        public void MemberOrdersSearch()
         {
 
             LoadDriver();
 
             // login as member
-            LoginPage newLogin = new LoginPage(_driver, "member");
+            LoginPage newLogin = new LoginPage(Driver, "member");
             HomePage page = newLogin.LoginAs(Constants.MEM_PORTAL_USER, Constants.MEM_PORTAL_PASS);
 
             ViewOrdersPage voPage = page.NavigateToViewOrders();
+            voPage.SearchDraftOrders();
             Assert.IsNotNull(voPage);
 
             CleanUp();

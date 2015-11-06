@@ -14,8 +14,8 @@ namespace DocumentCentreTests.Pages
     /// <summary>class representing Doc Centre Member Portal</summary>
     public class MemberHomePage :HomePage
     {
-        private IWebDriver _driver;
-        private IWebElement ordersDropdownLocator;
+        private IWebDriver Driver;
+        private IWebElement OrdersDropdownLocator;
 
         /// <summary>
         /// Member home page constructor
@@ -23,7 +23,7 @@ namespace DocumentCentreTests.Pages
         /// <param name="driver">Main interface for testing, represents idealised web browser</param>
         public MemberHomePage(IWebDriver driver)
         {
-            this._driver = driver;
+            this.Driver = driver;
             PageFactory.InitElements(driver, this);
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(1));
             IWebElement element =
@@ -34,7 +34,7 @@ namespace DocumentCentreTests.Pages
                 throw new NoSuchWindowException("Member homepage not found");
             }
             
-            this.ordersDropdownLocator = HelperMethods.FindElement(driver, "linktext", "My Orders");
+            this.OrdersDropdownLocator = HelperMethods.FindElement(driver, "linktext", "My Orders");
         }
 
         /// <summary>
@@ -44,15 +44,15 @@ namespace DocumentCentreTests.Pages
         public override ViewOrdersPage NavigateToViewOrders()
         {
             // open dropdown
-            ordersDropdownLocator.Click();
-            var viewOrdersLink = HelperMethods.FindElement(_driver, "linktext", "View Orders");
+            OrdersDropdownLocator.Click();
+            var viewOrdersLink = HelperMethods.FindElement(Driver, "linktext", "View Orders");
             viewOrdersLink.Click();
             // check if on correct page
-            if (!"My Orders".Equals(_driver.Title))
+            if (!"My Orders".Equals(Driver.Title))
             {
                 throw new NoSuchWindowException("View Orders page not found");
             }
-            return new ViewOrdersPage(_driver);
+            return new ViewOrdersPage(Driver);
         }
     }
 }

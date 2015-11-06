@@ -13,11 +13,11 @@ namespace DocumentCentreTests.Pages
 {
     public class LoginPage
     {
-        private IWebDriver driver;
-        private IWebElement usernameLocator;
-        private IWebElement passwordLocator;
-        private IWebElement loginButtonLocator;
-        private string loginPageType;
+        private IWebDriver Driver;
+        private IWebElement UsernameLocator;
+        private IWebElement PasswordLocator;
+        private IWebElement LoginButtonLocator;
+        private string LoginPageType;
 
         /// <summary>
         /// Constructor assigns the Web Driver as well as all locators for elements needed
@@ -26,12 +26,12 @@ namespace DocumentCentreTests.Pages
         /// <param name="driver">Main interface for testing, represents idealised web browser</param>
         public LoginPage(IWebDriver driver, string type)
         {
-            this.driver = driver;
+            this.Driver = driver;
             
-            this.loginPageType = type;
-            this.usernameLocator = HelperMethods.FindElement(driver, "name", "UserName");
-            this.passwordLocator = HelperMethods.FindElement(driver, "name", "Password");
-            this.loginButtonLocator = HelperMethods.FindElement(driver, "id", "loginButton");
+            this.LoginPageType = type;
+            this.UsernameLocator = HelperMethods.FindElement(driver, "name", "UserName");
+            this.PasswordLocator = HelperMethods.FindElement(driver, "name", "Password");
+            this.LoginButtonLocator = HelperMethods.FindElement(driver, "id", "loginButton");
 
             // check if on correct page
             if (!"User Login".Equals(driver.Title))
@@ -49,8 +49,8 @@ namespace DocumentCentreTests.Pages
         /// <returns>Current page object</returns>
         public LoginPage TypeUsername(string username)
         {
-            usernameLocator.Clear();
-            usernameLocator.SendKeys(username);
+            UsernameLocator.Clear();
+            UsernameLocator.SendKeys(username);
             return this;
         }
 
@@ -61,8 +61,8 @@ namespace DocumentCentreTests.Pages
         /// <returns>Current page object</returns>
         public LoginPage TypePassword(string password)
         {
-            passwordLocator.Clear();
-            passwordLocator.SendKeys(password);
+            PasswordLocator.Clear();
+            PasswordLocator.SendKeys(password);
             return this;
         }
 
@@ -72,9 +72,9 @@ namespace DocumentCentreTests.Pages
         /// <returns>New page object representing the destination.</returns>
         public HomePage SubmitLogin()
         {
-            loginButtonLocator.Click();
-            if (loginPageType.Equals("member"))
-                return new MemberHomePage(driver);
+            LoginButtonLocator.Click();
+            if (LoginPageType.Equals("member"))
+                return new MemberHomePage(Driver);
             else
                 return null;      
         }
@@ -86,8 +86,8 @@ namespace DocumentCentreTests.Pages
         /// <returns>New page object representing the destination page.</returns>
         public LoginPage SubmitLoginExpectingFailure()
         {
-            loginButtonLocator.Click();
-            return new LoginPage(driver, loginPageType);
+            LoginButtonLocator.Click();
+            return new LoginPage(Driver, LoginPageType);
         }
 
         /// <summary>

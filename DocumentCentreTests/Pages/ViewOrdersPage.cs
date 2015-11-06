@@ -15,6 +15,7 @@ namespace DocumentCentreTests.Pages
     {
         private IWebDriver Driver;
         private IWebElement TypeDropDownLocator;
+        private IWebElement SearchOrdersButton;
         private OrderTable OrderTable;
 
         /// <summary>
@@ -24,8 +25,9 @@ namespace DocumentCentreTests.Pages
         public ViewOrdersPage(IWebDriver driver)
         {
             this.Driver = driver;
-            this.TypeDropDownLocator = HelperMethods.FindElement(Driver, "class", "k-dropdown");
-            this.OrderTable = new OrderTable(HelperMethods.FindElement(Driver, "css", "table"));
+            this.TypeDropDownLocator = HelperMethods.FindElement(Driver, "classname", "k-dropdown");
+            this.OrderTable = new OrderTable(HelperMethods.FindElement(Driver, "id", "ordersGrid"));
+            this.SearchOrdersButton = HelperMethods.FindElement(Driver, "id", "searchOrdersButton");
 
             // check if on correct page
             if (!"My Orders".Equals(driver.Title))
@@ -34,9 +36,21 @@ namespace DocumentCentreTests.Pages
             }
         }
 
+        public void ChooseOrderType(string type)
+        {
+            var mySelect = new SelectElement(TypeDropDownLocator);
+            var options = mySelect.Options;
+            foreach (var option in options) {
+                if (option.Text.Equals(type))
+                    option.Click();
+            }
+
+        }
+
         public ViewOrdersPage SearchDraftOrders()
         {
-
+            ChooseOrderType("Draft orders");
+            SearchOrdersButton.Click();
             return this;
         }
     }
