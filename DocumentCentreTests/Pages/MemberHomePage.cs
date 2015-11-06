@@ -7,13 +7,14 @@ using OpenQA.Selenium.Support.UI;
 using System;
 
 using DocumentCentreTests.Util;
+using OpenQA.Selenium.Support.PageObjects;
 
 namespace DocumentCentreTests.Pages
 {
     /// <summary>class representing Doc Centre Member Portal</summary>
-    public class MemberHomePage : HomePage
+    public class MemberHomePage :HomePage
     {
-        private IWebDriver driver;
+        private IWebDriver _driver;
         private IWebElement ordersDropdownLocator;
 
         /// <summary>
@@ -22,12 +23,17 @@ namespace DocumentCentreTests.Pages
         /// <param name="driver">Main interface for testing, represents idealised web browser</param>
         public MemberHomePage(IWebDriver driver)
         {
+            this._driver = driver;
+            PageFactory.InitElements(driver, this);
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(1));
+            IWebElement element =
+            wait.Until<IWebElement>(ExpectedConditions.ElementIsVisible(By.Id("userActionsButton")));
             // check if on correct page
             if (HelperMethods.FindElement(driver, "id", "userActionsButton") == null)
             {
                 throw new NoSuchWindowException("Member homepage not found");
             }
-            this.driver = driver;
+            
             this.ordersDropdownLocator = HelperMethods.FindElement(driver, "linktext", "My Orders");
         }
 
@@ -39,14 +45,14 @@ namespace DocumentCentreTests.Pages
         {
             // open dropdown
             ordersDropdownLocator.Click();
-            var viewOrdersLink = HelperMethods.FindElement(driver, "linktext", "View Orders");
+            var viewOrdersLink = HelperMethods.FindElement(_driver, "linktext", "View Orders");
             viewOrdersLink.Click();
             // check if on correct page
-            if (!"My Orders".Equals(driver.Title))
+            if (!"My Orders".Equals(_driver.Title))
             {
                 throw new NoSuchWindowException("View Orders page not found");
             }
-            return new ViewOrdersPage(driver);
+            return new ViewOrdersPage(_driver);
         }
     }
 }

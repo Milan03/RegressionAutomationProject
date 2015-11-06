@@ -7,6 +7,7 @@ using OpenQA.Selenium.Support.UI;
 using System;
 
 using DocumentCentreTests.Util;
+using OpenQA.Selenium.Support.PageObjects;
 
 namespace DocumentCentreTests.Pages
 {
@@ -26,6 +27,7 @@ namespace DocumentCentreTests.Pages
         public LoginPage(IWebDriver driver, string type)
         {
             this.driver = driver;
+            
             this.loginPageType = type;
             this.usernameLocator = HelperMethods.FindElement(driver, "name", "UserName");
             this.passwordLocator = HelperMethods.FindElement(driver, "name", "Password");
@@ -37,6 +39,7 @@ namespace DocumentCentreTests.Pages
                 // TODO: logic to navigate back to login page
                 throw new NoSuchWindowException("Login page not found");
             }
+            PageFactory.InitElements(driver, this);
         }
 
         /// <summary>
