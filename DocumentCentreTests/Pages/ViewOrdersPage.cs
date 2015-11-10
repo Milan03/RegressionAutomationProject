@@ -41,7 +41,7 @@ namespace DocumentCentreTests.Pages
         /// </summary>
         /// <param name="type">Type of order to search for</param>
         /// <returns>Current page object</returns>
-        public ViewOrdersPage SearchDraftOrders(string type)
+        public ViewOrdersPage SearchOrders(string type)
         {
             TypeDropDownLocator.Click();
             switch (type)

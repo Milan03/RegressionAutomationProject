@@ -40,23 +40,22 @@ namespace DocumentCentreTests
         /// <summary>
         /// Test if Member login works
         /// </summary>
-        //[Test]
-        //public void MemberLoginWorks()
-        //{
-        //    LoadDriver();
-        //    Driver.Navigate().GoToUrl("http://portal.test-web01.lbmx.com/login?redirect=%2f");
+        [Test]
+        public void MemberLoginWorks()
+        {
+            LoadDriver();
+            Driver.Navigate().GoToUrl("http://portal.test-web01.lbmx.com/login?redirect=%2f");
 
-        //    // attempt a login
-        //    LoginPage newLogin = new LoginPage(Driver, "member");
-        //    HomePage mem = newLogin.LoginAs(Constants.MEM_PORTAL_USER, Constants.MEM_PORTAL_PASS);
+            // attempt a login
+            LoginPage newLogin = new LoginPage(Driver, "member");
+            HomePage mem = newLogin.LoginAs(Constants.MEM_PORTAL_USER, Constants.MEM_PORTAL_PASS);
 
-        //    CleanUp();
-        //}
+            CleanUp();
+        }
 
         [Test]
         public void MemberOrdersSearch()
         {
-
             LoadDriver();
 
             // login as member
@@ -64,7 +63,7 @@ namespace DocumentCentreTests
             HomePage page = newLogin.LoginAs(Constants.MEM_PORTAL_USER, Constants.MEM_PORTAL_PASS);
 
             ViewOrdersPage voPage = page.NavigateToViewOrders();
-            voPage.SearchDraftOrders("Pending");
+            voPage.SearchOrders("Pending");
             Assert.IsNotNull(voPage);
 
             CleanUp();
