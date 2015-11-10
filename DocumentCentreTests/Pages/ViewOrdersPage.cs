@@ -5,7 +5,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.UI;
 using System;
-
+using System.Collections.Generic;
 using DocumentCentreTests.Tables;
 using DocumentCentreTests.Util;
 
@@ -25,7 +25,7 @@ namespace DocumentCentreTests.Pages
         public ViewOrdersPage(IWebDriver driver)
         {
             this.Driver = driver;
-            this.TypeDropDownLocator = HelperMethods.FindElement(Driver, "classname", "k-dropdown");
+            this.TypeDropDownLocator = HelperMethods.FindElement(Driver, "classname", "k-widget");
             this.OrderTable = new OrderTable(HelperMethods.FindElement(Driver, "id", "ordersGrid"));
             this.SearchOrdersButton = HelperMethods.FindElement(Driver, "id", "searchOrdersButton");
 
@@ -36,20 +36,34 @@ namespace DocumentCentreTests.Pages
             }
         }
 
-        public void ChooseOrderType(string type)
+        /// <summary>
+        /// For simulating order searchs by members
+        /// </summary>
+        /// <param name="type">Type of order to search for</param>
+        /// <returns>Current page object</returns>
+        public ViewOrdersPage SearchDraftOrders(string type)
         {
-            var mySelect = new SelectElement(TypeDropDownLocator);
-            var options = mySelect.Options;
-            foreach (var option in options) {
-                if (option.Text.Equals(type))
-                    option.Click();
+            TypeDropDownLocator.Click();
+            switch (type)
+            {
+                case "Draft":
+                    Driver.FindElement(By.XPath("id('orderStatus_listbox')/li[2]")).Click();
+                    break;
+                case "Pending":
+                    Driver.FindElement(By.XPath("id('orderStatus_listbox')/li[3]")).Click();
+                    break;
+                case "Sent":
+                    Driver.FindElement(By.XPath("id('orderStatus_listbox')/li[4]")).Click();
+                    break;
+                case "Processing":
+                    Driver.FindElement(By.XPath("id('orderStatus_listbox')/li[5]")).Click();
+                    break;
+                case "Delivered":
+                    Driver.FindElement(By.XPath("id('orderStatus_listbox')/li[6]")).Click();
+                    break;
+                default:
+                    throw new Exception("Exception thrown in SearchDraftOrders");
             }
-
-        }
-
-        public ViewOrdersPage SearchDraftOrders()
-        {
-            ChooseOrderType("Draft orders");
             SearchOrdersButton.Click();
             return this;
         }
