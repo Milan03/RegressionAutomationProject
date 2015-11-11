@@ -15,6 +15,7 @@ namespace DocumentCentreTests.Pages
     {
         private IWebDriver Driver;
         private IWebElement TypeDropDownLocator;
+        private IWebElement POInputLocator;
         private IWebElement SearchOrdersButton;
         private OrderTable OrderTable;
 
@@ -26,6 +27,7 @@ namespace DocumentCentreTests.Pages
         {
             this.Driver = driver;
             this.TypeDropDownLocator = HelperMethods.FindElement(Driver, "classname", "k-widget");
+            this.POInputLocator = HelperMethods.FindElement(Driver, "id", "poNumber");
             this.OrderTable = new OrderTable(HelperMethods.FindElement(Driver, "id", "ordersGrid"));
             this.SearchOrdersButton = HelperMethods.FindElement(Driver, "id", "searchOrdersButton");
 
@@ -65,6 +67,14 @@ namespace DocumentCentreTests.Pages
                     throw new Exception("Exception thrown in SearchDraftOrders");
             }
             SearchOrdersButton.Click();
+            return this;
+        }
+
+        public ViewOrdersPage InputPurchaseOrder(string po)
+        {
+            POInputLocator.Click();
+            POInputLocator.Clear();
+            POInputLocator.SendKeys(po);
             return this;
         }
     }

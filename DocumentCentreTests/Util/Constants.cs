@@ -18,6 +18,20 @@ namespace DocumentCentreTests.Util
         internal const string MEM_PORTAL_USER = "test01dealer";
         internal const string MEM_PORTAL_PASS = "imatestthis";
 
+        /// <summary>
+        /// search options to be used with View Orders page
+        /// </summary>
+        internal const string ORDER_SEARCH_DRAFT = "Draft";
+        internal const string ORDER_SEARCH_PENDING = "Pending";
+        internal const string ORDER_SEARCH_SENT = "Sent";
+        internal const string ORDER_SEARCH_PROC = "Processing";
+        internal const string ORDER_SEARCH_DEL = "Delivered";
+
+        /// <summary>
+        /// individual PO #s to be used while testing
+        /// </summary>
+        internal const string ORDER_PO_PROC = "0000019";
+
         // NOTE:
         // To change the maximum number of parallel tests edit DegreeOfParallelism in AssemblyInfo.cs
     }

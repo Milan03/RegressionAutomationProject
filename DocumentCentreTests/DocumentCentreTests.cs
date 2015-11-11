@@ -63,7 +63,8 @@ namespace DocumentCentreTests
             HomePage page = newLogin.LoginAs(Constants.MEM_PORTAL_USER, Constants.MEM_PORTAL_PASS);
 
             ViewOrdersPage voPage = page.NavigateToViewOrders();
-            voPage.SearchOrders("Pending");
+            voPage.InputPurchaseOrder(Constants.ORDER_PO_PROC);
+            voPage.SearchOrders(Constants.ORDER_SEARCH_PROC);
             Assert.IsNotNull(voPage);
 
             CleanUp();
