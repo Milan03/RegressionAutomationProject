@@ -1,7 +1,4 @@
-﻿using Gallio.Framework;
-using Gallio.Model;
-using MbUnit.Framework;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.UI;
 using System;
@@ -86,6 +83,8 @@ namespace DocumentCentreTests.Pages
         /// <returns>New page object representing the destination page.</returns>
         public LoginPage SubmitLoginExpectingFailure()
         {
+            UsernameLocator.Clear();
+            PasswordLocator.Clear();
             LoginButtonLocator.Click();
             return new LoginPage(Driver, LoginPageType);
         }

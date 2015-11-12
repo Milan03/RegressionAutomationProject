@@ -18,6 +18,8 @@ namespace DocumentCentreTests.Util
         internal const string MEM_PORTAL_USER = "test01dealer";
         internal const string MEM_PORTAL_PASS = "imatestthis";
 
+        internal const string LOGIN_ERROR_MSG = "The combination of username and password is incorrect";
+
         /// <summary>
         /// search options to be used with View Orders page
         /// </summary>

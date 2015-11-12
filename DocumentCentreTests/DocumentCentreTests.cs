@@ -1,5 +1,4 @@
-﻿using Gallio.Framework;
-using Gallio.Model;
+﻿
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Remote;
@@ -37,15 +36,12 @@ namespace DocumentCentreTests
 
         #region Tests
 
-        /// <summary>
-        /// Test if Member login works
-        /// </summary>
+        /// <summary>Test if Member login works
         [Test]
         public void MemberLoginWorks()
         {
             LoadDriver();
-            Driver.Navigate().GoToUrl("http://portal.test-web01.lbmx.com/login?redirect=%2f");
-
+            
             // attempt a login
             LoginPage newLogin = new LoginPage(Driver, "member");
             HomePage mem = newLogin.LoginAs(Constants.MEM_PORTAL_USER, Constants.MEM_PORTAL_PASS);
@@ -53,6 +49,22 @@ namespace DocumentCentreTests
             CleanUp();
         }
 
+        /// <summary>Testing member login fail
+        [Test]
+        public void MemberLoginFails()
+        {
+            LoadDriver();
+
+            // attempt a login
+            LoginPage newLogin = new LoginPage(Driver, "member");
+            newLogin.SubmitLoginExpectingFailure();
+
+            // check error messsage
+            var error = HelperMethods.FindElement(Driver, "classname", "login-error-message");
+            Assert.AreEqual(error.Text, Constants.LOGIN_ERROR_MSG);
+        }
+
+        /// <summary>Testing member order search
         [Test]
         public void MemberOrdersSearch()
         {
