@@ -15,5 +15,6 @@ C:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\Docume
 C:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\bin\Debug\ThoughtWorks.Selenium.Core.xml
 C:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\bin\Debug\nunit.framework.dll
 C:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\bin\Debug\nunit.framework.xml
-C:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\bin\Debug\log4net.dll
-C:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\bin\Debug\log4net.xml
+C:\Users\msobat\documents\visual studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\bin\Debug\NLog.dll
+C:\Users\msobat\documents\visual studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\bin\Debug\NLog.xml
+C:\Users\msobat\documents\visual studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\bin\Debug\NLog.config

@@ -1,11 +1,11 @@
-﻿
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using System;
+using NLog;
 
 using DocumentCentreTests.Pages;
 using DocumentCentreTests.Util;
@@ -15,6 +15,7 @@ namespace DocumentCentreTests
     [TestFixture]
     public class DocumentCentreTests
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
         #region Setup and Teardown
 
         private IWebDriver Driver;
@@ -41,6 +42,7 @@ namespace DocumentCentreTests
         public void MemberLoginWorks()
         {
             LoadDriver();
+            logger.Info("Starting MemberLoginWorks test...");
             
             // attempt a login
             LoginPage newLogin = new LoginPage(Driver, "member");
