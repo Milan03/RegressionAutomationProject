@@ -2,12 +2,14 @@
 using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.UI;
 using System;
+using NLog;
 
 namespace DocumentCentreTests.Util
 {
     /// <summary>contains functional methods frequently used during test</summary>
     internal static class HelperMethods
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
         /// <summary>
         /// Wrapper for finding elements
         /// </summary>
@@ -42,7 +44,9 @@ namespace DocumentCentreTests.Util
                     foundElement = driver.FindElement(By.XPath(element));
                     break;
                 default:
+                    logger.Error("Exception in HelperMethods.FindElement: No such element found.");
                     throw new NoSuchElementException("Element not found.");
+
             }
             return foundElement;
         }

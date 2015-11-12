@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.UI;
 using System;
+using NLog;
 
 using DocumentCentreTests.Util;
 using OpenQA.Selenium.Support.PageObjects;
@@ -10,6 +11,8 @@ namespace DocumentCentreTests.Pages
 {
     public class LoginPage
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+
         private IWebDriver Driver;
         private IWebElement UsernameLocator;
         private IWebElement PasswordLocator;
@@ -33,7 +36,7 @@ namespace DocumentCentreTests.Pages
             // check if on correct page
             if (!"User Login".Equals(driver.Title))
             {
-                // TODO: logic to navigate back to login page
+                logger.Error("Exception in LoginPage c'tor: Page not found.");
                 throw new NoSuchWindowException("Login page not found");
             }
             PageFactory.InitElements(driver, this);
@@ -46,6 +49,7 @@ namespace DocumentCentreTests.Pages
         /// <returns>Current page object</returns>
         public LoginPage TypeUsername(string username)
         {
+            logger.Info("Inputing username...");
             UsernameLocator.Clear();
             UsernameLocator.SendKeys(username);
             return this;
@@ -58,6 +62,7 @@ namespace DocumentCentreTests.Pages
         /// <returns>Current page object</returns>
         public LoginPage TypePassword(string password)
         {
+            logger.Info("Inputing password...");
             PasswordLocator.Clear();
             PasswordLocator.SendKeys(password);
             return this;
@@ -69,9 +74,12 @@ namespace DocumentCentreTests.Pages
         /// <returns>New page object representing the destination.</returns>
         public HomePage SubmitLogin()
         {
+            logger.Info("Submitting login...");
             LoginButtonLocator.Click();
             if (LoginPageType.Equals("member"))
+            {
                 return new MemberHomePage(Driver);
+            }
             else
                 return null;      
         }

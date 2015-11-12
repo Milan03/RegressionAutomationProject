@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.UI;
 using System;
+using NLog;
 
 using DocumentCentreTests.Util;
 using OpenQA.Selenium.Support.PageObjects;
@@ -11,6 +12,8 @@ namespace DocumentCentreTests.Pages
     /// <summary>class representing Doc Centre Member Portal</summary>
     public class MemberHomePage :HomePage
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+
         private IWebDriver Driver;
         private IWebElement OrdersDropdownLocator;
 
@@ -30,7 +33,8 @@ namespace DocumentCentreTests.Pages
             {
                 throw new NoSuchWindowException("Member homepage not found");
             }
-            
+
+            logger.Info("Login successful.");
             this.OrdersDropdownLocator = HelperMethods.FindElement(driver, "linktext", "My Orders");
         }
 
@@ -40,6 +44,7 @@ namespace DocumentCentreTests.Pages
         /// <returns>New page object representing the destination.</returns>
         public override ViewOrdersPage NavigateToViewOrders()
         {
+            logger.Info("Attempting to navigate to View Orders...");
             // open dropdown
             OrdersDropdownLocator.Click();
             var viewOrdersLink = HelperMethods.FindElement(Driver, "linktext", "View Orders");
@@ -49,6 +54,7 @@ namespace DocumentCentreTests.Pages
             {
                 throw new NoSuchWindowException("View Orders page not found");
             }
+            logger.Info("View Orders page reached.");
             return new ViewOrdersPage(Driver);
         }
     }

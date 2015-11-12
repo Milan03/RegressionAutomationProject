@@ -48,6 +48,7 @@ namespace DocumentCentreTests
             LoginPage newLogin = new LoginPage(Driver, "member");
             HomePage mem = newLogin.LoginAs(Constants.MEM_PORTAL_USER, Constants.MEM_PORTAL_PASS);
 
+            logger.Info("MemberLoginWorks Passed.");
             CleanUp();
         }
 
@@ -56,6 +57,7 @@ namespace DocumentCentreTests
         public void MemberLoginFails()
         {
             LoadDriver();
+            logger.Info("Starting MemberLoginFails test...");
 
             // attempt a login
             LoginPage newLogin = new LoginPage(Driver, "member");
@@ -64,6 +66,10 @@ namespace DocumentCentreTests
             // check error messsage
             var error = HelperMethods.FindElement(Driver, "classname", "login-error-message");
             Assert.AreEqual(error.Text, Constants.LOGIN_ERROR_MSG);
+
+            logger.Info("MemberLoginFails Passed.");
+
+            CleanUp();
         }
 
         /// <summary>Testing member order search
@@ -71,6 +77,7 @@ namespace DocumentCentreTests
         public void MemberOrdersSearch()
         {
             LoadDriver();
+            logger.Info("Starting MemberOrdersSearch test...");
 
             // login as member
             LoginPage newLogin = new LoginPage(Driver, "member");
@@ -81,6 +88,7 @@ namespace DocumentCentreTests
             voPage.SearchOrders(Constants.ORDER_SEARCH_PROC);
             Assert.IsNotNull(voPage);
 
+            logger.Info("MemberOrdersSearch Passed.");
             CleanUp();
         }
 
