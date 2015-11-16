@@ -14,19 +14,18 @@ namespace DocumentCentreTests
     public class When_member_logs_in_with_valid_creds : BaseDriverTest
     {
         static LoginPage _loginPage;
+        static Exception _expectedExcep;
 
         Establish context = () =>
             {
-                _driver = new FirefoxDriver();
+                LoadDriver();
                 _loginPage = new LoginPage(_driver, "member");
             };
 
-        Because of = () =>
-            _driver.Navigate().GoToUrl("http://portal.test-web01.lbmx.com/login?redirect=%2f");
+        Because of = () => _expectedExcep = Catch.Exception( 
+                        () => _loginPage.LoginAs(Constants.MEM_PORTAL_USER, Constants.MEM_PORTAL_PASS));
 
 
-        It should_have_successfully_logged_in = () =>
-            Catch.Exception(() => _loginPage.LoginAs(Constants.MEM_PORTAL_USER, Constants.MEM_PORTAL_PASS))
-                .ShouldBeNull();
+        It should_have_successfully_logged_in = () => _expectedExcep.ShouldBeNull();
     }
 }

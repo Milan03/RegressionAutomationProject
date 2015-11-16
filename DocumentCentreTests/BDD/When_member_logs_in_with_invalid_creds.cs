@@ -17,7 +17,7 @@ namespace DocumentCentreTests
 
         Establish context = () =>
             {
-                _driver = new FirefoxDriver();
+                LoadDriver();
                 _loginPage = new LoginPage(_driver, "member");
             };
 

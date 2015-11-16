@@ -18,10 +18,9 @@ namespace DocumentCentreTests
 
         Establish context = () =>
         {
-            _driver = new FirefoxDriver();
+            LoadDriver();
             LoginPage loginPage = new LoginPage(_driver, "member");
-            _homePage = loginPage.LoginAs(Constants.MEM_PORTAL_USER, Constants.MEM_PORTAL_PASS);
-            
+            _homePage = loginPage.LoginAs(Constants.MEM_PORTAL_USER, Constants.MEM_PORTAL_PASS);           
         };
 
         Because of = () =>
