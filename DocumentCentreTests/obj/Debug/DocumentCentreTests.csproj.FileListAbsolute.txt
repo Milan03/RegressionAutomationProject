@@ -18,3 +18,22 @@ C:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\Docume
 C:\Users\msobat\documents\visual studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\bin\Debug\NLog.dll
 C:\Users\msobat\documents\visual studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\bin\Debug\NLog.xml
 C:\Users\msobat\documents\visual studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\bin\Debug\NLog.config
+C:\code\lbmx\LBMX.Portal.RegressionTests\DocumentCentreTests\bin\Debug\NLog.config
+C:\code\lbmx\LBMX.Portal.RegressionTests\DocumentCentreTests\bin\Debug\DocumentCentreTests.dll
+C:\code\lbmx\LBMX.Portal.RegressionTests\DocumentCentreTests\bin\Debug\DocumentCentreTests.pdb
+C:\code\lbmx\LBMX.Portal.RegressionTests\DocumentCentreTests\bin\Debug\Machine.Specifications.Clr4.dll
+C:\code\lbmx\LBMX.Portal.RegressionTests\DocumentCentreTests\bin\Debug\Machine.Specifications.dll
+C:\code\lbmx\LBMX.Portal.RegressionTests\DocumentCentreTests\bin\Debug\Machine.Specifications.Should.dll
+C:\code\lbmx\LBMX.Portal.RegressionTests\DocumentCentreTests\bin\Debug\NLog.dll
+C:\code\lbmx\LBMX.Portal.RegressionTests\DocumentCentreTests\bin\Debug\WebDriver.dll
+C:\code\lbmx\LBMX.Portal.RegressionTests\DocumentCentreTests\bin\Debug\WebDriver.Support.dll
+C:\code\lbmx\LBMX.Portal.RegressionTests\DocumentCentreTests\bin\Debug\NLog.xml
+C:\code\lbmx\LBMX.Portal.RegressionTests\DocumentCentreTests\bin\Debug\Selenium.WebDriverBackedSelenium.pdb
+C:\code\lbmx\LBMX.Portal.RegressionTests\DocumentCentreTests\bin\Debug\Selenium.WebDriverBackedSelenium.xml
+C:\code\lbmx\LBMX.Portal.RegressionTests\DocumentCentreTests\bin\Debug\ThoughtWorks.Selenium.Core.pdb
+C:\code\lbmx\LBMX.Portal.RegressionTests\DocumentCentreTests\bin\Debug\ThoughtWorks.Selenium.Core.xml
+C:\code\lbmx\LBMX.Portal.RegressionTests\DocumentCentreTests\bin\Debug\WebDriver.xml
+C:\code\lbmx\LBMX.Portal.RegressionTests\DocumentCentreTests\bin\Debug\WebDriver.Support.xml
+C:\code\lbmx\LBMX.Portal.RegressionTests\DocumentCentreTests\obj\Debug\DocumentCentreTests.csprojResolveAssemblyReference.cache
+C:\code\lbmx\LBMX.Portal.RegressionTests\DocumentCentreTests\obj\Debug\DocumentCentreTests.dll
+C:\code\lbmx\LBMX.Portal.RegressionTests\DocumentCentreTests\obj\Debug\DocumentCentreTests.pdb
