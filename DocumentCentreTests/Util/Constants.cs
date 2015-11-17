@@ -20,22 +20,17 @@ namespace DocumentCentreTests.Util
 
         internal const string LOGIN_ERROR_MSG = "The combination of username and password is incorrect";
 
-        /// <summary>
-        /// search options to be used with View Orders page
-        /// </summary>
+        /// <summary>search options to be used with View Orders page
         internal const string ORDER_SEARCH_DRAFT = "Draft";
         internal const string ORDER_SEARCH_PENDING = "Pending";
         internal const string ORDER_SEARCH_SENT = "Sent";
         internal const string ORDER_SEARCH_PROC = "Processing";
         internal const string ORDER_SEARCH_DEL = "Delivered";
 
-        /// <summary>
-        /// individual PO #s to be used while testing
-        /// </summary>
+        /// <summary>individual PO #s to be used while testing
         internal const string ORDER_PO_PROC = "0000019";
 
-        // NOTE:
-        // To change the maximum number of parallel tests edit DegreeOfParallelism in AssemblyInfo.cs
+        internal const string XPATH_TABLE_PO = "id('ordersGrid')/div[2]/table/tbody/tr[1]/td[3]";
     }
     
     
