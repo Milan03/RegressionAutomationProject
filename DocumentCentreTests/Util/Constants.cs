@@ -19,6 +19,7 @@ namespace DocumentCentreTests.Util
         internal const string MEM_PORTAL_PASS = "imatestthis";
 
         internal const string LOGIN_ERROR_MSG = "The combination of username and password is incorrect";
+        internal const string ORDER_ERROR_MSG = "Nothing to show";
 
         /// <summary>search options to be used with View Orders page
         internal const string ORDER_SEARCH_DRAFT = "Draft";
@@ -29,6 +30,7 @@ namespace DocumentCentreTests.Util
 
         /// <summary>individual PO #s to be used while testing
         internal const string ORDER_PO_PROC = "0000019";
+        internal const string INVALID_PO = "asdf1234adfs";
 
         internal const string XPATH_TABLE_PO = "id('ordersGrid')/div[2]/table/tbody/tr[1]/td[3]";
     }

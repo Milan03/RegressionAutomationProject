@@ -28,16 +28,23 @@ namespace DocumentCentreTests.Pages
             this.SearchOrdersButton = HelperMethods.FindElement(Driver, "id", "searchOrdersButton");
 
             // get first table element
-            if (!Driver.FindElement(By.XPath(Constants.XPATH_TABLE_PO)).Displayed)
-                this.FirstTableElem = Driver.FindElement(By.XPath("id('ordersGrid')/div[2]/div[2]"));
-            else
-                this.FirstTableElem = Driver.FindElement(By.XPath(Constants.XPATH_TABLE_PO));
+            CheckFirstRow();
 
             // check if on correct page
             if (!"My Orders".Equals(driver.Title))
             {
                 throw new NoSuchWindowException("View Orders page not found");
             }
+        }
+
+        public void CheckFirstRow()
+        {
+            //var firstRowHasData = Driver.FindElement(By.XPath(Constants.XPATH_TABLE_PO)).Displayed;
+            if (HelperMethods.IsElementPresent(Driver, By.XPath(Constants.XPATH_TABLE_PO)))
+                this.FirstTableElem = Driver.FindElement(By.XPath(Constants.XPATH_TABLE_PO));
+            else
+                this.FirstTableElem = Driver.FindElement(By.XPath("id('ordersGrid')/div[2]/div[2]"));
+                
         }
 
         /// <summary>

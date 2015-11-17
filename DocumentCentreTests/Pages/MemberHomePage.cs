@@ -10,7 +10,7 @@ using OpenQA.Selenium.Support.PageObjects;
 namespace DocumentCentreTests.Pages
 {
     /// <summary>class representing Doc Centre Member Portal</summary>
-    public class MemberHomePage :HomePage
+    public class MemberHomePage : HomePage
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
