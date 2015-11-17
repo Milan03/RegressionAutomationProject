@@ -23,7 +23,6 @@ namespace DocumentCentreTests.Pages
         public ViewOrdersPage(IWebDriver driver)
         {
             this.Driver = driver;
-            //Driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(2));
             this.TypeDropDownLocator = HelperMethods.FindElement(Driver, "classname", "k-widget");
             this.POInputLocator = HelperMethods.FindElement(Driver, "id", "poNumber");
             this.SearchOrdersButton = HelperMethods.FindElement(Driver, "id", "searchOrdersButton");

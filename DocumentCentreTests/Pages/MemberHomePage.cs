@@ -29,7 +29,7 @@ namespace DocumentCentreTests.Pages
             IWebElement element =
             wait.Until<IWebElement>(ExpectedConditions.ElementIsVisible(By.Id("userActionsButton")));
             // check if on correct page
-            if (HelperMethods.FindElement(driver, "id", "userActionsButton") == null)
+            if (!HelperMethods.FindElement(driver, "id", "userActionsButton").Displayed)
             {
                 throw new NoSuchWindowException("Member homepage not found");
             }
@@ -47,6 +47,7 @@ namespace DocumentCentreTests.Pages
             logger.Info("Attempting to navigate to View Orders...");
             // open dropdown
             OrdersDropdownLocator.Click();
+            Driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(2));
             var viewOrdersLink = HelperMethods.FindElement(Driver, "linktext", "View Orders");
             viewOrdersLink.Click();
             // check if on correct page

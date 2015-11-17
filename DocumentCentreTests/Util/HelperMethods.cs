@@ -10,9 +10,7 @@ namespace DocumentCentreTests.Util
     internal static class HelperMethods
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
-        /// <summary>
-        /// Wrapper for finding elements
-        /// </summary>
+        /// <summary>Wrapper for finding elements
         /// <param name="driver">Interface for testing</param>
         /// <param name="type">Type to search by</param>
         /// <param name="element">Value to search for</param>

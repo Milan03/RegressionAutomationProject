@@ -21,6 +21,7 @@ namespace DocumentCentreTests
         Establish context = () =>
         {
             LoadDriver();
+            _logger.Info("-- Member Search Order Test Initiating --");
             LoginPage loginPage = new LoginPage(_driver, "member");
             _homePage = loginPage.LoginAs(Constants.MEM_PORTAL_USER, Constants.MEM_PORTAL_PASS);           
         };
