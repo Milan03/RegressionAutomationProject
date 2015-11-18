@@ -44,10 +44,10 @@ namespace DocumentCentreTests
                     _inputException.ShouldBeNull();
                     _searchException.ShouldBeNull();
                     if (_voPage.FirstTableElem.Text.Equals(Constants.ORDER_PO_PROC))
-                        _logger.Info("-- Member Valid Order Search Test: PASSED --");
+                        _logger.Info("-- Member Valid Order Search Test: [PASSED] --");
                     else
                     {
-                        _logger.Fatal("-- Member Valid Order Search Test: FAILED --");
+                        _logger.Fatal("-- Member Valid Order Search Test: [FAILED] --");
                         _voPage.FirstTableElem.Text.ShouldEqual(Constants.ORDER_PO_PROC);
                     }
                 };

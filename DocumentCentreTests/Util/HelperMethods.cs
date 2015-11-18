@@ -59,6 +59,12 @@ namespace DocumentCentreTests.Util
             return (IJavaScriptExecutor)driver;
         }
 
+        /// <summary>
+        /// Function to determine if an element is present on current page object
+        /// </summary>
+        /// <param name="driver">Testing interface driver</param>
+        /// <param name="by">By parameter to search with</param>
+        /// <returns>Boolean represeting a pass or fail</returns>
         public static bool IsElementPresent(IWebDriver driver, By by)
         {
             try
