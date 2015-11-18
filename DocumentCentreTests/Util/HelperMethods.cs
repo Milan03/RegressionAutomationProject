@@ -42,7 +42,7 @@ namespace DocumentCentreTests.Util
                     foundElement = driver.FindElement(By.XPath(element));
                     break;
                 default:
-                    logger.Error("Exception in HelperMethods.FindElement: No such element found.");
+                    logger.Error("      Exception in HelperMethods.FindElement: No such element found.");
                     throw new NoSuchElementException("Element not found.");
 
             }

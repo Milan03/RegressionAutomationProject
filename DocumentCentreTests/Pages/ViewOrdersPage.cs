@@ -5,11 +5,14 @@ using System;
 using System.Collections.Generic;
 using DocumentCentreTests.Tables;
 using DocumentCentreTests.Util;
+using NLog;
 
 namespace DocumentCentreTests.Pages
 {
     public class ViewOrdersPage
     {
+        private static Logger _logger = LogManager.GetCurrentClassLogger();
+
         private IWebDriver Driver;
         private IWebElement TypeDropDownLocator;
         private IWebElement POInputLocator;
@@ -33,16 +36,19 @@ namespace DocumentCentreTests.Pages
             // check if on correct page
             if (!"My Orders".Equals(driver.Title))
             {
-                throw new NoSuchWindowException("View Orders page not found");
+                throw new NoSuchWindowException("       - View Orders page not found");
             }
         }
 
+        /// <summary>
+        /// Check the first row of the table for value or if no elements present
+        /// set to appropriate message
+        /// </summary>
         public void CheckFirstRow()
         {
-            //var firstRowHasData = Driver.FindElement(By.XPath(Constants.XPATH_TABLE_PO)).Displayed;
             if (HelperMethods.IsElementPresent(Driver, By.XPath(Constants.XPATH_TABLE_PO)))
                 this.FirstTableElem = Driver.FindElement(By.XPath(Constants.XPATH_TABLE_PO));
-            else
+            else // no table elements found, set to message
                 this.FirstTableElem = Driver.FindElement(By.XPath("id('ordersGrid')/div[2]/div[2]"));
                 
         }
@@ -54,6 +60,7 @@ namespace DocumentCentreTests.Pages
         /// <returns>Current page object</returns>
         public ViewOrdersPage ChooseOrderType(string type)
         {
+            _logger.Info("       - Choosing order type: " +type);
             TypeDropDownLocator.Click();
             switch (type)
             {
@@ -84,6 +91,7 @@ namespace DocumentCentreTests.Pages
         /// <returns>Current page object</returns>
         public ViewOrdersPage Search()
         {
+            _logger.Info("       - Searching for order");
             SearchOrdersButton.Click();
             return this;
         }
@@ -95,6 +103,7 @@ namespace DocumentCentreTests.Pages
         /// <returns>Current page object</returns>
         public ViewOrdersPage InputPurchaseOrder(string po)
         {
+            _logger.Info("       - Inputting purchase order number: " +po);
             POInputLocator.Click();
             POInputLocator.Clear();
             POInputLocator.SendKeys(po);
