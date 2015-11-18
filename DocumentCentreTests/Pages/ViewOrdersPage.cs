@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using DocumentCentreTests.Tables;
 using DocumentCentreTests.Util;
 using NLog;
+using System.Threading;
 
 namespace DocumentCentreTests.Pages
 {
@@ -46,8 +47,9 @@ namespace DocumentCentreTests.Pages
         /// </summary>
         public void CheckFirstRow()
         {
-            if (HelperMethods.IsElementPresent(Driver, By.XPath(Constants.XPATH_TABLE_PO)))
-                this.FirstTableElem = Driver.FindElement(By.XPath(Constants.XPATH_TABLE_PO));
+            Thread.Sleep(500);
+            if (HelperMethods.IsElementPresent(Driver, By.XPath(Constants.XPATH_PO_LOCATOR)))
+                this.FirstTableElem = Driver.FindElement(By.XPath(Constants.XPATH_PO_LOCATOR));
             else // no table elements found, set to message
                 this.FirstTableElem = Driver.FindElement(By.XPath("id('ordersGrid')/div[2]/div[2]"));
                 
@@ -62,25 +64,34 @@ namespace DocumentCentreTests.Pages
         {
             _logger.Info("       - Choosing order type: " +type);
             TypeDropDownLocator.Click();
-            switch (type)
+            Thread.Sleep(500);
+            try
             {
-                case "Draft":
-                    Driver.FindElement(By.XPath("id('orderStatus_listbox')/li[2]")).Click();
-                    break;
-                case "Pending":
-                    Driver.FindElement(By.XPath("id('orderStatus_listbox')/li[3]")).Click();
-                    break;
-                case "Sent":
-                    Driver.FindElement(By.XPath("id('orderStatus_listbox')/li[4]")).Click();
-                    break;
-                case "Processing":
-                    Driver.FindElement(By.XPath("id('orderStatus_listbox')/li[5]")).Click();
-                    break;
-                case "Delivered":
-                    Driver.FindElement(By.XPath("id('orderStatus_listbox')/li[6]")).Click();
-                    break;
-                default:
-                    throw new Exception("Exception thrown in SearchDraftOrders");
+                switch (type)
+                {
+                    case "Draft":
+                        Driver.FindElement(By.XPath("id('orderStatus_listbox')/li[2]")).Click();
+                        break;
+                    case "Pending":
+                        Driver.FindElement(By.XPath("id('orderStatus_listbox')/li[3]")).Click();
+                        break;
+                    case "Sent":
+                        Driver.FindElement(By.XPath("id('orderStatus_listbox')/li[4]")).Click();
+                        break;
+                    case "Processing":
+                        Driver.FindElement(By.XPath("id('orderStatus_listbox')/li[5]")).Click();
+                        break;
+                    case "Delivered":
+                        Driver.FindElement(By.XPath("id('orderStatus_listbox')/li[6]")).Click();
+                        break;
+                    default:
+                        throw new Exception("ViewOrdersPage: No category choosen.");
+                }
+            }
+            catch (ElementNotVisibleException)
+            {
+                _logger.Fatal("       - Choosing order type: " + type +" [FAILED]");
+                throw new ElementNotVisibleException("Exception throw in ChooseOrderType");
             }
             return this;
         }

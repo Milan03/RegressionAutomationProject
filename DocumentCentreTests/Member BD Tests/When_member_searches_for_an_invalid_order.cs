@@ -42,11 +42,11 @@ namespace DocumentCentreTests
                     _inputException.ShouldBeNull();
                     _searchException.ShouldBeNull();
                     if (_voPage.FirstTableElem.Text.Equals(Constants.ORDER_ERROR_MSG))
-                        _logger.Info("-- Member Invalid Order Search Test: PASSED");
+                        _logger.Info("-- Member Invalid Order Search Test: PASSED --");
                     else
                     {
+                        _logger.Fatal("-- Member Invalid Order Search Test: FAILED --");
                         _voPage.FirstTableElem.Text.ShouldEqual(Constants.ORDER_ERROR_MSG);
-                        _logger.Fatal("-- Member Invalid Order Search Test: FAILED");
                     }
                 };
         }

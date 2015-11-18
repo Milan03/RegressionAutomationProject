@@ -1,6 +1,7 @@
 ﻿using DocumentCentreTests.Pages;
 using DocumentCentreTests.Util;
 using Machine.Specifications;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using System;
 using System.Collections.Generic;
@@ -34,6 +35,7 @@ namespace DocumentCentreTests
                    _inputException = Catch.Exception(() => _voPage.InputPurchaseOrder(Constants.ORDER_PO_PROC));
                    _voPage.ChooseOrderType(Constants.ORDER_SEARCH_PROC);
                    _searchException = Catch.Exception(() => _voPage.Search());
+                   _voPage.CheckFirstRow();
                };
 
 
@@ -42,11 +44,11 @@ namespace DocumentCentreTests
                     _inputException.ShouldBeNull();
                     _searchException.ShouldBeNull();
                     if (_voPage.FirstTableElem.Text.Equals(Constants.ORDER_PO_PROC))
-                        _logger.Info("-- Member Valid Order Search Test: PASSED");
+                        _logger.Info("-- Member Valid Order Search Test: PASSED --");
                     else
                     {
+                        _logger.Fatal("-- Member Valid Order Search Test: FAILED --");
                         _voPage.FirstTableElem.Text.ShouldEqual(Constants.ORDER_PO_PROC);
-                        _logger.Fatal("-- Member Valid Order Search Test: FAILED");
                     }
                 };
         }

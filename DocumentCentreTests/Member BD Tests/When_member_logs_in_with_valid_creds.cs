@@ -32,7 +32,7 @@ namespace DocumentCentreTests
             It should_have_successfully_logged_in = () =>
             {
                 _expectedExcep.ShouldBeNull();
-                _logger.Info("-- Member Valid Login Test: PASSED");
+                _logger.Info("-- Member Valid Login Test: PASSED --");
             };
         }
     }

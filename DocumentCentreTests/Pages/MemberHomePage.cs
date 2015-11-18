@@ -6,14 +6,13 @@ using NLog;
 
 using DocumentCentreTests.Util;
 using OpenQA.Selenium.Support.PageObjects;
+using System.Threading;
 
 namespace DocumentCentreTests.Pages
 {
     /// <summary>class representing Doc Centre Member Portal</summary>
     public class MemberHomePage : HomePage
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
-
         private IWebDriver Driver;
         private IWebElement OrdersDropdownLocator;
 
@@ -24,7 +23,7 @@ namespace DocumentCentreTests.Pages
         public MemberHomePage(IWebDriver driver)
         {
             this.Driver = driver;
-            PageFactory.InitElements(driver, this);
+            //PageFactory.InitElements(driver, this);
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(1));
             IWebElement element =
             wait.Until<IWebElement>(ExpectedConditions.ElementIsVisible(By.Id("userActionsButton")));
@@ -34,7 +33,7 @@ namespace DocumentCentreTests.Pages
                 throw new NoSuchWindowException("Member homepage not found");
             }
 
-            logger.Info("       - Login successful");
+            _logger.Info("       - Login successful");
             this.OrdersDropdownLocator = HelperMethods.FindElement(driver, "linktext", "My Orders");
         }
 
@@ -44,11 +43,12 @@ namespace DocumentCentreTests.Pages
         /// <returns>New page object representing the destination.</returns>
         public override ViewOrdersPage NavigateToViewOrders()
         {
-            logger.Info("       - Attempting to navigate to View Orders");
+            _logger.Info("       - Attempting to navigate to View Orders");
 
             // dropdown interaction
             OrdersDropdownLocator.Click();
-            Driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(2));
+            //Driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(2));
+            Thread.Sleep(500);
             var viewOrdersLink = HelperMethods.FindElement(Driver, "linktext", "View Orders");
             viewOrdersLink.Click();
 
@@ -58,7 +58,7 @@ namespace DocumentCentreTests.Pages
                 throw new NoSuchWindowException("View Orders page not found");
             }
 
-            logger.Info("       - View Orders page reached");
+            _logger.Info("       - View Orders page reached");
             return new ViewOrdersPage(Driver);
         }
     }
