@@ -18,7 +18,8 @@ namespace DocumentCentreTests
         {
             static ViewOrdersPage _voPage;
             static HomePage _homePage;
-            static Exception _searchException;
+            static Exception _deleteException;
+            static string _alertMsg;
 
             Establish context = () =>
             {
@@ -28,26 +29,26 @@ namespace DocumentCentreTests
                 _homePage = loginPage.LoginAs(Constants.MEM_PORTAL_USER, Constants.MEM_PORTAL_PASS);
                 _voPage = _homePage.NavigateToViewOrders();
                 _voPage.ChooseOrderType(Constants.ORDER_SEARCH_DRAFT);
-                _searchException = Catch.Exception(() => _voPage.Search());
+                _voPage.Search();
                 _voPage.CheckFirstRow();
             };
 
             Because of = () =>
                {
-                   _voPage.DeleteOrder();
+                   _deleteException = Catch.Exception(() => _voPage.DeleteOrder());
+                   //_alertMsg = _voPage.CheckAlert();
                };
 
 
             It should_delete_the_order = () =>
                 {
-                    _searchException.ShouldBeNull();
-                    
-                    if (_voPage.FirstTableElem.Text.Equals(Constants.ORDER_PO_PROC))
+                    _deleteException.ShouldBeNull();
+                    if (_voPage.AlertMessage.Equals(Constants.ORDER_DELETE_MSG))
                         _logger.Info("-- Member Order Delete Test: [PASSED] --");
                     else
                     {
                         _logger.Fatal("-- Member Order Delete Test: [FAILED] --");
-                        _voPage.FirstTableElem.Text.ShouldEqual(Constants.ORDER_PO_PROC);
+                        _voPage.AlertMessage.ShouldEqual(Constants.ORDER_DELETE_MSG);
                     }
                 };
         }

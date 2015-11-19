@@ -19,7 +19,9 @@ namespace DocumentCentreTests.Pages
         private IWebElement POInputLocator;
         private IWebElement SearchOrdersButton;
         private IWebElement DeleteOrderLocator;
+
         public IWebElement FirstTableElem { get; set;  }
+        public string AlertMessage { get; set; }
 
         /// <summary>
         /// Class representing View Orders for Members
@@ -48,7 +50,7 @@ namespace DocumentCentreTests.Pages
         /// </summary>
         public void CheckFirstRow()
         {
-            Thread.Sleep(500);
+            Thread.Sleep(1000);
             if (HelperMethods.IsElementPresent(Driver, By.XPath(Constants.XPATH_PO_LOCATOR)))
             {
                 this.FirstTableElem = Driver.FindElement(By.XPath(Constants.XPATH_PO_LOCATOR));
@@ -90,6 +92,7 @@ namespace DocumentCentreTests.Pages
                     default:
                         throw new Exception("ViewOrdersPage: No category choosen.");
                 }
+                Thread.Sleep(200);
             }
             catch (ElementNotVisibleException)
             {
@@ -127,24 +130,14 @@ namespace DocumentCentreTests.Pages
         public ViewOrdersPage DeleteOrder()
         {
             _logger.Info("       - Attempting to delete order");
+            this.AlertMessage = "";
             DeleteOrderLocator.Click();
+            
             // click OK on Information dialog
-            HelperMethods.FindElement(Driver, "classname", "btn-primary").Click();
+            Thread.Sleep(500);
+            Driver.FindElement(By.XPath(Constants.XPATH_INFO_OK)).Click();
+            this.AlertMessage = HelperMethods.CheckAlert(Driver);
             return this;
-        }
-
-        public string CheckAlert()
-        {
-            try
-            {
-                WebDriverWait wait = new WebDriverWait(Driver, new TimeSpan(0, 0, 2));
-                wait.Until(ExpectedConditions.AlertIsPresent());
-                IAlert alert = Driver.SwitchTo().Alert();
-                return alert.Text;
-            } catch (Exception) {
-                _logger.Fatal("         - Checking for alert [FAILED]");   
-                throw new Exception("Exception thrown in CheckAlert()");
-            }
         }
     }
 }

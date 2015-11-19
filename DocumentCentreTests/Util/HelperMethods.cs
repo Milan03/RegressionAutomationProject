@@ -3,13 +3,14 @@ using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.UI;
 using System;
 using NLog;
+using System.Threading;
 
 namespace DocumentCentreTests.Util
 {
     /// <summary>contains functional methods frequently used during test</summary>
     internal static class HelperMethods
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private static Logger _logger = LogManager.GetCurrentClassLogger();
         /// <summary>Wrapper for finding elements
         /// <param name="driver">Interface for testing</param>
         /// <param name="type">Type to search by</param>
@@ -42,7 +43,7 @@ namespace DocumentCentreTests.Util
                     foundElement = driver.FindElement(By.XPath(element));
                     break;
                 default:
-                    logger.Error("      Exception in HelperMethods.FindElement: No such element found.");
+                    _logger.Error("      Exception in HelperMethods.FindElement: No such element found.");
                     throw new NoSuchElementException("Element not found.");
 
             }
@@ -77,6 +78,24 @@ namespace DocumentCentreTests.Util
                 return false;
             }
         }
+
+        public static string CheckAlert(IWebDriver driver)
+        {
+            try
+            {
+                Thread.Sleep(2000);
+                var alertMsg = driver.FindElement(By.XPath(Constants.XPATH_ALERT_MSG)).Text;
+                return alertMsg;
+                
+            }
+            catch (Exception)
+            {
+                _logger.Fatal("         - Checking for alert [FAILED]");
+                throw new Exception("Exception thrown in CheckAlert()");
+            }
+        }
+
+
 
     }
 }
