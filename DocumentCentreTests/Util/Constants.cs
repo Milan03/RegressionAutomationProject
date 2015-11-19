@@ -18,8 +18,10 @@ namespace DocumentCentreTests.Util
         internal const string MEM_PORTAL_USER = "test01dealer";
         internal const string MEM_PORTAL_PASS = "imatestthis";
 
+        /// <summary>pop
         internal const string LOGIN_ERROR_MSG = "The combination of username and password is incorrect";
         internal const string ORDER_ERROR_MSG = "Nothing to show";
+        internal const string ORDER_DELETE_MSG = "Order has been deleted.";
 
         /// <summary>search options to be used with View Orders page
         internal const string ORDER_SEARCH_DRAFT = "Draft";
@@ -32,7 +34,11 @@ namespace DocumentCentreTests.Util
         internal const string ORDER_PO_PROC = "0000019";
         internal const string INVALID_PO = "asdf1234adfs";
 
-        internal const string XPATH_TABLE_PO = "id('ordersGrid')/div[2]/table/tbody/tr[1]/td[3]";
+        /// <summary>XPath locators
+        internal const string XPATH_PO_LOCATOR = "id('ordersGrid')/div[2]/table/tbody/tr[1]/td[3]";
+        internal const string XPATH_DEL_ORDER = "id('ordersGrid')/div[2]/table/tbody/tr[1]/td[1]/div/button[2]";
+        internal const string XPATH_INFO_OK = "//button[contains(.,'OK')]";
+        internal const string XPATH_ALERT_MSG = "id('toast-container')/div/div";
     }
     
     
