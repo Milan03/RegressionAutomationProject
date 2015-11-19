@@ -32,7 +32,9 @@ namespace DocumentCentreTests.Util
         internal const string ORDER_PO_PROC = "0000019";
         internal const string INVALID_PO = "asdf1234adfs";
 
+        /// <summary>XPath locators
         internal const string XPATH_PO_LOCATOR = "id('ordersGrid')/div[2]/table/tbody/tr[1]/td[3]";
+        internal const string XPATH_DEL_ORDER = "id('ordersGrid')/div[2]/table/tbody/tr[1]/td[1]/div/button[2]";
     }
     
     

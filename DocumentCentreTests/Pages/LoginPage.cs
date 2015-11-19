@@ -39,7 +39,7 @@ namespace DocumentCentreTests.Pages
                 logger.Error("-- Member Login: FAILED");
                 throw new NoSuchWindowException("Login page not found");
             }
-            PageFactory.InitElements(driver, this);
+            //PageFactory.InitElements(driver, this);
         }
 
         /// <summary>

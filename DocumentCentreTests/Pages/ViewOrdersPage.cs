@@ -18,6 +18,7 @@ namespace DocumentCentreTests.Pages
         private IWebElement TypeDropDownLocator;
         private IWebElement POInputLocator;
         private IWebElement SearchOrdersButton;
+        private IWebElement DeleteOrderLocator;
         public IWebElement FirstTableElem { get; set;  }
 
         /// <summary>
@@ -49,10 +50,12 @@ namespace DocumentCentreTests.Pages
         {
             Thread.Sleep(500);
             if (HelperMethods.IsElementPresent(Driver, By.XPath(Constants.XPATH_PO_LOCATOR)))
+            {
                 this.FirstTableElem = Driver.FindElement(By.XPath(Constants.XPATH_PO_LOCATOR));
+                this.DeleteOrderLocator = Driver.FindElement(By.XPath(Constants.XPATH_DEL_ORDER));
+            }
             else // no table elements found, set to message
-                this.FirstTableElem = Driver.FindElement(By.XPath("id('ordersGrid')/div[2]/div[2]"));
-                
+                this.FirstTableElem = Driver.FindElement(By.XPath("id('ordersGrid')/div[2]/div[2]"));    
         }
 
         /// <summary>
@@ -119,6 +122,29 @@ namespace DocumentCentreTests.Pages
             POInputLocator.Clear();
             POInputLocator.SendKeys(po);
             return this;
+        }
+
+        public ViewOrdersPage DeleteOrder()
+        {
+            _logger.Info("       - Attempting to delete order");
+            DeleteOrderLocator.Click();
+            // click OK on Information dialog
+            HelperMethods.FindElement(Driver, "classname", "btn-primary").Click();
+            return this;
+        }
+
+        public string CheckAlert()
+        {
+            try
+            {
+                WebDriverWait wait = new WebDriverWait(Driver, new TimeSpan(0, 0, 2));
+                wait.Until(ExpectedConditions.AlertIsPresent());
+                IAlert alert = Driver.SwitchTo().Alert();
+                return alert.Text;
+            } catch (Exception) {
+                _logger.Fatal("         - Checking for alert [FAILED]");   
+                throw new Exception("Exception thrown in CheckAlert()");
+            }
         }
     }
 }
