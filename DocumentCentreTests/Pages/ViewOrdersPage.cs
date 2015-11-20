@@ -22,6 +22,7 @@ namespace DocumentCentreTests.Pages
 
         public IWebElement FirstTableElem { get; set;  }
         public string AlertMessage { get; set; }
+        public string OrderType { get; set; }
 
         /// <summary>
         /// Class representing View Orders for Members
@@ -33,6 +34,7 @@ namespace DocumentCentreTests.Pages
             this.TypeDropDownLocator = HelperMethods.FindElement(Driver, "classname", "k-widget");
             this.POInputLocator = HelperMethods.FindElement(Driver, "id", "poNumber");
             this.SearchOrdersButton = HelperMethods.FindElement(Driver, "id", "searchOrdersButton");
+            this.OrderType = "All";
 
             // get first table element
             CheckFirstRow();
@@ -50,11 +52,12 @@ namespace DocumentCentreTests.Pages
         /// </summary>
         public void CheckFirstRow()
         {
-            Thread.Sleep(1000);
+            Thread.Sleep(500);
             if (HelperMethods.IsElementPresent(Driver, By.XPath(Constants.XPATH_PO_LOCATOR)))
             {
                 this.FirstTableElem = Driver.FindElement(By.XPath(Constants.XPATH_PO_LOCATOR));
-                this.DeleteOrderLocator = Driver.FindElement(By.XPath(Constants.XPATH_DEL_ORDER));
+                if (!OrderType.Equals("Draft") || !OrderType.Equals("Pending Approval"))
+                    this.DeleteOrderLocator = Driver.FindElement(By.XPath(Constants.XPATH_DEL_ORDER));
             }
             else // no table elements found, set to message
                 this.FirstTableElem = Driver.FindElement(By.XPath("id('ordersGrid')/div[2]/div[2]"));    
@@ -68,6 +71,7 @@ namespace DocumentCentreTests.Pages
         public ViewOrdersPage ChooseOrderType(string type)
         {
             _logger.Info("       - Choosing order type: " +type);
+            this.OrderType = type;
             TypeDropDownLocator.Click();
             Thread.Sleep(500);
             try
