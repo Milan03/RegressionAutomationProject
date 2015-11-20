@@ -31,7 +31,7 @@ namespace DocumentCentreTests
 
             Because of = () =>
                {
-                   _voPage = _homePage.NavigateToViewOrders();
+                   _voPage = _homePage.NavigateToOrders("View Orders");
                    _inputException = Catch.Exception(() => _voPage.InputPurchaseOrder(Constants.ORDER_PO_PROC));
                    _voPage.ChooseOrderType(Constants.ORDER_SEARCH_PROC);
                    _searchException = Catch.Exception(() => _voPage.Search());
@@ -41,13 +41,13 @@ namespace DocumentCentreTests
 
             It should_have_searched_for_an_order = () =>
                 {
-                    _inputException.ShouldBeNull();
-                    _searchException.ShouldBeNull();
                     if (_voPage.FirstTableElem.Text.Equals(Constants.ORDER_PO_PROC))
                         _logger.Info("-- Member Valid Order Search Test: [PASSED] --");
                     else
                     {
                         _logger.Fatal("-- Member Valid Order Search Test: [FAILED] --");
+                        _inputException.ShouldBeNull();
+                        _searchException.ShouldBeNull();
                         _voPage.FirstTableElem.Text.ShouldEqual(Constants.ORDER_PO_PROC);
                     }
                 };

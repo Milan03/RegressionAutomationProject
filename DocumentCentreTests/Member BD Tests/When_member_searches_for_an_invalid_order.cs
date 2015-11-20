@@ -30,7 +30,7 @@ namespace DocumentCentreTests
 
             Because of = () =>
                {
-                   _voPage = _homePage.NavigateToViewOrders();
+                   _voPage = _homePage.NavigateToOrders("View Orders");
                    _inputException = Catch.Exception(() => _voPage.InputPurchaseOrder(Constants.INVALID_PO));
                    _searchException = Catch.Exception(() => _voPage.Search());
                    _voPage.CheckFirstRow();
@@ -39,13 +39,13 @@ namespace DocumentCentreTests
 
             It should_show_no_orders_found = () =>
                 {
-                    _inputException.ShouldBeNull();
-                    _searchException.ShouldBeNull();
                     if (_voPage.FirstTableElem.Text.Equals(Constants.ORDER_ERROR_MSG))
                         _logger.Info("-- Member Invalid Order Search Test: [PASSED] --");
                     else
                     {
                         _logger.Fatal("-- Member Invalid Order Search Test: [FAILED] --");
+                        _inputException.ShouldBeNull();
+                        _searchException.ShouldBeNull();
                         _voPage.FirstTableElem.Text.ShouldEqual(Constants.ORDER_ERROR_MSG);
                     }
                 };

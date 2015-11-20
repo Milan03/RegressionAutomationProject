@@ -41,15 +41,13 @@ namespace DocumentCentreTests.Pages
         /// Logic to navigate to View Orders page
         /// </summary>
         /// <returns>New page object representing the destination.</returns>
-        public override ViewOrdersPage NavigateToViewOrders()
+        public override ViewOrdersPage NavigateToOrders(string linktext)
         {
             _logger.Info("       - Attempting to navigate to View Orders");
-
             // dropdown interaction
             OrdersDropdownLocator.Click();
-            //Driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(2));
             Thread.Sleep(500);
-            var viewOrdersLink = HelperMethods.FindElement(Driver, "linktext", "View Orders");
+            var viewOrdersLink = HelperMethods.FindElement(Driver, "linktext", linktext);
             viewOrdersLink.Click();
 
             // check if on correct page
@@ -61,5 +59,7 @@ namespace DocumentCentreTests.Pages
             _logger.Info("       - View Orders page reached");
             return new ViewOrdersPage(Driver);
         }
+
+        
     }
 }
