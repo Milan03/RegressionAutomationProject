@@ -10,8 +10,8 @@ namespace DocumentCentreTests.Util
     internal static class Constants
     {
         /// <summary>member portal login info
-        internal const string MEM_PORTAL_USER = "SupAmTest";
-        internal const string MEM_PORTAL_PASS = "X M B L";
+        internal const string MEM_PORTAL_USER = "test01dealer";
+        internal const string MEM_PORTAL_PASS = "imatestthis";
 
         /// <summary>pop
         internal const string LOGIN_ERROR_MSG = "The combination of username and password is incorrect";
@@ -35,6 +35,4 @@ namespace DocumentCentreTests.Util
         internal const string XPATH_INFO_OK = "//button[contains(.,'OK')]";
         internal const string XPATH_ALERT_MSG = "id('toast-container')/div/div";
     }
-    
-    
 }

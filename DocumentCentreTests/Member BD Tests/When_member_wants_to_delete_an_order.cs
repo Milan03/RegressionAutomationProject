@@ -27,6 +27,7 @@ namespace DocumentCentreTests
                 LoginPage loginPage = new LoginPage(_driver, "member");
                 _homePage = loginPage.LoginAs(Constants.MEM_PORTAL_USER, Constants.MEM_PORTAL_PASS);
                 _voPage = _homePage.NavigateToOrders("View Draft Orders");
+                _voPage.OrderType = Constants.ORDER_SEARCH_DRAFT;
                 _voPage.Search();
                 _voPage.CheckFirstRow();
             };
@@ -35,7 +36,6 @@ namespace DocumentCentreTests
                {
                    _deleteException = Catch.Exception(() => _voPage.DeleteOrder());
                };
-
 
             It should_delete_the_order = () =>
                 {

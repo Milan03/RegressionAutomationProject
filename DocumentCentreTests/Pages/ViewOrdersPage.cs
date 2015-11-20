@@ -52,11 +52,11 @@ namespace DocumentCentreTests.Pages
         /// </summary>
         public void CheckFirstRow()
         {
-            Thread.Sleep(500);
+            Thread.Sleep(800);
             if (HelperMethods.IsElementPresent(Driver, By.XPath(Constants.XPATH_PO_LOCATOR)))
             {
                 this.FirstTableElem = Driver.FindElement(By.XPath(Constants.XPATH_PO_LOCATOR));
-                if (!OrderType.Equals("Draft") || !OrderType.Equals("Pending Approval"))
+                if (OrderType.Equals("Draft") || OrderType.Equals("Pending Approval"))
                     this.DeleteOrderLocator = Driver.FindElement(By.XPath(Constants.XPATH_DEL_ORDER));
             }
             else // no table elements found, set to message
@@ -131,6 +131,10 @@ namespace DocumentCentreTests.Pages
             return this;
         }
 
+        /// <summary>
+        /// Simulates deleting an order
+        /// </summary>
+        /// <returns>Current page object</returns>
         public ViewOrdersPage DeleteOrder()
         {
             _logger.Info("       - Attempting to delete order");
