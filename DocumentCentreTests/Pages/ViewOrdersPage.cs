@@ -110,7 +110,7 @@ namespace DocumentCentreTests.Pages
         /// Simulates clicking the Search button
         /// </summary>
         /// <returns>Current page object</returns>
-        public ViewOrdersPage Search()
+        public ViewOrdersPage SearchForOrder()
         {
             _logger.Info("       - Searching for order");
             SearchOrdersButton.Click();

@@ -88,7 +88,9 @@
   <ItemGroup>
     <Compile Include="BaseDriverTest.cs" />
     <Compile Include="Member BD Tests\When_member_searches_for_an_invalid_order.cs" />
+    <Compile Include="Member BD Tests\When_member_searches_for_catalogue.cs" />
     <Compile Include="Member BD Tests\When_member_wants_to_delete_an_order.cs" />
+    <Compile Include="Pages\CataloguesPage.cs" />
     <Compile Include="Tables\OrderTable.cs" />
     <Compile Include="Util\Constants.cs" />
     <Compile Include="Util\HelperMethods.cs" />

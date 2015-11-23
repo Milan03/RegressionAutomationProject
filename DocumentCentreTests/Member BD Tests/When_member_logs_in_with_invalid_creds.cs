@@ -8,10 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DocumentCentreTests
+namespace DocumentCentreTests.Member_BD_Tests
 {
-    namespace MemberPortalTests
-    {
         [Subject(typeof(LoginPage))]
         public class When_member_logs_in_with_invalid_creds : BaseDriverTest
         {
@@ -40,5 +38,4 @@ namespace DocumentCentreTests
                     }
                 };
         }
-    }
 }

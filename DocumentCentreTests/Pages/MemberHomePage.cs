@@ -44,12 +44,12 @@ namespace DocumentCentreTests.Pages
         public override ViewOrdersPage NavigateToOrders(string linktext)
         {
             _logger.Info("       - Attempting to navigate to View Orders");
+
             // dropdown interaction
             OrdersDropdownLocator.Click();
             Thread.Sleep(500);
-            var viewOrdersLink = HelperMethods.FindElement(Driver, "linktext", linktext);
-            viewOrdersLink.Click();
-
+            HelperMethods.FindElement(Driver, "linktext", linktext).Click();
+            
             // check if on correct page
             if (!"My Orders".Equals(Driver.Title))
             {
@@ -60,6 +60,21 @@ namespace DocumentCentreTests.Pages
             return new ViewOrdersPage(Driver);
         }
 
-        
+        public override CataloguesPage NavigateToCatalogues()
+        {
+            _logger.Info("       - Attempting to navigate to Catalogues Page");
+
+            OrdersDropdownLocator.Click();
+            Thread.Sleep(500);
+            HelperMethods.FindElement(Driver, "linktext", "Order from Catalog").Click();
+
+            // check if on correct page
+            if (!Constants.CAT_PAGE_TITLE.Equals(Driver.Title))
+            {
+                throw new NoSuchWindowException("View Orders page not found");
+            }
+            _logger.Info("       - Catalogues Page reached.");
+            return new CataloguesPage(Driver);
+        }
     }
 }

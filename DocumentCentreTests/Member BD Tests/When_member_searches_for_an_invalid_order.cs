@@ -8,47 +8,44 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DocumentCentreTests
+namespace DocumentCentreTests.Member_BD_Tests
 {
-    namespace MemberPortalTests
+    [Subject(typeof(LoginPage))]
+    public class When_member_searches_for_an_invalid_order : BaseDriverTest
     {
-        [Subject(typeof(LoginPage))]
-        public class When_member_searches_for_an_invalid_order : BaseDriverTest
+        static ViewOrdersPage _voPage;
+        static HomePage _homePage;
+        static Exception _inputException;
+        static Exception _searchException;
+
+        Establish context = () =>
         {
-            static ViewOrdersPage _voPage;
-            static HomePage _homePage;
-            static Exception _inputException;
-            static Exception _searchException;
+            LoadDriver();
+            _logger.Info("-- Member Invalid Order Search Test Initiating --");
+            LoginPage loginPage = new LoginPage(_driver, "member");
+            _homePage = loginPage.LoginAs(Constants.MEM_PORTAL_USER, Constants.MEM_PORTAL_PASS);
+        };
 
-            Establish context = () =>
+        Because of = () =>
+           {
+               _voPage = _homePage.NavigateToOrders("View Orders");
+               _inputException = Catch.Exception(() => _voPage.InputPurchaseOrder(Constants.INVALID_PO));
+               _searchException = Catch.Exception(() => _voPage.SearchForOrder());
+               _voPage.CheckFirstRow();
+           };
+
+
+        It should_show_no_orders_found = () =>
             {
-                LoadDriver();
-                _logger.Info("-- Member Invalid Order Search Test Initiating --");
-                LoginPage loginPage = new LoginPage(_driver, "member");
-                _homePage = loginPage.LoginAs(Constants.MEM_PORTAL_USER, Constants.MEM_PORTAL_PASS);
-            };
-
-            Because of = () =>
-               {
-                   _voPage = _homePage.NavigateToOrders("View Orders");
-                   _inputException = Catch.Exception(() => _voPage.InputPurchaseOrder(Constants.INVALID_PO));
-                   _searchException = Catch.Exception(() => _voPage.Search());
-                   _voPage.CheckFirstRow();
-               };
-
-
-            It should_show_no_orders_found = () =>
+                if (_voPage.FirstTableElem.Text.Equals(Constants.ORDER_ERROR_MSG))
+                    _logger.Info("-- Member Invalid Order Search Test: [PASSED] --");
+                else
                 {
-                    if (_voPage.FirstTableElem.Text.Equals(Constants.ORDER_ERROR_MSG))
-                        _logger.Info("-- Member Invalid Order Search Test: [PASSED] --");
-                    else
-                    {
-                        _logger.Fatal("-- Member Invalid Order Search Test: [FAILED] --");
-                        _inputException.ShouldBeNull();
-                        _searchException.ShouldBeNull();
-                        _voPage.FirstTableElem.Text.ShouldEqual(Constants.ORDER_ERROR_MSG);
-                    }
-                };
-        }
+                    _logger.Fatal("-- Member Invalid Order Search Test: [FAILED] --");
+                    _inputException.ShouldBeNull();
+                    _searchException.ShouldBeNull();
+                    _voPage.FirstTableElem.Text.ShouldEqual(Constants.ORDER_ERROR_MSG);
+                }
+            };
     }
 }

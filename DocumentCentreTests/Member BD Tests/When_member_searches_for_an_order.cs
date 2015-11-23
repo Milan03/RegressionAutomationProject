@@ -9,48 +9,45 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DocumentCentreTests
+namespace DocumentCentreTests.Member_BD_Tests
 {
-    namespace MemberPortalTests
+    [Subject(typeof(LoginPage))]
+    public class When_member_searches_for_an_order : BaseDriverTest
     {
-        [Subject(typeof(LoginPage))]
-        public class When_member_searches_for_an_order : BaseDriverTest
+        static ViewOrdersPage _voPage;
+        static HomePage _homePage;
+        static Exception _inputException;
+        static Exception _searchException;
+
+        Establish context = () =>
         {
-            static ViewOrdersPage _voPage;
-            static HomePage _homePage;
-            static Exception _inputException;
-            static Exception _searchException;
+            LoadDriver();
+            _logger.Info("-- Member Valid Order Search Test Initiating --");
+            LoginPage loginPage = new LoginPage(_driver, "member");
+            _homePage = loginPage.LoginAs(Constants.MEM_PORTAL_USER, Constants.MEM_PORTAL_PASS);
+        };
 
-            Establish context = () =>
+        Because of = () =>
+        {
+            _voPage = _homePage.NavigateToOrders("View Orders");
+            _inputException = Catch.Exception(() => _voPage.InputPurchaseOrder(Constants.ORDER_PO_PROC));
+            _voPage.ChooseOrderType(Constants.ORDER_SEARCH_PROC);
+            _searchException = Catch.Exception(() => _voPage.SearchForOrder());
+            _voPage.CheckFirstRow();
+        };
+
+
+        It should_have_searched_for_an_order = () =>
+        {
+            if (_voPage.FirstTableElem.Text.Equals(Constants.ORDER_PO_PROC))
+                _logger.Info("-- Member Valid Order Search Test: [PASSED] --");
+            else
             {
-                LoadDriver();
-                _logger.Info("-- Member Valid Order Search Test Initiating --");
-                LoginPage loginPage = new LoginPage(_driver, "member");
-                _homePage = loginPage.LoginAs(Constants.MEM_PORTAL_USER, Constants.MEM_PORTAL_PASS);
-            };
-
-            Because of = () =>
-               {
-                   _voPage = _homePage.NavigateToOrders("View Orders");
-                   _inputException = Catch.Exception(() => _voPage.InputPurchaseOrder(Constants.ORDER_PO_PROC));
-                   _voPage.ChooseOrderType(Constants.ORDER_SEARCH_PROC);
-                   _searchException = Catch.Exception(() => _voPage.Search());
-                   _voPage.CheckFirstRow();
-               };
-
-
-            It should_have_searched_for_an_order = () =>
-                {
-                    if (_voPage.FirstTableElem.Text.Equals(Constants.ORDER_PO_PROC))
-                        _logger.Info("-- Member Valid Order Search Test: [PASSED] --");
-                    else
-                    {
-                        _logger.Fatal("-- Member Valid Order Search Test: [FAILED] --");
-                        _inputException.ShouldBeNull();
-                        _searchException.ShouldBeNull();
-                        _voPage.FirstTableElem.Text.ShouldEqual(Constants.ORDER_PO_PROC);
-                    }
-                };
-        }
+                _logger.Fatal("-- Member Valid Order Search Test: [FAILED] --");
+                _inputException.ShouldBeNull();
+                _searchException.ShouldBeNull();
+                _voPage.FirstTableElem.Text.ShouldEqual(Constants.ORDER_PO_PROC);
+            }
+        };
     }
 }

@@ -18,6 +18,8 @@ namespace DocumentCentreTests.Util
         internal const string ORDER_ERROR_MSG = "Nothing to show";
         internal const string ORDER_DELETE_MSG = "Order has been deleted.";
 
+        internal const string CAT_PAGE_TITLE = "Select a Catalog to Order Products";
+
         /// <summary>search options to be used with View Orders page
         internal const string ORDER_SEARCH_DRAFT = "Draft";
         internal const string ORDER_SEARCH_PENDING = "Pending Approval";

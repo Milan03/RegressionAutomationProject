@@ -15,5 +15,6 @@ namespace DocumentCentreTests.Pages
         protected static Logger _logger = LogManager.GetCurrentClassLogger();
 
         public abstract ViewOrdersPage NavigateToOrders(string linktext);
+        public abstract CataloguesPage NavigateToCatalogues();
     }
 }
