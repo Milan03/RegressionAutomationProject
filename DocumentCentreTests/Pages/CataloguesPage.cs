@@ -17,6 +17,10 @@ namespace DocumentCentreTests.Pages
         private IWebElement SearchInputLocator;
         private IWebElement SearchButtonLocator;
 
+        /// <summary>
+        /// Page Object representing the view Catalogues page
+        /// </summary>
+        /// <param name="driver">Main interface for testing</param>
         public CataloguesPage(IWebDriver driver)
         {
             this.Driver = driver;
@@ -27,6 +31,11 @@ namespace DocumentCentreTests.Pages
                 throw new NoSuchWindowException("       - Member's Catalogue page not found.");
         }
 
+        /// <summary>
+        /// Simulates inputting a catalogue to search for
+        /// </summary>
+        /// <param name="catalogue">name of catalogue</param>
+        /// <returns>current page object</returns>
         public CataloguesPage InputCatalogueName(string catalogue)
         {
             _logger.Info("       - Inputting catalogue name for search: " + catalogue);
@@ -35,6 +44,10 @@ namespace DocumentCentreTests.Pages
             return this;
         }
 
+        /// <summary>
+        /// Simulates clicking the Search button for catalogues
+        /// </summary>
+        /// <returns>current page object</returns>
         public CataloguesPage SearchForCatalogue()
         {
             _logger.Info("       - Searching for catalogue...");
