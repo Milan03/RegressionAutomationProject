@@ -19,6 +19,7 @@ namespace DocumentCentreTests.Util
         internal const string ORDER_DELETE_MSG = "Order has been deleted.";
 
         internal const string CAT_PAGE_TITLE = "Select a Catalog to Order Products";
+        internal const string SA_TEST_CAT = "SUPPLY AMERICA TEST CATALOG";
 
         /// <summary>search options to be used with View Orders page
         internal const string ORDER_SEARCH_DRAFT = "Draft";
@@ -36,5 +37,6 @@ namespace DocumentCentreTests.Util
         internal const string XPATH_DEL_ORDER = "id('ordersGrid')/div[2]/table/tbody/tr[2]/td[1]/div/button[2]";
         internal const string XPATH_INFO_OK = "//button[contains(.,'OK')]";
         internal const string XPATH_ALERT_MSG = "id('toast-container')/div/div";
+        internal const string XPATH_CAT_LOCATOR = "//h1[contains(@class, 'catalog-tile-text') and contains (text(), 'Supply America Test Catalog')]";
     }
 }

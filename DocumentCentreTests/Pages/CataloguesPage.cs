@@ -29,7 +29,7 @@ namespace DocumentCentreTests.Pages
 
         public CataloguesPage InputCatalogueName(string catalogue)
         {
-            _logger.Info("      - Inputting catalogue name for search: " + catalogue);
+            _logger.Info("       - Inputting catalogue name for search: " + catalogue);
             SearchInputLocator.Clear();
             SearchInputLocator.SendKeys(catalogue);
             return this;
