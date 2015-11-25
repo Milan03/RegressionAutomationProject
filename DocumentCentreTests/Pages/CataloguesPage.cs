@@ -28,7 +28,10 @@ namespace DocumentCentreTests.Pages
             this.SearchButtonLocator = HelperMethods.FindElement(driver, "id", "catalogSearchButton");
 
             if (!Constants.CAT_PAGE_TITLE.Equals(driver.Title))
-                throw new NoSuchWindowException("       - Member's Catalogue page not found.");
+            {
+                _logger.Fatal("       - Member's Catalogue page not found.");
+                throw new NoSuchWindowException("Member's Catalogue page not found.");
+            }
         }
 
         /// <summary>

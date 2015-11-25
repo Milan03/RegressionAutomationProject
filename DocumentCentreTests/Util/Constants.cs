@@ -13,7 +13,7 @@ namespace DocumentCentreTests.Util
         internal const string MEM_PORTAL_USER = "test01dealer";
         internal const string MEM_PORTAL_PASS = "imatestthis";
 
-        /// <summary>pop
+        /// <summary>UI messages
         internal const string LOGIN_ERROR_MSG = "The combination of username and password is incorrect";
         internal const string ORDER_ERROR_MSG = "Nothing to show";
         internal const string ORDER_DELETE_MSG = "Order has been deleted.";
@@ -38,5 +38,6 @@ namespace DocumentCentreTests.Util
         internal const string XPATH_INFO_OK = "//button[contains(.,'OK')]";
         internal const string XPATH_ALERT_MSG = "id('toast-container')/div/div";
         internal const string XPATH_CAT_LOCATOR = "//h1[contains(@class, 'catalog-tile-text') and contains (text(), 'Supply America Test Catalog')]";
+        internal const string XPATH_PRODUCTS_TAB = "//a[contains(@class, 'k-link') and contains (text(), 'Products')]";
     }
 }

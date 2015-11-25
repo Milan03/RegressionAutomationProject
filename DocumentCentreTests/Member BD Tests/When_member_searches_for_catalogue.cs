@@ -40,7 +40,7 @@ namespace DocumentCentreTests.Member_BD_Tests
         {
             string catText = _driver.FindElement(By.XPath(Constants.XPATH_CAT_LOCATOR)).Text;
             if (catText.Equals(Constants.SA_TEST_CAT))
-                _logger.Info("-- Member Search for Catalog Test: [PASSED] --");
+                _logger.Info("-- Member Search for Catalogue Test: [PASSED] --");
             else
             {
                 _logger.Fatal("-- Member Search for Catalogue Test: [FAILED] --");
