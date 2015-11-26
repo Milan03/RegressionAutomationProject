@@ -20,9 +20,9 @@ namespace DocumentCentreTests.Pages
         private IWebElement SearchOrdersButton;
         private IWebElement DeleteOrderLocator;
 
-        public IWebElement FirstTableElem { get; set;  }
-        public string AlertMessage { get; set; }
-        public string OrderType { get; set; }
+        internal IWebElement FirstTableElem { get; set;  }
+        internal string AlertMessage { get; set; }
+        internal string OrderType { get; set; }
 
         /// <summary>
         /// Class representing View Orders for Members

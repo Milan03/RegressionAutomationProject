@@ -31,8 +31,11 @@ namespace DocumentCentreTests.Pages
         private IWebElement SummaryOption;
         #endregion
 
+        internal string AlertMessage;
+
         public ProductsPage(IWebDriver driver)
         {
+            #region Assigning Accessors
             this.Driver = driver;
             this.ReportsDropdown = driver.FindElement(By.XPath(Constants.XPATH_REPORTS_LOCATOR));
             this.SaveDraftButton = HelperMethods.FindElement(driver, "id", "saveOrderButton");
@@ -41,7 +44,8 @@ namespace DocumentCentreTests.Pages
             this.AdvancedSearchLinktext = HelperMethods.FindElement(driver, "id", "advancedSearchLink");
             this.GridViewButton = HelperMethods.FindElement(driver, "id", "gridViewChoiec");
             this.TileButton = HelperMethods.FindElement(driver, "id", "tileViewChoice");
-                        
+            #endregion
+
             if (!driver.Title.Contains("Products")) 
             {
                 _logger.Fatal("       - Member's Products page not found.");
@@ -77,7 +81,7 @@ namespace DocumentCentreTests.Pages
             return this;
         }
 
-        public ProductsPage DownloadCatalogAsPDF()
+        public ProductsPage CataloguePDFExport()
         {
             ReportsDropdown.Click();
             LoadReportsOptions();
@@ -85,7 +89,7 @@ namespace DocumentCentreTests.Pages
             return this;
         }
 
-        public ProductsPage DownloadCatalogAsExcel()
+        public ProductsPage CatalogueExcelExport()
         {
             ReportsDropdown.Click();
             LoadReportsOptions();

@@ -4,6 +4,7 @@ using OpenQA.Selenium.Support.UI;
 using System;
 using NLog;
 using System.Threading;
+using System.Linq;
 
 namespace DocumentCentreTests.Util
 {
@@ -95,7 +96,13 @@ namespace DocumentCentreTests.Util
             }
         }
 
-
+        public static string RandomString(int length)
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            var random = new Random();
+            return new string(Enumerable.Repeat(chars, length)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
 
     }
 }

@@ -17,6 +17,8 @@ namespace DocumentCentreTests.Util
         internal const string LOGIN_ERROR_MSG = "The combination of username and password is incorrect";
         internal const string ORDER_ERROR_MSG = "Nothing to show";
         internal const string ORDER_DELETE_MSG = "Order has been deleted.";
+        internal const string MISSING_INFO_MSG = "Some information is missing or invalid.";
+        internal const string ORDER_COMPLETE_MSG = "Order has been sent for fulfillment.";
 
         internal const string CAT_PAGE_TITLE = "Select a Catalog to Order Products";
         internal const string SA_TEST_CAT = "SUPPLY AMERICA TEST CATALOG";
@@ -36,6 +38,10 @@ namespace DocumentCentreTests.Util
         internal const string XPATH_PO_LOCATOR = "id('ordersGrid')/div[2]/table/tbody/tr[1]/td[3]";
         internal const string XPATH_DEL_ORDER = "id('ordersGrid')/div[2]/table/tbody/tr[2]/td[1]/div/button[2]";
         internal const string XPATH_INFO_OK = "//button[contains(.,'OK')]";
+        internal const string XPATH_INFO_PRINT = "//button[contains(text(), 'Print')]";
+        internal const string XPATH_INFO_EXPORT = "//button[contains(text(), 'Export')]";
+        internal const string XPATH_INFO_EMAIL = "//button[contains(text(), 'Email')]";
+        internal const string XPATH_INFO_FINISH = "//button[contains(text(), 'Finish')]";
         internal const string XPATH_ALERT_MSG = "id('toast-container')/div/div";
         internal const string XPATH_CAT_LOCATOR = "//h1[contains(@class, 'catalog-tile-text') and contains (text(), 'Supply America Test Catalog')]";
         internal const string XPATH_REPORTS_LOCATOR = "//button[contains(text(), 'Reports')]";
