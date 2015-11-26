@@ -30,7 +30,7 @@ namespace DocumentCentreTests.Member_BD_Tests
            {
                _voPage = _homePage.NavigateToOrders("View Orders");
                _inputException = Catch.Exception(() => _voPage.InputPurchaseOrder(Constants.INVALID_PO));
-               _searchException = Catch.Exception(() => _voPage.SearchForOrder());
+               _searchException = Catch.Exception(() => _voPage.InitiateSearch());
                _voPage.CheckFirstRow();
            };
 

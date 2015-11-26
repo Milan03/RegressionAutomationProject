@@ -32,7 +32,7 @@ namespace DocumentCentreTests.Member_BD_Tests
         {
             _navigationExcep = Catch.Exception(() => _catPage = _homePage.NavigateToCatalogues());
             _inputException = Catch.Exception(() => _catPage.InputCatalogueName(Constants.SA_TEST_CAT));
-            _searchException = Catch.Exception(() => _catPage.SearchForCatalogue());
+            _searchException = Catch.Exception(() => _catPage.InitiateSearch());
             Thread.Sleep(1000);
         };
 

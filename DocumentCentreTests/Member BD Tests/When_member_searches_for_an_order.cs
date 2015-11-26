@@ -32,7 +32,7 @@ namespace DocumentCentreTests.Member_BD_Tests
             _voPage = _homePage.NavigateToOrders("View Orders");
             _inputException = Catch.Exception(() => _voPage.InputPurchaseOrder(Constants.ORDER_PO_PROC));
             _voPage.ChooseOrderType(Constants.ORDER_SEARCH_PROC);
-            _searchException = Catch.Exception(() => _voPage.SearchForOrder());
+            _searchException = Catch.Exception(() => _voPage.InitiateSearch());
             _voPage.CheckFirstRow();
         };
 

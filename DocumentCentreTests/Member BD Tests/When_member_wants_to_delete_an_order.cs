@@ -26,7 +26,7 @@ namespace DocumentCentreTests.Member_BD_Tests
             _homePage = loginPage.LoginAs(Constants.MEM_PORTAL_USER, Constants.MEM_PORTAL_PASS);
             _voPage = _homePage.NavigateToOrders("View Draft Orders");
             _voPage.OrderType = Constants.ORDER_SEARCH_DRAFT;
-            _voPage.SearchForOrder();
+            _voPage.InitiateSearch();
             _voPage.CheckFirstRow();
         };
 

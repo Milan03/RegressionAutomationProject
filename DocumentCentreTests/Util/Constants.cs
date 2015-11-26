@@ -38,6 +38,6 @@ namespace DocumentCentreTests.Util
         internal const string XPATH_INFO_OK = "//button[contains(.,'OK')]";
         internal const string XPATH_ALERT_MSG = "id('toast-container')/div/div";
         internal const string XPATH_CAT_LOCATOR = "//h1[contains(@class, 'catalog-tile-text') and contains (text(), 'Supply America Test Catalog')]";
-        internal const string XPATH_PRODUCTS_TAB = "//a[contains(@class, 'k-link') and contains (text(), 'Products')]";
+        internal const string XPATH_REPORTS_LOCATOR = "//button[contains(text(), 'Reports')]";
     }
 }

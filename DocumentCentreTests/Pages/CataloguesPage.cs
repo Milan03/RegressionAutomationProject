@@ -51,7 +51,7 @@ namespace DocumentCentreTests.Pages
         /// Simulates clicking the Search button for catalogues
         /// </summary>
         /// <returns>current page object</returns>
-        public CataloguesPage SearchForCatalogue()
+        public CataloguesPage InitiateSearch()
         {
             _logger.Info("       - Searching for catalogue...");
             SearchButtonLocator.Click();
