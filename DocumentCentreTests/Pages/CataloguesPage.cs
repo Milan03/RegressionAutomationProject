@@ -14,8 +14,8 @@ namespace DocumentCentreTests.Pages
         private static Logger _logger = LogManager.GetCurrentClassLogger();
 
         private IWebDriver Driver;
-        private IWebElement SearchInputLocator;
-        private IWebElement SearchButtonLocator;
+        private IWebElement SearchInputTextbox;
+        private IWebElement SearchButton;
 
         /// <summary>
         /// Page Object representing the view Catalogues page
@@ -24,8 +24,8 @@ namespace DocumentCentreTests.Pages
         public CataloguesPage(IWebDriver driver)
         {
             this.Driver = driver;
-            this.SearchInputLocator = HelperMethods.FindElement(driver, "id", "searchTerm");
-            this.SearchButtonLocator = HelperMethods.FindElement(driver, "id", "catalogSearchButton");
+            this.SearchInputTextbox = HelperMethods.FindElement(driver, "id", "searchTerm");
+            this.SearchButton = HelperMethods.FindElement(driver, "id", "catalogSearchButton");
 
             if (!Constants.CAT_PAGE_TITLE.Equals(driver.Title))
             {
@@ -42,8 +42,8 @@ namespace DocumentCentreTests.Pages
         public CataloguesPage InputCatalogueName(string catalogue)
         {
             _logger.Info("       - Inputting catalogue name for search: " + catalogue);
-            SearchInputLocator.Clear();
-            SearchInputLocator.SendKeys(catalogue);
+            SearchInputTextbox.Clear();
+            SearchInputTextbox.SendKeys(catalogue);
             return this;
         }
 
@@ -54,7 +54,7 @@ namespace DocumentCentreTests.Pages
         public CataloguesPage InitiateSearch()
         {
             _logger.Info("       - Searching for catalogue...");
-            SearchButtonLocator.Click();
+            SearchButton.Click();
             return this;
         }
     }

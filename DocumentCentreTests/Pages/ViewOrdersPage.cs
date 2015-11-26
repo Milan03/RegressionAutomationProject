@@ -15,8 +15,8 @@ namespace DocumentCentreTests.Pages
         private static Logger _logger = LogManager.GetCurrentClassLogger();
 
         private IWebDriver Driver;
-        private IWebElement TypeDropDownLocator;
-        private IWebElement POInputLocator;
+        private IWebElement OrderTypeDropdown;
+        private IWebElement POInputTextbox;
         private IWebElement SearchOrdersButton;
         private IWebElement DeleteOrderLocator;
 
@@ -31,8 +31,8 @@ namespace DocumentCentreTests.Pages
         public ViewOrdersPage(IWebDriver driver)
         {
             this.Driver = driver;
-            this.TypeDropDownLocator = HelperMethods.FindElement(Driver, "classname", "k-widget");
-            this.POInputLocator = HelperMethods.FindElement(Driver, "id", "poNumber");
+            this.OrderTypeDropdown = HelperMethods.FindElement(Driver, "classname", "k-widget");
+            this.POInputTextbox = HelperMethods.FindElement(Driver, "id", "poNumber");
             this.SearchOrdersButton = HelperMethods.FindElement(Driver, "id", "searchOrdersButton");
             this.OrderType = "All";
 
@@ -72,7 +72,7 @@ namespace DocumentCentreTests.Pages
         {
             _logger.Info("       - Choosing order type: " +type);
             this.OrderType = type;
-            TypeDropDownLocator.Click();
+            OrderTypeDropdown.Click();
             Thread.Sleep(500);
             try
             {
@@ -125,9 +125,9 @@ namespace DocumentCentreTests.Pages
         public ViewOrdersPage InputPurchaseOrder(string po)
         {
             _logger.Info("       - Inputting purchase order number: " +po);
-            POInputLocator.Click();
-            POInputLocator.Clear();
-            POInputLocator.SendKeys(po);
+            POInputTextbox.Click();
+            POInputTextbox.Clear();
+            POInputTextbox.SendKeys(po);
             return this;
         }
 

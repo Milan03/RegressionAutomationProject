@@ -39,5 +39,8 @@ namespace DocumentCentreTests.Util
         internal const string XPATH_ALERT_MSG = "id('toast-container')/div/div";
         internal const string XPATH_CAT_LOCATOR = "//h1[contains(@class, 'catalog-tile-text') and contains (text(), 'Supply America Test Catalog')]";
         internal const string XPATH_REPORTS_LOCATOR = "//button[contains(text(), 'Reports')]";
+        internal const string XPATH_SHIPON_CAL = "id('orderHeaderContainer')/div[2]/div[1]/div/span/span/span/span";
+        internal const string XPATH_CANCELAFTER_CAL = "id('orderHeaderContainer')/div[2]/div[2]/div/span/span/span/span";
+
     }
 }

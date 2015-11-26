@@ -14,7 +14,7 @@ namespace DocumentCentreTests.Pages
     public class MemberHomePage : HomePage
     {
         private IWebDriver Driver;
-        private IWebElement OrdersDropdownLocator;
+        private IWebElement OrdersDropdown;
 
         /// <summary>
         /// Member home page constructor
@@ -34,7 +34,7 @@ namespace DocumentCentreTests.Pages
             }
 
             _logger.Info("       - Login successful");
-            this.OrdersDropdownLocator = HelperMethods.FindElement(driver, "linktext", "My Orders");
+            this.OrdersDropdown = HelperMethods.FindElement(driver, "linktext", "My Orders");
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace DocumentCentreTests.Pages
             _logger.Info("       - Attempting to navigate to View Orders");
 
             // dropdown interaction
-            OrdersDropdownLocator.Click();
+            OrdersDropdown.Click();
             Thread.Sleep(500);
             HelperMethods.FindElement(Driver, "linktext", linktext).Click();
             
@@ -64,7 +64,7 @@ namespace DocumentCentreTests.Pages
         {
             _logger.Info("       - Attempting to navigate to Catalogues Page");
 
-            OrdersDropdownLocator.Click();
+            OrdersDropdown.Click();
             Thread.Sleep(500);
             HelperMethods.FindElement(Driver, "linktext", "Order from Catalog").Click();
 

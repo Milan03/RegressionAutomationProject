@@ -15,32 +15,33 @@ namespace DocumentCentreTests.Pages
         private static Logger _logger = LogManager.GetCurrentClassLogger();
 
         private IWebDriver Driver;
-        private IWebElement SearchBarLocator;
-        private IWebElement SearchButtonLocator;
-        private IWebElement AdvancedSearchLocator;
-        private IWebElement GridButtonLocator;
-        private IWebElement TileButtonLocator;
-        private IWebElement ReportsDropdownLocator;
-        private IWebElement SaveDraftLocator;
 
+        private IWebElement ReportsDropdown;
+        private IWebElement SaveDraftButton;
+        private IWebElement SearchBar;
+        private IWebElement SearchButton;
+        private IWebElement AdvancedSearchLinktext;
+        private IWebElement GridViewButton;
+        private IWebElement TileButton;
+        
         #region Reports Dropdown Options
-        private IWebElement DLCatAsPDFLocator;
-        private IWebElement DLCatAsExcelLocator;
-        private IWebElement OrderReportLocator;
-        private IWebElement SummaryLocator;
+        private IWebElement DLCatAsPDFOption;
+        private IWebElement DLCatAsExcelOption;
+        private IWebElement OrderReportOption;
+        private IWebElement SummaryOption;
         #endregion
 
         public ProductsPage(IWebDriver driver)
         {
             this.Driver = driver;
-            this.SearchBarLocator = HelperMethods.FindElement(driver, "id", "basicSearchTerm");
-            this.SearchButtonLocator = HelperMethods.FindElement(driver, "id", "basicSearchButton");
-            this.AdvancedSearchLocator = HelperMethods.FindElement(driver, "id", "advancedSearchLink");
-            this.GridButtonLocator = HelperMethods.FindElement(driver, "id", "gridViewChoiec");
-            this.TileButtonLocator = HelperMethods.FindElement(driver, "id", "tileViewChoice");
-            this.SaveDraftLocator = HelperMethods.FindElement(driver, "id", "saveOrderButton");
-            this.ReportsDropdownLocator = driver.FindElement(By.XPath(Constants.XPATH_REPORTS_LOCATOR));
-            
+            this.ReportsDropdown = driver.FindElement(By.XPath(Constants.XPATH_REPORTS_LOCATOR));
+            this.SaveDraftButton = HelperMethods.FindElement(driver, "id", "saveOrderButton");
+            this.SearchBar = HelperMethods.FindElement(driver, "id", "basicSearchTerm");
+            this.SearchButton = HelperMethods.FindElement(driver, "id", "basicSearchButton");
+            this.AdvancedSearchLinktext = HelperMethods.FindElement(driver, "id", "advancedSearchLink");
+            this.GridViewButton = HelperMethods.FindElement(driver, "id", "gridViewChoiec");
+            this.TileButton = HelperMethods.FindElement(driver, "id", "tileViewChoice");
+                        
             if (!driver.Title.Contains("Products")) 
             {
                 _logger.Fatal("       - Member's Products page not found.");
@@ -51,69 +52,69 @@ namespace DocumentCentreTests.Pages
         public ProductsPage InputSearchTerm(string term)
         {
             _logger.Info("       - Inputting search term");
-            SearchBarLocator.Clear();
-            SearchBarLocator.SendKeys(term);
+            SearchBar.Clear();
+            SearchBar.SendKeys(term);
             return this;
         }
 
         public ProductsPage InitiateSearch()
         {
             _logger.Info("       - Searching for item...");
-            SearchButtonLocator.Click();
+            SearchButton.Click();
             return this;
         }
 
         public ProductsPage OpenAdvancedSearch()
         {
             _logger.Info("       - Opening Advanced Search");
-            AdvancedSearchLocator.Click();
+            AdvancedSearchLinktext.Click();
             return this;
         }
 
         public ProductsPage SaveDraftOrder()
         {
-            SaveDraftLocator.Click();
+            SaveDraftButton.Click();
             return this;
         }
 
         public ProductsPage DownloadCatalogAsPDF()
         {
-            ReportsDropdownLocator.Click();
-            LoadDropdownOptions();
-            DLCatAsPDFLocator.Click();
+            ReportsDropdown.Click();
+            LoadReportsOptions();
+            DLCatAsPDFOption.Click();
             return this;
         }
 
         public ProductsPage DownloadCatalogAsExcel()
         {
-            ReportsDropdownLocator.Click();
-            LoadDropdownOptions();
-            DLCatAsExcelLocator.Click();
+            ReportsDropdown.Click();
+            LoadReportsOptions();
+            DLCatAsExcelOption.Click();
             return this;
         }
 
         public ProductsPage GenerateOrderReport()
         {
-            ReportsDropdownLocator.Click();
-            LoadDropdownOptions();
-            OrderReportLocator.Click();
+            ReportsDropdown.Click();
+            LoadReportsOptions();
+            OrderReportOption.Click();
             return this;
         }
 
         public ProductsPage GenerateOrderSummary()
         {
-            ReportsDropdownLocator.Click();
-            LoadDropdownOptions();
-            SummaryLocator.Click();
+            ReportsDropdown.Click();
+            LoadReportsOptions();
+            SummaryOption.Click();
             return this;
         }
 
-        public void LoadDropdownOptions()
+        public void LoadReportsOptions()
         {
-            this.DLCatAsPDFLocator = HelperMethods.FindElement(Driver, "id", "exportCatalogButtonPDF");
-            this.DLCatAsExcelLocator = HelperMethods.FindElement(Driver, "id", "exportCatalogButtonXLS");
-            this.OrderReportLocator = HelperMethods.FindElement(Driver, "id", "orderReportButton");
-            this.SummaryLocator = HelperMethods.FindElement(Driver, "id", "ordersSummaryButton");
+            this.DLCatAsPDFOption = HelperMethods.FindElement(Driver, "id", "exportCatalogButtonPDF");
+            this.DLCatAsExcelOption = HelperMethods.FindElement(Driver, "id", "exportCatalogButtonXLS");
+            this.OrderReportOption = HelperMethods.FindElement(Driver, "id", "orderReportButton");
+            this.SummaryOption = HelperMethods.FindElement(Driver, "id", "ordersSummaryButton");
         }
     }
 }
