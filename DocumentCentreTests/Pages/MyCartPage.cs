@@ -45,22 +45,27 @@ namespace DocumentCentreTests.Pages
         private IWebElement OrderSummaryOption;
         #endregion
 
-        internal string AlertMessage; 
+        internal string AlertMessage;
 
         public MyCartPage(IWebDriver driver, string type)
         {
             #region Assigning Accessors
+            bool dontCheck = false;
             this.Driver = driver;
             this.ReportsDropdown = HelperMethods.FindElement(driver, "xpath", Constants.XPATH_REPORTS_LOCATOR);
 
-            if (type.Equals("newOrder"))
+            if (type.Equals("new_order"))
             {
+                dontCheck = false;
                 this.DeleteOrderButton = HelperMethods.FindElement(driver, "id", "deleteOrderButton");
                 this.SaveDraftButton = HelperMethods.FindElement(driver, "id", "saveOrderButton");
                 this.SendOrderButton = HelperMethods.FindElement(driver, "id", "completeOrderButton");
             }
-            else
+            else if (type.Equals("order_complete"))
+            {
                 this.CloseOrderButton = HelperMethods.FindElement(driver, "id", "closeOrderButton");
+                dontCheck = true;
+            }
 
             this.ShipToDropdown = HelperMethods.FindElement(driver, "classname", "k-input");
             this.PONumberTextbox = HelperMethods.FindElement(driver, "id", "poNumber");
@@ -79,7 +84,7 @@ namespace DocumentCentreTests.Pages
             this.NotesTextbox = HelperMethods.FindElement(driver, "id", "notes");
             #endregion
 
-            if (!driver.Title.Contains("MyOrder"))
+            if (!driver.Title.Contains("MyOrder") && !dontCheck)
             {
                 _logger.Fatal("       - Member's Cart page not found.");
                 throw new NoSuchWindowException("Member's Cart page not found.");
@@ -160,23 +165,83 @@ namespace DocumentCentreTests.Pages
                 // click Finish on next dialog
                 Thread.Sleep(500);
                 HelperMethods.FindElement(Driver, "xpath", Constants.XPATH_INFO_FINISH).Click();
+                return new MyCartPage(Driver, "order_complete");
             }
             else
             {
                 _logger.Error("       - Attempt to complete order [FAILED]");
                 throw new ElementNotVisibleException("Could not detect Information modal.");
             }
+        }
+
+        public MyCartPage EnterPONumber(string po)
+        {
+            PONumberTextbox.Clear();
+            PONumberTextbox.SendKeys(po);
             return this;
         }
 
-        public void EnterPONumber(string po)
+        public MyCartPage EnterRandomPONumber(int length)
         {
-            PONumberTextbox.SendKeys(po);
+            PONumberTextbox.Clear();
+            PONumberTextbox.SendKeys(HelperMethods.RandomString(length));
+            return this;
         }
 
-        public void EnterRandomPONumber(int length)
+        public MyCartPage EnterBuyerPO(string po)
         {
-            PONumberTextbox.SendKeys(HelperMethods.RandomString(length));
+            POBuyerTextbox.Clear();
+            POBuyerTextbox.SendKeys(po);
+            return this;
+        }
+
+        public MyCartPage EnterShipOnDate(int year, int mo, int day) 
+        {
+            ShipOnTextbox.Clear();
+            ShipOnTextbox.SendKeys(year + "-" + mo + "-" + day);
+            return this;
+        }
+
+        public MyCartPage EnterCancelAfterDate(int year, int mo, int day)
+        {
+            ShipOnTextbox.Clear();
+            CancelAfterTextbox.SendKeys(year + "-" + mo + "-" + day);
+            return this;
+        }
+
+        public MyCartPage EnterContactName(string contact)
+        {
+            ContactNameTextbox.Clear();
+            ContactNameTextbox.SendKeys(contact);
+            return this;
+        }
+
+        public MyCartPage ChangeDeliveryAddress() 
+        {
+            DelieveryAddressButton.Click();
+            // TODO: modal logic
+            return this;
+        }
+
+        public MyCartPage EnterFreightTerms(string terms)
+        {
+            FreightTermsTextbox.Clear();
+            FreightTermsTextbox.SendKeys(terms);
+            return this;
+        }
+
+        public MyCartPage EnterPaymentTerms(string terms)
+        {
+            PaymentTermsTextbox.Clear();
+            PaymentTermsTextbox.SendKeys(terms);
+            return this;
+        }
+
+        public MyCartPage EnterNotes(string notes)
+        {
+            NotesTextbox.Clear();
+            NotesTextbox.SendKeys(notes);
+            return this;
         }
     }
 }
