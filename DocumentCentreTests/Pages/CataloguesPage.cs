@@ -57,5 +57,13 @@ namespace DocumentCentreTests.Pages
             SearchButton.Click();
             return this;
         }
+
+        public ProductsPage ChooseCatalogue(string name)
+        {
+           // IWebElement catalogueTitle = HelperMethods.FindElement(Driver, "xpath", "//h1[contains(@class, 'catalog-tile-text') and contains (text(), '"+name+"')]");
+            IWebElement catalogueTitle = Driver.FindElement(By.XPath("//h1[contains(@class, 'catalog-tile-text') and contains (text(), '" + name + "')]"));
+            catalogueTitle.Click();
+            return new ProductsPage(Driver);
+        }
     }
 }

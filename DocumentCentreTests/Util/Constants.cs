@@ -21,7 +21,7 @@ namespace DocumentCentreTests.Util
         internal const string ORDER_COMPLETE_MSG = "Order has been sent for fulfillment.";
 
         internal const string CAT_PAGE_TITLE = "Select a Catalog to Order Products";
-        internal const string SA_TEST_CAT = "SUPPLY AMERICA TEST CATALOG";
+        internal const string TEST_CAT = "Milan Automation Catalogue";
 
         /// <summary>search options to be used with View Orders page
         internal const string ORDER_SEARCH_DRAFT = "Draft";
@@ -43,10 +43,10 @@ namespace DocumentCentreTests.Util
         internal const string XPATH_INFO_EMAIL = "//button[contains(text(), 'Email')]";
         internal const string XPATH_INFO_FINISH = "//button[contains(text(), 'Finish')]";
         internal const string XPATH_ALERT_MSG = "id('toast-container')/div/div";
-        internal const string XPATH_CAT_LOCATOR = "//h1[contains(@class, 'catalog-tile-text') and contains (text(), 'Supply America Test Catalog')]";
+        internal const string XPATH_CAT_LOCATOR = "//h1[contains(@class, 'catalog-tile-text') and contains (text(), 'Milan Automation Catalogue')]";
         internal const string XPATH_REPORTS_LOCATOR = "//button[contains(text(), 'Reports')]";
         internal const string XPATH_SHIPON_CAL = "id('orderHeaderContainer')/div[2]/div[1]/div/span/span/span/span";
         internal const string XPATH_CANCELAFTER_CAL = "id('orderHeaderContainer')/div[2]/div[2]/div/span/span/span/span";
-
+        internal const string XPATH_MYCART_LINK = "//a[contains(text(), 'My Cart')]";
     }
 }

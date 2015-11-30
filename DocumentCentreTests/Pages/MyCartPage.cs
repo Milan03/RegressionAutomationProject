@@ -79,12 +79,12 @@ namespace DocumentCentreTests.Pages
             this.ContactNameTextbox = HelperMethods.FindElement(driver, "id", "contactName");
             this.DeliveryAddressDisplay = HelperMethods.FindElement(driver, "id", "addresseeName");
             this.DelieveryAddressButton = HelperMethods.FindElement(driver, "id", "changeAddressButton");
-            this.FreightTermsTextbox = HelperMethods.FindElement(driver, "id", "frieghtTerms");
+            this.FreightTermsTextbox = HelperMethods.FindElement(driver, "id", "freightTerms");
             this.PaymentTermsTextbox = HelperMethods.FindElement(driver, "id", "paymentTerms");
             this.NotesTextbox = HelperMethods.FindElement(driver, "id", "notes");
             #endregion
 
-            if (!driver.Title.Contains("MyOrder") && !dontCheck)
+            if (!driver.Url.Contains("MyOrder") && !dontCheck)
             {
                 _logger.Fatal("       - Member's Cart page not found.");
                 throw new NoSuchWindowException("Member's Cart page not found.");

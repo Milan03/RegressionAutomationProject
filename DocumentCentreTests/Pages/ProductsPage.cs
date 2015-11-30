@@ -23,6 +23,7 @@ namespace DocumentCentreTests.Pages
         private IWebElement AdvancedSearchLinktext;
         private IWebElement GridViewButton;
         private IWebElement TileButton;
+        private IWebElement MyCartButton;
         
         #region Reports Dropdown Options
         private IWebElement DLCatAsPDFOption;
@@ -42,8 +43,9 @@ namespace DocumentCentreTests.Pages
             this.SearchBar = HelperMethods.FindElement(driver, "id", "basicSearchTerm");
             this.SearchButton = HelperMethods.FindElement(driver, "id", "basicSearchButton");
             this.AdvancedSearchLinktext = HelperMethods.FindElement(driver, "id", "advancedSearchLink");
-            this.GridViewButton = HelperMethods.FindElement(driver, "id", "gridViewChoiec");
+            this.GridViewButton = HelperMethods.FindElement(driver, "id", "gridViewChoice");
             this.TileButton = HelperMethods.FindElement(driver, "id", "tileViewChoice");
+            this.MyCartButton = HelperMethods.FindElement(driver, "xpath", Constants.XPATH_MYCART_LINK );
             #endregion
 
             if (!driver.Title.Contains("Products")) 
@@ -51,6 +53,12 @@ namespace DocumentCentreTests.Pages
                 _logger.Fatal("       - Member's Products page not found.");
                 throw new NoSuchWindowException("Member's Products page not found.");
             }
+        }
+
+        public MyCartPage NavigateToCart()
+        {
+            MyCartButton.Click();
+            return new MyCartPage(Driver, "new_order");
         }
 
         public ProductsPage InputSearchTerm(string term)
