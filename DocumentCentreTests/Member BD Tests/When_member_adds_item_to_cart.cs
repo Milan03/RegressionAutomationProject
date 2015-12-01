@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace DocumentCentreTests.Member_BD_Tests
 {
     [Subject(typeof(LoginPage))]
-    public class When_member_creates_draft_order : BaseDriverTest
+    public class When_member_adds_item_to_cart : BaseDriverTest
     {
         static HomePage _homePage;
         static CataloguesPage _catPage;
@@ -37,7 +37,7 @@ namespace DocumentCentreTests.Member_BD_Tests
             _cartPage = _prodPage.NavigateToCart();
         };
 
-        It should_save_the_draft_order = () =>
+        It should_return_alert_of_success = () =>
         {
 
         };

@@ -58,10 +58,14 @@ namespace DocumentCentreTests.Pages
             return this;
         }
 
+        /// <summary>
+        /// Simulates choosing a catalogue from the ones listed on page
+        /// </summary>
+        /// <param name="name">name of catalogue</param>
+        /// <returns>new Product page object related to catalogue choosen</returns>
         public ProductsPage ChooseCatalogue(string name)
         {
-           // IWebElement catalogueTitle = HelperMethods.FindElement(Driver, "xpath", "//h1[contains(@class, 'catalog-tile-text') and contains (text(), '"+name+"')]");
-            IWebElement catalogueTitle = Driver.FindElement(By.XPath("//h1[contains(@class, 'catalog-tile-text') and contains (text(), '" + name + "')]"));
+            IWebElement catalogueTitle = HelperMethods.FindElement(Driver, "xpath", "//h1[contains(@class, 'catalog-tile-text') and contains (text(), '"+name+"')]");
             catalogueTitle.Click();
             return new ProductsPage(Driver);
         }
