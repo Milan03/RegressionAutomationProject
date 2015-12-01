@@ -19,6 +19,7 @@ namespace DocumentCentreTests.Member_BD_Tests
         static ProductsPage _prodPage;
         static MyCartPage _cartPage;
         static Exception _catException;
+        static Exception _prodException;
 
         Establish context = () =>
         {
@@ -34,12 +35,14 @@ namespace DocumentCentreTests.Member_BD_Tests
         Because of = () =>
         {
             _catException = Catch.Exception(() => _prodPage = _catPage.ChooseCatalogue(Constants.TEST_CAT));
-            _cartPage = _prodPage.NavigateToCart();
+            _prodException = Catch.Exception(() =>_prodPage.AddItemToCart("Sketchers Ankle Height Hiking Shoe", 4));
         };
 
         It should_return_alert_of_success = () =>
         {
-
+            _catException.ShouldBeNull();
+            _prodException.ShouldBeNull();
+            _prodPage.ItemAdded.ShouldBeTrue();
         };
     }
 }

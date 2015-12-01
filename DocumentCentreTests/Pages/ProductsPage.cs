@@ -42,7 +42,7 @@ namespace DocumentCentreTests.Pages
         private IWebElement CancelButton;
         #endregion
 
-        internal string AlertMessage;
+        internal bool ItemAdded;
 
         public ProductsPage(IWebDriver driver)
         {
@@ -59,9 +59,7 @@ namespace DocumentCentreTests.Pages
             this.myCart = new List<Product>();
             #endregion
 
-            TilesViewButton.Click();
-
-            if (!driver.Title.Contains("Products"))
+            if (!driver.Url.Contains("Products"))
             {
                 _logger.Fatal("       - Member's Products page not found.");
                 throw new NoSuchWindowException("Member's Products page not found.");
@@ -77,11 +75,13 @@ namespace DocumentCentreTests.Pages
         public ProductsPage AddItemToCart(string prodName, int qty)
         {
             // get and click product
+            SwitchToTileView();
             var prodElement = HelperMethods.FindElement(Driver, "xpath", "//h4[normalize-space(.) = '" + prodName + "']");
             prodElement.Click();
             // load product details
             Thread.Sleep(500);
             LoadItemDetails();
+            Driver.SwitchTo().Frame(prodName);
             // enter quantity
             QuantityBox.Clear();
             QuantityBox.SendKeys(qty.ToString());
@@ -94,7 +94,16 @@ namespace DocumentCentreTests.Pages
             newProd.AmountTotal = newProd.Price * qty;
             myCart.Add(newProd);
             UpdateCartButton.Click();
-            // check alert in test
+            // check alert
+            ItemAdded = HelperMethods.CheckItemAlert(Driver, newProd);
+            return this;
+        }
+
+        public ProductsPage SwitchToTileView()
+        {
+            Thread.Sleep(500);
+            TilesViewButton.Click();
+            Thread.Sleep(500);
             return this;
         }
 
@@ -168,6 +177,7 @@ namespace DocumentCentreTests.Pages
 
         public void LoadItemDetails()
         {
+            
             this.ProductNumber = HelperMethods.FindElement(Driver, "xpath", "id('productDetailsTable')/tbody/tr[9]/td[2]/div");
             this.ListPrice = HelperMethods.FindElement(Driver, "xpath", "id('productDetailsTable')/tbody/tr[5]/td[2]/div");
             this.QuantityBox = HelperMethods.FindElement(Driver, "xpath", "//input[contains(@class, 'qty-box')]");
