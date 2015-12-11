@@ -17,7 +17,6 @@ namespace DocumentCentreTests.Member_BD_Tests
         static HomePage _homePage;
         static CataloguesPage _catPage;
         static ProductsPage _prodPage;
-        static MyCartPage _cartPage;
         static Exception _catException;
         static Exception _prodException;
 

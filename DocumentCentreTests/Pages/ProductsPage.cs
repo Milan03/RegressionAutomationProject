@@ -17,6 +17,7 @@ namespace DocumentCentreTests.Pages
 
         private IWebDriver Driver;
 
+        // product data structures
         internal List<Product> _products;
         internal IList<IWebElement> _productTitles;
         internal IList<IWebElement> _productQtyUp;
@@ -24,6 +25,7 @@ namespace DocumentCentreTests.Pages
         internal IList<IWebElement> _productPrices;
         internal IList<IWebElement> _productUpdateBtns;
 
+        // physical elements (locators) on page
         private IWebElement ProductsTable;
         private IWebElement ReportsDropdown;
         private IWebElement SaveDraftButton;
@@ -39,16 +41,6 @@ namespace DocumentCentreTests.Pages
         private IWebElement DLCatAsExcelOption;
         private IWebElement OrderReportOption;
         private IWebElement SummaryOption;
-        #endregion
-
-        #region Item Details Dialog
-        private string ProductNumber;
-        private string ListPrice;
-        private IWebElement QuantityBox;
-        private IWebElement QtyBoxUpArrow;
-        private IWebElement QtyBoxDownArrow;
-        private IWebElement UpdateCartButton;
-        private IWebElement CancelButton;
         #endregion
 
         internal bool ItemAdded;
@@ -76,12 +68,20 @@ namespace DocumentCentreTests.Pages
             }
         }
 
-        public MyCartPage NavigateToCart()
+        /// <summary>
+        /// Loads all physical elements (locators) of Reports dropdown
+        /// </summary>
+        public void LoadReportsOptions()
         {
-            MyCartButton.Click();
-            return new MyCartPage(Driver, "new_order");
+            this.DLCatAsPDFOption = HelperMethods.FindElement(Driver, "id", "exportCatalogButtonPDF");
+            this.DLCatAsExcelOption = HelperMethods.FindElement(Driver, "id", "exportCatalogButtonXLS");
+            this.OrderReportOption = HelperMethods.FindElement(Driver, "id", "orderReportButton");
+            this.SummaryOption = HelperMethods.FindElement(Driver, "id", "ordersSummaryButton");
         }
 
+        /// <summary>
+        /// Loads all products on current catalogue page using row elements
+        /// </summary>
         private void LoadProductRows()
         {
             // get row elements
@@ -104,6 +104,11 @@ namespace DocumentCentreTests.Pages
             }
         }
 
+        /// <summary>
+        /// Find specific product in catalogue page to interat with
+        /// </summary>
+        /// <param name="prodName">name of product to be searched for</param>
+        /// <returns>Product object to interact with</returns>
         private Product LoadProduct(string prodName)
         {
             Product currentProd = new Product();
@@ -121,6 +126,13 @@ namespace DocumentCentreTests.Pages
             return currentProd;
         }
 
+        /// <summary>
+        /// Simulates the addition of an item to the cart and checks if the alert popup
+        /// is accurate.
+        /// </summary>
+        /// <param name="prodName">name of product to add to cart</param>
+        /// <param name="qty">quantity of product to add to cart</param>
+        /// <returns>current page object</returns>
         public ProductsPage AddItemToCart(string prodName, int qty)
         {
             LoadProductRows();
@@ -131,6 +143,20 @@ namespace DocumentCentreTests.Pages
             return this;
         }
 
+        /// <summary>
+        /// Simulates navigation to cart
+        /// </summary>
+        /// <returns>new MyCart page object</returns>
+        public MyCartPage NavigateToCart()
+        {
+            MyCartButton.Click();
+            return new MyCartPage(Driver, "new_order");
+        }
+
+        /// <summary>
+        /// Simulates switching to the Tile products view of a catalogue
+        /// </summary>
+        /// <returns>current page object</returns>
         public ProductsPage SwitchToTileView()
         {
             Thread.Sleep(1500);
@@ -139,6 +165,11 @@ namespace DocumentCentreTests.Pages
             return this;
         }
 
+        /// <summary>
+        /// Simulates searching for a product
+        /// </summary>
+        /// <param name="term">term to search for</param>
+        /// <returns>current page object</returns>
         public ProductsPage InputSearchTerm(string term)
         {
             _logger.Info("       - Inputting search term");
@@ -147,6 +178,10 @@ namespace DocumentCentreTests.Pages
             return this;
         }
 
+        /// <summary>
+        /// Simulates click the search button for product search
+        /// </summary>
+        /// <returns>current page object</returns>
         public ProductsPage InitiateSearch()
         {
             _logger.Info("       - Searching for item...");
@@ -154,6 +189,10 @@ namespace DocumentCentreTests.Pages
             return this;
         }
 
+        /// <summary>
+        /// Simulates opening the advanced search options partial form
+        /// </summary>
+        /// <returns>current page object</returns>
         public ProductsPage OpenAdvancedSearch()
         {
             _logger.Info("       - Opening Advanced Search");
@@ -161,12 +200,20 @@ namespace DocumentCentreTests.Pages
             return this;
         }
 
+        /// <summary>
+        /// Simulates saving the current draft order
+        /// </summary>
+        /// <returns>current page object</returns>
         public ProductsPage SaveDraftOrder()
         {
             SaveDraftButton.Click();
             return this;
         }
 
+        /// <summary>
+        /// Simulates clicking catalogue pdf export from Reports dropdown
+        /// </summary>
+        /// <returns>current page object</returns>
         public ProductsPage CataloguePDFExport()
         {
             ReportsDropdown.Click();
@@ -175,6 +222,10 @@ namespace DocumentCentreTests.Pages
             return this;
         }
 
+        /// <summary>
+        /// Simulates clicking catalgoue excel export from Reports dropdown
+        /// </summary>
+        /// <returns>current page object</returns>
         public ProductsPage CatalogueExcelExport()
         {
             ReportsDropdown.Click();
@@ -183,6 +234,10 @@ namespace DocumentCentreTests.Pages
             return this;
         }
 
+        /// <summary>
+        /// Simulates generate order report from Reports dropdown
+        /// </summary>
+        /// <returns>current page object</returns>
         public ProductsPage GenerateOrderReport()
         {
             ReportsDropdown.Click();
@@ -191,6 +246,10 @@ namespace DocumentCentreTests.Pages
             return this;
         }
 
+        /// <summary>
+        /// Simulates generating an order summary from Reports dropdown
+        /// </summary>
+        /// <returns>current page object</returns>
         public ProductsPage GenerateOrderSummary()
         {
             ReportsDropdown.Click();
@@ -199,25 +258,6 @@ namespace DocumentCentreTests.Pages
             return this;
         }
 
-        public void LoadReportsOptions()
-        {
-            this.DLCatAsPDFOption = HelperMethods.FindElement(Driver, "id", "exportCatalogButtonPDF");
-            this.DLCatAsExcelOption = HelperMethods.FindElement(Driver, "id", "exportCatalogButtonXLS");
-            this.OrderReportOption = HelperMethods.FindElement(Driver, "id", "orderReportButton");
-            this.SummaryOption = HelperMethods.FindElement(Driver, "id", "ordersSummaryButton");
-        }
 
-        public void LoadItemDetails()
-        {
-            this.ProductNumber = HelperMethods.FindElement(Driver, "xpath", "id('productDetailsTable')/tbody/tr[9]/td[2]/div").Text;
-            this.ListPrice = HelperMethods.FindElement(Driver, "xpath", "id('productDetailsTable')/tbody/tr[5]/td[2]/div").Text;
-            //this.QuantityBox = HelperMethods.FindElement(Driver, "xpath", "//div[contains(@title, '" + ProductNumber.Text + "')]/div/span/span/input[1]");
-            this.QuantityBox = HelperMethods.FindElement(Driver, "xpath", "id('variant_18843667')/div[1]/span/span/input[1]");
-            this.QtyBoxUpArrow = HelperMethods.FindElement(Driver, "xpath", "id('variant_18843667')/div[1]/span/span/span/span[1]/span");
-            this.QtyBoxDownArrow = HelperMethods.FindElement(Driver, "xpath", "id('variant_18843667')/div[1]/span/span/span/span[2]");
-            this.UpdateCartButton = HelperMethods.FindElement(Driver, "id", "updateOrderButton");
-            this.CancelButton = HelperMethods.FindElement(Driver, "id", "cancelProductDialogButton");
-            Thread.Sleep(2000);
-        }
     }
 }
