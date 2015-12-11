@@ -36,7 +36,8 @@ namespace DocumentCentreTests.Util
 
         /// <summary>row identifiers
         internal const string ROW_TITLE_XPATH = "//tbody/tr/td[2]/div/a[1]";
-        internal const string ROW_QTY_XPATH = "//tbody/tr/td[2]/div[2]/div/div/span";
+        internal const string ROW_QTY_UP_XPATH = "//tbody/tr/td[2]/div[2]/div/div/span/span/span/span[1]";
+        internal const string ROW_QTY_DOWN_XPATH = "//tbody/tr/td[2]/div[2]/div/div/span/span/span/span[2]";
         internal const string ROW_PRICE_XPATH = "//tbody/tr/td[2]/div[2]/div/div[2]";
         internal const string ROW_UPDATE_XPATH = "//tbody/tr/td[2]/div[2]/div[2]/button";
 

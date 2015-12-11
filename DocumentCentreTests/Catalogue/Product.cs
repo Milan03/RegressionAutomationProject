@@ -13,22 +13,26 @@ namespace DocumentCentreTests.Catalogue
     {
         internal IWebElement ProductTitle { get; set; }
         internal IWebElement Price { get; set; }
-        internal IWebElement Quantity { get; set; }
+        internal IWebElement QtyUp { get; set; }
+        internal IWebElement QtyDown { get; set; }
         internal IWebElement UpdateButton { get; set; }
         internal Decimal AmountTotal
         {
             get { return this.AmountTotal;  }
             set
             {
-                this.AmountTotal = Decimal.Parse(Price.Text) * int.Parse(Quantity.Text);
+                this.AmountTotal = Decimal.Parse(Price.Text) * int.Parse(QtyUp.Text);
             }
         }
 
         internal Product() {}
 
-        public void SetQuantity(string qty)
+        public void SetQuantity(int qty)
         {
-            Quantity.SendKeys(qty);
+            for (int i = 0; i < qty; ++i)
+            {
+                QtyUp.Click();
+            }
         }
     }
 }

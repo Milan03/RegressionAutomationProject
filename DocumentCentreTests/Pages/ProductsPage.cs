@@ -19,7 +19,8 @@ namespace DocumentCentreTests.Pages
 
         internal List<Product> _products;
         internal IList<IWebElement> _productTitles;
-        internal IList<IWebElement> _productQtyBoxes;
+        internal IList<IWebElement> _productQtyUp;
+        internal IList<IWebElement> _productQtyDown;
         internal IList<IWebElement> _productPrices;
         internal IList<IWebElement> _productUpdateBtns;
 
@@ -85,7 +86,8 @@ namespace DocumentCentreTests.Pages
         {
             // get row elements
             this._productTitles = ProductsTable.FindElements(By.XPath(Constants.ROW_TITLE_XPATH));
-            this._productQtyBoxes = ProductsTable.FindElements(By.XPath(Constants.ROW_QTY_XPATH));
+            this._productQtyUp = ProductsTable.FindElements(By.XPath(Constants.ROW_QTY_UP_XPATH));
+            this._productQtyDown = ProductsTable.FindElements(By.XPath(Constants.ROW_QTY_DOWN_XPATH));
             this._productPrices = ProductsTable.FindElements(By.XPath(Constants.ROW_PRICE_XPATH));
             this._productUpdateBtns = ProductsTable.FindElements(By.XPath(Constants.ROW_UPDATE_XPATH));
 
@@ -95,7 +97,8 @@ namespace DocumentCentreTests.Pages
                 Product newProd = new Product();
                 newProd.ProductTitle = _productTitles[i];
                 newProd.Price = _productPrices[i];
-                newProd.Quantity = _productQtyBoxes[i];
+                newProd.QtyUp = _productQtyUp[i];
+                newProd.QtyDown = _productQtyDown[i];
                 newProd.UpdateButton = _productUpdateBtns[i];
                 _products.Add(newProd);
             }
@@ -105,9 +108,9 @@ namespace DocumentCentreTests.Pages
         {
 
             LoadProductRows();
-            _products[0].SetQuantity("1");
+            _products[0].SetQuantity(3);
 
-
+            int x = 1;
             //var prodElement = HelperMethods.FindElement(Driver, "xpath", "//a[normalize-space(.) = '" + prodName + "']");
             // check alert
             //ItemAdded = HelperMethods.CheckItemAlert(Driver, newProd);
