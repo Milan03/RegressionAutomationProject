@@ -82,7 +82,7 @@ namespace DocumentCentreTests.Pages
             return new MyCartPage(Driver, "new_order");
         }
 
-        public void LoadProductRows()
+        private void LoadProductRows()
         {
             // get row elements
             this._productTitles = ProductsTable.FindElements(By.XPath(Constants.ROW_TITLE_XPATH));
@@ -104,16 +104,27 @@ namespace DocumentCentreTests.Pages
             }
         }
 
+        private Product LoadProduct(string prodName)
+        {
+            Product currentProd = new Product();
+            for (int i = 0; i < _productTitles.Count; ++i)
+            {
+                if (_productTitles[i].Text.Equals(prodName))
+                {
+                    currentProd.ProductTitle = _productTitles[i];
+                    currentProd.Price = _productPrices[i];
+                    currentProd.QtyUp = _productQtyUp[i];
+                    currentProd.QtyDown = _productQtyDown[i];
+                    currentProd.UpdateButton = _productUpdateBtns[i];
+                }
+            }
+            return currentProd;
+        }
+
         public ProductsPage AddItemToCart(string prodName, int qty)
         {
-
             LoadProductRows();
-            _products[0].SetQuantity(3);
-
-            int x = 1;
-            //var prodElement = HelperMethods.FindElement(Driver, "xpath", "//a[normalize-space(.) = '" + prodName + "']");
-            // check alert
-            //ItemAdded = HelperMethods.CheckItemAlert(Driver, newProd);
+            Product product = LoadProduct(prodName);
             return this;
         }
 

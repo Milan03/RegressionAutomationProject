@@ -16,14 +16,6 @@ namespace DocumentCentreTests.Catalogue
         internal IWebElement QtyUp { get; set; }
         internal IWebElement QtyDown { get; set; }
         internal IWebElement UpdateButton { get; set; }
-        internal Decimal AmountTotal
-        {
-            get { return this.AmountTotal;  }
-            set
-            {
-                this.AmountTotal = Decimal.Parse(Price.Text) * int.Parse(QtyUp.Text);
-            }
-        }
 
         internal Product() {}
 
