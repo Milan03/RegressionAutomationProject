@@ -125,6 +125,9 @@ namespace DocumentCentreTests.Pages
         {
             LoadProductRows();
             Product product = LoadProduct(prodName);
+            product.SetQuantity(qty);
+            product.UpdateButton.Click();
+            this.ItemAdded = HelperMethods.CheckItemAlert(Driver, product);
             return this;
         }
 

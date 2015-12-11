@@ -16,15 +16,23 @@ namespace DocumentCentreTests.Catalogue
         internal IWebElement QtyUp { get; set; }
         internal IWebElement QtyDown { get; set; }
         internal IWebElement UpdateButton { get; set; }
+        internal int Quantity { get; set; }
 
         internal Product() {}
 
         public void SetQuantity(int qty)
         {
+            this.Quantity = qty;
             for (int i = 0; i < qty; ++i)
             {
                 QtyUp.Click();
             }
+        }
+
+        public Decimal getAmountTotal()
+        {
+            var priceStr = Price.Text;
+            return Quantity * Decimal.Parse(priceStr.Substring(2, priceStr.Length - 2));
         }
     }
 }
