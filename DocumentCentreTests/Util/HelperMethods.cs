@@ -97,26 +97,26 @@ namespace DocumentCentreTests.Util
             }
         }
 
-        public static bool CheckItemAlert(IWebDriver driver, Product prod)
-        {
-            try
-            {
-                Thread.Sleep(2000);
-                var shouldBe = "Your cart has been updated and now contains " 
-                    + prod.Quantity.ToString() + " units of '" + prod.Description + 
-                    "' for the total amount of $" + prod.AmountTotal.ToString() + ".";
-                var alertMsg = driver.FindElement(By.XPath(Constants.XPATH_ALERT_MSG)).Text;
-                if (alertMsg.Equals(shouldBe))
-                    return true;
-                else 
-                    return false;
-            }
-            catch (Exception)
-            {
-                _logger.Fatal("         - Checking for alert [FAILED]");
-                throw new Exception("Exception thrown in CheckAlert()");
-            }
-        }
+        //public static bool CheckItemAlert(IWebDriver driver, Product prod)
+        //{
+        //    try
+        //    {
+        //        Thread.Sleep(2000);
+        //        var shouldBe = "Your cart has been updated and now contains " 
+        //            + prod.Quantity.ToString() + " units of '" + prod.Description + 
+        //            "' for the total amount of $" + prod.AmountTotal.ToString() + ".";
+        //        var alertMsg = driver.FindElement(By.XPath(Constants.XPATH_ALERT_MSG)).Text;
+        //        if (alertMsg.Equals(shouldBe))
+        //            return true;
+        //        else 
+        //            return false;
+        //    }
+        //    catch (Exception)
+        //    {
+        //        _logger.Fatal("         - Checking for alert [FAILED]");
+        //        throw new Exception("Exception thrown in CheckAlert()");
+        //    }
+        //}
 
         public static string RandomString(int length)
         {

@@ -16,8 +16,14 @@ namespace DocumentCentreTests.Pages
         private static Logger _logger = LogManager.GetCurrentClassLogger();
 
         private IWebDriver Driver;
-        internal List<Product> myCart;
 
+        internal List<Product> _products;
+        internal IList<IWebElement> _productTitles;
+        internal IList<IWebElement> _productQtyBoxes;
+        internal IList<IWebElement> _productPrices;
+        internal IList<IWebElement> _productUpdateBtns;
+
+        private IWebElement ProductsTable;
         private IWebElement ReportsDropdown;
         private IWebElement SaveDraftButton;
         private IWebElement SearchBar;
@@ -35,9 +41,11 @@ namespace DocumentCentreTests.Pages
         #endregion
 
         #region Item Details Dialog
-        private IWebElement ProductNumber;
-        private IWebElement ListPrice;
+        private string ProductNumber;
+        private string ListPrice;
         private IWebElement QuantityBox;
+        private IWebElement QtyBoxUpArrow;
+        private IWebElement QtyBoxDownArrow;
         private IWebElement UpdateCartButton;
         private IWebElement CancelButton;
         #endregion
@@ -48,7 +56,8 @@ namespace DocumentCentreTests.Pages
         {
             #region Assigning Accessors
             this.Driver = driver;
-            this.ReportsDropdown = driver.FindElement(By.XPath(Constants.XPATH_REPORTS_LOCATOR));
+            this.ProductsTable = HelperMethods.FindElement(Driver, "xpath", "//tbody");
+            this.ReportsDropdown = HelperMethods.FindElement(Driver, "xpath", Constants.XPATH_REPORTS_LOCATOR);
             this.SaveDraftButton = HelperMethods.FindElement(driver, "id", "saveOrderButton");
             this.SearchBar = HelperMethods.FindElement(driver, "id", "basicSearchTerm");
             this.SearchButton = HelperMethods.FindElement(driver, "id", "basicSearchButton");
@@ -56,7 +65,7 @@ namespace DocumentCentreTests.Pages
             this.GridViewButton = HelperMethods.FindElement(driver, "id", "gridViewChoice");
             this.TilesViewButton = HelperMethods.FindElement(driver, "id", "tileViewChoice");
             this.MyCartButton = HelperMethods.FindElement(driver, "xpath", Constants.XPATH_MYCART_LINK );
-            this.myCart = new List<Product>();
+            this._products = new List<Product>();
             #endregion
 
             if (!driver.Url.Contains("Products"))
@@ -72,38 +81,44 @@ namespace DocumentCentreTests.Pages
             return new MyCartPage(Driver, "new_order");
         }
 
+        public void LoadProductRows()
+        {
+            // get row elements
+            this._productTitles = ProductsTable.FindElements(By.XPath(Constants.ROW_TITLE_XPATH));
+            this._productQtyBoxes = ProductsTable.FindElements(By.XPath(Constants.ROW_QTY_XPATH));
+            this._productPrices = ProductsTable.FindElements(By.XPath(Constants.ROW_PRICE_XPATH));
+            this._productUpdateBtns = ProductsTable.FindElements(By.XPath(Constants.ROW_UPDATE_XPATH));
+
+            // make product objects
+            for (int i = 0; i < _productTitles.Count; ++i)
+            {
+                Product newProd = new Product();
+                newProd.ProductTitle = _productTitles[i];
+                newProd.Price = _productPrices[i];
+                newProd.Quantity = _productQtyBoxes[i];
+                newProd.UpdateButton = _productUpdateBtns[i];
+                _products.Add(newProd);
+            }
+        }
+
         public ProductsPage AddItemToCart(string prodName, int qty)
         {
-            // get and click product
-            SwitchToTileView();
-            var prodElement = HelperMethods.FindElement(Driver, "xpath", "//h4[normalize-space(.) = '" + prodName + "']");
-            prodElement.Click();
-            // load product details
-            Thread.Sleep(500);
-            LoadItemDetails();
-            Driver.SwitchTo().Frame(prodName);
-            // enter quantity
-            QuantityBox.Clear();
-            QuantityBox.SendKeys(qty.ToString());
-            // add item to cart
-            Product newProd = new Product();
-            newProd.SupplierProductNumber = ProductNumber.Text;
-            newProd.Description = prodName;
-            newProd.Price = Decimal.Parse(ListPrice.Text);
-            newProd.Quantity = qty;
-            newProd.AmountTotal = newProd.Price * qty;
-            myCart.Add(newProd);
-            UpdateCartButton.Click();
+
+            LoadProductRows();
+            _products[0].SetQuantity("1");
+
+
+            //var prodElement = HelperMethods.FindElement(Driver, "xpath", "//a[normalize-space(.) = '" + prodName + "']");
             // check alert
-            ItemAdded = HelperMethods.CheckItemAlert(Driver, newProd);
+            //ItemAdded = HelperMethods.CheckItemAlert(Driver, newProd);
             return this;
         }
 
         public ProductsPage SwitchToTileView()
         {
-            Thread.Sleep(500);
+            Thread.Sleep(1500);
             TilesViewButton.Click();
-            Thread.Sleep(500);
+            Thread.Sleep(1000);
             return this;
         }
 
@@ -177,12 +192,15 @@ namespace DocumentCentreTests.Pages
 
         public void LoadItemDetails()
         {
-            
-            this.ProductNumber = HelperMethods.FindElement(Driver, "xpath", "id('productDetailsTable')/tbody/tr[9]/td[2]/div");
-            this.ListPrice = HelperMethods.FindElement(Driver, "xpath", "id('productDetailsTable')/tbody/tr[5]/td[2]/div");
-            this.QuantityBox = HelperMethods.FindElement(Driver, "xpath", "//input[contains(@class, 'qty-box')]");
+            this.ProductNumber = HelperMethods.FindElement(Driver, "xpath", "id('productDetailsTable')/tbody/tr[9]/td[2]/div").Text;
+            this.ListPrice = HelperMethods.FindElement(Driver, "xpath", "id('productDetailsTable')/tbody/tr[5]/td[2]/div").Text;
+            //this.QuantityBox = HelperMethods.FindElement(Driver, "xpath", "//div[contains(@title, '" + ProductNumber.Text + "')]/div/span/span/input[1]");
+            this.QuantityBox = HelperMethods.FindElement(Driver, "xpath", "id('variant_18843667')/div[1]/span/span/input[1]");
+            this.QtyBoxUpArrow = HelperMethods.FindElement(Driver, "xpath", "id('variant_18843667')/div[1]/span/span/span/span[1]/span");
+            this.QtyBoxDownArrow = HelperMethods.FindElement(Driver, "xpath", "id('variant_18843667')/div[1]/span/span/span/span[2]");
             this.UpdateCartButton = HelperMethods.FindElement(Driver, "id", "updateOrderButton");
             this.CancelButton = HelperMethods.FindElement(Driver, "id", "cancelProductDialogButton");
+            Thread.Sleep(2000);
         }
     }
 }

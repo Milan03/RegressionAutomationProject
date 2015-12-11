@@ -10,27 +10,26 @@ using System.Threading.Tasks;
 
 namespace DocumentCentreTests.Member_BD_Tests
 {
-        [Subject(typeof(LoginPage))]
-        public class When_member_logs_in_with_valid_creds : BaseDriverTest
+    [Subject(typeof(LoginPage))]
+    public class When_member_logs_in_with_valid_creds : BaseDriverTest
+    {
+        static LoginPage _loginPage;
+        static Exception _expectedExcep;
+
+        Establish context = () =>
         {
-            static LoginPage _loginPage;
-            static Exception _expectedExcep;
+            LoadDriver();
+            _logger.Info("-- Member Valid Login Test Initiating --");
+            _loginPage = new LoginPage(_driver, "member");
+        };
 
-            Establish context = () =>
-                {
-                    LoadDriver();
-                    _logger.Info("-- Member Valid Login Test Initiating --");
-                    _loginPage = new LoginPage(_driver, "member");
-                };
+        Because of = () => _expectedExcep = Catch.Exception(
+                        () => _loginPage.LoginAs(Constants.MEM_PORTAL_USER, Constants.MEM_PORTAL_PASS));
 
-            Because of = () => _expectedExcep = Catch.Exception(
-                            () => _loginPage.LoginAs(Constants.MEM_PORTAL_USER, Constants.MEM_PORTAL_PASS));
-
-
-            It should_have_successfully_logged_in = () =>
-            {
-                _expectedExcep.ShouldBeNull();
-                _logger.Info("-- Member Valid Login Test: [PASSED] --");
-            };
-        }
+        It should_have_successfully_logged_in = () =>
+        {
+            _expectedExcep.ShouldBeNull();
+            _logger.Info("-- Member Valid Login Test: [PASSED] --");
+        };
+    }
 }

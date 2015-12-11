@@ -1,4 +1,7 @@
-﻿using System;
+﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Remote;
+using OpenQA.Selenium.Support.UI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,28 +11,24 @@ namespace DocumentCentreTests.Catalogue
 {
     internal class Product
     {
-        internal string SupplierProductNumber { get; set; }
-        internal string Description { get; set; }
-        internal Decimal Price { get; set; }
-        internal int Quantity { get; set; }
-        internal Decimal AmountTotal { get; set; }
-
-        internal Product()
+        internal IWebElement ProductTitle { get; set; }
+        internal IWebElement Price { get; set; }
+        internal IWebElement Quantity { get; set; }
+        internal IWebElement UpdateButton { get; set; }
+        internal Decimal AmountTotal
         {
-            this.SupplierProductNumber = "";
-            this.Description = "";
-            this.Price = 0;
-            this.Quantity = 0;
-            this.AmountTotal = 0;
+            get { return this.AmountTotal;  }
+            set
+            {
+                this.AmountTotal = Decimal.Parse(Price.Text) * int.Parse(Quantity.Text);
+            }
         }
 
-        internal Product(string prodNum, string des, Decimal price, int qty)
+        internal Product() {}
+
+        public void SetQuantity(string qty)
         {
-            this.SupplierProductNumber = prodNum;
-            this.Description = des;
-            this.Price = price;
-            this.Quantity = qty;
-            this.AmountTotal = price * qty;
+            Quantity.SendKeys(qty);
         }
     }
 }
