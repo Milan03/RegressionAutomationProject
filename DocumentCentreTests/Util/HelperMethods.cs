@@ -81,6 +81,11 @@ namespace DocumentCentreTests.Util
             }
         }
 
+        /// <summary>
+        /// Gets the message of an alert popup
+        /// </summary>
+        /// <param name="driver">Testing interface</param>
+        /// <returns>The alert message as string</returns>
         public static string CheckAlert(IWebDriver driver)
         {
             try
@@ -97,6 +102,12 @@ namespace DocumentCentreTests.Util
             }
         }
 
+        /// <summary>
+        /// Checks alert message when an item is added for accurate result of addition
+        /// </summary>
+        /// <param name="driver">Testing interface</param>
+        /// <param name="prod">Product added to cart</param>
+        /// <returns>Boolean representing a pass or fail</returns>
         public static bool CheckItemAlert(IWebDriver driver, Product prod)
         {
             try
@@ -118,6 +129,11 @@ namespace DocumentCentreTests.Util
             }
         }
 
+        /// <summary>
+        /// Generates a random string
+        /// </summary>
+        /// <param name="length">length of string</param>
+        /// <returns>new random string</returns>
         public static string RandomString(int length)
         {
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
