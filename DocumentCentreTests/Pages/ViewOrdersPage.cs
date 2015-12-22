@@ -3,7 +3,6 @@ using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
-using DocumentCentreTests.Tables;
 using DocumentCentreTests.Util;
 using NLog;
 using System.Threading;

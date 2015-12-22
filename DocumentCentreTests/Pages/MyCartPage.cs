@@ -1,4 +1,5 @@
-﻿using DocumentCentreTests.Util;
+﻿using DocumentCentreTests.Catalogue;
+using DocumentCentreTests.Util;
 using NLog;
 using OpenQA.Selenium;
 using System;
@@ -16,7 +17,16 @@ namespace DocumentCentreTests.Pages
 
         private IWebDriver Driver;
 
+        internal IList<CartItem> _cartItems;
+        internal IList<IWebElement> _itemDeleteButtons;
+        internal IList<IWebElement> _itemTitles;
+        internal IList<IWebElement> _itemDescriptions;
+        internal IList<IWebElement> _itemPrices;
+        internal IList<IWebElement> _itemQtys;
+        internal IList<IWebElement> _itemTotals;
+
         #region UI Controls
+        private IWebElement CartTable;
         private IWebElement ReportsDropdown;
         private IWebElement DeleteOrderButton;
         private IWebElement SaveDraftButton;
@@ -45,6 +55,7 @@ namespace DocumentCentreTests.Pages
         private IWebElement OrderSummaryOption;
         #endregion
 
+        internal bool ItemDeleted;
         internal string AlertMessage;
 
         public MyCartPage(IWebDriver driver, string type)
@@ -52,6 +63,7 @@ namespace DocumentCentreTests.Pages
             #region Assigning Accessors
             bool dontCheck = false;
             this.Driver = driver;
+            this._cartItems = new List<CartItem>();
             this.ReportsDropdown = HelperMethods.FindElement(driver, "xpath", Constants.XPATH_REPORTS_LOCATOR);
 
             if (type.Equals("new_order"))
@@ -66,7 +78,7 @@ namespace DocumentCentreTests.Pages
                 this.CloseOrderButton = HelperMethods.FindElement(driver, "id", "closeOrderButton");
                 dontCheck = true;
             }
-
+            this.CartTable = HelperMethods.FindElement(driver, "xpath", "//tbody");
             this.ShipToDropdown = HelperMethods.FindElement(driver, "classname", "k-input");
             this.PONumberTextbox = HelperMethods.FindElement(driver, "id", "poNumber");
             this.POBuyerTextbox = HelperMethods.FindElement(driver, "id", "originalRefNumber");
@@ -89,6 +101,71 @@ namespace DocumentCentreTests.Pages
                 _logger.Fatal("       - Member's Cart page not found.");
                 throw new NoSuchWindowException("Member's Cart page not found.");
             }
+        }
+
+        private void LoadItemsInCart()
+        {
+            // get row elements
+            this._itemDeleteButtons = CartTable.FindElements(By.XPath(Constants.ITEM_DEL_BTN_XP));
+            this._itemTitles = CartTable.FindElements(By.XPath(Constants.ITEM_TITLE_XP));
+            this._itemDescriptions = CartTable.FindElements(By.XPath(Constants.ITEM_DES_XP));
+            this._itemPrices = CartTable.FindElements(By.XPath(Constants.ITEM_PRICE_XP));
+            this._itemQtys = CartTable.FindElements(By.XPath(Constants.ITEM_QTY_XP));
+            this._itemTotals = CartTable.FindElements(By.XPath(Constants.ITEM_TOTAL_XP));
+
+            // make cart item objects to work with
+            for (int i = 0; i < _itemTitles.Count - 1; ++i)
+            {
+                CartItem item = new CartItem();
+                item.DeleteButton = _itemDeleteButtons[i];
+                item.ProductTitle = _itemTitles[i];
+                item.Description = _itemDescriptions[i];
+                item.Price = _itemPrices[i];
+                item.Quantity = _itemQtys[i];
+                item.ItemTotalAmt = _itemTotals[i];
+                _cartItems.Add(item);
+            }
+        }
+
+        /// <summary>
+        /// Find specific item in user's cart
+        /// </summary>
+        /// <param name="itemDes">description of item to be searched for</param>
+        /// <returns>Cart object to interact with</returns>
+        private CartItem LoadCartItem(string itemDes)
+        {
+            CartItem currentItem = new CartItem();
+            for (int i = 0; i < _cartItems.Count; ++i)
+            {
+                if (_itemDescriptions[i].Text.Equals(itemDes))
+                {
+                    currentItem.DeleteButton = _itemDeleteButtons[i];
+                    currentItem.ProductTitle = _itemTitles[i];
+                    currentItem.Description = _itemDescriptions[i];
+                    currentItem.Price = _itemPrices[i];
+                    currentItem.Quantity = _itemQtys[i];
+                    currentItem.ItemTotalAmt = _itemTotals[i];
+                }
+            }
+            return currentItem;
+        }
+
+        public MyCartPage RemoveItemFromCart(string itemDes)
+        {
+            Thread.Sleep(1000);
+
+            // find item 
+            LoadItemsInCart();
+            CartItem item = LoadCartItem(itemDes);
+            item.DeleteButton.Click();
+
+            // click OK on Information dialog
+            Thread.Sleep(1000);
+            Driver.FindElement(By.XPath(Constants.XPATH_DEL_ITEM_OK)).Click();
+
+            // check alert for confirmation of delete
+            this.ItemDeleted = HelperMethods.CheckItemDeleteAlert(Driver, item);
+            return this;
         }
 
         public void LoadReportsOptions()

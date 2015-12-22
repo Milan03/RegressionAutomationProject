@@ -3,7 +3,6 @@ using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
-using DocumentCentreTests.Tables;
 using DocumentCentreTests.Util;
 using NLog;
 using System.Threading;
@@ -112,7 +111,7 @@ namespace DocumentCentreTests.Pages
         private Product LoadProduct(string prodName)
         {
             Product currentProd = new Product();
-            for (int i = 0; i < _productTitles.Count; ++i)
+            for (int i = 0; i < _products.Count; ++i)
             {
                 if (_productTitles[i].Text.Equals(prodName))
                 {
@@ -135,11 +134,12 @@ namespace DocumentCentreTests.Pages
         /// <returns>current page object</returns>
         public ProductsPage AddItemToCart(string prodName, int qty)
         {
+            Thread.Sleep(1000);
             LoadProductRows();
             Product product = LoadProduct(prodName);
             product.SetQuantity(qty);
             product.UpdateButton.Click();
-            this.ItemAdded = HelperMethods.CheckItemAlert(Driver, product);
+            this.ItemAdded = HelperMethods.CheckItemAddAlert(Driver, product);
             return this;
         }
 
@@ -150,6 +150,7 @@ namespace DocumentCentreTests.Pages
         public MyCartPage NavigateToCart()
         {
             MyCartButton.Click();
+            Thread.Sleep(2000);
             return new MyCartPage(Driver, "new_order");
         }
 

@@ -17,7 +17,10 @@ namespace DocumentCentreTests.Member_BD_Tests
         static HomePage _homePage;
         static CataloguesPage _catPage;
         static ProductsPage _prodPage;
+        static MyCartPage _cartPage;
+
         static Exception _navException;
+        static Exception _delException;
 
         Establish context = () =>
         {
@@ -33,13 +36,15 @@ namespace DocumentCentreTests.Member_BD_Tests
 
         Because of = () =>
         {
-            _navException = Catch.Exception(() => _prodPage.NavigateToCart()); 
-
+            _navException = Catch.Exception(() => _cartPage = _prodPage.NavigateToCart());
+            _delException = Catch.Exception(() => _cartPage.RemoveItemFromCart("Reebok Ankle Height Hiking Shoe"));
         };
 
         It should_return_alert_of_sueccess = () =>
         {
             _navException.ShouldBeNull();
+            _delException.ShouldBeNull();
+            _cartPage.ItemDeleted.ShouldBeTrue();
         };
     }
 }

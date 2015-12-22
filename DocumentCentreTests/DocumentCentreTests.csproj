@@ -87,6 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseDriverTest.cs" />
+    <Compile Include="Catalogue\CartItem.cs" />
     <Compile Include="Catalogue\Product.cs" />
     <Compile Include="Member BD Tests\When_member_adds_item_to_cart.cs" />
     <Compile Include="Member BD Tests\When_member_removes_item_from_cart.cs" />
@@ -96,7 +97,6 @@
     <Compile Include="Pages\CataloguesPage.cs" />
     <Compile Include="Pages\MyCartPage.cs" />
     <Compile Include="Pages\ProductsPage.cs" />
-    <Compile Include="Tables\OrderTable.cs" />
     <Compile Include="Util\Constants.cs" />
     <Compile Include="Util\HelperMethods.cs" />
     <Compile Include="Pages\HomePage.cs" />
@@ -104,7 +104,6 @@
     <Compile Include="Pages\MemberHomePage.cs" />
     <Compile Include="Pages\ViewOrdersPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tables\HtmlTable.cs" />
     <Compile Include="Member BD Tests\When_member_searches_for_an_order.cs" />
     <Compile Include="Member BD Tests\When_member_logs_in_with_invalid_creds.cs" />
     <Compile Include="Member BD Tests\When_member_logs_in_with_valid_creds.cs" />

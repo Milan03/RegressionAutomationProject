@@ -108,7 +108,7 @@ namespace DocumentCentreTests.Util
         /// <param name="driver">Testing interface</param>
         /// <param name="prod">Product added to cart</param>
         /// <returns>Boolean representing a pass or fail</returns>
-        public static bool CheckItemAlert(IWebDriver driver, Product prod)
+        public static bool CheckItemAddAlert(IWebDriver driver, Product prod)
         {
             try
             {
@@ -125,7 +125,25 @@ namespace DocumentCentreTests.Util
             catch (Exception)
             {
                 _logger.Fatal("         - Checking for alert [FAILED]");
-                throw new Exception("Exception thrown in CheckAlert()");
+                throw new Exception("Exception thrown in CheckItemAddAlert()");
+            }
+        }
+
+        public static bool CheckItemDeleteAlert(IWebDriver driver, CartItem item)
+        {
+            try
+            {
+                var shouldBe = "×\r\n'" + item.Description.Text + "' has been removed from the cart.";
+                var alertMsg = driver.FindElement(By.XPath(Constants.XPATH_ALERT_DEL)).Text;
+                if (alertMsg.Equals(shouldBe))
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception)
+            {
+                _logger.Fatal("         - Checking for delete alert [FAILED]");
+                throw new Exception("Exception thrown in CheckItemDeleteAlert()");
             }
         }
 
