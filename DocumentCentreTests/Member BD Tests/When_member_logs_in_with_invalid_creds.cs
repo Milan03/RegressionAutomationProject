@@ -30,11 +30,16 @@ namespace DocumentCentreTests.Member_BD_Tests
                 {
                     var error = HelperMethods.FindElement(_driver, "classname", "login-error-message");
                     if (error.Text.Equals(Constants.LOGIN_ERROR_MSG))
+                    {
                         _logger.Info("-- Member Invliad Login Test: [PASSED] --");
+                        error.Text.ShouldEqual(Constants.LOGIN_ERROR_MSG);
+                        _loginPage.LoginSuccess.ShouldBeFalse();
+                    }
                     else
                     {
-                        error.Text.ShouldEqual(Constants.LOGIN_ERROR_MSG);
                         _logger.Fatal("-- Member Invalid Login Test: [FAILED] --");
+                        error.Text.ShouldEqual(Constants.LOGIN_ERROR_MSG);
+                        _loginPage.LoginSuccess.ShouldBeFalse();
                     }
                 };
         }

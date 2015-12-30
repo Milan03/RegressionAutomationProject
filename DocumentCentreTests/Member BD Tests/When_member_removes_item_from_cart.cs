@@ -42,9 +42,20 @@ namespace DocumentCentreTests.Member_BD_Tests
 
         It should_return_alert_of_sueccess = () =>
         {
-            _navException.ShouldBeNull();
-            _delException.ShouldBeNull();
-            _cartPage.ItemDeleted.ShouldBeTrue();
+            if (!_cartPage.ItemDeleted)
+            {
+                _logger.Fatal("-- Member Remove Item From Cart Test: [FAILED] --");
+                _navException.ShouldBeNull();
+                _delException.ShouldBeNull();
+                _cartPage.ItemDeleted.ShouldBeTrue();
+            }
+            else
+            {
+                _logger.Info("-- Member Remove Item From Cart Test: [PASSED] --");
+                _navException.ShouldBeNull();
+                _delException.ShouldBeNull();
+                _cartPage.ItemDeleted.ShouldBeTrue();
+            }
         };
     }
 }

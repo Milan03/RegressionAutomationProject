@@ -64,6 +64,7 @@ namespace DocumentCentreTests.Pages
             bool dontCheck = false;
             this.Driver = driver;
             this._cartItems = new List<CartItem>();
+            this.ItemDeleted = false;
             this.ReportsDropdown = HelperMethods.FindElement(driver, "xpath", Constants.XPATH_REPORTS_LOCATOR);
 
             if (type.Equals("new_order"))
@@ -98,13 +99,18 @@ namespace DocumentCentreTests.Pages
 
             if (!driver.Url.Contains("MyOrder") && !dontCheck)
             {
-                _logger.Fatal("       - Member's Cart page not found.");
-                throw new NoSuchWindowException("Member's Cart page not found.");
+                _logger.Fatal("     - ERROR: Member's Cart page not found.");
             }
         }
 
+        /// <summary>
+        /// Loads all the items currently in the cart and makes objects out of the 
+        /// row information to interact with.
+        /// </summary>
         private void LoadItemsInCart()
         {
+            _logger.Info("       - Attempting to load cart items...");
+
             // get row elements
             this._itemDeleteButtons = CartTable.FindElements(By.XPath(Constants.ITEM_DEL_BTN_XP));
             this._itemTitles = CartTable.FindElements(By.XPath(Constants.ITEM_TITLE_XP));
@@ -134,6 +140,7 @@ namespace DocumentCentreTests.Pages
         /// <returns>Cart object to interact with</returns>
         private CartItem LoadCartItem(string itemDes)
         {
+            _logger.Info("       - Attempting to find cart item: " +itemDes);
             CartItem currentItem = new CartItem();
             for (int i = 0; i < _cartItems.Count; ++i)
             {
@@ -150,6 +157,11 @@ namespace DocumentCentreTests.Pages
             return currentItem;
         }
 
+        /// <summary>
+        /// Simulate the deletion of an item from the cart
+        /// </summary>
+        /// <param name="itemDes">How to find the item</param>
+        /// <returns>Current page object</returns>
         public MyCartPage RemoveItemFromCart(string itemDes)
         {
             Thread.Sleep(1000);
@@ -199,6 +211,10 @@ namespace DocumentCentreTests.Pages
             return this;
         }
 
+        /// <summary>
+        /// Simulate the deletion of an order
+        /// </summary>
+        /// <returns></returns>
         public ViewOrdersPage DeleteOrder()
         {
             this.AlertMessage = "";

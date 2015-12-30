@@ -14,7 +14,6 @@ namespace DocumentCentreTests.Member_BD_Tests
     public class When_member_logs_in_with_valid_creds : BaseDriverTest
     {
         static LoginPage _loginPage;
-        static Exception _expectedExcep;
 
         Establish context = () =>
         {
@@ -23,13 +22,20 @@ namespace DocumentCentreTests.Member_BD_Tests
             _loginPage = new LoginPage(_driver, "member");
         };
 
-        Because of = () => _expectedExcep = Catch.Exception(
-                        () => _loginPage.LoginAs(Constants.MEM_PORTAL_USER, Constants.MEM_PORTAL_PASS));
+        Because of = () => _loginPage.LoginAs(Constants.MEM_PORTAL_USER, Constants.MEM_PORTAL_PASS);
 
         It should_have_successfully_logged_in = () =>
         {
-            _expectedExcep.ShouldBeNull();
-            _logger.Info("-- Member Valid Login Test: [PASSED] --");
+            if (_loginPage.LoginSuccess)
+            {
+                _logger.Info("-- Member Valid Login Test: [PASSED] --");
+                _loginPage.LoginSuccess.ShouldBeTrue();
+            }
+            else
+            {
+                _logger.Fatal("-- Member Valid Login Test: [FAILED] --");
+                _loginPage.LoginSuccess.ShouldBeTrue();
+            }
         };
     }
 }

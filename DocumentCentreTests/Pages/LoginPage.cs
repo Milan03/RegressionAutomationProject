@@ -19,6 +19,7 @@ namespace DocumentCentreTests.Pages
         private IWebElement LoginButtonLocator;
         private string LoginPageType;
 
+        internal bool LoginSuccess;
         /// <summary>
         /// Constructor assigns the Web Driver as well as all locators for elements needed
         /// in tests.
@@ -29,6 +30,7 @@ namespace DocumentCentreTests.Pages
             this.Driver = driver;
             
             this.LoginPageType = type;
+            this.LoginSuccess = false;
             this.UsernameLocator = HelperMethods.FindElement(driver, "name", "UserName");
             this.PasswordLocator = HelperMethods.FindElement(driver, "name", "Password");
             this.LoginButtonLocator = HelperMethods.FindElement(driver, "id", "loginButton");
@@ -36,10 +38,8 @@ namespace DocumentCentreTests.Pages
             // check if on correct page
             if (!"User Login".Equals(driver.Title))
             {
-                logger.Error("-- Member Login: FAILED");
-                throw new NoSuchWindowException("Login page not found");
+                logger.Fatal("     - ERROR: Member login page failed to load.");
             }
-            //PageFactory.InitElements(driver, this);
         }
 
         /// <summary>
@@ -78,6 +78,7 @@ namespace DocumentCentreTests.Pages
             LoginButtonLocator.Click();
             if (LoginPageType.Equals("member"))
             {
+                this.LoginSuccess = true;
                 return new MemberHomePage(Driver);
             }
             else

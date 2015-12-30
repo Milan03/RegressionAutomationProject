@@ -48,6 +48,7 @@ namespace DocumentCentreTests.Pages
         {
             #region Assigning Accessors
             this.Driver = driver;
+            this.ItemAdded = false;
             this.ProductsTable = HelperMethods.FindElement(Driver, "xpath", "//tbody");
             this.ReportsDropdown = HelperMethods.FindElement(Driver, "xpath", Constants.XPATH_REPORTS_LOCATOR);
             this.SaveDraftButton = HelperMethods.FindElement(driver, "id", "saveOrderButton");
@@ -62,8 +63,7 @@ namespace DocumentCentreTests.Pages
 
             if (!driver.Url.Contains("Products"))
             {
-                _logger.Fatal("       - Member's Products page not found.");
-                throw new NoSuchWindowException("Member's Products page not found.");
+                _logger.Fatal("       - ERROR: Member's Products page not found.");
             }
         }
 
@@ -83,6 +83,8 @@ namespace DocumentCentreTests.Pages
         /// </summary>
         private void LoadProductRows()
         {
+            _logger.Info("       - Attempting to load catalogue products...");
+
             // get row elements
             this._productTitles = ProductsTable.FindElements(By.XPath(Constants.ROW_TITLE_XPATH));
             this._productQtyUp = ProductsTable.FindElements(By.XPath(Constants.ROW_QTY_UP_XPATH));
@@ -110,6 +112,7 @@ namespace DocumentCentreTests.Pages
         /// <returns>Product object to interact with</returns>
         private Product LoadProduct(string prodName)
         {
+            _logger.Info("       - Searching for product: " +prodName);
             Product currentProd = new Product();
             for (int i = 0; i < _products.Count; ++i)
             {
@@ -134,9 +137,12 @@ namespace DocumentCentreTests.Pages
         /// <returns>current page object</returns>
         public ProductsPage AddItemToCart(string prodName, int qty)
         {
+            _logger.Info("       - Attempting to add [" +qty +"] '" +prodName +"' to cart.");
             Thread.Sleep(1000);
+            // find product
             LoadProductRows();
             Product product = LoadProduct(prodName);
+            _logger.Info("       - Setting product quantity...");
             product.SetQuantity(qty);
             product.UpdateButton.Click();
             this.ItemAdded = HelperMethods.CheckItemAddAlert(Driver, product);
@@ -149,6 +155,8 @@ namespace DocumentCentreTests.Pages
         /// <returns>new MyCart page object</returns>
         public MyCartPage NavigateToCart()
         {
+            _logger.Info("       - Attempting to navigate to cart...");
+            Thread.Sleep(1000);
             MyCartButton.Click();
             Thread.Sleep(2000);
             return new MyCartPage(Driver, "new_order");
@@ -173,7 +181,7 @@ namespace DocumentCentreTests.Pages
         /// <returns>current page object</returns>
         public ProductsPage InputSearchTerm(string term)
         {
-            _logger.Info("       - Inputting search term");
+            _logger.Info("       - Inputting search term:" +term);
             SearchBar.Clear();
             SearchBar.SendKeys(term);
             return this;

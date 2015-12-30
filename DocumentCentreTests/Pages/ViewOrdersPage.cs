@@ -41,7 +41,7 @@ namespace DocumentCentreTests.Pages
             // check if on correct page
             if (!"My Orders".Equals(driver.Title))
             {
-                throw new NoSuchWindowException("       - View Orders page not found");
+                _logger.Fatal("     - ERROR: Member's View Orders page could not load.");
             }
         }
 
@@ -100,7 +100,6 @@ namespace DocumentCentreTests.Pages
             catch (ElementNotVisibleException)
             {
                 _logger.Fatal("       - Choosing order type: " + type +" [FAILED]");
-                throw new ElementNotVisibleException("Exception throw in ChooseOrderType");
             }
             return this;
         }

@@ -23,7 +23,7 @@ namespace DocumentCentreTests.Member_BD_Tests
         Establish context = () =>
         {
             LoadDriver();
-            _logger.Info("-- Member Draft Order Test Initiating --");
+            _logger.Info("-- Member Add Item to Cart Test Initiating --");
             LoginPage loginPage = new LoginPage(_driver, "member");
             _homePage = loginPage.LoginAs(Constants.MEM_PORTAL_USER, Constants.MEM_PORTAL_PASS);
             _catPage = _homePage.NavigateToCatalogues();
@@ -39,9 +39,20 @@ namespace DocumentCentreTests.Member_BD_Tests
 
         It should_return_alert_of_success = () =>
         {
-            _catException.ShouldBeNull();
-            _prodException.ShouldBeNull();
-            _prodPage.ItemAdded.ShouldBeTrue();
+            if (!_prodPage.ItemAdded)
+            {
+                _logger.Fatal("-- Member Add Item to Cart Test: [FAILED] --");
+                _catException.ShouldBeNull();
+                _prodException.ShouldBeNull();
+                _prodPage.ItemAdded.ShouldBeTrue();
+            }
+            else
+            {
+                _logger.Info("-- Member Add Item to Cart Test: [PASSED] --");
+                _catException.ShouldBeNull();
+                _prodException.ShouldBeNull();
+                _prodPage.ItemAdded.ShouldBeTrue();
+            }
         };
     }
 }
