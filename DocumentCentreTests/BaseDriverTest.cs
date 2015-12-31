@@ -17,12 +17,20 @@ namespace DocumentCentreTests
         protected static NLog.Logger _logger = LogManager.GetCurrentClassLogger();
         protected static IWebDriver _driver;
 
+        /// <summary>
+        /// Spins up an instance of FireFox webdriver which controls the browser using a
+        /// FireFox plugin using a stripped down FireFox Profile.
+        /// </summary>
         protected static void LoadDriver()
         {
             _driver = new FirefoxDriver();
             _driver.Navigate().GoToUrl("http://portal.test-web01.lbmx.com/login?redirect=%2f");
         }
 
+        /// <summary>
+        /// Takes a screenshot stamped w/ current date/time and is saved to c:\logging\screenshots
+        /// </summary>
+        /// <param name="saveFileName">desired save file name</param>
         internal static void TakeScreenshot(string saveFileName)
         {
             try
