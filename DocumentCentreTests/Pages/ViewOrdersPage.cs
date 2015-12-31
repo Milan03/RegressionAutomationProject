@@ -33,7 +33,7 @@ namespace DocumentCentreTests.Pages
             this.Driver = driver;
             this.OrderTypeDropdown = HelperMethods.FindElement(Driver, "classname", "k-widget");
             this.POInputTextbox = HelperMethods.FindElement(Driver, "id", "poNumber");
-            this.SearchOrdersButton = HelperMethods.FindElement(Driver, "id", "searcchOrdersButton");
+            this.SearchOrdersButton = HelperMethods.FindElement(Driver, "id", "searchOrdersButton");
             this.OrderType = "All";
 
             // get first table element
