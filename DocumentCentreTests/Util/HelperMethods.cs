@@ -17,39 +17,39 @@ namespace DocumentCentreTests.Util
         /// <param name="driver">Interface for testing</param>
         /// <param name="type">Type to search by</param>
         /// <param name="element">Value to search for</param>
-        /// <returns></returns>
+        /// <returns>Element object on page if found</returns>
         public static IWebElement FindElement(IWebDriver driver, string type, string element)
         {
             IWebElement foundElement;
-            switch (type)
+            try
             {
-                case "name":
+                if (type.Equals("name"))
                     foundElement = driver.FindElement(By.Name(element));
-                    break;
-                case "id":
+                else if (type.Equals("id"))
                     foundElement = driver.FindElement(By.Id(element));
-                    break;
-                case "classname":
+                else if (type.Equals("classname"))
                     foundElement = driver.FindElement(By.ClassName(element));
-                    break;
-                case "linktext":
+                else if (type.Equals("linktext"))
                     foundElement = driver.FindElement(By.LinkText(element));
-                    break;
-                case "tagname":
+                else if (type.Equals("tagname"))
                     foundElement = driver.FindElement(By.TagName(element));
-                    break;
-                case "css":
+                else if (type.Equals("css"))
                     foundElement = driver.FindElement(By.CssSelector(element));
-                    break;
-                case "xpath":
+                else if (type.Equals("xpath"))
                     foundElement = driver.FindElement(By.XPath(element));
-                    break;
-                default:
-                    _logger.Error("      Exception in HelperMethods.FindElement: No such element found.");
-                    throw new NoSuchElementException("Element not found.");
-
+                else
+                {
+                    _logger.Error("    - ERROR: Element [type: " + type + ", name: " + element + "] could not be located.");
+                    foundElement = null;
+                }
+                return foundElement;
             }
-            return foundElement;
+            catch (NoSuchElementException)
+            {
+                _logger.Error("    - ERROR: Element [type: " + type + ", name: " + element + "] could not be located.");
+                _logger.Fatal("-- TEST FAILURE @ URL: '" +driver.Url +"' --");
+                throw new NoSuchElementException("Unable to locate element.");
+            }
         }
 
         /// <summary>
