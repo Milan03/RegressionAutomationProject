@@ -16,8 +16,6 @@ namespace DocumentCentreTests.Member_BD_Tests
     {
         static ViewOrdersPage _voPage;
         static HomePage _homePage;
-        static Exception _inputException;
-        static Exception _searchException;
 
         Establish context = () =>
         {
@@ -30,9 +28,9 @@ namespace DocumentCentreTests.Member_BD_Tests
         Because of = () =>
         {
             _voPage = _homePage.NavigateToOrders("View Orders");
-            _inputException = Catch.Exception(() => _voPage.InputPurchaseOrder(Constants.ORDER_PO_PROC));
+            _voPage.InputPurchaseOrder(Constants.ORDER_PO_PROC);
             _voPage.ChooseOrderType(Constants.ORDER_SEARCH_PROC);
-            _searchException = Catch.Exception(() => _voPage.InitiateSearch());
+            _voPage.InitiateSearch();
             _voPage.CheckFirstRow();
         };
 
@@ -40,12 +38,13 @@ namespace DocumentCentreTests.Member_BD_Tests
         It should_have_searched_for_an_order = () =>
         {
             if (_voPage.FirstTableElem.Text.Equals(Constants.ORDER_PO_PROC))
+            {
                 _logger.Info("-- Member Valid Order Search Test: [PASSED] --");
+                _voPage.FirstTableElem.Text.ShouldEqual(Constants.ORDER_PO_PROC);
+            }
             else
             {
                 _logger.Fatal("-- Member Valid Order Search Test: [FAILED] --");
-                _inputException.ShouldBeNull();
-                _searchException.ShouldBeNull();
                 _voPage.FirstTableElem.Text.ShouldEqual(Constants.ORDER_PO_PROC);
             }
         };

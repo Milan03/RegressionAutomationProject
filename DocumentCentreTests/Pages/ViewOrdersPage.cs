@@ -29,10 +29,11 @@ namespace DocumentCentreTests.Pages
         /// <param name="driver">Main interface for testing, represents idealised web browser</param>
         public ViewOrdersPage(IWebDriver driver)
         {
+            _logger.Info("       - View Orders Page is being constructed...");
             this.Driver = driver;
             this.OrderTypeDropdown = HelperMethods.FindElement(Driver, "classname", "k-widget");
             this.POInputTextbox = HelperMethods.FindElement(Driver, "id", "poNumber");
-            this.SearchOrdersButton = HelperMethods.FindElement(Driver, "id", "searchOrdersButton");
+            this.SearchOrdersButton = HelperMethods.FindElement(Driver, "id", "searcchOrdersButton");
             this.OrderType = "All";
 
             // get first table element
