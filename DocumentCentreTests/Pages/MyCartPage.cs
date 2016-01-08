@@ -99,7 +99,7 @@ namespace DocumentCentreTests.Pages
 
             if (!driver.Url.Contains("MyOrder") && !dontCheck)
             {
-                _logger.Fatal("     - ERROR: Member's Cart page not found.");
+                _logger.Fatal("      - ERROR: Member's Cart page not found.");
             }
         }
 
@@ -162,22 +162,31 @@ namespace DocumentCentreTests.Pages
         /// </summary>
         /// <param name="itemDes">How to find the item</param>
         /// <returns>Current page object</returns>
-        public MyCartPage RemoveItemFromCart(string itemDes)
+        public MyCartPage RemoveItemFromCart()
         {
             Thread.Sleep(1000);
-
+            CartItem item;
             // find item 
             LoadItemsInCart();
-            CartItem item = LoadCartItem(itemDes);
-            item.DeleteButton.Click();
+            if (_cartItems.Any())
+            {
+                item = LoadCartItem(_cartItems.First().Description.Text);
+                item.DeleteButton.Click();
 
-            // click OK on Information dialog
-            Thread.Sleep(1000);
-            Driver.FindElement(By.XPath(Constants.XPATH_DEL_ITEM_OK)).Click();
+                // click OK on Information dialog
+                Thread.Sleep(1000);
+                Driver.FindElement(By.XPath(Constants.XPATH_DEL_ITEM_OK)).Click();
 
-            // check alert for confirmation of delete
-            this.ItemDeleted = HelperMethods.CheckItemDeleteAlert(Driver, item);
-            return this;
+                // check alert for confirmation of delete
+                this.ItemDeleted = HelperMethods.CheckItemDeleteAlert(Driver, item);
+                return this;
+            }
+            else
+            {
+                this.ItemDeleted = false;
+                _logger.Error("      - No items in cart!");
+                return this;
+            }
         }
 
         public void LoadReportsOptions()

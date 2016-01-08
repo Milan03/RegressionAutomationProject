@@ -19,9 +19,6 @@ namespace DocumentCentreTests.Member_BD_Tests
         static ProductsPage _prodPage;
         static MyCartPage _cartPage;
 
-        static Exception _navException;
-        static Exception _delException;
-
         Establish context = () =>
         {
             LoadDriver();
@@ -36,8 +33,8 @@ namespace DocumentCentreTests.Member_BD_Tests
 
         Because of = () =>
         {
-            _navException = Catch.Exception(() => _cartPage = _prodPage.NavigateToCart());
-            _delException = Catch.Exception(() => _cartPage.RemoveItemFromCart("Reebok Ankle Height Hiking Shoe"));
+            _cartPage = _prodPage.NavigateToCart();
+            _cartPage.RemoveItemFromCart();
         };
 
         It should_return_alert_of_sueccess = () =>
@@ -45,15 +42,11 @@ namespace DocumentCentreTests.Member_BD_Tests
             if (!_cartPage.ItemDeleted)
             {
                 _logger.Fatal("-- Member Remove Item From Cart Test: [FAILED] --");
-                _navException.ShouldBeNull();
-                _delException.ShouldBeNull();
                 _cartPage.ItemDeleted.ShouldBeTrue();
             }
             else
             {
                 _logger.Info("-- Member Remove Item From Cart Test: [PASSED] --");
-                _navException.ShouldBeNull();
-                _delException.ShouldBeNull();
                 _cartPage.ItemDeleted.ShouldBeTrue();
             }
         };

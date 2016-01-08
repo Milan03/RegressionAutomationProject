@@ -99,6 +99,7 @@ namespace DocumentCentreTests.Util
             catch (Exception)
             {
                 _logger.Fatal("         - Checking for alert [FAILED]");
+                
                 throw new Exception("Exception thrown in CheckAlert()");
             }
         }
@@ -126,7 +127,10 @@ namespace DocumentCentreTests.Util
             catch (Exception)
             {
                 _logger.Fatal("         - Checking for alert [FAILED]");
-                throw new Exception("Exception thrown in CheckItemAddAlert()");
+                _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
+                BaseDriverTest.TakeScreenshot("screenshot");
+                return false;
+                //throw new Exception("Exception thrown in CheckItemAddAlert()");
             }
         }
 
@@ -139,12 +143,20 @@ namespace DocumentCentreTests.Util
                 if (alertMsg.Equals(shouldBe))
                     return true;
                 else
+                {
+                    _logger.Fatal("         - Checking for delete alert [FAILED]");
+                    _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
+                    BaseDriverTest.TakeScreenshot("screenshot");
                     return false;
+                }
             }
             catch (Exception)
             {
                 _logger.Fatal("         - Checking for delete alert [FAILED]");
-                throw new Exception("Exception thrown in CheckItemDeleteAlert()");
+                _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
+                BaseDriverTest.TakeScreenshot("screenshot");
+                return false;
+                //throw new Exception("Exception thrown in CheckItemDeleteAlert()");
             }
         }
 

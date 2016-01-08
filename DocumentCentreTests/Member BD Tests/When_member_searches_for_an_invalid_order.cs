@@ -15,8 +15,6 @@ namespace DocumentCentreTests.Member_BD_Tests
     {
         static ViewOrdersPage _voPage;
         static HomePage _homePage;
-        static Exception _inputException;
-        static Exception _searchException;
 
         Establish context = () =>
         {
@@ -27,25 +25,26 @@ namespace DocumentCentreTests.Member_BD_Tests
         };
 
         Because of = () =>
-           {
-               _voPage = _homePage.NavigateToOrders("View Orders");
-               _inputException = Catch.Exception(() => _voPage.InputPurchaseOrder(Constants.INVALID_PO));
-               _searchException = Catch.Exception(() => _voPage.InitiateSearch());
-               _voPage.CheckFirstRow();
-           };
+        {
+            _voPage = _homePage.NavigateToOrders("View Orders");
+            _voPage.InputPurchaseOrder(Constants.INVALID_PO);
+            _voPage.InitiateSearch();
+            _voPage.CheckFirstRow();
+        };
 
 
         It should_show_no_orders_found = () =>
+        {
+            if (_voPage.FirstTableElem.Text.Equals(Constants.ORDER_ERROR_MSG))
             {
-                if (_voPage.FirstTableElem.Text.Equals(Constants.ORDER_ERROR_MSG))
-                    _logger.Info("-- Member Invalid Order Search Test: [PASSED] --");
-                else
-                {
-                    _logger.Fatal("-- Member Invalid Order Search Test: [FAILED] --");
-                    _inputException.ShouldBeNull();
-                    _searchException.ShouldBeNull();
-                    _voPage.FirstTableElem.Text.ShouldEqual(Constants.ORDER_ERROR_MSG);
-                }
-            };
+                _logger.Info("-- Member Invalid Order Search Test: [PASSED] --");
+                _voPage.FirstTableElem.Text.ShouldEqual(Constants.ORDER_ERROR_MSG);
+            }
+            else
+            {
+                _logger.Fatal("-- Member Invalid Order Search Test: [FAILED] --");
+                _voPage.FirstTableElem.Text.ShouldEqual(Constants.ORDER_ERROR_MSG);
+            }
+        };
     }
 }

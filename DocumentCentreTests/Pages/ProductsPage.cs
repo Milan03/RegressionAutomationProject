@@ -144,6 +144,7 @@ namespace DocumentCentreTests.Pages
             Product product = LoadProduct(prodName);
             _logger.Info("       - Setting product quantity...");
             product.SetQuantity(qty);
+            _logger.Info("       - Adding item to cart...");
             product.UpdateButton.Click();
             this.ItemAdded = HelperMethods.CheckItemAddAlert(Driver, product);
             return this;
@@ -156,9 +157,16 @@ namespace DocumentCentreTests.Pages
         public MyCartPage NavigateToCart()
         {
             _logger.Info("       - Attempting to navigate to cart...");
-            Thread.Sleep(1000);
-            MyCartButton.Click();
-            Thread.Sleep(2000);
+            try {
+                Thread.Sleep(1000);
+                MyCartButton.Click();
+                Thread.Sleep(2000);
+            } catch (NoSuchWindowException e)
+            {
+                _logger.Fatal("         - Navigation to cart [FAILED]");
+                _logger.Fatal("-- TEST FAILURE @ URL: '" + Driver.Url + "' --");
+                BaseDriverTest.TakeScreenshot("screenshot");
+            }
             return new MyCartPage(Driver, "new_order");
         }
 

@@ -16,9 +16,6 @@ namespace DocumentCentreTests.Member_BD_Tests
     {
         static HomePage _homePage;
         static CataloguesPage _catPage;
-        static Exception _navigationExcep;
-        static Exception _inputException;
-        static Exception _searchException;
 
         Establish context = () =>
         {
@@ -30,22 +27,22 @@ namespace DocumentCentreTests.Member_BD_Tests
 
         Because of = () =>
         {
-            _navigationExcep = Catch.Exception(() => _catPage = _homePage.NavigateToCatalogues());
-            _inputException = Catch.Exception(() => _catPage.InputCatalogueName("milan"));
-            _searchException = Catch.Exception(() => _catPage.InitiateSearch());
+            _catPage = _homePage.NavigateToCatalogues();
+            _catPage.InputCatalogueName("milan");
+            _catPage.InitiateSearch();
             Thread.Sleep(1000);
         };
 
         It should_search_for_the_specified_catalogue = () =>
         {
             string catText = _driver.FindElement(By.XPath(Constants.XPATH_CAT_LOCATOR)).Text;
-            if (catText.Equals(Constants.TEST_CAT))
+            if (catText.Equals(Constants.TEST_CAT)) { 
                 _logger.Info("-- Member Search for Catalogue Test: [PASSED] --");
+                catText.ShouldEqual(Constants.TEST_CAT);
+            }
             else
             {
                 _logger.Fatal("-- Member Search for Catalogue Test: [FAILED] --");
-                _inputException.ShouldBeNull();
-                _searchException.ShouldBeNull();
                 catText.ShouldEqual(Constants.TEST_CAT);
             }
         };

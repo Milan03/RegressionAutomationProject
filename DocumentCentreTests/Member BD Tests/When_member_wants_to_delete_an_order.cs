@@ -16,7 +16,6 @@ namespace DocumentCentreTests.Member_BD_Tests
     {
         static ViewOrdersPage _voPage;
         static HomePage _homePage;
-        static Exception _deleteException;
 
         Establish context = () =>
         {
@@ -30,21 +29,20 @@ namespace DocumentCentreTests.Member_BD_Tests
             _voPage.CheckFirstRow();
         };
 
-        Because of = () =>
-           {
-               _deleteException = Catch.Exception(() => _voPage.DeleteOrder());
-           };
+        Because of = () => _voPage.DeleteOrder();
 
         It should_delete_the_order = () =>
+        {
+            if (_voPage.AlertMessage.Equals(Constants.ORDER_DELETE_MSG))
             {
-                if (_voPage.AlertMessage.Equals(Constants.ORDER_DELETE_MSG))
-                    _logger.Info("-- Member Order Delete Test: [PASSED] --");
-                else
-                {
-                    _logger.Fatal("-- Member Order Delete Test: [FAILED] --");
-                    _deleteException.ShouldBeNull();
-                    _voPage.AlertMessage.ShouldEqual(Constants.ORDER_DELETE_MSG);
-                }
-            };
+                _logger.Info("-- Member Order Delete Test: [PASSED] --");
+                _voPage.AlertMessage.ShouldEqual(Constants.ORDER_DELETE_MSG);
+            }
+            else
+            {
+                _logger.Fatal("-- Member Order Delete Test: [FAILED] --");
+                _voPage.AlertMessage.ShouldEqual(Constants.ORDER_DELETE_MSG);
+            }
+        };
     }
 }
