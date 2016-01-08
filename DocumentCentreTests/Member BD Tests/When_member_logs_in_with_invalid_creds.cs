@@ -24,7 +24,6 @@ namespace DocumentCentreTests.Member_BD_Tests
 
         Because of = () => _loginPage.SubmitLoginExpectingFailure();
 
-
         It should_have_failed_to_log_in = () =>
         {
             var error = HelperMethods.FindElement(_driver, "classname", "login-error-message");
