@@ -2,7 +2,9 @@
 using NLog;
 using NUnit.Core;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.PhantomJS;
 using System;
 using System.Collections.Generic;
 using System.Drawing.Imaging;
@@ -23,8 +25,15 @@ namespace DocumentCentreTests
         /// </summary>
         protected static void LoadDriver()
         {
-            _driver = new FirefoxDriver();
-            _driver.Navigate().GoToUrl("http://portal.test-web01.lbmx.com/login?redirect=%2f");
+            try {
+                _driver = new ChromeDriver();
+                _driver.Navigate().GoToUrl("http://portal.test-web01.lbmx.com/login?redirect=%2f");
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+                throw;
+            }
         }
 
         /// <summary>

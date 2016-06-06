@@ -116,7 +116,7 @@ namespace DocumentCentreTests.Util
             {
                 Thread.Sleep(2000);
                 var shouldBe = "Your cart has been updated and now contains "
-                    + prod.Quantity.ToString() + " units of '" + prod.ProductTitle.Text +
+                    + prod.Quantity.ToString() + " units of '" + prod.ProductNumber +
                     "' for the total amount of $" + prod.getAmountTotal().ToString() + ".";
                 var alertMsg = driver.FindElement(By.XPath(Constants.XPATH_ALERT_MSG)).Text;
                 if (alertMsg.Equals(shouldBe))
@@ -171,6 +171,35 @@ namespace DocumentCentreTests.Util
             var random = new Random();
             return new string(Enumerable.Repeat(chars, length)
               .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+
+        /// <summary>
+        /// Find a given text within a string.
+        /// </summary>
+        /// <param name="strSource">text source</param>
+        /// <param name="strStart">first word</param>
+        /// <param name="strEnd">second word</param>
+        /// <returns></returns>
+        public static string GetBetween(string strSource, string strStart, string strEnd)
+        {
+            int Start, End;
+            if (strSource.Contains(strStart) && strSource.Contains(strEnd))
+            {
+                Start = strSource.IndexOf(strStart, 0) + strStart.Length;
+                End = strSource.IndexOf(strEnd, Start);
+                return strSource.Substring(Start, End - Start);
+            }
+            else
+            {
+                return "";
+            }
+        }
+
+        public static void setAttribute(IWebDriver driver, IWebElement element, String attName, String attValue)
+        {
+            IJavaScriptExecutor js = driver as IJavaScriptExecutor;
+            js.ExecuteScript("arguments[0].setAttribute(arguments[1], arguments[2]);",
+                    element, attName, attValue);
         }
 
     }

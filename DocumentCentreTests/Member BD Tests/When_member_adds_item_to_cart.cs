@@ -32,7 +32,7 @@ namespace DocumentCentreTests.Member_BD_Tests
         Because of = () =>
         {
             _prodPage = _catPage.ChooseCatalogue("Milan Automation Catalogue");
-            _prodPage.AddItemToCart("Reebok Ankle Height Hiking Shoe", 4);
+            _prodPage.AddItemToCart("Description05", 4);
         };
 
         It should_return_alert_of_success = () =>

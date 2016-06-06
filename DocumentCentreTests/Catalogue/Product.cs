@@ -11,8 +11,12 @@ namespace DocumentCentreTests.Catalogue
 {
     internal class Product
     {
-        internal IWebElement ProductTitle { get; set; }
-        internal IWebElement Price { get; set; }
+        internal string Price { get; set; }
+        internal string Colour { get; set; }
+        internal string Size { get; set; }
+        internal string ProductNumber { get; set; }
+        internal string UPC { get; set; }
+        internal IWebElement QtyBox { get; set; }
         internal IWebElement QtyUp { get; set; }
         internal IWebElement QtyDown { get; set; }
         internal IWebElement UpdateButton { get; set; }
@@ -31,7 +35,7 @@ namespace DocumentCentreTests.Catalogue
 
         public Decimal getAmountTotal()
         {
-            var priceStr = Price.Text;
+            var priceStr = Price;
             return Quantity * Decimal.Parse(priceStr.Substring(2, priceStr.Length - 2));
         }
     }
