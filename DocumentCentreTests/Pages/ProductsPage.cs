@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using DocumentCentreTests.Util;
 using NLog;
@@ -18,13 +19,11 @@ namespace DocumentCentreTests.Pages
 
         // product data structures
         internal List<Product> _products;
-        internal IList<IWebElement> _productRowWrappers;
         internal IList<IWebElement> _productVariants;
-        internal IList<IWebElement> _productTitles;
         internal IList<IWebElement> _productQtyUp;
         internal IList<IWebElement> _productQtyDown;
-        internal IList<IWebElement> _productPrices;
         internal IList<IWebElement> _productUpdateBtns;
+        internal IList<IWebElement> _productRows;
 
         // physical elements (locators) on page
         private IWebElement ProductsTable;
@@ -91,6 +90,7 @@ namespace DocumentCentreTests.Pages
             this._productQtyUp = ProductsTable.FindElements(By.XPath(Constants.ROW_QTY_UP_XPATH));
             this._productQtyDown = ProductsTable.FindElements(By.XPath(Constants.ROW_QTY_DOWN_XPATH));
 
+            // apply variant information
             for (int i = 0; i < _productVariants.Count; ++i)
             {
                 string prodInfo = "start" + _productVariants[i].GetAttribute("title") + "end";
@@ -103,10 +103,23 @@ namespace DocumentCentreTests.Pages
                 newProd.Price = HelperMethods.GetBetween(varInfo, "$ ", "end");
                 newProd.QtyUp = _productQtyUp[i];
                 newProd.QtyDown = _productQtyDown[i];
-                //newProd.UpdateButton = _productUpdateBtns[i];
                 _products.Add(newProd);
             }
 
+            this._productRows = ProductsTable.FindElements(By.XPath("//div[contains(@class,'product-row-wrapper')]"));
+            this._productUpdateBtns = ProductsTable.FindElements(By.XPath("//button[contains(@class, 'btn-update-order')]"));
+            int startVal = 0;
+
+            // apply update buttons
+            for (int i = 0; i < _productRows.Count; ++i)
+            {
+                int btnCount = _productRows[i].Text.Count(f => f == '$');
+                for (int x = startVal; x < startVal + btnCount; ++x)
+                {
+                    _products[x].UpdateButton = _productUpdateBtns[i];
+                }
+                startVal += btnCount;
+            }
         }
 
         /// <summary>
@@ -122,7 +135,14 @@ namespace DocumentCentreTests.Pages
             {
                 if (_products[i].ProductNumber.Equals(prodNum))
                 {
-
+                    currentProd.ProductNumber = _products[i].ProductNumber;
+                    currentProd.UPC = _products[i].UPC;
+                    currentProd.Colour = _products[i].Colour;
+                    currentProd.Size = _products[i].Size;
+                    currentProd.Price = _products[i].Price;
+                    currentProd.QtyUp = _products[i].QtyUp;
+                    currentProd.QtyDown = _products[i].QtyDown;
+                    currentProd.UpdateButton = _products[i].UpdateButton;
                 }
             }
             return currentProd;
@@ -132,22 +152,22 @@ namespace DocumentCentreTests.Pages
         /// Simulates the addition of an item to the cart and checks if the alert popup
         /// is accurate.
         /// </summary>
-        /// <param name="prodName">name of product to add to cart</param>
+        /// <param name="prodNum">name of product to add to cart</param>
         /// <param name="qty">quantity of product to add to cart</param>
         /// <returns>current page object</returns>
-        public ProductsPage AddItemToCart(string prodName, int qty)
+        public ProductsPage AddItemToCart(string prodNum, int qty)
         {
-            _logger.Info("       - Attempting to add [" +qty +"] '" +prodName +"' to cart.");
+            _logger.Info("       - Attempting to add ["+ qty +"] '" +prodNum +"' to cart.");
             WaitForLoad();
             Thread.Sleep(1000);
             // find product
             LoadProductRows();
-            Product product = LoadProduct(prodName);
+            Product product = LoadProduct(prodNum);
             _logger.Info("       - Setting product quantity...");
             product.SetQuantity(qty);
             _logger.Info("       - Adding item to cart...");
             product.UpdateButton.Click();
-            this.ItemAdded = HelperMethods.CheckItemAddAlert(driver, product);
+            //this.ItemAdded = HelperMethods.CheckItemAddAlert(driver, product);
             return this;
         }
 
