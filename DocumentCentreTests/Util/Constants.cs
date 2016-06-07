@@ -62,8 +62,8 @@ namespace DocumentCentreTests.Util
         internal const string XPATH_INFO_EXPORT = "//button[contains(text(), 'Export')]";
         internal const string XPATH_INFO_EMAIL = "//button[contains(text(), 'Email')]";
         internal const string XPATH_INFO_FINISH = "//button[contains(text(), 'Finish')]";
-        internal const string XPATH_ALERT_MSG = "id('toast-container')/div/div";
-        internal const string XPATH_ALERT_DEL = "id('toast-container')/div";
+        internal const string XPATH_ALERT_SUCCESS = "//div[contains(@class, 'toast-success')]";
+        internal const string XPATH_ALERT_FAILURE = "//div[contains(@class, 'toast-failure')]";
         internal const string XPATH_CAT_LOCATOR = "//h1[contains(@class, 'catalog-tile-text') and contains (text(), 'Milan Automation Catalogue')]";
         internal const string XPATH_REPORTS_LOCATOR = "//button[contains(text(), 'Reports')]";
         internal const string XPATH_SHIPON_CAL = "id('orderHeaderContainer')/div[2]/div[1]/div/span/span/span/span";

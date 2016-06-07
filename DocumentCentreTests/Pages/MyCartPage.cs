@@ -56,7 +56,7 @@ namespace DocumentCentreTests.Pages
         #endregion
 
         internal bool ItemDeleted;
-        internal string AlertMessage;
+        internal bool AlertSuccess;
 
         public MyCartPage(IWebDriver driver, string type)
         {
@@ -178,7 +178,7 @@ namespace DocumentCentreTests.Pages
                 Driver.FindElement(By.XPath(Constants.XPATH_DEL_ITEM_OK)).Click();
 
                 // check alert for confirmation of delete
-                this.ItemDeleted = HelperMethods.CheckItemDeleteAlert(Driver, item);
+                this.ItemDeleted = HelperMethods.CheckAlert(Driver);
                 return this;
             }
             else
@@ -226,44 +226,44 @@ namespace DocumentCentreTests.Pages
         /// <returns></returns>
         public ViewOrdersPage DeleteOrder()
         {
-            this.AlertMessage = "";
+            this.AlertSuccess = false;
             DeleteOrderButton.Click();
 
             // click OK on Information dialog
             Thread.Sleep(500);
             Driver.FindElement(By.XPath(Constants.XPATH_INFO_OK)).Click();
-            this.AlertMessage = HelperMethods.CheckAlert(Driver);
+            this.AlertSuccess = HelperMethods.CheckAlert(Driver);
             return new ViewOrdersPage(Driver);
         }
 
         public MyCartPage SaveDraftOrder()
         {
-            this.AlertMessage = "";
+            this.AlertSuccess = false;
 
             // attempt to save
             SaveDraftButton.Click();
             Thread.Sleep(300);
-            this.AlertMessage = HelperMethods.CheckAlert(Driver);
-            if (AlertMessage.Equals(Constants.MISSING_INFO_MSG)) // if po missing
+            this.AlertSuccess = HelperMethods.CheckAlert(Driver);
+            if (AlertSuccess.Equals(Constants.MISSING_INFO_MSG)) // if po missing
             {
                 // enter a po and attempt to save again
                 EnterRandomPONumber(7);
                 SaveDraftButton.Click();
-                this.AlertMessage = HelperMethods.CheckAlert(Driver);
+                this.AlertSuccess = HelperMethods.CheckAlert(Driver);
             }
             return this;
         }
 
         public MyCartPage CompleteOrder()
         {
-            this.AlertMessage = "";
+            this.AlertSuccess = false;
             CloseOrderButton.Click();
             if (HelperMethods.IsElementPresent(Driver, By.ClassName("modal-content")))
             {
                 // click OK on Information dialog
                 Thread.Sleep(500);
                 Driver.FindElement(By.XPath(Constants.XPATH_INFO_OK)).Click();
-                this.AlertMessage = HelperMethods.CheckAlert(Driver);
+                this.AlertSuccess = HelperMethods.CheckAlert(Driver);
                 // click Finish on next dialog
                 Thread.Sleep(500);
                 HelperMethods.FindElement(Driver, "xpath", Constants.XPATH_INFO_FINISH).Click();

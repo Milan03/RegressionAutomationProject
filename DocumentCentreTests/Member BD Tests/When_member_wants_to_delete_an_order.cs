@@ -33,15 +33,15 @@ namespace DocumentCentreTests.Member_BD_Tests
 
         It should_delete_the_order = () =>
         {
-            if (_voPage.AlertMessage.Equals(Constants.ORDER_DELETE_MSG))
+            if (_voPage.AlertSuccess.Equals(true))
             {
                 _logger.Info("-- Member Order Delete Test: [PASSED] --");
-                _voPage.AlertMessage.ShouldEqual(Constants.ORDER_DELETE_MSG);
+                _voPage.AlertSuccess.ShouldEqual(true);
             }
             else
             {
                 _logger.Fatal("-- Member Order Delete Test: [FAILED] --");
-                _voPage.AlertMessage.ShouldEqual(Constants.ORDER_DELETE_MSG);
+                _voPage.AlertSuccess.ShouldEqual(false);
             }
         };
     }

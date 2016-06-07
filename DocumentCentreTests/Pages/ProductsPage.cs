@@ -167,7 +167,7 @@ namespace DocumentCentreTests.Pages
             product.SetQuantity(qty);
             _logger.Info("       - Adding item to cart...");
             product.UpdateButton.Click();
-            //this.ItemAdded = HelperMethods.CheckItemAddAlert(driver, product);
+            this.ItemAdded = HelperMethods.CheckAlert(driver);
             return this;
         }
 

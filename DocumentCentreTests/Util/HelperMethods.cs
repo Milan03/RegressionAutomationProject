@@ -87,76 +87,23 @@ namespace DocumentCentreTests.Util
         /// </summary>
         /// <param name="driver">Testing interface</param>
         /// <returns>The alert message as string</returns>
-        public static string CheckAlert(IWebDriver driver)
+        public static bool CheckAlert(IWebDriver driver)
         {
             try
             {
                 Thread.Sleep(2000);
-                var alertMsg = driver.FindElement(By.XPath(Constants.XPATH_ALERT_MSG)).Text;
-                return alertMsg;
-                
+                var alert = driver.FindElement(By.XPath(Constants.XPATH_ALERT_SUCCESS));
+                if (alert != null)
+                    return true;
+                else
+                    return false;
+
             }
             catch (Exception)
             {
                 _logger.Fatal("         - Checking for alert [FAILED]");
                 
                 throw new Exception("Exception thrown in CheckAlert()");
-            }
-        }
-
-        /// <summary>
-        /// Checks alert message when an item is added for accurate result of addition
-        /// </summary>
-        /// <param name="driver">Testing interface</param>
-        /// <param name="prod">Product added to cart</param>
-        /// <returns>Boolean representing a pass or fail</returns>
-        public static bool CheckItemAddAlert(IWebDriver driver, Product prod)
-        {
-            try
-            {
-                Thread.Sleep(2000);
-                var shouldBe = "Your cart has been updated and now contains "
-                    + prod.Quantity.ToString() + " units of '" + prod.ProductNumber +
-                    "' for the total amount of $" + prod.getAmountTotal().ToString() + ".";
-                var alertMsg = driver.FindElement(By.XPath(Constants.XPATH_ALERT_MSG)).Text;
-                if (alertMsg.Equals(shouldBe))
-                    return true;
-                else
-                    return false;
-            }
-            catch (Exception)
-            {
-                _logger.Fatal("         - Checking for alert [FAILED]");
-                _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
-                BaseDriverTest.TakeScreenshot("screenshot");
-                return false;
-                //throw new Exception("Exception thrown in CheckItemAddAlert()");
-            }
-        }
-
-        public static bool CheckItemDeleteAlert(IWebDriver driver, CartItem item)
-        {
-            try
-            {
-                var shouldBe = "×\r\n'" + item.Description.Text + "' has been removed from the cart.";
-                var alertMsg = driver.FindElement(By.XPath(Constants.XPATH_ALERT_DEL)).Text;
-                if (alertMsg.Equals(shouldBe))
-                    return true;
-                else
-                {
-                    _logger.Fatal("         - Checking for delete alert [FAILED]");
-                    _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
-                    BaseDriverTest.TakeScreenshot("screenshot");
-                    return false;
-                }
-            }
-            catch (Exception)
-            {
-                _logger.Fatal("         - Checking for delete alert [FAILED]");
-                _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
-                BaseDriverTest.TakeScreenshot("screenshot");
-                return false;
-                //throw new Exception("Exception thrown in CheckItemDeleteAlert()");
             }
         }
 

@@ -20,7 +20,7 @@ namespace DocumentCentreTests.Pages
         private IWebElement DeleteOrderLocator;
 
         internal IWebElement FirstTableElem { get; set;  }
-        internal string AlertMessage { get; set; }
+        internal bool AlertSuccess { get; set; }
         internal string OrderType { get; set; }
 
         /// <summary>
@@ -137,13 +137,13 @@ namespace DocumentCentreTests.Pages
         public ViewOrdersPage DeleteOrder()
         {
             _logger.Info("       - Attempting to delete order");
-            this.AlertMessage = "";
+            this.AlertSuccess = false;
             DeleteOrderLocator.Click();
             
             // click OK on Information dialog
             Thread.Sleep(500);
             Driver.FindElement(By.XPath(Constants.XPATH_INFO_OK)).Click();
-            this.AlertMessage = HelperMethods.CheckAlert(Driver);
+            this.AlertSuccess = HelperMethods.CheckAlert(Driver);
             return this;
         }
     }
