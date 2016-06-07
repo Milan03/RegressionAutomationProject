@@ -38,7 +38,7 @@ namespace DocumentCentreTests.Pages
             // check if on correct page
             if (!"User Login".Equals(driver.Title))
             {
-                logger.Fatal("     - ERROR: Member login page failed to load.");
+                logger.Fatal(" > ERROR: Member login page failed to load.");
             }
         }
 
@@ -49,7 +49,7 @@ namespace DocumentCentreTests.Pages
         /// <returns>Current page object</returns>
         public LoginPage TypeUsername(string username)
         {
-            logger.Info("       - Inputing username");
+            logger.Info(" > Inputing username");
             UsernameLocator.Clear();
             UsernameLocator.SendKeys(username);
             return this;
@@ -62,7 +62,7 @@ namespace DocumentCentreTests.Pages
         /// <returns>Current page object</returns>
         public LoginPage TypePassword(string password)
         {
-            logger.Info("       - Inputing password");
+            logger.Info(" > Inputing password");
             PasswordLocator.Clear();
             PasswordLocator.SendKeys(password);
             return this;
@@ -74,7 +74,7 @@ namespace DocumentCentreTests.Pages
         /// <returns>New page object representing the destination.</returns>
         public HomePage SubmitLogin()
         {
-            logger.Info("       - Submitting login");
+            logger.Info(" > Submitting login");
             LoginButtonLocator.Click();
             if (LoginPageType.Equals("member"))
             {
@@ -107,7 +107,7 @@ namespace DocumentCentreTests.Pages
         /// <returns>New page object representing the destination page.</returns>
         public HomePage LoginAs(string username, string password)
         {
-            logger.Info("       - Attempting to login as: " +username);
+            logger.Info(" > Attempting to login as: " + username);
             TypeUsername(username);
             TypePassword(password);
             return SubmitLogin();

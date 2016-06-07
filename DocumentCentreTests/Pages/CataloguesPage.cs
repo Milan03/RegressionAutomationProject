@@ -29,7 +29,7 @@ namespace DocumentCentreTests.Pages
 
             if (!Constants.CAT_PAGE_TITLE.Equals(driver.Title))
             {
-                _logger.Fatal("       - Member's Catalogue page not found.");
+                _logger.Fatal(" > Member's Catalogue page not found.");
                 throw new NoSuchWindowException("Member's Catalogue page not found.");
             }
         }
@@ -41,7 +41,7 @@ namespace DocumentCentreTests.Pages
         /// <returns>current page object</returns>
         public CataloguesPage InputCatalogueName(string catalogue)
         {
-            _logger.Info("       - Inputting catalogue name for search: " + catalogue);
+            _logger.Info(" > Inputting catalogue name for search: " + catalogue);
             SearchInputTextbox.Clear();
             SearchInputTextbox.SendKeys(catalogue);
             return this;
@@ -53,7 +53,7 @@ namespace DocumentCentreTests.Pages
         /// <returns>current page object</returns>
         public CataloguesPage InitiateSearch()
         {
-            _logger.Info("       - Searching for catalogue...");
+            _logger.Info(" > Searching for catalogue...");
             SearchButton.Click();
             return this;
         }

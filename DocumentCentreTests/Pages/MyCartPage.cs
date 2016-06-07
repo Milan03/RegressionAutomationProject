@@ -99,7 +99,7 @@ namespace DocumentCentreTests.Pages
 
             if (!driver.Url.Contains("MyOrder") && !dontCheck)
             {
-                _logger.Fatal("      - ERROR: Member's Cart page not found.");
+                _logger.Fatal(" > ERROR: Member's Cart page not found.");
             }
         }
 
@@ -109,7 +109,7 @@ namespace DocumentCentreTests.Pages
         /// </summary>
         private void LoadItemsInCart()
         {
-            _logger.Info("       - Attempting to load cart items...");
+            _logger.Info(" > Attempting to load cart items...");
 
             // get row elements
             this._itemDeleteButtons = CartTable.FindElements(By.XPath(Constants.ITEM_DEL_BTN_XP));
@@ -140,7 +140,7 @@ namespace DocumentCentreTests.Pages
         /// <returns>Cart object to interact with</returns>
         private CartItem LoadCartItem(string itemDes)
         {
-            _logger.Info("       - Attempting to find cart item: " +itemDes);
+            _logger.Info(" > Attempting to find cart item: " + itemDes);
             CartItem currentItem = new CartItem();
             for (int i = 0; i < _cartItems.Count; ++i)
             {
@@ -184,7 +184,7 @@ namespace DocumentCentreTests.Pages
             else
             {
                 this.ItemDeleted = false;
-                _logger.Error("      - No items in cart!");
+                _logger.Error(" > No items in cart!");
                 return this;
             }
         }
@@ -271,7 +271,7 @@ namespace DocumentCentreTests.Pages
             }
             else
             {
-                _logger.Error("       - Attempt to complete order [FAILED]");
+                _logger.Error(" > Attempt to complete order [FAILED]");
                 throw new ElementNotVisibleException("Could not detect Information modal.");
             }
         }

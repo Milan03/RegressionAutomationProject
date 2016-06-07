@@ -37,12 +37,10 @@ namespace DocumentCentreTests.Util
         /// <summary>products page row identifiers
         internal const string PROD_ROW_WRAPPERS = "//div[contains(@class, 'product-row-wrapper')]";
         internal const string ALL_PROD_VARIANTS = "div[id^='variant_']";
-        //internal const string ALL_PROD_VARIANTS = "//tbody/tr/td[2]/div[2]/div[contains(@id, 'variant')]";
         internal const string ROW_TITLE_XPATH = "//tbody/tr/td[2]/div/a[1]";
         internal const string ALL_QTY_BOXES = "//input[contains(@class,'k-formatted-value')]";
         internal const string ROW_QTY_UP_XPATH = "//span[contains(@class,'k-i-arrow-n')]";
         internal const string ROW_QTY_DOWN_XPATH = "//span[contains(@class,'k-i-arrow-s')]";
-        //internal const string ROW_PRICE_XPATH = "//tbody/tr/td[2]/div[2]/div/div[2]";
         internal const string ROW_PRICE_XPATH = "//[contains(@class, 'price') and contains(@class ,'Hover')]";
         internal const string ROW_UPDATE_XPATH = "//tbody/tr/td[2]/div[2]/div[2]/button";
 

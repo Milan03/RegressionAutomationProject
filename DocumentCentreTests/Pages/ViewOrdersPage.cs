@@ -29,7 +29,7 @@ namespace DocumentCentreTests.Pages
         /// <param name="driver">Main interface for testing, represents idealised web browser</param>
         public ViewOrdersPage(IWebDriver driver)
         {
-            _logger.Info("       - View Orders Page is being constructed...");
+            _logger.Info(" > View Orders Page is being constructed...");
             this.Driver = driver;
             this.OrderTypeDropdown = HelperMethods.FindElement(Driver, "classname", "k-widget");
             this.POInputTextbox = HelperMethods.FindElement(Driver, "id", "poNumber");
@@ -42,7 +42,7 @@ namespace DocumentCentreTests.Pages
             // check if on correct page
             if (!"My Orders".Equals(driver.Title))
             {
-                _logger.Fatal("     - ERROR: Member's View Orders page could not load.");
+                _logger.Fatal(" > ERROR: Member's View Orders page could not load.");
             }
         }
 
@@ -70,7 +70,7 @@ namespace DocumentCentreTests.Pages
         /// <returns>Current page object</returns>
         public ViewOrdersPage ChooseOrderType(string type)
         {
-            _logger.Info("       - Choosing order type: " +type);
+            _logger.Info(" > Choosing order type: " + type);
             this.OrderType = type;
             OrderTypeDropdown.Click();
             Thread.Sleep(500);
@@ -100,7 +100,7 @@ namespace DocumentCentreTests.Pages
             }
             catch (ElementNotVisibleException)
             {
-                _logger.Fatal("       - Choosing order type: " + type +" [FAILED]");
+                _logger.Fatal(" > Choosing order type: " + type +" [FAILED]");
             }
             return this;
         }
@@ -111,7 +111,7 @@ namespace DocumentCentreTests.Pages
         /// <returns>Current page object</returns>
         public ViewOrdersPage InitiateSearch()
         {
-            _logger.Info("       - Searching for order");
+            _logger.Info(" > Searching for order");
             SearchOrdersButton.Click();
             return this;
         }
@@ -123,7 +123,7 @@ namespace DocumentCentreTests.Pages
         /// <returns>Current page object</returns>
         public ViewOrdersPage InputPurchaseOrder(string po)
         {
-            _logger.Info("       - Inputting purchase order number: " +po);
+            _logger.Info(" > Inputting purchase order number: " + po);
             POInputTextbox.Click();
             POInputTextbox.Clear();
             POInputTextbox.SendKeys(po);
@@ -136,7 +136,7 @@ namespace DocumentCentreTests.Pages
         /// <returns>Current page object</returns>
         public ViewOrdersPage DeleteOrder()
         {
-            _logger.Info("       - Attempting to delete order");
+            _logger.Info(" > Attempting to delete order");
             this.AlertSuccess = false;
             DeleteOrderLocator.Click();
             

@@ -39,14 +39,14 @@ namespace DocumentCentreTests.Util
                     foundElement = driver.FindElement(By.XPath(element));
                 else
                 {
-                    _logger.Error("    - ERROR: Element [type: " + type + ", name: " + element + "] could not be located.");
+                    _logger.Error(" > ERROR: Element [type: " + type + ", name: " + element + "] could not be located.");
                     foundElement = null;
                 }
                 return foundElement;
             }
             catch (NoSuchElementException)
             {
-                _logger.Error("    - ERROR: Element [type: " + type + ", name: " + element + "] could not be located.");
+                _logger.Error(" > ERROR: Element [type: " + type + ", name: " + element + "] could not be located.");
                 _logger.Fatal("-- TEST FAILURE @ URL: '" +driver.Url +"' --");
                 BaseDriverTest.TakeScreenshot("screenshot");
                 throw new NoSuchElementException("Unable to locate element.");
@@ -101,9 +101,10 @@ namespace DocumentCentreTests.Util
             }
             catch (Exception)
             {
-                _logger.Fatal("         - Checking for alert [FAILED]");
-                
-                throw new Exception("Exception thrown in CheckAlert()");
+                _logger.Fatal(" > Checking for alert [FAILED]");
+                _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
+                BaseDriverTest.TakeScreenshot("screenshot");
+                return false;
             }
         }
 
@@ -121,7 +122,7 @@ namespace DocumentCentreTests.Util
         }
 
         /// <summary>
-        /// Find a given text within a string.
+        /// Find a given string within a string.
         /// </summary>
         /// <param name="strSource">text source</param>
         /// <param name="strStart">first word</param>
@@ -140,13 +141,6 @@ namespace DocumentCentreTests.Util
             {
                 return "";
             }
-        }
-
-        public static void setAttribute(IWebDriver driver, IWebElement element, String attName, String attValue)
-        {
-            IJavaScriptExecutor js = driver as IJavaScriptExecutor;
-            js.ExecuteScript("arguments[0].setAttribute(arguments[1], arguments[2]);",
-                    element, attName, attValue);
         }
 
     }

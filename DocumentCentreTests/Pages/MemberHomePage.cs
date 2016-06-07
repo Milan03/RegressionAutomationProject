@@ -33,7 +33,7 @@ namespace DocumentCentreTests.Pages
                 throw new NoSuchWindowException("Member homepage not found");
             }
 
-            _logger.Info("       - Login successful");
+            _logger.Info(" > Login successful");
             this.OrdersDropdown = HelperMethods.FindElement(driver, "linktext", "My Orders");
         }
 
@@ -43,7 +43,7 @@ namespace DocumentCentreTests.Pages
         /// <returns>New page object representing the destination.</returns>
         public override ViewOrdersPage NavigateToOrders(string linktext)
         {
-            _logger.Info("       - Attempting to navigate to View Orders");
+            _logger.Info(" > Attempting to navigate to View Orders");
 
             // dropdown interaction
             OrdersDropdown.Click();
@@ -56,13 +56,13 @@ namespace DocumentCentreTests.Pages
                 throw new NoSuchWindowException("View Orders page not found");
             }
 
-            _logger.Info("       - View Orders page reached");
+            _logger.Info(" > View Orders page reached");
             return new ViewOrdersPage(Driver);
         }
 
         public override CataloguesPage NavigateToCatalogues()
         {
-            _logger.Info("       - Attempting to navigate to Catalogues Page");
+            _logger.Info(" > Attempting to navigate to Catalogues Page");
 
             OrdersDropdown.Click();
             Thread.Sleep(500);
@@ -73,7 +73,7 @@ namespace DocumentCentreTests.Pages
             {
                 throw new NoSuchWindowException("View Orders page not found");
             }
-            _logger.Info("       - Catalogues Page reached.");
+            _logger.Info(" > Catalogues Page reached.");
             return new CataloguesPage(Driver);
         }
     }

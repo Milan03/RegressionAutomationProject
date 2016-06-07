@@ -64,7 +64,7 @@ namespace DocumentCentreTests.Pages
 
             if (!driver.Url.Contains("Products"))
             {
-                _logger.Fatal("       - ERROR: Member's Products page not found.");
+                _logger.Fatal(" > ERROR: Member's Products page not found.");
             }
         }
 
@@ -84,7 +84,7 @@ namespace DocumentCentreTests.Pages
         /// </summary>
         private void LoadProductRows()
         {
-            _logger.Info("       - Attempting to load catalogue products...");
+            _logger.Info(" > Attempting to load catalogue products...");
 
             this._productVariants = ProductsTable.FindElements(By.CssSelector(Constants.ALL_PROD_VARIANTS));
             this._productQtyUp = ProductsTable.FindElements(By.XPath(Constants.ROW_QTY_UP_XPATH));
@@ -129,7 +129,7 @@ namespace DocumentCentreTests.Pages
         /// <returns>Product object to interact with</returns>
         private Product LoadProduct(string prodNum)
         {
-            _logger.Info("       - Searching for product: " +prodNum);
+            _logger.Info(" > Searching for product: " + prodNum);
             Product currentProd = new Product();
             for (int i = 0; i < _products.Count; ++i)
             {
@@ -157,15 +157,15 @@ namespace DocumentCentreTests.Pages
         /// <returns>current page object</returns>
         public ProductsPage AddItemToCart(string prodNum, int qty)
         {
-            _logger.Info("       - Attempting to add ["+ qty +"] '" +prodNum +"' to cart.");
+            _logger.Info(" > Attempting to add [" + qty +"] '" +prodNum +"' to cart.");
             WaitForLoad();
             Thread.Sleep(1000);
             // find product
             LoadProductRows();
             Product product = LoadProduct(prodNum);
-            _logger.Info("       - Setting product quantity...");
+            _logger.Info(" > Setting product quantity...");
             product.SetQuantity(qty);
-            _logger.Info("       - Adding item to cart...");
+            _logger.Info(" > Adding item to cart...");
             product.UpdateButton.Click();
             this.ItemAdded = HelperMethods.CheckAlert(driver);
             return this;
@@ -177,14 +177,14 @@ namespace DocumentCentreTests.Pages
         /// <returns>new MyCart page object</returns>
         public MyCartPage NavigateToCart()
         {
-            _logger.Info("       - Attempting to navigate to cart...");
+            _logger.Info(" > Attempting to navigate to cart...");
             try {
                 Thread.Sleep(1000);
                 MyCartButton.Click();
                 Thread.Sleep(2000);
-            } catch (NoSuchWindowException e)
+            } catch (NoSuchWindowException)
             {
-                _logger.Fatal("         - Navigation to cart [FAILED]");
+                _logger.Fatal(" > Navigation to cart [FAILED]");
                 _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
                 BaseDriverTest.TakeScreenshot("screenshot");
             }
@@ -217,7 +217,7 @@ namespace DocumentCentreTests.Pages
         /// <returns>current page object</returns>
         public ProductsPage InputSearchTerm(string term)
         {
-            _logger.Info("       - Inputting search term:" +term);
+            _logger.Info(" > Inputting search term:" + term);
             SearchBar.Clear();
             SearchBar.SendKeys(term);
             return this;
@@ -229,7 +229,7 @@ namespace DocumentCentreTests.Pages
         /// <returns>current page object</returns>
         public ProductsPage InitiateSearch()
         {
-            _logger.Info("       - Searching for item...");
+            _logger.Info(" > Searching for item...");
             SearchButton.Click();
             return this;
         }
@@ -240,7 +240,7 @@ namespace DocumentCentreTests.Pages
         /// <returns>current page object</returns>
         public ProductsPage OpenAdvancedSearch()
         {
-            _logger.Info("       - Opening Advanced Search");
+            _logger.Info(" > Opening Advanced Search");
             AdvancedSearchLinktext.Click();
             return this;
         }
