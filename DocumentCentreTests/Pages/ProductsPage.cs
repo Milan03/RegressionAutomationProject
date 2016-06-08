@@ -336,7 +336,5 @@ namespace DocumentCentreTests.Pages
             SummaryOption.Click();
             return this;
         }
-
-
     }
 }
