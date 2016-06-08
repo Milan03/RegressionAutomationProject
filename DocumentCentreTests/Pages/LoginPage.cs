@@ -11,7 +11,7 @@ namespace DocumentCentreTests.Pages
 {
     public class LoginPage
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private static Logger _logger = LogManager.GetCurrentClassLogger();
         private IWebDriver driver;
 
         private IWebElement UsernameLocator;
@@ -38,8 +38,12 @@ namespace DocumentCentreTests.Pages
             // check if on correct page
             if (!"User Login".Equals(driver.Title))
             {
-                logger.Fatal(" > ERROR: Member login page failed to load.");
-            }
+                _logger.Fatal(" > Login page navigation [FAILED]");
+                _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
+                BaseDriverTest.TakeScreenshot("screenshot");
+            } else
+                _logger.Info(" > Login page reached!");
+
         }
 
         /// <summary>
@@ -49,7 +53,7 @@ namespace DocumentCentreTests.Pages
         /// <returns>Current page object</returns>
         public LoginPage TypeUsername(string username)
         {
-            logger.Info(" > Inputing username");
+            _logger.Info(" > Inputing username");
             UsernameLocator.Clear();
             UsernameLocator.SendKeys(username);
             return this;
@@ -62,7 +66,7 @@ namespace DocumentCentreTests.Pages
         /// <returns>Current page object</returns>
         public LoginPage TypePassword(string password)
         {
-            logger.Info(" > Inputing password");
+            _logger.Info(" > Inputing password");
             PasswordLocator.Clear();
             PasswordLocator.SendKeys(password);
             return this;
@@ -74,7 +78,7 @@ namespace DocumentCentreTests.Pages
         /// <returns>New page object representing the destination.</returns>
         public HomePage SubmitLogin()
         {
-            logger.Info(" > Submitting login");
+            _logger.Info(" > Submitting login");
             LoginButtonLocator.Click();
             if (LoginPageType.Equals("member"))
             {
@@ -107,7 +111,7 @@ namespace DocumentCentreTests.Pages
         /// <returns>New page object representing the destination page.</returns>
         public HomePage LoginAs(string username, string password)
         {
-            logger.Info(" > Attempting to login as: " + username);
+            _logger.Info(" > Attempting to login as: " + username);
             TypeUsername(username);
             TypePassword(password);
             return SubmitLogin();

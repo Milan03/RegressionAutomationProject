@@ -32,8 +32,8 @@ namespace DocumentCentreTests.Pages
                 _logger.Fatal(" > Member catalogue page navigation [FAILED]");
                 _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
                 BaseDriverTest.TakeScreenshot("screenshot");
-                throw new NoSuchWindowException("Member's Catalogue page not found.");
-            }
+            } else
+                _logger.Info(" > Catalopue Selection page reached!");
         }
 
         /// <summary>

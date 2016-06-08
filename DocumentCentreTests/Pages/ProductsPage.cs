@@ -67,7 +67,8 @@ namespace DocumentCentreTests.Pages
                 _logger.Fatal(" > Catalogue product page navigation [FAILED]");
                 _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
                 BaseDriverTest.TakeScreenshot("screenshot");
-            }
+            } else
+                _logger.Info(" > Products page reached!");
         }
 
         /// <summary>
@@ -94,6 +95,7 @@ namespace DocumentCentreTests.Pages
             try
             {
                 // apply variant information
+                _logger.Info(" > Building catalogue: variant info...");
                 for (int i = 0; i < _productVariants.Count; ++i)
                 {
                     string prodInfo = "start" + _productVariants[i].GetAttribute("title") + "end";
@@ -108,6 +110,7 @@ namespace DocumentCentreTests.Pages
                     newProd.QtyDown = _productQtyDown[i];
                     _products.Add(newProd);
                 }
+                _logger.Info(" > Building catalogue: variant info - Complete!");
             }
             catch (Exception)
             {
@@ -122,6 +125,7 @@ namespace DocumentCentreTests.Pages
             try
             {
                 // apply update buttons
+                _logger.Info(" > Building catalogue: update buttons...");
                 for (int i = 0; i < _productRows.Count; ++i)
                 {
                     int btnCount = _productRows[i].Text.Count(f => f == '$');
@@ -131,6 +135,7 @@ namespace DocumentCentreTests.Pages
                     }
                     startVal += btnCount;
                 }
+                _logger.Info(" > Building catalogue: update buttons - Complete!");
             } catch (Exception)
             {
                 _logger.Fatal(" > Loading catalogue products [FAILED]");
@@ -164,10 +169,11 @@ namespace DocumentCentreTests.Pages
                         currentProd.UpdateButton = _products[i].UpdateButton;
                     }
                 }
+                _logger.Info(" > Product Found!");
             }
             catch (Exception)
             {
-                _logger.Fatal(" > Loading catalogue products [FAILED]");
+                _logger.Fatal(" > Searching for product " +prodNum+ " [FAILED]");
                 _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
                 BaseDriverTest.TakeScreenshot("screenshot");
             }
@@ -195,6 +201,7 @@ namespace DocumentCentreTests.Pages
             Thread.Sleep(1000);
             product.UpdateButton.Click();
             this.ItemAdded = HelperMethods.CheckAlert(driver);
+            _logger.Info(" > Item added to cart!");
             return this;
         }
 

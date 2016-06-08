@@ -75,11 +75,13 @@ namespace DocumentCentreTests.Pages
                 this.SaveDraftButton = HelperMethods.FindElement(driver, "id", "saveOrderButton");
                 this.SendOrderButton = HelperMethods.FindElement(driver, "id", "completeOrderButton");
                 this.DelieveryAddressButton = HelperMethods.FindElement(driver, "id", "changeAddressButton");
+                _logger.Info(" > MyCart page reached!");
             }
             else if (type.Equals("order_complete"))
             {
                 this.CloseOrderButton = HelperMethods.FindElement(driver, "id", "closeOrderButton");
                 OrderComplete = true;
+                _logger.Info(" > Purchase Order completed!");
             }
             this.CartTable = HelperMethods.FindElement(driver, "xpath", "//tbody");
             this.ShipToDropdown = HelperMethods.FindElement(driver, "classname", "k-input");
@@ -104,7 +106,7 @@ namespace DocumentCentreTests.Pages
                 _logger.Fatal(" > MyCart navigation [FAILED]");
                 _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
                 BaseDriverTest.TakeScreenshot("screenshot");
-            }
+            }               
         }
 
         /// <summary>
@@ -262,9 +264,9 @@ namespace DocumentCentreTests.Pages
                 // click OK on Information dialog
                 Thread.Sleep(500);
                 HelperMethods.FindElement(driver, "xpath", Constants.XPATH_ORDER_OK).Click();
-                this.AlertSuccess = HelperMethods.CheckAlert(driver);
+                //this.AlertSuccess = HelperMethods.CheckAlert(driver);
                 // click Finish on next dialog
-                Thread.Sleep(2500);
+                Thread.Sleep(4000);
                 HelperMethods.FindElement(driver, "xpath", Constants.XPATH_INFO_FINISH).Click();
                 OrderComplete = true;
                 return new MyCartPage(driver, "order_complete");

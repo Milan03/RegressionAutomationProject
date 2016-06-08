@@ -45,7 +45,8 @@ namespace DocumentCentreTests.Pages
                 _logger.Fatal(" > ViewOrders navigation [FAILED]");
                 _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
                 BaseDriverTest.TakeScreenshot("screenshot");
-            }
+            } else
+                _logger.Info(" > View Orders page reached!");
         }
 
         /// <summary>

@@ -34,7 +34,8 @@ namespace DocumentCentreTests.Pages
                 _logger.Fatal(" > Member Homepage navigation [FAILED]");
                 _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
                 BaseDriverTest.TakeScreenshot("screenshot");
-            }
+            } else
+                _logger.Info(" > Member Homepage reached!");
 
             _logger.Info(" > Login successful");
             this.OrdersDropdown = HelperMethods.FindElement(driver, "linktext", "My Orders");
@@ -80,7 +81,6 @@ namespace DocumentCentreTests.Pages
                 _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
                 BaseDriverTest.TakeScreenshot("screenshot");
             }
-            _logger.Info(" > Catalogues Page reached.");
             return new CataloguesPage(driver);
         }
     }
