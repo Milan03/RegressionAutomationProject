@@ -14,8 +14,7 @@ namespace DocumentCentreTests.Pages
     public class MyCartPage
     {
         private static Logger _logger = LogManager.GetCurrentClassLogger();
-
-        private IWebDriver Driver;
+        private IWebDriver driver;
 
         internal IList<CartItem> _cartItems;
         internal IList<IWebElement> _itemDeleteButtons;
@@ -62,7 +61,7 @@ namespace DocumentCentreTests.Pages
         {
             #region Assigning Accessors
             bool dontCheck = false;
-            this.Driver = driver;
+            this.driver = driver;
             this._cartItems = new List<CartItem>();
             this.ItemDeleted = false;
             this.ReportsDropdown = HelperMethods.FindElement(driver, "xpath", Constants.XPATH_REPORTS_LOCATOR);
@@ -99,7 +98,9 @@ namespace DocumentCentreTests.Pages
 
             if (!driver.Url.Contains("MyOrder") && !dontCheck)
             {
-                _logger.Fatal(" > ERROR: Member's Cart page not found.");
+                _logger.Fatal(" > MyCart navigation [FAILED]");
+                _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
+                BaseDriverTest.TakeScreenshot("screenshot");
             }
         }
 
@@ -175,10 +176,10 @@ namespace DocumentCentreTests.Pages
 
                 // click OK on Information dialog
                 Thread.Sleep(1000);
-                Driver.FindElement(By.XPath(Constants.XPATH_DEL_ITEM_OK)).Click();
+                driver.FindElement(By.XPath(Constants.XPATH_DEL_ITEM_OK)).Click();
 
                 // check alert for confirmation of delete
-                this.ItemDeleted = HelperMethods.CheckAlert(Driver);
+                this.ItemDeleted = HelperMethods.CheckAlert(driver);
                 return this;
             }
             else
@@ -191,9 +192,9 @@ namespace DocumentCentreTests.Pages
 
         public void LoadReportsOptions()
         {
-            this.ExportAsExcelOption = HelperMethods.FindElement(Driver, "id", "excelExportOrderButton");
-            this.OrderReportOption = HelperMethods.FindElement(Driver, "id", "orderReportButton");
-            this.OrderSummaryOption = HelperMethods.FindElement(Driver, "id", "orderSummaryButton");
+            this.ExportAsExcelOption = HelperMethods.FindElement(driver, "id", "excelExportOrderButton");
+            this.OrderReportOption = HelperMethods.FindElement(driver, "id", "orderReportButton");
+            this.OrderSummaryOption = HelperMethods.FindElement(driver, "id", "orderSummaryButton");
         }
 
         public MyCartPage OrderExcelExport()
@@ -231,9 +232,9 @@ namespace DocumentCentreTests.Pages
 
             // click OK on Information dialog
             Thread.Sleep(500);
-            Driver.FindElement(By.XPath(Constants.XPATH_INFO_OK)).Click();
-            this.AlertSuccess = HelperMethods.CheckAlert(Driver);
-            return new ViewOrdersPage(Driver);
+            driver.FindElement(By.XPath(Constants.XPATH_INFO_OK)).Click();
+            this.AlertSuccess = HelperMethods.CheckAlert(driver);
+            return new ViewOrdersPage(driver);
         }
 
         public MyCartPage SaveDraftOrder()
@@ -243,13 +244,13 @@ namespace DocumentCentreTests.Pages
             // attempt to save
             SaveDraftButton.Click();
             Thread.Sleep(300);
-            this.AlertSuccess = HelperMethods.CheckAlert(Driver);
+            this.AlertSuccess = HelperMethods.CheckAlert(driver);
             if (AlertSuccess.Equals(Constants.MISSING_INFO_MSG)) // if po missing
             {
                 // enter a po and attempt to save again
                 EnterRandomPONumber(7);
                 SaveDraftButton.Click();
-                this.AlertSuccess = HelperMethods.CheckAlert(Driver);
+                this.AlertSuccess = HelperMethods.CheckAlert(driver);
             }
             return this;
         }
@@ -258,16 +259,16 @@ namespace DocumentCentreTests.Pages
         {
             this.AlertSuccess = false;
             CloseOrderButton.Click();
-            if (HelperMethods.IsElementPresent(Driver, By.ClassName("modal-content")))
+            if (HelperMethods.IsElementPresent(driver, By.ClassName("modal-content")))
             {
                 // click OK on Information dialog
                 Thread.Sleep(500);
-                Driver.FindElement(By.XPath(Constants.XPATH_INFO_OK)).Click();
-                this.AlertSuccess = HelperMethods.CheckAlert(Driver);
+                driver.FindElement(By.XPath(Constants.XPATH_INFO_OK)).Click();
+                this.AlertSuccess = HelperMethods.CheckAlert(driver);
                 // click Finish on next dialog
                 Thread.Sleep(500);
-                HelperMethods.FindElement(Driver, "xpath", Constants.XPATH_INFO_FINISH).Click();
-                return new MyCartPage(Driver, "order_complete");
+                HelperMethods.FindElement(driver, "xpath", Constants.XPATH_INFO_FINISH).Click();
+                return new MyCartPage(driver, "order_complete");
             }
             else
             {

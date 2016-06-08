@@ -64,6 +64,9 @@ namespace DocumentCentreTests
             }
         }
 
+        /// <summary>
+        /// Method to setup logging on first load of driver; is only run once
+        /// </summary>
         internal static void LoggingSetup()
         {
             lock (_locker)

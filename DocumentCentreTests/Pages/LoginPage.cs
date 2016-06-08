@@ -12,8 +12,8 @@ namespace DocumentCentreTests.Pages
     public class LoginPage
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
+        private IWebDriver driver;
 
-        private IWebDriver Driver;
         private IWebElement UsernameLocator;
         private IWebElement PasswordLocator;
         private IWebElement LoginButtonLocator;
@@ -27,7 +27,7 @@ namespace DocumentCentreTests.Pages
         /// <param name="driver">Main interface for testing, represents idealised web browser</param>
         public LoginPage(IWebDriver driver, string type)
         {
-            this.Driver = driver;
+            this.driver = driver;
             
             this.LoginPageType = type;
             this.LoginSuccess = false;
@@ -79,7 +79,7 @@ namespace DocumentCentreTests.Pages
             if (LoginPageType.Equals("member"))
             {
                 this.LoginSuccess = true;
-                return new MemberHomePage(Driver);
+                return new MemberHomePage(driver);
             }
             else
                 return null;      
@@ -95,7 +95,7 @@ namespace DocumentCentreTests.Pages
             UsernameLocator.Clear();
             PasswordLocator.Clear();
             LoginButtonLocator.Click();
-            return new LoginPage(Driver, LoginPageType);
+            return new LoginPage(driver, LoginPageType);
         }
 
         /// <summary>

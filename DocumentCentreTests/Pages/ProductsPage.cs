@@ -64,7 +64,9 @@ namespace DocumentCentreTests.Pages
 
             if (!driver.Url.Contains("Products"))
             {
-                _logger.Fatal(" > ERROR: Member's Products page not found.");
+                _logger.Fatal(" > Catalogue product page navigation [FAILED]");
+                _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
+                BaseDriverTest.TakeScreenshot("screenshot");
             }
         }
 
@@ -85,40 +87,47 @@ namespace DocumentCentreTests.Pages
         private void LoadProductRows()
         {
             _logger.Info(" > Attempting to load catalogue products...");
-
-            this._productVariants = ProductsTable.FindElements(By.CssSelector(Constants.ALL_PROD_VARIANTS));
-            this._productQtyUp = ProductsTable.FindElements(By.XPath(Constants.ROW_QTY_UP_XPATH));
-            this._productQtyDown = ProductsTable.FindElements(By.XPath(Constants.ROW_QTY_DOWN_XPATH));
-
-            // apply variant information
-            for (int i = 0; i < _productVariants.Count; ++i)
+            try
             {
-                string prodInfo = "start" + _productVariants[i].GetAttribute("title") + "end";
-                string varInfo = _productVariants[i].Text + "end";
-                Product newProd = new Product();
-                newProd.ProductNumber = HelperMethods.GetBetween(prodInfo, "Product #: ", " | ");
-                newProd.UPC = HelperMethods.GetBetween(prodInfo, "UPC: ", "end");
-                newProd.Colour = HelperMethods.GetBetween(varInfo, "Color: ", "\r\n");
-                newProd.Size = HelperMethods.GetBetween(varInfo, "Size: ", "\r\n");
-                newProd.Price = HelperMethods.GetBetween(varInfo, "$ ", "end");
-                newProd.QtyUp = _productQtyUp[i];
-                newProd.QtyDown = _productQtyDown[i];
-                _products.Add(newProd);
-            }
+                this._productVariants = ProductsTable.FindElements(By.CssSelector(Constants.ALL_PROD_VARIANTS));
+                this._productQtyUp = ProductsTable.FindElements(By.XPath(Constants.ROW_QTY_UP_XPATH));
+                this._productQtyDown = ProductsTable.FindElements(By.XPath(Constants.ROW_QTY_DOWN_XPATH));
 
-            this._productRows = ProductsTable.FindElements(By.XPath("//div[contains(@class,'product-row-wrapper')]"));
-            this._productUpdateBtns = ProductsTable.FindElements(By.XPath("//button[contains(@class, 'btn-update-order')]"));
-            int startVal = 0;
-
-            // apply update buttons
-            for (int i = 0; i < _productRows.Count; ++i)
-            {
-                int btnCount = _productRows[i].Text.Count(f => f == '$');
-                for (int x = startVal; x < startVal + btnCount; ++x)
+                // apply variant information
+                for (int i = 0; i < _productVariants.Count; ++i)
                 {
-                    _products[x].UpdateButton = _productUpdateBtns[i];
+                    string prodInfo = "start" + _productVariants[i].GetAttribute("title") + "end";
+                    string varInfo = _productVariants[i].Text + "end";
+                    Product newProd = new Product();
+                    newProd.ProductNumber = HelperMethods.GetBetween(prodInfo, "Product #: ", " | ");
+                    newProd.UPC = HelperMethods.GetBetween(prodInfo, "UPC: ", "end");
+                    newProd.Colour = HelperMethods.GetBetween(varInfo, "Color: ", "\r\n");
+                    newProd.Size = HelperMethods.GetBetween(varInfo, "Size: ", "\r\n");
+                    newProd.Price = HelperMethods.GetBetween(varInfo, "$ ", "end");
+                    newProd.QtyUp = _productQtyUp[i];
+                    newProd.QtyDown = _productQtyDown[i];
+                    _products.Add(newProd);
                 }
-                startVal += btnCount;
+
+                this._productRows = ProductsTable.FindElements(By.XPath("//div[contains(@class,'product-row-wrapper')]"));
+                this._productUpdateBtns = ProductsTable.FindElements(By.XPath("//button[contains(@class, 'btn-update-order')]"));
+                int startVal = 0;
+
+                // apply update buttons
+                for (int i = 0; i < _productRows.Count; ++i)
+                {
+                    int btnCount = _productRows[i].Text.Count(f => f == '$');
+                    for (int x = startVal; x < startVal + btnCount; ++x)
+                    {
+                        _products[x].UpdateButton = _productUpdateBtns[i];
+                    }
+                    startVal += btnCount;
+                }
+            } catch (Exception)
+            {
+                _logger.Fatal(" > Loading catalogue products [FAILED]");
+                _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
+                BaseDriverTest.TakeScreenshot("screenshot");
             }
         }
 
@@ -131,19 +140,28 @@ namespace DocumentCentreTests.Pages
         {
             _logger.Info(" > Searching for product: " + prodNum);
             Product currentProd = new Product();
-            for (int i = 0; i < _products.Count; ++i)
+            try
             {
-                if (_products[i].ProductNumber.Equals(prodNum))
+                for (int i = 0; i < _products.Count; ++i)
                 {
-                    currentProd.ProductNumber = _products[i].ProductNumber;
-                    currentProd.UPC = _products[i].UPC;
-                    currentProd.Colour = _products[i].Colour;
-                    currentProd.Size = _products[i].Size;
-                    currentProd.Price = _products[i].Price;
-                    currentProd.QtyUp = _products[i].QtyUp;
-                    currentProd.QtyDown = _products[i].QtyDown;
-                    currentProd.UpdateButton = _products[i].UpdateButton;
+                    if (_products[i].ProductNumber.Equals(prodNum))
+                    {
+                        currentProd.ProductNumber = _products[i].ProductNumber;
+                        currentProd.UPC = _products[i].UPC;
+                        currentProd.Colour = _products[i].Colour;
+                        currentProd.Size = _products[i].Size;
+                        currentProd.Price = _products[i].Price;
+                        currentProd.QtyUp = _products[i].QtyUp;
+                        currentProd.QtyDown = _products[i].QtyDown;
+                        currentProd.UpdateButton = _products[i].UpdateButton;
+                    }
                 }
+            }
+            catch (Exception)
+            {
+                _logger.Fatal(" > Loading catalogue products [FAILED]");
+                _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
+                BaseDriverTest.TakeScreenshot("screenshot");
             }
             return currentProd;
         }

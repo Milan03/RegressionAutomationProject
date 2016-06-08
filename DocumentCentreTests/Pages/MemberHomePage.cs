@@ -13,7 +13,8 @@ namespace DocumentCentreTests.Pages
     /// <summary>class representing Doc Centre Member Portal</summary>
     public class MemberHomePage : HomePage
     {
-        private IWebDriver Driver;
+        private IWebDriver driver;
+
         private IWebElement OrdersDropdown;
 
         /// <summary>
@@ -22,7 +23,7 @@ namespace DocumentCentreTests.Pages
         /// <param name="driver">Main interface for testing, represents idealised web browser</param>
         public MemberHomePage(IWebDriver driver)
         {
-            this.Driver = driver;
+            this.driver = driver;
             //PageFactory.InitElements(driver, this);
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(1));
             IWebElement element =
@@ -30,7 +31,9 @@ namespace DocumentCentreTests.Pages
             // check if on correct page
             if (!HelperMethods.FindElement(driver, "id", "userActionsButton").Displayed)
             {
-                throw new NoSuchWindowException("Member homepage not found");
+                _logger.Fatal(" > Member Homepage navigation [FAILED]");
+                _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
+                BaseDriverTest.TakeScreenshot("screenshot");
             }
 
             _logger.Info(" > Login successful");
@@ -48,16 +51,18 @@ namespace DocumentCentreTests.Pages
             // dropdown interaction
             OrdersDropdown.Click();
             Thread.Sleep(500);
-            HelperMethods.FindElement(Driver, "linktext", linktext).Click();
+            HelperMethods.FindElement(driver, "linktext", linktext).Click();
             
             // check if on correct page
-            if (!"My Orders".Equals(Driver.Title))
+            if (!"My Orders".Equals(driver.Title))
             {
-                throw new NoSuchWindowException("View Orders page not found");
+                _logger.Fatal(" > View Orders page navigation [FAILED]");
+                _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
+                BaseDriverTest.TakeScreenshot("screenshot");
             }
 
             _logger.Info(" > View Orders page reached");
-            return new ViewOrdersPage(Driver);
+            return new ViewOrdersPage(driver);
         }
 
         public override CataloguesPage NavigateToCatalogues()
@@ -66,15 +71,17 @@ namespace DocumentCentreTests.Pages
 
             OrdersDropdown.Click();
             Thread.Sleep(500);
-            HelperMethods.FindElement(Driver, "linktext", "Order from Catalog").Click();
+            HelperMethods.FindElement(driver, "linktext", "Order from Catalog").Click();
 
             // check if on correct page
-            if (!Constants.CAT_PAGE_TITLE.Equals(Driver.Title))
+            if (!Constants.CAT_PAGE_TITLE.Equals(driver.Title))
             {
-                throw new NoSuchWindowException("View Orders page not found");
+                _logger.Fatal(" > Catalogue navigation [FAILED]");
+                _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
+                BaseDriverTest.TakeScreenshot("screenshot");
             }
             _logger.Info(" > Catalogues Page reached.");
-            return new CataloguesPage(Driver);
+            return new CataloguesPage(driver);
         }
     }
 }

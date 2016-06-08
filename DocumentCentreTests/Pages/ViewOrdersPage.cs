@@ -12,8 +12,8 @@ namespace DocumentCentreTests.Pages
     public class ViewOrdersPage
     {
         private static Logger _logger = LogManager.GetCurrentClassLogger();
+        private IWebDriver driver;
 
-        private IWebDriver Driver;
         private IWebElement OrderTypeDropdown;
         private IWebElement POInputTextbox;
         private IWebElement SearchOrdersButton;
@@ -30,10 +30,10 @@ namespace DocumentCentreTests.Pages
         public ViewOrdersPage(IWebDriver driver)
         {
             _logger.Info(" > View Orders Page is being constructed...");
-            this.Driver = driver;
-            this.OrderTypeDropdown = HelperMethods.FindElement(Driver, "classname", "k-widget");
-            this.POInputTextbox = HelperMethods.FindElement(Driver, "id", "poNumber");
-            this.SearchOrdersButton = HelperMethods.FindElement(Driver, "id", "searchOrdersButton");
+            this.driver = driver;
+            this.OrderTypeDropdown = HelperMethods.FindElement(this.driver, "classname", "k-widget");
+            this.POInputTextbox = HelperMethods.FindElement(this.driver, "id", "poNumber");
+            this.SearchOrdersButton = HelperMethods.FindElement(this.driver, "id", "searchOrdersButton");
             this.OrderType = "All";
 
             // get first table element
@@ -42,7 +42,9 @@ namespace DocumentCentreTests.Pages
             // check if on correct page
             if (!"My Orders".Equals(driver.Title))
             {
-                _logger.Fatal(" > ERROR: Member's View Orders page could not load.");
+                _logger.Fatal(" > ViewOrders navigation [FAILED]");
+                _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
+                BaseDriverTest.TakeScreenshot("screenshot");
             }
         }
 
@@ -53,14 +55,14 @@ namespace DocumentCentreTests.Pages
         public void CheckFirstRow()
         {
             Thread.Sleep(800);
-            if (HelperMethods.IsElementPresent(Driver, By.XPath(Constants.XPATH_PO_LOCATOR)))
+            if (HelperMethods.IsElementPresent(driver, By.XPath(Constants.XPATH_PO_LOCATOR)))
             {
-                this.FirstTableElem = Driver.FindElement(By.XPath(Constants.XPATH_PO_LOCATOR));
+                this.FirstTableElem = driver.FindElement(By.XPath(Constants.XPATH_PO_LOCATOR));
                 if (OrderType.Equals("Draft") || OrderType.Equals("Pending Approval"))
-                    this.DeleteOrderLocator = Driver.FindElement(By.XPath(Constants.XPATH_DEL_ORDER));
+                    this.DeleteOrderLocator = driver.FindElement(By.XPath(Constants.XPATH_DEL_ORDER));
             }
             else // no table elements found, set to message
-                this.FirstTableElem = Driver.FindElement(By.XPath("id('ordersGrid')/div[2]/div[2]"));    
+                this.FirstTableElem = driver.FindElement(By.XPath("id('ordersGrid')/div[2]/div[2]"));    
         }
 
         /// <summary>
@@ -79,19 +81,19 @@ namespace DocumentCentreTests.Pages
                 switch (type)
                 {
                     case "Draft":
-                        Driver.FindElement(By.XPath("id('orderStatus_listbox')/li[2]")).Click();
+                        driver.FindElement(By.XPath("id('orderStatus_listbox')/li[2]")).Click();
                         break;
                     case "Pending":
-                        Driver.FindElement(By.XPath("id('orderStatus_listbox')/li[3]")).Click();
+                        driver.FindElement(By.XPath("id('orderStatus_listbox')/li[3]")).Click();
                         break;
                     case "Sent":
-                        Driver.FindElement(By.XPath("id('orderStatus_listbox')/li[4]")).Click();
+                        driver.FindElement(By.XPath("id('orderStatus_listbox')/li[4]")).Click();
                         break;
                     case "Processing":
-                        Driver.FindElement(By.XPath("id('orderStatus_listbox')/li[5]")).Click();
+                        driver.FindElement(By.XPath("id('orderStatus_listbox')/li[5]")).Click();
                         break;
                     case "Delivered":
-                        Driver.FindElement(By.XPath("id('orderStatus_listbox')/li[6]")).Click();
+                        driver.FindElement(By.XPath("id('orderStatus_listbox')/li[6]")).Click();
                         break;
                     default:
                         throw new Exception("ViewOrdersPage: No category choosen.");
@@ -100,7 +102,9 @@ namespace DocumentCentreTests.Pages
             }
             catch (ElementNotVisibleException)
             {
-                _logger.Fatal(" > Choosing order type: " + type +" [FAILED]");
+                _logger.Fatal(" > Choosing Order Type [FAILED]");
+                _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
+                BaseDriverTest.TakeScreenshot("screenshot");
             }
             return this;
         }
@@ -142,8 +146,8 @@ namespace DocumentCentreTests.Pages
             
             // click OK on Information dialog
             Thread.Sleep(500);
-            Driver.FindElement(By.XPath(Constants.XPATH_INFO_OK)).Click();
-            this.AlertSuccess = HelperMethods.CheckAlert(Driver);
+            driver.FindElement(By.XPath(Constants.XPATH_INFO_OK)).Click();
+            this.AlertSuccess = HelperMethods.CheckAlert(driver);
             return this;
         }
     }

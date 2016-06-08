@@ -12,8 +12,8 @@ namespace DocumentCentreTests.Pages
     public class CataloguesPage
     {
         private static Logger _logger = LogManager.GetCurrentClassLogger();
+        private IWebDriver driver;
 
-        private IWebDriver Driver;
         private IWebElement SearchInputTextbox;
         private IWebElement SearchButton;
 
@@ -23,13 +23,15 @@ namespace DocumentCentreTests.Pages
         /// <param name="driver">Main interface for testing</param>
         public CataloguesPage(IWebDriver driver)
         {
-            this.Driver = driver;
+            this.driver = driver;
             this.SearchInputTextbox = HelperMethods.FindElement(driver, "id", "searchTerm");
             this.SearchButton = HelperMethods.FindElement(driver, "id", "catalogSearchButton");
 
             if (!Constants.CAT_PAGE_TITLE.Equals(driver.Title))
             {
-                _logger.Fatal(" > Member's Catalogue page not found.");
+                _logger.Fatal(" > Member catalogue page navigation [FAILED]");
+                _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
+                BaseDriverTest.TakeScreenshot("screenshot");
                 throw new NoSuchWindowException("Member's Catalogue page not found.");
             }
         }
@@ -65,9 +67,9 @@ namespace DocumentCentreTests.Pages
         /// <returns>new Product page object related to catalogue choosen</returns>
         public ProductsPage ChooseCatalogue(string name)
         {
-            IWebElement catalogueTitle = HelperMethods.FindElement(Driver, "xpath", "//h1[contains(@class, 'catalog-tile-text') and contains (text(), '"+name+"')]");
+            IWebElement catalogueTitle = HelperMethods.FindElement(driver, "xpath", "//h1[contains(@class, 'catalog-tile-text') and contains (text(), '"+name+"')]");
             catalogueTitle.Click();
-            return new ProductsPage(Driver);
+            return new ProductsPage(driver);
         }
     }
 }
