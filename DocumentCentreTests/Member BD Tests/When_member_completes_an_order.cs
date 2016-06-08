@@ -20,7 +20,6 @@ namespace DocumentCentreTests.Member_BD_Tests
         static CataloguesPage _catPage;
         static ProductsPage _prodPage;
         static MyCartPage _cartPage;
-        static ViewOrdersPage _viewOrdersPage;
 
         Establish context = () =>
         {

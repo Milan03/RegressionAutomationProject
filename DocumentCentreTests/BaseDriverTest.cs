@@ -20,9 +20,6 @@ namespace DocumentCentreTests
     {
         protected static NLog.Logger _logger = LogManager.GetCurrentClassLogger();
         protected static IWebDriver _driver;
-        private static readonly object _locker = new object();
-        private static bool _intialized = false;
-        private static string logActive;
 
         /// <summary>
         /// Spins up an instance of FireFox webdriver which controls the browser using a
