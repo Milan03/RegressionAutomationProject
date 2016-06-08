@@ -34,6 +34,7 @@ namespace DocumentCentreTests.Pages
         private IWebElement ShipToDropdown;
         private IWebElement PONumberTextbox;
         private IWebElement POBuyerTextbox;
+        //private IWebElement AccountNumber;
         private IWebElement UnitsTextbox;
         private IWebElement AmountTextbox;
         private IWebElement ShipOnTextbox;
@@ -85,12 +86,13 @@ namespace DocumentCentreTests.Pages
             this.UnitsTextbox = HelperMethods.FindElement(driver, "id", "totalQuantityBox");
             this.AmountTextbox = HelperMethods.FindElement(driver, "id", "totalAmountBox");
             this.ShipOnTextbox = HelperMethods.FindElement(driver, "id", "requestedShipDate");
-            this.ShipOnButton = HelperMethods.FindElement(driver, "xpath", Constants.XPATH_SHIPON_CAL);
-            this.CancelAfterTextbox = HelperMethods.FindElement(driver, "id", "cancelAfterDate");
-            this.CancelAfterButton = HelperMethods.FindElement(driver, "xpath", Constants.XPATH_CANCELAFTER_CAL);
+            //this.ShipOnButton = HelperMethods.FindElement(driver, "xpath", Constants.XPATH_SHIPON_CAL);
+            this.CancelAfterTextbox = HelperMethods.FindElement(driver, "id", "cancelDate");
+            //this.CancelAfterButton = HelperMethods.FindElement(driver, "xpath", Constants.XPATH_CANCELAFTER_CAL);
             this.ContactNameTextbox = HelperMethods.FindElement(driver, "id", "contactName");
             this.DeliveryAddressDisplay = HelperMethods.FindElement(driver, "id", "addresseeName");
             this.DelieveryAddressButton = HelperMethods.FindElement(driver, "id", "changeAddressButton");
+            //this.AccountNumber = HelperMethods.FindElement(driver, "id", "accountNumber");
             this.FreightTermsTextbox = HelperMethods.FindElement(driver, "id", "freightTerms");
             this.PaymentTermsTextbox = HelperMethods.FindElement(driver, "id", "paymentTerms");
             this.NotesTextbox = HelperMethods.FindElement(driver, "id", "notes");
@@ -119,18 +121,26 @@ namespace DocumentCentreTests.Pages
             this._itemPrices = CartTable.FindElements(By.XPath(Constants.ITEM_PRICE_XP));
             this._itemQtys = CartTable.FindElements(By.XPath(Constants.ITEM_QTY_XP));
             this._itemTotals = CartTable.FindElements(By.XPath(Constants.ITEM_TOTAL_XP));
-
-            // make cart item objects to work with
-            for (int i = 0; i < _itemTitles.Count - 1; ++i)
+            try
             {
-                CartItem item = new CartItem();
-                item.DeleteButton = _itemDeleteButtons[i];
-                item.ProductTitle = _itemTitles[i];
-                item.Description = _itemDescriptions[i];
-                item.Price = _itemPrices[i];
-                item.Quantity = _itemQtys[i];
-                item.ItemTotalAmt = _itemTotals[i];
-                _cartItems.Add(item);
+                // make cart item objects to work with
+                for (int i = 0; i < _itemTitles.Count - 1; ++i)
+                {
+                    CartItem item = new CartItem();
+                    item.DeleteButton = _itemDeleteButtons[i];
+                    item.ProductTitle = _itemTitles[i];
+                    item.Description = _itemDescriptions[i];
+                    item.Price = _itemPrices[i];
+                    item.Quantity = _itemQtys[i];
+                    item.ItemTotalAmt = _itemTotals[i];
+                    _cartItems.Add(item);
+                }
+            }
+            catch (Exception)
+            {
+                _logger.Fatal(" > Loading MyCart items [FAILED]");
+                _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
+                BaseDriverTest.TakeScreenshot("screenshot");
             }
         }
 
@@ -143,17 +153,26 @@ namespace DocumentCentreTests.Pages
         {
             _logger.Info(" > Attempting to find cart item: " + itemDes);
             CartItem currentItem = new CartItem();
-            for (int i = 0; i < _cartItems.Count; ++i)
+            try
             {
-                if (_itemDescriptions[i].Text.Equals(itemDes))
+                for (int i = 0; i < _cartItems.Count; ++i)
                 {
-                    currentItem.DeleteButton = _itemDeleteButtons[i];
-                    currentItem.ProductTitle = _itemTitles[i];
-                    currentItem.Description = _itemDescriptions[i];
-                    currentItem.Price = _itemPrices[i];
-                    currentItem.Quantity = _itemQtys[i];
-                    currentItem.ItemTotalAmt = _itemTotals[i];
+                    if (_itemDescriptions[i].Text.Equals(itemDes))
+                    {
+                        currentItem.DeleteButton = _itemDeleteButtons[i];
+                        currentItem.ProductTitle = _itemTitles[i];
+                        currentItem.Description = _itemDescriptions[i];
+                        currentItem.Price = _itemPrices[i];
+                        currentItem.Quantity = _itemQtys[i];
+                        currentItem.ItemTotalAmt = _itemTotals[i];
+                        _logger.Info(" > Cart item found: " + itemDes);
+                    }
                 }
+            } catch (Exception)
+            {
+                _logger.Fatal(" > Attempting to find MyCart item [FAILED]");
+                _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
+                BaseDriverTest.TakeScreenshot("screenshot");
             }
             return currentItem;
         }
@@ -169,25 +188,34 @@ namespace DocumentCentreTests.Pages
             CartItem item;
             // find item 
             LoadItemsInCart();
-            if (_cartItems.Any())
+            try
             {
-                item = LoadCartItem(_cartItems.First().Description.Text);
-                item.DeleteButton.Click();
+                _logger.Info(" > Attempting to delete a cart item...");
+                if (_cartItems.Any())
+                {
+                    item = LoadCartItem(_cartItems.First().Description.Text);
+                    item.DeleteButton.Click();
 
-                // click OK on Information dialog
-                Thread.Sleep(1000);
-                driver.FindElement(By.XPath(Constants.XPATH_DEL_ITEM_OK)).Click();
+                    // click OK on Information dialog
+                    Thread.Sleep(1000);
+                    driver.FindElement(By.XPath(Constants.XPATH_DEL_ITEM_OK)).Click();
 
-                // check alert for confirmation of delete
-                this.ItemDeleted = HelperMethods.CheckAlert(driver);
-                return this;
-            }
-            else
+                    // check alert for confirmation of delete
+                    this.ItemDeleted = HelperMethods.CheckAlert(driver);
+                    _logger.Info(" > Deleted a cart item!");
+                }
+                else
+                {
+                    this.ItemDeleted = false;
+                    _logger.Error(" > No items in cart!");
+                }
+            } catch (Exception)
             {
-                this.ItemDeleted = false;
-                _logger.Error(" > No items in cart!");
-                return this;
+                _logger.Fatal(" > Removing item from MyCart [FAILED]");
+                _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
+                BaseDriverTest.TakeScreenshot("screenshot");
             }
+            return this;
         }
 
         public void LoadReportsOptions()
@@ -272,8 +300,10 @@ namespace DocumentCentreTests.Pages
             }
             else
             {
-                _logger.Error(" > Attempt to complete order [FAILED]");
-                throw new ElementNotVisibleException("Could not detect Information modal.");
+                _logger.Fatal(" > Completing order [FAILED]");
+                _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
+                BaseDriverTest.TakeScreenshot("screenshot");
+                return this;
             }
         }
 
