@@ -87,12 +87,12 @@ namespace DocumentCentreTests.Pages
         private void LoadProductRows()
         {
             _logger.Info(" > Attempting to load catalogue products...");
+
+            this._productVariants = ProductsTable.FindElements(By.CssSelector(Constants.ALL_PROD_VARIANTS));
+            this._productQtyUp = ProductsTable.FindElements(By.XPath(Constants.ROW_QTY_UP_XPATH));
+            this._productQtyDown = ProductsTable.FindElements(By.XPath(Constants.ROW_QTY_DOWN_XPATH));
             try
             {
-                this._productVariants = ProductsTable.FindElements(By.CssSelector(Constants.ALL_PROD_VARIANTS));
-                this._productQtyUp = ProductsTable.FindElements(By.XPath(Constants.ROW_QTY_UP_XPATH));
-                this._productQtyDown = ProductsTable.FindElements(By.XPath(Constants.ROW_QTY_DOWN_XPATH));
-
                 // apply variant information
                 for (int i = 0; i < _productVariants.Count; ++i)
                 {
@@ -108,11 +108,19 @@ namespace DocumentCentreTests.Pages
                     newProd.QtyDown = _productQtyDown[i];
                     _products.Add(newProd);
                 }
+            }
+            catch (Exception)
+            {
+                _logger.Fatal(" > Loading catalogue products [FAILED]");
+                _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
+                BaseDriverTest.TakeScreenshot("screenshot");
+            }
 
-                this._productRows = ProductsTable.FindElements(By.XPath("//div[contains(@class,'product-row-wrapper')]"));
-                this._productUpdateBtns = ProductsTable.FindElements(By.XPath("//button[contains(@class, 'btn-update-order')]"));
-                int startVal = 0;
-
+            this._productRows = ProductsTable.FindElements(By.XPath("//div[contains(@class,'product-row-wrapper')]"));
+            this._productUpdateBtns = ProductsTable.FindElements(By.XPath("//button[contains(@class, 'btn-update-order')]"));
+            int startVal = 0;
+            try
+            {
                 // apply update buttons
                 for (int i = 0; i < _productRows.Count; ++i)
                 {
@@ -184,6 +192,7 @@ namespace DocumentCentreTests.Pages
             _logger.Info(" > Setting product quantity...");
             product.SetQuantity(qty);
             _logger.Info(" > Adding item to cart...");
+            Thread.Sleep(1000);
             product.UpdateButton.Click();
             this.ItemAdded = HelperMethods.CheckAlert(driver);
             return this;

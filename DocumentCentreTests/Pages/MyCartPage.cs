@@ -56,12 +56,13 @@ namespace DocumentCentreTests.Pages
         #endregion
 
         internal bool ItemDeleted;
+        internal bool OrderComplete;
         internal bool AlertSuccess;
 
         public MyCartPage(IWebDriver driver, string type)
         {
             #region Assigning Accessors
-            bool dontCheck = false;
+            this.OrderComplete = false;
             this.driver = driver;
             this._cartItems = new List<CartItem>();
             this.ItemDeleted = false;
@@ -69,15 +70,16 @@ namespace DocumentCentreTests.Pages
 
             if (type.Equals("new_order"))
             {
-                dontCheck = false;
+                OrderComplete = false;
                 this.DeleteOrderButton = HelperMethods.FindElement(driver, "id", "deleteOrderButton");
                 this.SaveDraftButton = HelperMethods.FindElement(driver, "id", "saveOrderButton");
                 this.SendOrderButton = HelperMethods.FindElement(driver, "id", "completeOrderButton");
+                this.DelieveryAddressButton = HelperMethods.FindElement(driver, "id", "changeAddressButton");
             }
             else if (type.Equals("order_complete"))
             {
                 this.CloseOrderButton = HelperMethods.FindElement(driver, "id", "closeOrderButton");
-                dontCheck = true;
+                OrderComplete = true;
             }
             this.CartTable = HelperMethods.FindElement(driver, "xpath", "//tbody");
             this.ShipToDropdown = HelperMethods.FindElement(driver, "classname", "k-input");
@@ -91,14 +93,13 @@ namespace DocumentCentreTests.Pages
             //this.CancelAfterButton = HelperMethods.FindElement(driver, "xpath", Constants.XPATH_CANCELAFTER_CAL);
             this.ContactNameTextbox = HelperMethods.FindElement(driver, "id", "contactName");
             this.DeliveryAddressDisplay = HelperMethods.FindElement(driver, "id", "addresseeName");
-            this.DelieveryAddressButton = HelperMethods.FindElement(driver, "id", "changeAddressButton");
             //this.AccountNumber = HelperMethods.FindElement(driver, "id", "accountNumber");
             this.FreightTermsTextbox = HelperMethods.FindElement(driver, "id", "freightTerms");
             this.PaymentTermsTextbox = HelperMethods.FindElement(driver, "id", "paymentTerms");
             this.NotesTextbox = HelperMethods.FindElement(driver, "id", "notes");
             #endregion
 
-            if (!driver.Url.Contains("MyOrder") && !dontCheck)
+            if (!driver.Url.Contains("MyOrder") && !OrderComplete)
             {
                 _logger.Fatal(" > MyCart navigation [FAILED]");
                 _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
@@ -218,37 +219,6 @@ namespace DocumentCentreTests.Pages
             return this;
         }
 
-        public void LoadReportsOptions()
-        {
-            this.ExportAsExcelOption = HelperMethods.FindElement(driver, "id", "excelExportOrderButton");
-            this.OrderReportOption = HelperMethods.FindElement(driver, "id", "orderReportButton");
-            this.OrderSummaryOption = HelperMethods.FindElement(driver, "id", "orderSummaryButton");
-        }
-
-        public MyCartPage OrderExcelExport()
-        {
-            ReportsDropdown.Click();
-            LoadReportsOptions();
-            ExportAsExcelOption.Click();
-            return this;
-        }
-
-        public MyCartPage GenerateOrderReport()
-        {
-            ReportsDropdown.Click();
-            LoadReportsOptions();
-            OrderReportOption.Click();
-            return this;
-        }
-
-        public MyCartPage GenerateSummaryReport()
-        {
-            ReportsDropdown.Click();
-            LoadReportsOptions();
-            OrderSummaryOption.Click();
-            return this;
-        }
-
         /// <summary>
         /// Simulate the deletion of an order
         /// </summary>
@@ -283,19 +253,20 @@ namespace DocumentCentreTests.Pages
             return this;
         }
 
-        public MyCartPage CompleteOrder()
+        public MyCartPage SendOrder()
         {
             this.AlertSuccess = false;
-            CloseOrderButton.Click();
+            SendOrderButton.Click();
             if (HelperMethods.IsElementPresent(driver, By.ClassName("modal-content")))
             {
                 // click OK on Information dialog
                 Thread.Sleep(500);
-                driver.FindElement(By.XPath(Constants.XPATH_INFO_OK)).Click();
+                HelperMethods.FindElement(driver, "xpath", Constants.XPATH_ORDER_OK).Click();
                 this.AlertSuccess = HelperMethods.CheckAlert(driver);
                 // click Finish on next dialog
-                Thread.Sleep(500);
+                Thread.Sleep(2500);
                 HelperMethods.FindElement(driver, "xpath", Constants.XPATH_INFO_FINISH).Click();
+                OrderComplete = true;
                 return new MyCartPage(driver, "order_complete");
             }
             else
@@ -305,6 +276,44 @@ namespace DocumentCentreTests.Pages
                 BaseDriverTest.TakeScreenshot("screenshot");
                 return this;
             }
+        }
+   
+        public ViewOrdersPage CompleteOrder()
+        {
+            Thread.Sleep(1000);
+            CloseOrderButton.Click();
+            return new ViewOrdersPage(driver);
+        }
+
+        public void LoadReportsOptions()
+        {
+            this.ExportAsExcelOption = HelperMethods.FindElement(driver, "id", "excelExportOrderButton");
+            this.OrderReportOption = HelperMethods.FindElement(driver, "id", "orderReportButton");
+            this.OrderSummaryOption = HelperMethods.FindElement(driver, "id", "orderSummaryButton");
+        }
+
+        public MyCartPage OrderExcelExport()
+        {
+            ReportsDropdown.Click();
+            LoadReportsOptions();
+            ExportAsExcelOption.Click();
+            return this;
+        }
+
+        public MyCartPage GenerateOrderReport()
+        {
+            ReportsDropdown.Click();
+            LoadReportsOptions();
+            OrderReportOption.Click();
+            return this;
+        }
+
+        public MyCartPage GenerateSummaryReport()
+        {
+            ReportsDropdown.Click();
+            LoadReportsOptions();
+            OrderSummaryOption.Click();
+            return this;
         }
 
         public MyCartPage EnterPONumber(string po)

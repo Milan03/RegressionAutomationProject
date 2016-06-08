@@ -55,11 +55,12 @@ namespace DocumentCentreTests.Util
         /// <summary>XPath locators
         internal const string XPATH_PO_LOCATOR = "id('ordersGrid')/div[2]/table/tbody/tr[1]/td[3]";
         internal const string XPATH_DEL_ORDER = "id('ordersGrid')/div[2]/table/tbody/tr[2]/td[1]/div/button[2]";
-        internal const string XPATH_INFO_OK = "//button[contains(.,'OK')]";
-        internal const string XPATH_INFO_PRINT = "//button[contains(text(), 'Print')]";
-        internal const string XPATH_INFO_EXPORT = "//button[contains(text(), 'Export')]";
-        internal const string XPATH_INFO_EMAIL = "//button[contains(text(), 'Email')]";
-        internal const string XPATH_INFO_FINISH = "//button[contains(text(), 'Finish')]";
+        internal const string XPATH_INFO_OK = "//button[.='OK']";
+        internal const string XPATH_ORDER_OK = "//div[contains(@class, 'modal-content')]/div[3]/div/div/button[2]";
+        internal const string XPATH_INFO_PRINT = "//button[.='Print']";
+        internal const string XPATH_INFO_EXPORT = "//button[.='Export']";
+        internal const string XPATH_INFO_EMAIL = "//button[.='Email']";
+        internal const string XPATH_INFO_FINISH = "//div[contains(@class, 'modal-content')]/div[3]/div/div/button[4]";
         internal const string XPATH_ALERT_SUCCESS = "//div[contains(@class, 'toast-success')]";
         internal const string XPATH_ALERT_FAILURE = "//div[contains(@class, 'toast-failure')]";
         internal const string XPATH_CAT_LOCATOR = "//h1[contains(@class, 'catalog-tile-text') and contains (text(), 'Milan Automation Catalogue')]";

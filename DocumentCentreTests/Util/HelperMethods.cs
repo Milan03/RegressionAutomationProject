@@ -91,7 +91,7 @@ namespace DocumentCentreTests.Util
         {
             try
             {
-                Thread.Sleep(2000);
+                Thread.Sleep(500);
                 var alert = driver.FindElement(By.XPath(Constants.XPATH_ALERT_SUCCESS));
                 if (alert != null)
                     return true;
