@@ -39,9 +39,10 @@ namespace DocumentCentreTests.Member_BD_Tests
             _prodPage.AddItemToCart("IN-MILANTEST-01", 1);
             _prodPage.AddItemToCart("IN-MILANTEST-02", 1);
             _prodPage.AddItemToCart("IN-MILANTEST-03", 1);
-            _prodPage.AddItemToCart("IN-MILANTEST-04", 1);
+            //_prodPage.AddItemToCart("IN-MILANTEST-04", 1);
             _cartPage = _prodPage.NavigateToCart();
             _cartPage.LoadItemsInCart();
+            _cartPage.VerifyItemsInCart(_prodPage._prodsInCart);
 
         };
 

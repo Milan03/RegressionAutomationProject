@@ -18,6 +18,7 @@ namespace DocumentCentreTests.Pages
         private IWebElement POInputTextbox;
         private IWebElement SearchOrdersButton;
         private IWebElement DeleteOrderLocator;
+        private IWebElement CreateEditLocator;
 
         internal IWebElement FirstTableElem { get; set;  }
         internal bool AlertSuccess { get; set; }
@@ -58,12 +59,15 @@ namespace DocumentCentreTests.Pages
             Thread.Sleep(800);
             if (HelperMethods.IsElementPresent(driver, By.XPath(Constants.XPATH_PO_LOCATOR)))
             {
-                this.FirstTableElem = driver.FindElement(By.XPath(Constants.XPATH_PO_LOCATOR));
+                FirstTableElem = driver.FindElement(By.XPath(Constants.XPATH_PO_LOCATOR));
                 if (OrderType.Equals("Draft") || OrderType.Equals("Pending Approval"))
-                    this.DeleteOrderLocator = driver.FindElement(By.XPath(Constants.XPATH_DEL_ORDER));
+                {
+                    DeleteOrderLocator = driver.FindElement(By.XPath(Constants.XPATH_DEL_ORDER));
+                    CreateEditLocator = driver.FindElement(By.XPath(Constants.XPATH_EDIT_ORDER));
+                }
             }
             else // no table elements found, set to message
-                this.FirstTableElem = driver.FindElement(By.XPath("id('ordersGrid')/div[2]/div[2]"));    
+                FirstTableElem = driver.FindElement(By.XPath("id('ordersGrid')/div[2]/div[2]"));    
         }
 
         /// <summary>
@@ -150,6 +154,23 @@ namespace DocumentCentreTests.Pages
             driver.FindElement(By.XPath(Constants.XPATH_INFO_OK)).Click();
             this.AlertSuccess = HelperMethods.CheckAlert(driver);
             return this;
+        }
+
+        public MyCartPage ReCreateOrder(string PONumber)
+        {
+            InputPurchaseOrder(PONumber);
+            InitiateSearch();
+            OrderType = "Draft";
+            CheckFirstRow();
+            if (!CreateEditLocator.Equals(null))
+            {
+                CreateEditLocator.Click();
+                _logger.Error(" > Attempting to recreate PO " + PONumber + " [SUCCESS].");
+            }
+            else
+                _logger.Error(" > Attempting to recreate PO " + PONumber + " [FAILED].");
+
+            return new MyCartPage(driver, "new_order");
         }
     }
 }

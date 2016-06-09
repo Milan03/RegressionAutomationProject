@@ -15,8 +15,7 @@ namespace DocumentCentreTests.Member_BD_Tests
     public class When_member_removes_item_from_cart : BaseDriverTest
     {
         static HomePage _homePage;
-        static CataloguesPage _catPage;
-        static ProductsPage _prodPage;
+        static ViewOrdersPage _voPage;
         static MyCartPage _cartPage;
 
         Establish context = () =>
@@ -25,17 +24,14 @@ namespace DocumentCentreTests.Member_BD_Tests
             _logger.Info("-- Member Remove Item From Cart Test Initiating --");
             LoginPage loginPage = new LoginPage(_driver, "member");
             _homePage = loginPage.LoginAs(Constants.MEM_PORTAL_USER, Constants.MEM_PORTAL_PASS);
-            _catPage = _homePage.NavigateToCatalogues();
-            _catPage.InputCatalogueName("milan");
-            _catPage.InitiateSearch();
-            _prodPage = _catPage.ChooseCatalogue("Milan Automation Catalogue");
+            _voPage = _homePage.NavigateToOrders("View Draft Orders");
+            _cartPage = _voPage.ReCreateOrder("AC-0000238");
         };
 
         Because of = () =>
         {
-            _cartPage = _prodPage.NavigateToCart();
             _cartPage.LoadItemsInCart();
-            _cartPage.RemoveItemFromCart();
+            _cartPage.RemoveItemFromCart("IN-MILANTEST-01");
         };
 
         It should_return_alert_of_sueccess = () =>

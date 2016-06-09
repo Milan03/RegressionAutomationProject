@@ -12,7 +12,7 @@ namespace DocumentCentreTests.Catalogue
     internal class CartItem
     {
         internal IWebElement DeleteButton { get; set; }
-        internal IWebElement ProductTitle { get; set; }
+        internal IWebElement ProductNumber { get; set; }
         internal IWebElement Description { get; set; }
         internal IWebElement Price { get; set; }
         internal IWebElement Quantity { get; set; }

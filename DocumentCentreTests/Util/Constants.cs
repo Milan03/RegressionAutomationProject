@@ -54,7 +54,8 @@ namespace DocumentCentreTests.Util
 
         /// <summary>XPath locators
         internal const string XPATH_PO_LOCATOR = "id('ordersGrid')/div[2]/table/tbody/tr[1]/td[3]";
-        internal const string XPATH_DEL_ORDER = "id('ordersGrid')/div[2]/table/tbody/tr[2]/td[1]/div/button[2]";
+        internal const string XPATH_DEL_ORDER = "//button[contains(@class, 'btn-delete')]";
+        internal const string XPATH_EDIT_ORDER = "//button[contains(@class, 'btn-copy')]";
         internal const string XPATH_INFO_OK = "//button[.='OK']";
         internal const string XPATH_ORDER_OK = "//div[contains(@class, 'modal-content')]/div[3]/div/div/button[2]";
         internal const string XPATH_INFO_PRINT = "//button[.='Print']";

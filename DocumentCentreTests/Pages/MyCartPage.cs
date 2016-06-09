@@ -16,7 +16,7 @@ namespace DocumentCentreTests.Pages
         private static Logger _logger = LogManager.GetCurrentClassLogger();
         private IWebDriver driver;
 
-        internal IList<CartItem> _cartLineItems;
+        internal List<CartItem> _cartLineItems;
         internal IList<IWebElement> _itemDeleteButtons;
         internal IList<IWebElement> _itemProdNums;
         internal IList<IWebElement> _itemDescriptions;
@@ -121,7 +121,7 @@ namespace DocumentCentreTests.Pages
                 {
                     CartItem item = new CartItem();
                     item.DeleteButton = _itemDeleteButtons[i];
-                    item.ProductTitle = _itemProdNums[i];
+                    item.ProductNumber = _itemProdNums[i];
                     item.Description = _itemDescriptions[i];
                     item.Price = _itemPrices[i];
                     item.Quantity = _itemQtys[i];
@@ -153,7 +153,7 @@ namespace DocumentCentreTests.Pages
                     if (_itemDescriptions[i].Text.Equals(itemDes))
                     {
                         currentItem.DeleteButton = _itemDeleteButtons[i];
-                        currentItem.ProductTitle = _itemProdNums[i];
+                        currentItem.ProductNumber = _itemProdNums[i];
                         currentItem.Description = _itemDescriptions[i];
                         currentItem.Price = _itemPrices[i];
                         currentItem.Quantity = _itemQtys[i];
@@ -172,38 +172,75 @@ namespace DocumentCentreTests.Pages
 
         internal bool VerifyItemsInCart(List<Product> prodsInCart)
         {
+            int consistencyCount = 0;
             if (!prodsInCart.Count.Equals(_cartLineItems.Count))
                 return false;
             else
             {
-                return true;
+                foreach( CartItem cartLineItem in _cartLineItems )
+                {
+                    foreach ( Product prod in prodsInCart )
+                    {
+                        if (prod.ProductNumber.Equals(cartLineItem.ProductNumber))
+                        {
+                            if(prod.Price.Equals(cartLineItem.Price) &&
+                                prod.Quantity.Equals(cartLineItem.Quantity))
+                            {
+                                double prodPrice = 0;
+                                double cartLineItemTotal = 0;
+                                Double.TryParse(prod.Price, out prodPrice);
+                                Double.TryParse(cartLineItem.ItemTotalAmt.Text, out cartLineItemTotal);
+                                double prodTotal = prodPrice * prod.Quantity;
+                                if (prodTotal.Equals(cartLineItemTotal))
+                                    consistencyCount++;
+                            }
+                        }
+                        else
+                            continue;
+                    }
+                }
+                if (consistencyCount.Equals(prodsInCart.Count))
+                    return true;
+                else
+                    return false;
             }
         }
 
         /// <summary>
         /// Simulate the deletion of an item from the cart
         /// </summary>
-        /// <param name="itemDes">How to find the item</param>
+        /// <param name="pn">Find item by product number</param>
         /// <returns>Current page object</returns>
-        public MyCartPage RemoveItemFromCart()
+        public MyCartPage RemoveItemFromCart(string pn)
         {
             Thread.Sleep(1000);
             CartItem item;
             try
             {
                 _logger.Info(" > Attempting to delete a cart item...");
+                ItemDeleted = false;
                 if (_cartLineItems.Any())
                 {
-                    item = LoadCartItem(_cartLineItems.First().Description.Text);
-                    item.DeleteButton.Click();
+                    foreach ( CartItem cItem in _cartLineItems )
+                    {
+                        if (cItem.ProductNumber.Text.Equals(pn))
+                        {
+                            item = LoadCartItem(cItem.Description.Text);
+                            item.DeleteButton.Click();
 
-                    // click OK on Information dialog
-                    Thread.Sleep(1000);
-                    driver.FindElement(By.XPath(Constants.XPATH_DEL_ITEM_OK)).Click();
+                            Thread.Sleep(1000);
+                            driver.FindElement(By.XPath(Constants.XPATH_DEL_ITEM_OK)).Click();
 
-                    // check alert for confirmation of delete
-                    this.ItemDeleted = HelperMethods.CheckAlert(driver);
-                    _logger.Info(" > Deleted a cart item!");
+                            // check alert for confirmation of delete
+                            ItemDeleted = HelperMethods.CheckAlert(driver);
+
+                            if (ItemDeleted)
+                            {
+                                _logger.Info(" > Cart item deleted! Item: " +pn);
+                                break;
+                            }
+                        }
+                    }
                 }
                 else
                 {
