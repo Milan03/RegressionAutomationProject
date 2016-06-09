@@ -34,6 +34,7 @@ namespace DocumentCentreTests.Member_BD_Tests
         Because of = () =>
         {
             _cartPage = _prodPage.NavigateToCart();
+            _cartPage.LoadItemsInCart();
             _cartPage.RemoveItemFromCart();
         };
 

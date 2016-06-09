@@ -19,6 +19,7 @@ namespace DocumentCentreTests.Pages
 
         // product data structures
         internal List<Product> _products;
+        internal List<Product> _prodsInCart;
         internal IList<IWebElement> _productVariants;
         internal IList<IWebElement> _productQtyUp;
         internal IList<IWebElement> _productQtyDown;
@@ -85,9 +86,10 @@ namespace DocumentCentreTests.Pages
         /// <summary>
         /// Loads all products on current catalogue page using row elements
         /// </summary>
-        private void LoadProductRows()
+        internal void LoadProductRows()
         {
             _logger.Info(" > Attempting to load catalogue products...");
+            Thread.Sleep(2000);
 
             this._productVariants = ProductsTable.FindElements(By.CssSelector(Constants.ALL_PROD_VARIANTS));
             this._productQtyUp = ProductsTable.FindElements(By.XPath(Constants.ROW_QTY_UP_XPATH));
@@ -167,6 +169,7 @@ namespace DocumentCentreTests.Pages
                         currentProd.QtyUp = _products[i].QtyUp;
                         currentProd.QtyDown = _products[i].QtyDown;
                         currentProd.UpdateButton = _products[i].UpdateButton;
+                        _prodsInCart.Add(currentProd);
                     }
                 }
                 _logger.Info(" > Product Found!");
@@ -192,8 +195,6 @@ namespace DocumentCentreTests.Pages
             _logger.Info(" > Attempting to add [" + qty +"] '" +prodNum +"' to cart.");
             WaitForLoad();
             Thread.Sleep(1000);
-            // find product
-            LoadProductRows();
             Product product = LoadProduct(prodNum);
             _logger.Info(" > Setting product quantity...");
             product.SetQuantity(qty);

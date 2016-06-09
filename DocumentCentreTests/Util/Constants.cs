@@ -46,7 +46,7 @@ namespace DocumentCentreTests.Util
 
         /// <summary>cart page row identifiers
         internal const string ITEM_DEL_BTN_XP = "//tbody/tr/td/div/button[3]";
-        internal const string ITEM_TITLE_XP = "//tbody/tr/td[3]";
+        internal const string ITEM_PN_XP = "//tbody/tr/td[3]";
         internal const string ITEM_DES_XP = "//tbody/tr/td[4]";
         internal const string ITEM_PRICE_XP = "//tbody/tr/td[7]";
         internal const string ITEM_QTY_XP = "//tbody/tr/td[8]";

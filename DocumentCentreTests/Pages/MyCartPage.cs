@@ -16,9 +16,9 @@ namespace DocumentCentreTests.Pages
         private static Logger _logger = LogManager.GetCurrentClassLogger();
         private IWebDriver driver;
 
-        internal IList<CartItem> _cartItems;
+        internal IList<CartItem> _cartLineItems;
         internal IList<IWebElement> _itemDeleteButtons;
-        internal IList<IWebElement> _itemTitles;
+        internal IList<IWebElement> _itemProdNums;
         internal IList<IWebElement> _itemDescriptions;
         internal IList<IWebElement> _itemPrices;
         internal IList<IWebElement> _itemQtys;
@@ -34,13 +34,8 @@ namespace DocumentCentreTests.Pages
         private IWebElement ShipToDropdown;
         private IWebElement PONumberTextbox;
         private IWebElement POBuyerTextbox;
-        //private IWebElement AccountNumber;
         private IWebElement UnitsTextbox;
         private IWebElement AmountTextbox;
-        private IWebElement ShipOnTextbox;
-        private IWebElement ShipOnButton;
-        private IWebElement CancelAfterTextbox;
-        private IWebElement CancelAfterButton;
         private IWebElement ContactNameTextbox;
         private IWebElement DeliveryAddressDisplay;
         private IWebElement DelieveryAddressButton;
@@ -64,7 +59,7 @@ namespace DocumentCentreTests.Pages
             #region Assigning Accessors
             this.OrderComplete = false;
             this.driver = driver;
-            this._cartItems = new List<CartItem>();
+            this._cartLineItems = new List<CartItem>();
             this.ItemDeleted = false;
             this.ReportsDropdown = HelperMethods.FindElement(driver, "xpath", Constants.XPATH_REPORTS_LOCATOR);
 
@@ -89,13 +84,8 @@ namespace DocumentCentreTests.Pages
             this.POBuyerTextbox = HelperMethods.FindElement(driver, "id", "originalRefNumber");
             this.UnitsTextbox = HelperMethods.FindElement(driver, "id", "totalQuantityBox");
             this.AmountTextbox = HelperMethods.FindElement(driver, "id", "totalAmountBox");
-            this.ShipOnTextbox = HelperMethods.FindElement(driver, "id", "requestedShipDate");
-            //this.ShipOnButton = HelperMethods.FindElement(driver, "xpath", Constants.XPATH_SHIPON_CAL);
-            this.CancelAfterTextbox = HelperMethods.FindElement(driver, "id", "cancelDate");
-            //this.CancelAfterButton = HelperMethods.FindElement(driver, "xpath", Constants.XPATH_CANCELAFTER_CAL);
             this.ContactNameTextbox = HelperMethods.FindElement(driver, "id", "contactName");
             this.DeliveryAddressDisplay = HelperMethods.FindElement(driver, "id", "addresseeName");
-            //this.AccountNumber = HelperMethods.FindElement(driver, "id", "accountNumber");
             this.FreightTermsTextbox = HelperMethods.FindElement(driver, "id", "freightTerms");
             this.PaymentTermsTextbox = HelperMethods.FindElement(driver, "id", "paymentTerms");
             this.NotesTextbox = HelperMethods.FindElement(driver, "id", "notes");
@@ -113,13 +103,13 @@ namespace DocumentCentreTests.Pages
         /// Loads all the items currently in the cart and makes objects out of the 
         /// row information to interact with.
         /// </summary>
-        private void LoadItemsInCart()
+        internal void LoadItemsInCart()
         {
             _logger.Info(" > Attempting to load cart items...");
 
             // get row elements
             this._itemDeleteButtons = CartTable.FindElements(By.XPath(Constants.ITEM_DEL_BTN_XP));
-            this._itemTitles = CartTable.FindElements(By.XPath(Constants.ITEM_TITLE_XP));
+            this._itemProdNums = CartTable.FindElements(By.XPath(Constants.ITEM_PN_XP));
             this._itemDescriptions = CartTable.FindElements(By.XPath(Constants.ITEM_DES_XP));
             this._itemPrices = CartTable.FindElements(By.XPath(Constants.ITEM_PRICE_XP));
             this._itemQtys = CartTable.FindElements(By.XPath(Constants.ITEM_QTY_XP));
@@ -127,16 +117,16 @@ namespace DocumentCentreTests.Pages
             try
             {
                 // make cart item objects to work with
-                for (int i = 0; i < _itemTitles.Count - 1; ++i)
+                for (int i = 0; i < _itemProdNums.Count - 1; ++i)
                 {
                     CartItem item = new CartItem();
                     item.DeleteButton = _itemDeleteButtons[i];
-                    item.ProductTitle = _itemTitles[i];
+                    item.ProductTitle = _itemProdNums[i];
                     item.Description = _itemDescriptions[i];
                     item.Price = _itemPrices[i];
                     item.Quantity = _itemQtys[i];
                     item.ItemTotalAmt = _itemTotals[i];
-                    _cartItems.Add(item);
+                    _cartLineItems.Add(item);
                 }
             }
             catch (Exception)
@@ -158,12 +148,12 @@ namespace DocumentCentreTests.Pages
             CartItem currentItem = new CartItem();
             try
             {
-                for (int i = 0; i < _cartItems.Count; ++i)
+                for (int i = 0; i < _cartLineItems.Count; ++i)
                 {
                     if (_itemDescriptions[i].Text.Equals(itemDes))
                     {
                         currentItem.DeleteButton = _itemDeleteButtons[i];
-                        currentItem.ProductTitle = _itemTitles[i];
+                        currentItem.ProductTitle = _itemProdNums[i];
                         currentItem.Description = _itemDescriptions[i];
                         currentItem.Price = _itemPrices[i];
                         currentItem.Quantity = _itemQtys[i];
@@ -180,6 +170,16 @@ namespace DocumentCentreTests.Pages
             return currentItem;
         }
 
+        internal bool VerifyItemsInCart(List<Product> prodsInCart)
+        {
+            if (!prodsInCart.Count.Equals(_cartLineItems.Count))
+                return false;
+            else
+            {
+                return true;
+            }
+        }
+
         /// <summary>
         /// Simulate the deletion of an item from the cart
         /// </summary>
@@ -189,14 +189,12 @@ namespace DocumentCentreTests.Pages
         {
             Thread.Sleep(1000);
             CartItem item;
-            // find item 
-            LoadItemsInCart();
             try
             {
                 _logger.Info(" > Attempting to delete a cart item...");
-                if (_cartItems.Any())
+                if (_cartLineItems.Any())
                 {
-                    item = LoadCartItem(_cartItems.First().Description.Text);
+                    item = LoadCartItem(_cartLineItems.First().Description.Text);
                     item.DeleteButton.Click();
 
                     // click OK on Information dialog
@@ -336,20 +334,6 @@ namespace DocumentCentreTests.Pages
         {
             POBuyerTextbox.Clear();
             POBuyerTextbox.SendKeys(po);
-            return this;
-        }
-
-        public MyCartPage EnterShipOnDate(int year, int mo, int day) 
-        {
-            ShipOnTextbox.Clear();
-            ShipOnTextbox.SendKeys(year + "-" + mo + "-" + day);
-            return this;
-        }
-
-        public MyCartPage EnterCancelAfterDate(int year, int mo, int day)
-        {
-            ShipOnTextbox.Clear();
-            CancelAfterTextbox.SendKeys(year + "-" + mo + "-" + day);
             return this;
         }
 

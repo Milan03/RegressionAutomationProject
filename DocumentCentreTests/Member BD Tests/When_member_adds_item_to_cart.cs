@@ -1,6 +1,7 @@
 ﻿using DocumentCentreTests.Pages;
 using DocumentCentreTests.Util;
 using Machine.Specifications;
+using NCrunch.Framework;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
@@ -11,12 +12,14 @@ using System.Threading.Tasks;
 
 namespace DocumentCentreTests.Member_BD_Tests
 {
+    [Timeout(100000)]
     [Subject(typeof(LoginPage))]
     public class When_member_adds_item_to_cart : BaseDriverTest
     {
         static HomePage _homePage;
         static CataloguesPage _catPage;
         static ProductsPage _prodPage;
+        static MyCartPage _cartPage;
 
         Establish context = () =>
         {
@@ -32,7 +35,14 @@ namespace DocumentCentreTests.Member_BD_Tests
         Because of = () =>
         {
             _prodPage = _catPage.ChooseCatalogue("Milan Automation Catalogue");
-            _prodPage.AddItemToCart("IN-MILANTEST-05", 4);
+            _prodPage.LoadProductRows();
+            _prodPage.AddItemToCart("IN-MILANTEST-01", 1);
+            _prodPage.AddItemToCart("IN-MILANTEST-02", 1);
+            _prodPage.AddItemToCart("IN-MILANTEST-03", 1);
+            _prodPage.AddItemToCart("IN-MILANTEST-04", 1);
+            _cartPage = _prodPage.NavigateToCart();
+            _cartPage.LoadItemsInCart();
+
         };
 
         It should_return_alert_of_success = () =>
