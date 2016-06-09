@@ -38,7 +38,7 @@ namespace DocumentCentreTests.Pages
                 _logger.Info(" > Member Homepage reached!");
 
             _logger.Info(" > Login successful");
-            this.OrdersDropdown = HelperMethods.FindElement(driver, "linktext", "My Orders");
+            OrdersDropdown = HelperMethods.FindElement(driver, "linktext", "My Orders");
         }
 
         /// <summary>

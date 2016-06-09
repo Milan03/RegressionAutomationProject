@@ -57,38 +57,38 @@ namespace DocumentCentreTests.Pages
         public MyCartPage(IWebDriver driver, string type)
         {
             #region Assigning Accessors
-            this.OrderComplete = false;
+            OrderComplete = false;
             this.driver = driver;
-            this._cartLineItems = new List<CartItem>();
-            this.ItemDeleted = false;
-            this.ReportsDropdown = HelperMethods.FindElement(driver, "xpath", Constants.XPATH_REPORTS_LOCATOR);
+            _cartLineItems = new List<CartItem>();
+            ItemDeleted = false;
+            ReportsDropdown = HelperMethods.FindElement(driver, "xpath", Constants.XPATH_REPORTS_LOCATOR);
 
             if (type.Equals("new_order"))
             {
                 OrderComplete = false;
-                this.DeleteOrderButton = HelperMethods.FindElement(driver, "id", "deleteOrderButton");
-                this.SaveDraftButton = HelperMethods.FindElement(driver, "id", "saveOrderButton");
-                this.SendOrderButton = HelperMethods.FindElement(driver, "id", "completeOrderButton");
-                this.DelieveryAddressButton = HelperMethods.FindElement(driver, "id", "changeAddressButton");
+                DeleteOrderButton = HelperMethods.FindElement(driver, "id", "deleteOrderButton");
+                SaveDraftButton = HelperMethods.FindElement(driver, "id", "saveOrderButton");
+                SendOrderButton = HelperMethods.FindElement(driver, "id", "completeOrderButton");
+                DelieveryAddressButton = HelperMethods.FindElement(driver, "id", "changeAddressButton");
                 _logger.Info(" > MyCart page reached!");
             }
             else if (type.Equals("order_complete"))
             {
-                this.CloseOrderButton = HelperMethods.FindElement(driver, "id", "closeOrderButton");
+                CloseOrderButton = HelperMethods.FindElement(driver, "id", "closeOrderButton");
                 OrderComplete = true;
                 _logger.Info(" > Purchase Order completed!");
             }
-            this.CartTable = HelperMethods.FindElement(driver, "xpath", "//tbody");
-            this.ShipToDropdown = HelperMethods.FindElement(driver, "classname", "k-input");
-            this.PONumberTextbox = HelperMethods.FindElement(driver, "id", "poNumber");
-            this.POBuyerTextbox = HelperMethods.FindElement(driver, "id", "originalRefNumber");
-            this.UnitsTextbox = HelperMethods.FindElement(driver, "id", "totalQuantityBox");
-            this.AmountTextbox = HelperMethods.FindElement(driver, "id", "totalAmountBox");
-            this.ContactNameTextbox = HelperMethods.FindElement(driver, "id", "contactName");
-            this.DeliveryAddressDisplay = HelperMethods.FindElement(driver, "id", "addresseeName");
-            this.FreightTermsTextbox = HelperMethods.FindElement(driver, "id", "freightTerms");
-            this.PaymentTermsTextbox = HelperMethods.FindElement(driver, "id", "paymentTerms");
-            this.NotesTextbox = HelperMethods.FindElement(driver, "id", "notes");
+            CartTable = HelperMethods.FindElement(driver, "xpath", "//tbody");
+            ShipToDropdown = HelperMethods.FindElement(driver, "classname", "k-input");
+            PONumberTextbox = HelperMethods.FindElement(driver, "id", "poNumber");
+            POBuyerTextbox = HelperMethods.FindElement(driver, "id", "originalRefNumber");
+            UnitsTextbox = HelperMethods.FindElement(driver, "id", "totalQuantityBox");
+            AmountTextbox = HelperMethods.FindElement(driver, "id", "totalAmountBox");
+            ContactNameTextbox = HelperMethods.FindElement(driver, "id", "contactName");
+            DeliveryAddressDisplay = HelperMethods.FindElement(driver, "id", "addresseeName");
+            FreightTermsTextbox = HelperMethods.FindElement(driver, "id", "freightTerms");
+            PaymentTermsTextbox = HelperMethods.FindElement(driver, "id", "paymentTerms");
+            NotesTextbox = HelperMethods.FindElement(driver, "id", "notes");
             #endregion
 
             if (!driver.Url.Contains("MyOrder") && !OrderComplete)
@@ -244,7 +244,7 @@ namespace DocumentCentreTests.Pages
                 }
                 else
                 {
-                    this.ItemDeleted = false;
+                    ItemDeleted = false;
                     _logger.Error(" > No items in cart!");
                 }
             } catch (Exception)
@@ -262,37 +262,37 @@ namespace DocumentCentreTests.Pages
         /// <returns></returns>
         public ViewOrdersPage DeleteOrder()
         {
-            this.AlertSuccess = false;
+            AlertSuccess = false;
             DeleteOrderButton.Click();
 
             // click OK on Information dialog
             Thread.Sleep(500);
             driver.FindElement(By.XPath(Constants.XPATH_INFO_OK)).Click();
-            this.AlertSuccess = HelperMethods.CheckAlert(driver);
+            AlertSuccess = HelperMethods.CheckAlert(driver);
             return new ViewOrdersPage(driver);
         }
 
         public MyCartPage SaveDraftOrder()
         {
-            this.AlertSuccess = false;
+            AlertSuccess = false;
 
             // attempt to save
             SaveDraftButton.Click();
             Thread.Sleep(300);
-            this.AlertSuccess = HelperMethods.CheckAlert(driver);
+            AlertSuccess = HelperMethods.CheckAlert(driver);
             if (AlertSuccess.Equals(Constants.MISSING_INFO_MSG)) // if po missing
             {
                 // enter a po and attempt to save again
                 EnterRandomPONumber(7);
                 SaveDraftButton.Click();
-                this.AlertSuccess = HelperMethods.CheckAlert(driver);
+                AlertSuccess = HelperMethods.CheckAlert(driver);
             }
             return this;
         }
 
         public MyCartPage SendOrder()
         {
-            this.AlertSuccess = false;
+            AlertSuccess = false;
             SendOrderButton.Click();
             if (HelperMethods.IsElementPresent(driver, By.ClassName("modal-content")))
             {
@@ -324,9 +324,9 @@ namespace DocumentCentreTests.Pages
 
         public void LoadReportsOptions()
         {
-            this.ExportAsExcelOption = HelperMethods.FindElement(driver, "id", "excelExportOrderButton");
-            this.OrderReportOption = HelperMethods.FindElement(driver, "id", "orderReportButton");
-            this.OrderSummaryOption = HelperMethods.FindElement(driver, "id", "orderSummaryButton");
+            ExportAsExcelOption = HelperMethods.FindElement(driver, "id", "excelExportOrderButton");
+            OrderReportOption = HelperMethods.FindElement(driver, "id", "orderReportButton");
+            OrderSummaryOption = HelperMethods.FindElement(driver, "id", "orderSummaryButton");
         }
 
         public MyCartPage OrderExcelExport()
