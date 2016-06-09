@@ -108,12 +108,12 @@ namespace DocumentCentreTests.Pages
             _logger.Info(" > Attempting to load cart items...");
 
             // get row elements
-            this._itemDeleteButtons = CartTable.FindElements(By.XPath(Constants.ITEM_DEL_BTN_XP));
-            this._itemProdNums = CartTable.FindElements(By.XPath(Constants.ITEM_PN_XP));
-            this._itemDescriptions = CartTable.FindElements(By.XPath(Constants.ITEM_DES_XP));
-            this._itemPrices = CartTable.FindElements(By.XPath(Constants.ITEM_PRICE_XP));
-            this._itemQtys = CartTable.FindElements(By.XPath(Constants.ITEM_QTY_XP));
-            this._itemTotals = CartTable.FindElements(By.XPath(Constants.ITEM_TOTAL_XP));
+            _itemDeleteButtons = CartTable.FindElements(By.XPath(Constants.ITEM_DEL_BTN_XP));
+            _itemProdNums = CartTable.FindElements(By.XPath(Constants.ITEM_PN_XP));
+            _itemDescriptions = CartTable.FindElements(By.XPath(Constants.ITEM_DES_XP));
+            _itemPrices = CartTable.FindElements(By.XPath(Constants.ITEM_PRICE_XP));
+            _itemQtys = CartTable.FindElements(By.XPath(Constants.ITEM_QTY_XP));
+            _itemTotals = CartTable.FindElements(By.XPath(Constants.ITEM_TOTAL_XP));
             try
             {
                 // make cart item objects to work with
