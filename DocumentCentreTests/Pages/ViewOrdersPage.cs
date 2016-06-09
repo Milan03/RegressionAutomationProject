@@ -32,10 +32,10 @@ namespace DocumentCentreTests.Pages
         {
             _logger.Info(" > View Orders Page is being constructed...");
             this.driver = driver;
-            this.OrderTypeDropdown = HelperMethods.FindElement(this.driver, "classname", "k-widget");
-            this.POInputTextbox = HelperMethods.FindElement(this.driver, "id", "poNumber");
-            this.SearchOrdersButton = HelperMethods.FindElement(this.driver, "id", "searchOrdersButton");
-            this.OrderType = "All";
+            OrderTypeDropdown = HelperMethods.FindElement(this.driver, "classname", "k-widget");
+            POInputTextbox = HelperMethods.FindElement(this.driver, "id", "poNumber");
+            SearchOrdersButton = HelperMethods.FindElement(this.driver, "id", "searchOrdersButton");
+            OrderType = "All";
 
             // get first table element
             CheckFirstRow();
@@ -78,7 +78,7 @@ namespace DocumentCentreTests.Pages
         public ViewOrdersPage ChooseOrderType(string type)
         {
             _logger.Info(" > Choosing order type: " + type);
-            this.OrderType = type;
+            OrderType = type;
             OrderTypeDropdown.Click();
             Thread.Sleep(500);
             try
@@ -146,13 +146,13 @@ namespace DocumentCentreTests.Pages
         public ViewOrdersPage DeleteOrder()
         {
             _logger.Info(" > Attempting to delete order");
-            this.AlertSuccess = false;
+            AlertSuccess = false;
             DeleteOrderLocator.Click();
             
             // click OK on Information dialog
             Thread.Sleep(500);
             driver.FindElement(By.XPath(Constants.XPATH_INFO_OK)).Click();
-            this.AlertSuccess = HelperMethods.CheckAlert(driver);
+            AlertSuccess = HelperMethods.CheckAlert(driver);
             return this;
         }
 
