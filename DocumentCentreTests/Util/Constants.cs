@@ -37,6 +37,7 @@ namespace DocumentCentreTests.Util
         /// <summary>products page row identifiers
         internal const string PROD_ROW_WRAPPERS = "//div[contains(@class, 'product-row-wrapper')]";
         internal const string ALL_PROD_VARIANTS = "div[id^='variant_']";
+        internal const string PROD_VAR_QTYS_LOCATORS = "//div[contains(@id, 'variant')]/div[3]/span/span/input[2]";
         internal const string ROW_TITLE_XPATH = "//tbody/tr/td[2]/div/a[1]";
         internal const string ALL_QTY_BOXES = "//input[contains(@class,'k-formatted-value')]";
         internal const string ROW_QTY_UP_XPATH = "//span[contains(@class,'k-i-arrow-n')]";
