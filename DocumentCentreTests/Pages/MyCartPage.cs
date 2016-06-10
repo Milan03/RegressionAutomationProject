@@ -14,7 +14,7 @@ namespace DocumentCentreTests.Pages
     public class MyCartPage
     {
         private static Logger _logger = LogManager.GetCurrentClassLogger();
-        private IWebDriver driver;
+        private IWebDriver _driver;
 
         internal List<CartItem> _cartLineItems;
         internal IList<IWebElement> _itemDeleteButtons;
@@ -58,45 +58,47 @@ namespace DocumentCentreTests.Pages
         {
             #region Assigning Accessors
             OrderComplete = false;
-            this.driver = driver;
+            _driver = driver;
             _cartLineItems = new List<CartItem>();
             ItemDeleted = false;
-            ReportsDropdown = HelperMethods.FindElement(driver, "xpath", Constants.XPATH_REPORTS_LOCATOR);
+            ReportsDropdown = HelperMethods.FindElement(_driver, "xpath", Constants.XPATH_REPORTS_LOCATOR);
 
             if (type.Equals("new_order"))
             {
                 OrderComplete = false;
-                DeleteOrderButton = HelperMethods.FindElement(driver, "id", "deleteOrderButton");
-                SaveDraftButton = HelperMethods.FindElement(driver, "id", "saveOrderButton");
-                SendOrderButton = HelperMethods.FindElement(driver, "id", "completeOrderButton");
-                DelieveryAddressButton = HelperMethods.FindElement(driver, "id", "changeAddressButton");
+                DeleteOrderButton = HelperMethods.FindElement(_driver, "id", "deleteOrderButton");
+                SaveDraftButton = HelperMethods.FindElement(_driver, "id", "saveOrderButton");
+                SendOrderButton = HelperMethods.FindElement(_driver, "id", "completeOrderButton");
+                DelieveryAddressButton = HelperMethods.FindElement(_driver, "id", "changeAddressButton");
                 _logger.Info(" > MyCart page reached!");
             }
             else if (type.Equals("order_complete"))
             {
-                CloseOrderButton = HelperMethods.FindElement(driver, "id", "closeOrderButton");
+                CloseOrderButton = HelperMethods.FindElement(_driver, "id", "closeOrderButton");
                 OrderComplete = true;
                 _logger.Info(" > Purchase Order completed!");
             }
-            CartTable = HelperMethods.FindElement(driver, "xpath", "//tbody");
-            ShipToDropdown = HelperMethods.FindElement(driver, "classname", "k-input");
-            PONumberTextbox = HelperMethods.FindElement(driver, "id", "poNumber");
-            POBuyerTextbox = HelperMethods.FindElement(driver, "id", "originalRefNumber");
-            UnitsTextbox = HelperMethods.FindElement(driver, "id", "totalQuantityBox");
-            AmountTextbox = HelperMethods.FindElement(driver, "id", "totalAmountBox");
-            ContactNameTextbox = HelperMethods.FindElement(driver, "id", "contactName");
-            DeliveryAddressDisplay = HelperMethods.FindElement(driver, "id", "addresseeName");
-            FreightTermsTextbox = HelperMethods.FindElement(driver, "id", "freightTerms");
-            PaymentTermsTextbox = HelperMethods.FindElement(driver, "id", "paymentTerms");
-            NotesTextbox = HelperMethods.FindElement(driver, "id", "notes");
+            CartTable = HelperMethods.FindElement(_driver, "xpath", "//tbody");
+            ShipToDropdown = HelperMethods.FindElement(_driver, "classname", "k-input");
+            PONumberTextbox = HelperMethods.FindElement(_driver, "id", "poNumber");
+            POBuyerTextbox = HelperMethods.FindElement(_driver, "id", "originalRefNumber");
+            UnitsTextbox = HelperMethods.FindElement(_driver, "id", "totalQuantityBox");
+            AmountTextbox = HelperMethods.FindElement(_driver, "id", "totalAmountBox");
+            ContactNameTextbox = HelperMethods.FindElement(_driver, "id", "contactName");
+            DeliveryAddressDisplay = HelperMethods.FindElement(_driver, "id", "addresseeName");
+            FreightTermsTextbox = HelperMethods.FindElement(_driver, "id", "freightTerms");
+            PaymentTermsTextbox = HelperMethods.FindElement(_driver, "id", "paymentTerms");
+            NotesTextbox = HelperMethods.FindElement(_driver, "id", "notes");
             #endregion
 
-            if (!driver.Url.Contains("MyOrder") && !OrderComplete)
+            if (!_driver.Url.Contains("MyOrder") && !OrderComplete)
             {
                 _logger.Fatal(" > MyCart navigation [FAILED]");
-                _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
+                _logger.Fatal("-- TEST FAILURE @ URL: '" + _driver.Url + "' --");
                 BaseDriverTest.TakeScreenshot("screenshot");
-            }               
+            }
+            else
+                LoadItemsInCart();           
         }
 
         /// <summary>
@@ -126,13 +128,14 @@ namespace DocumentCentreTests.Pages
                     item.Price = _itemPrices[i];
                     item.Quantity = _itemQtys[i];
                     item.ItemTotalAmt = _itemTotals[i];
+                    item.Checked = false;
                     _cartLineItems.Add(item);
                 }
             }
             catch (Exception)
             {
                 _logger.Fatal(" > Loading MyCart items [FAILED]");
-                _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
+                _logger.Fatal("-- TEST FAILURE @ URL: '" + _driver.Url + "' --");
                 BaseDriverTest.TakeScreenshot("screenshot");
             }
         }
@@ -164,7 +167,7 @@ namespace DocumentCentreTests.Pages
             } catch (Exception)
             {
                 _logger.Fatal(" > Attempting to find MyCart item [FAILED]");
-                _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
+                _logger.Fatal("-- TEST FAILURE @ URL: '" + _driver.Url + "' --");
                 BaseDriverTest.TakeScreenshot("screenshot");
             }
             return currentItem;
@@ -177,15 +180,21 @@ namespace DocumentCentreTests.Pages
                 return false;
             else
             {
-                foreach( CartItem cartLineItem in _cartLineItems )
+                restart:
+                foreach ( CartItem cartLineItem in _cartLineItems )
                 {
                     foreach ( Product prod in prodsInCart )
                     {
-                        if (prod.ProductNumber.Equals(cartLineItem.ProductNumber))
+                        if (prod.ProductNumber.Equals(cartLineItem.ProductNumber.Text) && 
+                            !prod.Checked && !cartLineItem.Checked)
                         {
-                            if(prod.Price.Equals(cartLineItem.Price) &&
-                                prod.Quantity.Equals(cartLineItem.Quantity))
+                            int cartItemQty;
+                            Int32.TryParse(cartLineItem.Quantity.Text, out cartItemQty);
+                            if(prod.Price.Equals(cartLineItem.Price.Text) &&
+                                prod.Quantity.Equals(cartItemQty))
                             {
+                                prod.Checked = true;
+                                cartLineItem.Checked = true;
                                 double prodPrice = 0;
                                 double cartLineItemTotal = 0;
                                 Double.TryParse(prod.Price, out prodPrice);
@@ -193,6 +202,7 @@ namespace DocumentCentreTests.Pages
                                 double prodTotal = prodPrice * prod.Quantity;
                                 if (prodTotal.Equals(cartLineItemTotal))
                                     consistencyCount++;
+                                goto restart;
                             }
                         }
                         else
@@ -218,21 +228,21 @@ namespace DocumentCentreTests.Pages
             try
             {
                 _logger.Info(" > Attempting to delete a cart item...");
-                ItemDeleted = false;
                 if (_cartLineItems.Any())
                 {
-                    foreach ( CartItem cItem in _cartLineItems )
+                    foreach (CartItem cItem in _cartLineItems)
                     {
                         if (cItem.ProductNumber.Text.Equals(pn))
                         {
+                            ItemDeleted = false;
                             item = LoadCartItem(cItem.Description.Text);
                             item.DeleteButton.Click();
 
                             Thread.Sleep(1000);
-                            driver.FindElement(By.XPath(Constants.XPATH_DEL_ITEM_OK)).Click();
+                            _driver.FindElement(By.XPath(Constants.XPATH_DEL_ITEM_OK)).Click();
 
                             // check alert for confirmation of delete
-                            ItemDeleted = HelperMethods.CheckAlert(driver);
+                            ItemDeleted = HelperMethods.CheckAlert(_driver);
 
                             if (ItemDeleted)
                             {
@@ -243,23 +253,26 @@ namespace DocumentCentreTests.Pages
                     }
                 }
                 else
-                {
-                    ItemDeleted = false;
                     _logger.Error(" > No items in cart!");
-                }
-            } catch (Exception)
+            }
+            catch (StaleElementReferenceException)
+            {
+                _logger.Info("Stale element detected. Ignoring...");
+            }
+            catch (Exception)
             {
                 _logger.Fatal(" > Removing item from MyCart [FAILED]");
-                _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
+                _logger.Fatal("-- TEST FAILURE @ URL: '" + _driver.Url + "' --");
                 BaseDriverTest.TakeScreenshot("screenshot");
             }
-            return this;
+            return new MyCartPage(_driver, "new_order");
+            //return this;
         }
 
         /// <summary>
         /// Simulate the deletion of an order
         /// </summary>
-        /// <returns></returns>
+        /// <returns>View Orders page object</returns>
         public ViewOrdersPage DeleteOrder()
         {
             AlertSuccess = false;
@@ -267,11 +280,15 @@ namespace DocumentCentreTests.Pages
 
             // click OK on Information dialog
             Thread.Sleep(500);
-            driver.FindElement(By.XPath(Constants.XPATH_INFO_OK)).Click();
-            AlertSuccess = HelperMethods.CheckAlert(driver);
-            return new ViewOrdersPage(driver);
+            _driver.FindElement(By.XPath(Constants.XPATH_INFO_OK)).Click();
+            AlertSuccess = HelperMethods.CheckAlert(_driver);
+            return new ViewOrdersPage(_driver);
         }
 
+        /// <summary>
+        /// Saves a purhcase order as 'Draft'.
+        /// </summary>
+        /// <returns>current page element</returns>
         public MyCartPage SaveDraftOrder()
         {
             AlertSuccess = false;
@@ -279,37 +296,41 @@ namespace DocumentCentreTests.Pages
             // attempt to save
             SaveDraftButton.Click();
             Thread.Sleep(300);
-            AlertSuccess = HelperMethods.CheckAlert(driver);
+            AlertSuccess = HelperMethods.CheckAlert(_driver);
             if (AlertSuccess.Equals(Constants.MISSING_INFO_MSG)) // if po missing
             {
                 // enter a po and attempt to save again
                 EnterRandomPONumber(7);
                 SaveDraftButton.Click();
-                AlertSuccess = HelperMethods.CheckAlert(driver);
+                AlertSuccess = HelperMethods.CheckAlert(_driver);
             }
             return this;
         }
 
+        /// <summary>
+        /// Completes the Send order process.
+        /// </summary>
+        /// <returns>Current page object</returns>
         public MyCartPage SendOrder()
         {
             AlertSuccess = false;
             SendOrderButton.Click();
-            if (HelperMethods.IsElementPresent(driver, By.ClassName("modal-content")))
+            if (HelperMethods.IsElementPresent(_driver, By.ClassName("modal-content")))
             {
                 // click OK on Information dialog
                 Thread.Sleep(500);
-                HelperMethods.FindElement(driver, "xpath", Constants.XPATH_ORDER_OK).Click();
-                //this.AlertSuccess = HelperMethods.CheckAlert(driver);
+                HelperMethods.FindElement(_driver, "xpath", Constants.XPATH_ORDER_OK).Click();
+                //this.AlertSuccess = HelperMethods.CheckAlert(_driver);
                 // click Finish on next dialog
                 Thread.Sleep(4000);
-                HelperMethods.FindElement(driver, "xpath", Constants.XPATH_INFO_FINISH).Click();
+                HelperMethods.FindElement(_driver, "xpath", Constants.XPATH_INFO_FINISH).Click();
                 OrderComplete = true;
-                return new MyCartPage(driver, "order_complete");
+                return new MyCartPage(_driver, "order_complete");
             }
             else
             {
                 _logger.Fatal(" > Completing order [FAILED]");
-                _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
+                _logger.Fatal("-- TEST FAILURE @ URL: '" + _driver.Url + "' --");
                 BaseDriverTest.TakeScreenshot("screenshot");
                 return this;
             }
@@ -319,14 +340,14 @@ namespace DocumentCentreTests.Pages
         {
             Thread.Sleep(1000);
             CloseOrderButton.Click();
-            return new ViewOrdersPage(driver);
+            return new ViewOrdersPage(_driver);
         }
 
         public void LoadReportsOptions()
         {
-            ExportAsExcelOption = HelperMethods.FindElement(driver, "id", "excelExportOrderButton");
-            OrderReportOption = HelperMethods.FindElement(driver, "id", "orderReportButton");
-            OrderSummaryOption = HelperMethods.FindElement(driver, "id", "orderSummaryButton");
+            ExportAsExcelOption = HelperMethods.FindElement(_driver, "id", "excelExportOrderButton");
+            OrderReportOption = HelperMethods.FindElement(_driver, "id", "orderReportButton");
+            OrderSummaryOption = HelperMethods.FindElement(_driver, "id", "orderSummaryButton");
         }
 
         public MyCartPage OrderExcelExport()
