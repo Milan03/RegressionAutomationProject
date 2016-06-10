@@ -13,7 +13,7 @@ namespace DocumentCentreTests.Pages
     /// <summary>class representing Doc Centre Member Portal</summary>
     public class MemberHomePage : HomePage
     {
-        private IWebDriver driver;
+        private IWebDriver _driver;
 
         private IWebElement OrdersDropdown;
 
@@ -23,7 +23,7 @@ namespace DocumentCentreTests.Pages
         /// <param name="driver">Main interface for testing, represents idealised web browser</param>
         public MemberHomePage(IWebDriver driver)
         {
-            this.driver = driver;
+            _driver = driver;
             //PageFactory.InitElements(driver, this);
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(1));
             IWebElement element =
@@ -52,18 +52,18 @@ namespace DocumentCentreTests.Pages
             // dropdown interaction
             OrdersDropdown.Click();
             Thread.Sleep(500);
-            HelperMethods.FindElement(driver, "linktext", linktext).Click();
+            HelperMethods.FindElement(_driver, "linktext", linktext).Click();
             
             // check if on correct page
-            if (!"My Orders".Equals(driver.Title))
+            if (!"My Orders".Equals(_driver.Title))
             {
                 _logger.Fatal(" > View Orders page navigation [FAILED]");
-                _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
+                _logger.Fatal("-- TEST FAILURE @ URL: '" + _driver.Url + "' --");
                 BaseDriverTest.TakeScreenshot("screenshot");
             }
 
             _logger.Info(" > View Orders page reached");
-            return new ViewOrdersPage(driver);
+            return new ViewOrdersPage(_driver);
         }
 
         public override CataloguesPage NavigateToCatalogues()
@@ -72,16 +72,16 @@ namespace DocumentCentreTests.Pages
 
             OrdersDropdown.Click();
             Thread.Sleep(500);
-            HelperMethods.FindElement(driver, "linktext", "Order from Catalog").Click();
+            HelperMethods.FindElement(_driver, "linktext", "Order from Catalog").Click();
 
             // check if on correct page
-            if (!Constants.CAT_PAGE_TITLE.Equals(driver.Title))
+            if (!Constants.CAT_PAGE_TITLE.Equals(_driver.Title))
             {
                 _logger.Fatal(" > Catalogue navigation [FAILED]");
-                _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
+                _logger.Fatal("-- TEST FAILURE @ URL: '" + _driver.Url + "' --");
                 BaseDriverTest.TakeScreenshot("screenshot");
             }
-            return new CataloguesPage(driver);
+            return new CataloguesPage(_driver);
         }
     }
 }

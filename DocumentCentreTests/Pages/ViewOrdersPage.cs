@@ -12,7 +12,7 @@ namespace DocumentCentreTests.Pages
     public class ViewOrdersPage
     {
         private static Logger _logger = LogManager.GetCurrentClassLogger();
-        private IWebDriver driver;
+        private IWebDriver _driver;
 
         private IWebElement OrderTypeDropdown;
         private IWebElement POInputTextbox;
@@ -27,24 +27,24 @@ namespace DocumentCentreTests.Pages
         /// <summary>
         /// Class representing View Orders for Members
         /// </summary>
-        /// <param name="driver">Main interface for testing, represents idealised web browser</param>
+        /// <param name="_driver">Main interface for testing, represents idealised web browser</param>
         public ViewOrdersPage(IWebDriver driver)
         {
             _logger.Info(" > View Orders Page is being constructed...");
-            this.driver = driver;
-            OrderTypeDropdown = HelperMethods.FindElement(this.driver, "classname", "k-widget");
-            POInputTextbox = HelperMethods.FindElement(this.driver, "id", "poNumber");
-            SearchOrdersButton = HelperMethods.FindElement(this.driver, "id", "searchOrdersButton");
+            _driver = driver;
+            OrderTypeDropdown = HelperMethods.FindElement(this._driver, "classname", "k-widget");
+            POInputTextbox = HelperMethods.FindElement(this._driver, "id", "poNumber");
+            SearchOrdersButton = HelperMethods.FindElement(this._driver, "id", "searchOrdersButton");
             OrderType = "All";
 
             // get first table element
             CheckFirstRow();
 
             // check if on correct page
-            if (!"My Orders".Equals(driver.Title))
+            if (!"My Orders".Equals(_driver.Title))
             {
                 _logger.Fatal(" > ViewOrders navigation [FAILED]");
-                _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
+                _logger.Fatal("-- TEST FAILURE @ URL: '" + _driver.Url + "' --");
                 BaseDriverTest.TakeScreenshot("screenshot");
             } else
                 _logger.Info(" > View Orders page reached!");
@@ -57,17 +57,17 @@ namespace DocumentCentreTests.Pages
         public void CheckFirstRow()
         {
             Thread.Sleep(800);
-            if (HelperMethods.IsElementPresent(driver, By.XPath(Constants.XPATH_PO_LOCATOR)))
+            if (HelperMethods.IsElementPresent(_driver, By.XPath(Constants.XPATH_PO_LOCATOR)))
             {
-                FirstTableElem = driver.FindElement(By.XPath(Constants.XPATH_PO_LOCATOR));
+                FirstTableElem = _driver.FindElement(By.XPath(Constants.XPATH_PO_LOCATOR));
                 if (OrderType.Equals("Draft") || OrderType.Equals("Pending Approval"))
                 {
-                    DeleteOrderLocator = driver.FindElement(By.XPath(Constants.XPATH_DEL_ORDER));
-                    CreateEditLocator = driver.FindElement(By.XPath(Constants.XPATH_EDIT_ORDER));
+                    DeleteOrderLocator = _driver.FindElement(By.XPath(Constants.XPATH_DEL_ORDER));
+                    CreateEditLocator = _driver.FindElement(By.XPath(Constants.XPATH_EDIT_ORDER));
                 }
             }
             else // no table elements found, set to message
-                FirstTableElem = driver.FindElement(By.XPath("id('ordersGrid')/div[2]/div[2]"));    
+                FirstTableElem = _driver.FindElement(By.XPath("id('ordersGrid')/div[2]/div[2]"));    
         }
 
         /// <summary>
@@ -86,19 +86,19 @@ namespace DocumentCentreTests.Pages
                 switch (type)
                 {
                     case "Draft":
-                        driver.FindElement(By.XPath("id('orderStatus_listbox')/li[2]")).Click();
+                        _driver.FindElement(By.XPath("id('orderStatus_listbox')/li[2]")).Click();
                         break;
                     case "Pending":
-                        driver.FindElement(By.XPath("id('orderStatus_listbox')/li[3]")).Click();
+                        _driver.FindElement(By.XPath("id('orderStatus_listbox')/li[3]")).Click();
                         break;
                     case "Sent":
-                        driver.FindElement(By.XPath("id('orderStatus_listbox')/li[4]")).Click();
+                        _driver.FindElement(By.XPath("id('orderStatus_listbox')/li[4]")).Click();
                         break;
                     case "Processing":
-                        driver.FindElement(By.XPath("id('orderStatus_listbox')/li[5]")).Click();
+                        _driver.FindElement(By.XPath("id('orderStatus_listbox')/li[5]")).Click();
                         break;
                     case "Delivered":
-                        driver.FindElement(By.XPath("id('orderStatus_listbox')/li[6]")).Click();
+                        _driver.FindElement(By.XPath("id('orderStatus_listbox')/li[6]")).Click();
                         break;
                     default:
                         throw new Exception("ViewOrdersPage: No category choosen.");
@@ -108,7 +108,7 @@ namespace DocumentCentreTests.Pages
             catch (ElementNotVisibleException)
             {
                 _logger.Fatal(" > Choosing Order Type [FAILED]");
-                _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
+                _logger.Fatal("-- TEST FAILURE @ URL: '" + _driver.Url + "' --");
                 BaseDriverTest.TakeScreenshot("screenshot");
             }
             return this;
@@ -151,8 +151,8 @@ namespace DocumentCentreTests.Pages
             
             // click OK on Information dialog
             Thread.Sleep(500);
-            driver.FindElement(By.XPath(Constants.XPATH_INFO_OK)).Click();
-            AlertSuccess = HelperMethods.CheckAlert(driver);
+            _driver.FindElement(By.XPath(Constants.XPATH_INFO_OK)).Click();
+            AlertSuccess = HelperMethods.CheckAlert(_driver);
             return this;
         }
 
@@ -170,7 +170,7 @@ namespace DocumentCentreTests.Pages
             else
                 _logger.Error(" > Attempting to recreate PO " + PONumber + " [FAILED].");
 
-            return new MyCartPage(driver, "new_order");
+            return new MyCartPage(_driver, "new_order");
         }
     }
 }
