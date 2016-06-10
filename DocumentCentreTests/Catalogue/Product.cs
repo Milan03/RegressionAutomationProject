@@ -21,6 +21,8 @@ namespace DocumentCentreTests.Catalogue
         internal IWebElement QtyDown { get; set; }
         internal IWebElement UpdateButton { get; set; }
         internal int Quantity { get; set; }
+        internal IWebElement QtyLocator { get; set; }
+        internal bool Checked { get; set; }
 
         internal Product() {}
 

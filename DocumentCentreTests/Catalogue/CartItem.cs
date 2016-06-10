@@ -17,6 +17,7 @@ namespace DocumentCentreTests.Catalogue
         internal IWebElement Price { get; set; }
         internal IWebElement Quantity { get; set; }
         internal IWebElement ItemTotalAmt { get; set; }
+        internal bool Checked { get; set; }
 
         internal CartItem() { }
     }
