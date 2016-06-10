@@ -15,7 +15,7 @@ namespace DocumentCentreTests.Pages
     {
         private static Logger _logger = LogManager.GetCurrentClassLogger();
 
-        private IWebDriver driver;
+        private IWebDriver _driver;
 
         // product data structures
         internal List<Product> _products;
@@ -23,6 +23,7 @@ namespace DocumentCentreTests.Pages
         internal IList<IWebElement> _productVariants;
         internal IList<IWebElement> _productQtyUp;
         internal IList<IWebElement> _productQtyDown;
+        internal IList<IWebElement> _productQtyLocators;
         internal IList<IWebElement> _productUpdateBtns;
         internal IList<IWebElement> _productRows;
 
@@ -49,24 +50,25 @@ namespace DocumentCentreTests.Pages
         public ProductsPage(IWebDriver driver)
         {
             #region Assigning Accessors
-            this.driver = driver;
-            this.ItemAdded = false;
-            this.ProductsTable = HelperMethods.FindElement(this.driver, "xpath", "//tbody");
-            this.ReportsDropdown = HelperMethods.FindElement(this.driver, "xpath", Constants.XPATH_REPORTS_LOCATOR);
-            this.SaveDraftButton = HelperMethods.FindElement(driver, "id", "saveOrderButton");
-            this.SearchBar = HelperMethods.FindElement(driver, "id", "basicSearchTerm");
-            this.SearchButton = HelperMethods.FindElement(driver, "id", "basicSearchButton");
-            this.AdvancedSearchLinktext = HelperMethods.FindElement(driver, "id", "advancedSearchLink");
-            this.GridViewButton = HelperMethods.FindElement(driver, "id", "gridViewChoice");
-            this.TilesViewButton = HelperMethods.FindElement(driver, "id", "tileViewChoice");
-            this.MyCartButton = HelperMethods.FindElement(driver, "xpath", Constants.XPATH_MYCART_LINK );
-            this._products = new List<Product>();
+            _driver = driver;
+            ItemAdded = false;
+            ProductsTable = HelperMethods.FindElement(this._driver, "xpath", "//tbody");
+            ReportsDropdown = HelperMethods.FindElement(this._driver, "xpath", Constants.XPATH_REPORTS_LOCATOR);
+            SaveDraftButton = HelperMethods.FindElement(_driver, "id", "saveOrderButton");
+            SearchBar = HelperMethods.FindElement(_driver, "id", "basicSearchTerm");
+            SearchButton = HelperMethods.FindElement(_driver, "id", "basicSearchButton");
+            AdvancedSearchLinktext = HelperMethods.FindElement(_driver, "id", "advancedSearchLink");
+            GridViewButton = HelperMethods.FindElement(_driver, "id", "gridViewChoice");
+            TilesViewButton = HelperMethods.FindElement(_driver, "id", "tileViewChoice");
+            MyCartButton = HelperMethods.FindElement(_driver, "xpath", Constants.XPATH_MYCART_LINK );
+            _products = new List<Product>();
+            _prodsInCart = new List<Product>();
             #endregion
 
-            if (!driver.Url.Contains("Products"))
+            if (!_driver.Url.Contains("Products"))
             {
                 _logger.Fatal(" > Catalogue product page navigation [FAILED]");
-                _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
+                _logger.Fatal("-- TEST FAILURE @ URL: '" + _driver.Url + "' --");
                 BaseDriverTest.TakeScreenshot("screenshot");
             } else
                 _logger.Info(" > Products page reached!");
@@ -77,10 +79,10 @@ namespace DocumentCentreTests.Pages
         /// </summary>
         public void LoadReportsOptions()
         {
-            this.DLCatAsPDFOption = HelperMethods.FindElement(driver, "id", "exportCatalogButtonPDF");
-            this.DLCatAsExcelOption = HelperMethods.FindElement(driver, "id", "exportCatalogButtonXLS");
-            this.OrderReportOption = HelperMethods.FindElement(driver, "id", "orderReportButton");
-            this.SummaryOption = HelperMethods.FindElement(driver, "id", "ordersSummaryButton");
+            DLCatAsPDFOption = HelperMethods.FindElement(_driver, "id", "exportCatalogButtonPDF");
+            DLCatAsExcelOption = HelperMethods.FindElement(_driver, "id", "exportCatalogButtonXLS");
+            OrderReportOption = HelperMethods.FindElement(_driver, "id", "orderReportButton");
+            SummaryOption = HelperMethods.FindElement(_driver, "id", "ordersSummaryButton");
         }
 
         /// <summary>
@@ -91,9 +93,10 @@ namespace DocumentCentreTests.Pages
             _logger.Info(" > Attempting to load catalogue products...");
             Thread.Sleep(2000);
 
-            this._productVariants = ProductsTable.FindElements(By.CssSelector(Constants.ALL_PROD_VARIANTS));
-            this._productQtyUp = ProductsTable.FindElements(By.XPath(Constants.ROW_QTY_UP_XPATH));
-            this._productQtyDown = ProductsTable.FindElements(By.XPath(Constants.ROW_QTY_DOWN_XPATH));
+            _productVariants = ProductsTable.FindElements(By.CssSelector(Constants.ALL_PROD_VARIANTS));
+            _productQtyUp = ProductsTable.FindElements(By.XPath(Constants.ROW_QTY_UP_XPATH));
+            _productQtyDown = ProductsTable.FindElements(By.XPath(Constants.ROW_QTY_DOWN_XPATH));
+            _productQtyLocators = ProductsTable.FindElements(By.XPath(Constants.PROD_VAR_QTYS_LOCATORS));
             try
             {
                 // apply variant information
@@ -110,6 +113,8 @@ namespace DocumentCentreTests.Pages
                     newProd.Price = HelperMethods.GetBetween(varInfo, "$ ", "end");
                     newProd.QtyUp = _productQtyUp[i];
                     newProd.QtyDown = _productQtyDown[i];
+                    newProd.QtyLocator = _productQtyLocators[i];
+                    newProd.Checked = false;
                     _products.Add(newProd);
                 }
                 _logger.Info(" > Building catalogue: variant info - Complete!");
@@ -117,12 +122,12 @@ namespace DocumentCentreTests.Pages
             catch (Exception)
             {
                 _logger.Fatal(" > Loading catalogue products [FAILED]");
-                _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
+                _logger.Fatal("-- TEST FAILURE @ URL: '" + _driver.Url + "' --");
                 BaseDriverTest.TakeScreenshot("screenshot");
             }
 
-            this._productRows = ProductsTable.FindElements(By.XPath("//div[contains(@class,'product-row-wrapper')]"));
-            this._productUpdateBtns = ProductsTable.FindElements(By.XPath("//button[contains(@class, 'btn-update-order')]"));
+            _productRows = ProductsTable.FindElements(By.XPath("//div[contains(@class,'product-row-wrapper')]"));
+            _productUpdateBtns = ProductsTable.FindElements(By.XPath("//button[contains(@class, 'btn-update-order')]"));
             int startVal = 0;
             try
             {
@@ -141,7 +146,7 @@ namespace DocumentCentreTests.Pages
             } catch (Exception)
             {
                 _logger.Fatal(" > Loading catalogue products [FAILED]");
-                _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
+                _logger.Fatal("-- TEST FAILURE @ URL: '" + _driver.Url + "' --");
                 BaseDriverTest.TakeScreenshot("screenshot");
             }
         }
@@ -157,18 +162,19 @@ namespace DocumentCentreTests.Pages
             Product currentProd = new Product();
             try
             {
-                for (int i = 0; i < _products.Count; ++i)
+                foreach (Product prod in _products)
                 {
-                    if (_products[i].ProductNumber.Equals(prodNum))
+                    if (prod.ProductNumber.Equals(prodNum))
                     {
-                        currentProd.ProductNumber = _products[i].ProductNumber;
-                        currentProd.UPC = _products[i].UPC;
-                        currentProd.Colour = _products[i].Colour;
-                        currentProd.Size = _products[i].Size;
-                        currentProd.Price = _products[i].Price;
-                        currentProd.QtyUp = _products[i].QtyUp;
-                        currentProd.QtyDown = _products[i].QtyDown;
-                        currentProd.UpdateButton = _products[i].UpdateButton;
+                        currentProd.ProductNumber = prod.ProductNumber;
+                        currentProd.UPC = prod.UPC;
+                        currentProd.Colour = prod.Colour;
+                        currentProd.Size = prod.Size;
+                        currentProd.Price = prod.Price;
+                        currentProd.QtyUp = prod.QtyUp;
+                        currentProd.QtyDown = prod.QtyDown;
+                        currentProd.UpdateButton = prod.UpdateButton;
+                        currentProd.QtyLocator = prod.QtyLocator;
                         _prodsInCart.Add(currentProd);
                     }
                 }
@@ -177,7 +183,7 @@ namespace DocumentCentreTests.Pages
             catch (Exception)
             {
                 _logger.Fatal(" > Searching for product " +prodNum+ " [FAILED]");
-                _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
+                _logger.Fatal("-- TEST FAILURE @ URL: '" + _driver.Url + "' --");
                 BaseDriverTest.TakeScreenshot("screenshot");
             }
             return currentProd;
@@ -198,10 +204,13 @@ namespace DocumentCentreTests.Pages
             Product product = LoadProduct(prodNum);
             _logger.Info(" > Setting product quantity...");
             product.SetQuantity(qty);
+            int qtyValue;
+            Int32.TryParse(product.QtyLocator.GetAttribute("value"), out qtyValue);
+            product.Quantity = qtyValue;
             _logger.Info(" > Adding item to cart...");
             Thread.Sleep(1000);
             product.UpdateButton.Click();
-            this.ItemAdded = HelperMethods.CheckAlert(driver);
+            ItemAdded = HelperMethods.CheckAlert(_driver);
             _logger.Info(" > Item added to cart!");
             return this;
         }
@@ -220,16 +229,16 @@ namespace DocumentCentreTests.Pages
             } catch (NoSuchWindowException)
             {
                 _logger.Fatal(" > Navigation to cart [FAILED]");
-                _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
+                _logger.Fatal("-- TEST FAILURE @ URL: '" + _driver.Url + "' --");
                 BaseDriverTest.TakeScreenshot("screenshot");
             }
-            return new MyCartPage(driver, "new_order");
+            return new MyCartPage(_driver, "new_order");
         }
 
         public ProductsPage WaitForLoad()
         {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            wait.Until(driver => !driver.FindElement(By.Id("waitMessage")).Displayed);
+            var wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
+            wait.Until(_driver => !_driver.FindElement(By.Id("waitMessage")).Displayed);
             return this;
         }
 
