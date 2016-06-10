@@ -180,6 +180,7 @@ namespace DocumentCentreTests.Pages
                 return false;
             else
             {
+                _logger.Info("Verifying items added vs. items in cart...");
                 restart:
                 foreach ( CartItem cartLineItem in _cartLineItems )
                 {
@@ -210,9 +211,15 @@ namespace DocumentCentreTests.Pages
                     }
                 }
                 if (consistencyCount.Equals(prodsInCart.Count))
+                {
+                    _logger.Info("Verification complete - all items match!");
                     return true;
+                }
                 else
+                {
+                    _logger.Info("Verification FAILURE!");
                     return false;
+                }
             }
         }
 
