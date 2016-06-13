@@ -112,7 +112,6 @@ namespace DocumentCentreTests.Pages
             // get row elements
             _itemDeleteButtons = CartTable.FindElements(By.XPath(Constants.ITEM_DEL_BTN_XP));
             _itemProdNums = CartTable.FindElements(By.XPath(Constants.ITEM_PN_XP));
-            _itemDescriptions = CartTable.FindElements(By.XPath(Constants.ITEM_DES_XP));
             _itemPrices = CartTable.FindElements(By.XPath(Constants.ITEM_PRICE_XP));
             _itemQtys = CartTable.FindElements(By.XPath(Constants.ITEM_QTY_XP));
             _itemTotals = CartTable.FindElements(By.XPath(Constants.ITEM_TOTAL_XP));
@@ -124,7 +123,6 @@ namespace DocumentCentreTests.Pages
                     CartItem item = new CartItem();
                     item.DeleteButton = _itemDeleteButtons[i];
                     item.ProductNumber = _itemProdNums[i];
-                    item.Description = _itemDescriptions[i];
                     item.Price = _itemPrices[i];
                     item.Quantity = _itemQtys[i];
                     item.ItemTotalAmt = _itemTotals[i];
@@ -143,30 +141,30 @@ namespace DocumentCentreTests.Pages
         /// <summary>
         /// Find specific item in user's cart
         /// </summary>
-        /// <param name="itemDes">description of item to be searched for</param>
+        /// <param name="prodNum">description of item to be searched for</param>
         /// <returns>Cart object to interact with</returns>
-        private CartItem LoadCartItem(string itemDes)
+        private CartItem LoadCartItem(string prodNum)
         {
-            _logger.Info(" > Attempting to find cart item: " + itemDes);
+            _logger.Info(" > Attempting to find cart item: " + prodNum);
             CartItem currentItem = new CartItem();
             try
             {
                 for (int i = 0; i < _cartLineItems.Count; ++i)
                 {
-                    if (_itemDescriptions[i].Text.Equals(itemDes))
+                    if (_cartLineItems[i].ProductNumber.Text.Equals(prodNum))
                     {
                         currentItem.DeleteButton = _itemDeleteButtons[i];
                         currentItem.ProductNumber = _itemProdNums[i];
-                        currentItem.Description = _itemDescriptions[i];
                         currentItem.Price = _itemPrices[i];
                         currentItem.Quantity = _itemQtys[i];
                         currentItem.ItemTotalAmt = _itemTotals[i];
-                        _logger.Info(" > Cart item found: " + itemDes);
+                        _logger.Info(" > Cart item found: " + prodNum);
+                        break;
                     }
                 }
-            } catch (Exception)
+            } catch (Exception e)
             {
-                _logger.Fatal(" > Attempting to find MyCart item [FAILED]");
+                _logger.Fatal(" > Attempting to find MyCart item [FAILED] - " +e.Message);
                 _logger.Fatal("-- TEST FAILURE @ URL: '" + _driver.Url + "' --");
                 BaseDriverTest.TakeScreenshot("screenshot");
             }
@@ -242,7 +240,7 @@ namespace DocumentCentreTests.Pages
                         if (cItem.ProductNumber.Text.Equals(pn))
                         {
                             ItemDeleted = false;
-                            item = LoadCartItem(cItem.Description.Text);
+                            item = LoadCartItem(cItem.ProductNumber.Text);
                             item.DeleteButton.Click();
 
                             Thread.Sleep(1000);
@@ -266,9 +264,9 @@ namespace DocumentCentreTests.Pages
             {
                 _logger.Info("Stale element detected. Ignoring...");
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                _logger.Fatal(" > Removing item from MyCart [FAILED]");
+                _logger.Fatal(" > Removing item from MyCart [FAILED] - " + e.Message);
                 _logger.Fatal("-- TEST FAILURE @ URL: '" + _driver.Url + "' --");
                 BaseDriverTest.TakeScreenshot("screenshot");
             }
