@@ -163,7 +163,7 @@ namespace DocumentCentreTests.Pages
         /// </summary>
         /// <param name="prodNum">name of product to be searched for</param>
         /// <returns>Product object to interact with</returns>
-        private Product LoadProduct(string prodNum)
+        internal Product LoadProduct(string prodNum)
         {
             _logger.Info(" > Searching for product: " + prodNum);
             Product currentProd = new Product();
@@ -233,7 +233,8 @@ namespace DocumentCentreTests.Pages
                 Thread.Sleep(1000);
                 MyCartButton.Click();
                 Thread.Sleep(2000);
-            } catch (NoSuchWindowException)
+            }
+            catch (NoSuchWindowException)
             {
                 _logger.Fatal(" > Navigation to cart [FAILED]");
                 _logger.Fatal("-- TEST FAILURE @ URL: '" + _driver.Url + "' --");
