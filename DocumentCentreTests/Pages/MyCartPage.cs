@@ -2,6 +2,7 @@
 using DocumentCentreTests.Util;
 using NLog;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -126,6 +127,17 @@ namespace DocumentCentreTests.Pages
                     item.Checked = false;
                     _cartLineItems.Add(item);
                 }
+                if (!_cartLineItems.Any())
+                {
+                    CartItem item = new CartItem();
+                    item.DeleteButton = _itemDeleteButtons.First();
+                    item.ProductNumber = _itemProdNums.First();
+                    item.Price = _itemPrices.First();
+                    item.Quantity = _itemQtys.First();
+                    item.ItemTotalAmt = _itemTotals.First();
+                    item.Checked = false;
+                    _cartLineItems.Add(item);
+                }
                 _logger.Info(" > Cart items loaded!");
             }
             catch (Exception)
@@ -168,6 +180,15 @@ namespace DocumentCentreTests.Pages
                 BaseDriverTest.TakeScreenshot("screenshot");
             }
             return currentItem;
+        }
+
+        internal MyCartPage AddItemInline(List<Product> prodsInCart, string pnToAdd)
+        {
+            CartItem lastElem = _cartLineItems[_cartLineItems.Count - 1];
+            Actions action = new Actions(_driver);
+            action.Click(lastElem.ProductNumber).SendKeys(pnToAdd);
+            action.Perform();
+            return this;
         }
 
         /// <summary>
