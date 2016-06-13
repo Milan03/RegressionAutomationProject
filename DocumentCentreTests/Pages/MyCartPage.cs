@@ -19,7 +19,6 @@ namespace DocumentCentreTests.Pages
         internal List<CartItem> _cartLineItems;
         internal IList<IWebElement> _itemDeleteButtons;
         internal IList<IWebElement> _itemProdNums;
-        internal IList<IWebElement> _itemDescriptions;
         internal IList<IWebElement> _itemPrices;
         internal IList<IWebElement> _itemQtys;
         internal IList<IWebElement> _itemTotals;
@@ -129,6 +128,7 @@ namespace DocumentCentreTests.Pages
                     item.Checked = false;
                     _cartLineItems.Add(item);
                 }
+                _logger.Info(" > Cart items loaded!");
             }
             catch (Exception)
             {
@@ -210,12 +210,12 @@ namespace DocumentCentreTests.Pages
                 }
                 if (consistencyCount.Equals(prodsInCart.Count))
                 {
-                    _logger.Info("Verification complete - all items match!");
+                    _logger.Info(" > Verification SUCCESS - all items match!");
                     return true;
                 }
                 else
                 {
-                    _logger.Info("Verification FAILURE!");
+                    _logger.Info(" > Verification FAILURE!");
                     return false;
                 }
             }
