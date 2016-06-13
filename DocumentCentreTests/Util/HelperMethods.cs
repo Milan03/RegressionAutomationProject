@@ -1,11 +1,8 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Remote;
-using OpenQA.Selenium.Support.UI;
 using System;
 using NLog;
 using System.Threading;
 using System.Linq;
-using DocumentCentreTests.Catalogue;
 
 namespace DocumentCentreTests.Util
 {

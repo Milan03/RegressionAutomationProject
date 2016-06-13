@@ -2,13 +2,7 @@
 using DocumentCentreTests.Util;
 using Machine.Specifications;
 using NCrunch.Framework;
-using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace DocumentCentreTests.Member_BD_Tests
 {
@@ -18,8 +12,8 @@ namespace DocumentCentreTests.Member_BD_Tests
     {
         static HomePage _homePage;
         static ViewOrdersPage _voPage;
-        static CataloguesPage _catPage;
-        static ProductsPage _prodPage;
+        //static CataloguesPage _catPage;
+        //static ProductsPage _prodPage;
         static MyCartPage _cartPage;
 
         Establish context = () =>

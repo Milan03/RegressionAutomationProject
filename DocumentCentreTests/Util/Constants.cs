@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DocumentCentreTests.Util
+﻿namespace DocumentCentreTests.Util
 {
-     /// <summary>contains constants used by the tests such as the user name and password for the sauce labs</summary>
+    /// <summary>contains constants used by the tests such as the user name and password for the sauce labs</summary>
     internal static class Constants
     {
         /// <summary>member portal login info

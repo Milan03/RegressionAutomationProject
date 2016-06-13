@@ -1,13 +1,6 @@
 ﻿using DocumentCentreTests.Pages;
 using DocumentCentreTests.Util;
 using Machine.Specifications;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Firefox;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DocumentCentreTests.Member_BD_Tests
 {

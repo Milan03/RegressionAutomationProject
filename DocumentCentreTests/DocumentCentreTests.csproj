@@ -117,6 +117,7 @@
     <Compile Include="BaseDriverTest.cs" />
     <Compile Include="Catalogue\CartItem.cs" />
     <Compile Include="Catalogue\Product.cs" />
+    <Compile Include="Member BD Tests\When_members_adds_product_inline.cs" />
     <Compile Include="Member BD Tests\When_member_adds_item_to_cart.cs" />
     <Compile Include="Member BD Tests\When_member_completes_an_order.cs" />
     <Compile Include="Member BD Tests\When_member_removes_item_from_cart.cs" />

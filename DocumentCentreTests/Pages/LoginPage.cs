@@ -1,11 +1,6 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Remote;
-using OpenQA.Selenium.Support.UI;
-using System;
 using NLog;
-
 using DocumentCentreTests.Util;
-using OpenQA.Selenium.Support.PageObjects;
 
 namespace DocumentCentreTests.Pages
 {

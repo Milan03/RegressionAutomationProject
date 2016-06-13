@@ -2,19 +2,22 @@
 using DocumentCentreTests.Util;
 using Machine.Specifications;
 using NCrunch.Framework;
+using OpenQA.Selenium;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace DocumentCentreTests.Member_BD_Tests
 {
-    [Timeout(100000)]
-    [Subject(typeof(LoginPage))]
-    public class When_member_adds_item_to_cart : BaseDriverTest
+    class When_members_adds_product_inline : BaseDriverTest
     {
         static HomePage _homePage;
         static CataloguesPage _catPage;
         static ProductsPage _prodPage;
         static MyCartPage _cartPage;
-        static bool _productsVerified;
 
         Establish context = () =>
         {
@@ -25,33 +28,19 @@ namespace DocumentCentreTests.Member_BD_Tests
             _catPage = _homePage.NavigateToCatalogues();
             _catPage.InputCatalogueName("milan");
             _catPage.InitiateSearch();
+            _prodPage = _catPage.ChooseCatalogue("Milan Automation Catalogue");
+            _prodPage.LoadProductRows();
+            _cartPage = _prodPage.NavigateToCart();
         };
 
         Because of = () =>
         {
-            _prodPage = _catPage.ChooseCatalogue("Milan Automation Catalogue");
-            _prodPage.LoadProductRows();
-            _prodPage.AddItemToCart("IN-MILANTEST-01", 1);
-            _prodPage.AddItemToCart("IN-MILANTEST-02", 1);
-            _prodPage.AddItemToCart("IN-MILANTEST-03", 1);
-            _prodPage.AddItemToCart("IN-MILANTEST-04", 1);
-            _cartPage = _prodPage.NavigateToCart();
-            _productsVerified = _cartPage.VerifyItemsInCart(_prodPage._prodsInCart);
-
+            
         };
 
-        It should_return_alert_of_success = () =>
+        It should_add_item_to_cart = () => 
         {
-            if (!_productsVerified)
-            {
-                _logger.Fatal("-- Member Add Item to Cart Test: [FAILED] --");
-                _prodPage.ItemAdded.ShouldBeTrue();
-            }
-            else
-            {
-                _logger.Info("-- Member Add Item to Cart Test: [PASSED] --");
-                _prodPage.ItemAdded.ShouldBeTrue();
-            }
+
         };
     }
 }
