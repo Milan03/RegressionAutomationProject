@@ -184,10 +184,13 @@ namespace DocumentCentreTests.Pages
 
         internal MyCartPage AddItemInline(List<Product> prodsInCart, string pnToAdd)
         {
-            CartItem lastElem = _cartLineItems[_cartLineItems.Count - 1];
-            Actions action = new Actions(_driver);
-            action.Click(lastElem.ProductNumber).SendKeys(pnToAdd);
-            action.Perform();
+            CartItem item = new CartItem();
+            item.DeleteButton = _cartLineItems.First().DeleteButton;
+            item.ProductNumber = _cartLineItems.First().ProductNumber;
+            item.Price = _cartLineItems.First().Price;
+            item.Quantity = _cartLineItems.First().Quantity;
+            item.ItemTotalAmt = _cartLineItems.First().ItemTotalAmt;
+
             return this;
         }
 
