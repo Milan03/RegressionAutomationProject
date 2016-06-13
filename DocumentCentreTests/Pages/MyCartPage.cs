@@ -151,6 +151,7 @@ namespace DocumentCentreTests.Pages
             {
                 for (int i = 0; i < _cartLineItems.Count; ++i)
                 {
+                    // search current cart items; if match make temp obj and return
                     if (_cartLineItems[i].ProductNumber.Text.Equals(prodNum))
                     {
                         currentItem.DeleteButton = _itemDeleteButtons[i];
@@ -171,6 +172,11 @@ namespace DocumentCentreTests.Pages
             return currentItem;
         }
 
+        /// <summary>
+        /// Compares values in of items in cart vs values of items recorded while on the Products page
+        /// </summary>
+        /// <param name="prodsInCart"></param>
+        /// <returns>true if matching, false if not matching</returns>
         internal bool VerifyItemsInCart(List<Product> prodsInCart)
         {
             int consistencyCount = 0;
