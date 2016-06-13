@@ -96,7 +96,6 @@ namespace DocumentCentreTests.Pages
             _productVariants = ProductsTable.FindElements(By.CssSelector(Constants.ALL_PROD_VARIANTS));
             _productQtyUp = ProductsTable.FindElements(By.XPath(Constants.ROW_QTY_UP_XPATH));
             _productQtyDown = ProductsTable.FindElements(By.XPath(Constants.ROW_QTY_DOWN_XPATH));
-            _productQtyLocators = ProductsTable.FindElements(By.XPath(Constants.PROD_VAR_QTYS_LOCATORS));
             try
             {
                 // apply variant information
@@ -113,17 +112,28 @@ namespace DocumentCentreTests.Pages
                     newProd.Price = HelperMethods.GetBetween(varInfo, "$ ", "end");
                     newProd.QtyUp = _productQtyUp[i];
                     newProd.QtyDown = _productQtyDown[i];
-                    newProd.QtyLocator = _productQtyLocators[i];
                     newProd.Checked = false;
                     _products.Add(newProd);
                 }
                 _logger.Info(" > Building catalogue: variant info - Complete!");
             }
-            catch (Exception)
+            catch (IndexOutOfRangeException) {
+                _logger.Error("IndexOutOfRangeException encountered.");
+            }
+
+            _productQtyLocators = ProductsTable.FindElements(By.XPath(Constants.PROD_VAR_QTYS_LOCATORS));
+            try
             {
-                _logger.Fatal(" > Loading catalogue products [FAILED]");
-                _logger.Fatal("-- TEST FAILURE @ URL: '" + _driver.Url + "' --");
-                BaseDriverTest.TakeScreenshot("screenshot");
+                // apply quantity box locators
+                _logger.Info(" > Building catalogue: quantity locators...");
+                for (int i = 0; i < _productQtyLocators.Count; ++i)
+                {
+                    _products[i].QtyLocator = _productQtyLocators[i];
+                }
+                _logger.Info(" > Building catalogue: quantity locators - Complete!");
+            }
+            catch (IndexOutOfRangeException) {
+                _logger.Error("IndexOutOfRangeException encountered.");
             }
 
             _productRows = ProductsTable.FindElements(By.XPath("//div[contains(@class,'product-row-wrapper')]"));
@@ -143,11 +153,9 @@ namespace DocumentCentreTests.Pages
                     startVal += btnCount;
                 }
                 _logger.Info(" > Building catalogue: update buttons - Complete!");
-            } catch (Exception)
-            {
-                _logger.Fatal(" > Loading catalogue products [FAILED]");
-                _logger.Fatal("-- TEST FAILURE @ URL: '" + _driver.Url + "' --");
-                BaseDriverTest.TakeScreenshot("screenshot");
+            }
+            catch (IndexOutOfRangeException) {
+                _logger.Error("IndexOutOfRangeException encountered.");
             }
         }
 

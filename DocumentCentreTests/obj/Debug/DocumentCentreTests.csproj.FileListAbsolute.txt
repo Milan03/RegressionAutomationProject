@@ -47,3 +47,4 @@ C:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\Docume
 C:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\bin\Debug\Mono.Cecil.Rocks.dll
 C:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\bin\Debug\Machine.TestAdapter.pdb
 C:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\bin\Debug\NCrunch.Framework.dll
+C:\Users\msobat\Documents\Visual Studio 2013\Projects\DocumentCentreTests\DocumentCentreTests\bin\Debug\wires-0.6.0-win.exe
