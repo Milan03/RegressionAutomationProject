@@ -111,7 +111,6 @@ namespace DocumentCentreTests.Pages
             _itemQtys = new List<IWebElement>();
             _itemTotals = new List<IWebElement>();
 
-
             try
             {
                 // get row elements

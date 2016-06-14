@@ -25,11 +25,6 @@ namespace DocumentCentreTests.Member_BD_Tests
             _voPage = _homePage.NavigateToOrders("View Draft Orders");
             _cartPage = _voPage.ReCreateOrder("AC-0000238");
             _cartPage.LoadItemsInCart();
-            //_catPage = _homePage.NavigateToCatalogues();
-            //_catPage.InputCatalogueName("milan");
-            //_catPage.InitiateSearch();
-            //_prodPage = _catPage.ChooseCatalogue("Milan Automation Catalogue");
-            //_cartPage = _prodPage.NavigateToCart();
         };
         
         Because of = () =>
