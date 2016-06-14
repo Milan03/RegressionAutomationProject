@@ -29,7 +29,7 @@ namespace DocumentCentreTests.Member_BD_Tests
 
         Because of = () =>
         {
-            _prodPage = _catPage.ChooseCatalogue("Milan Automation Catalogue");
+            _prodPage = _catPage.ChooseCatalogue("Milan Automation Catalogue 02");
             _prodPage.LoadProductRows();
             _prodPage.AddItemToCart("IN-MILANTEST-01", 1);
             _prodPage.AddItemToCart("IN-MILANTEST-02", 1);
