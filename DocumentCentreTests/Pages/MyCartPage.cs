@@ -104,12 +104,13 @@ namespace DocumentCentreTests.Pages
 
         /// <summary>
         /// Loads all the items currently in the cart and makes objects out of the 
-        /// row information to interact with.
+        /// row information to interact with. Each grid column is seperated into 
+        /// lists and then the lists are looped through to apply appropriate row 
+        /// elements per object constructed.
         /// </summary>
         internal void LoadItemsInCart()
         {
             _logger.Info(" > Attempting to load cart items...");
-
             try
             {
                 // get row elements
@@ -152,7 +153,9 @@ namespace DocumentCentreTests.Pages
         }
 
         /// <summary>
-        /// Find specific item in user's cart
+        /// Find specific item in user's cart. 
+        /// If a match is found using Product Numbers, a CartItem object is build and
+        /// returned to the caller.
         /// </summary>
         /// <param name="prodNum">description of item to be searched for</param>
         /// <returns>Cart object to interact with</returns>
@@ -256,7 +259,9 @@ namespace DocumentCentreTests.Pages
         }
 
         /// <summary>
-        /// Simulate the deletion of an item from the cart
+        /// Simulate the deletion of an item from the cart. Loop through the constructed
+        /// _cartLineItems list, if any Product Numbers match then click that row's 
+        /// delete icon and confirm the delete.
         /// </summary>
         /// <param name="pn">Find item by product number</param>
         /// <returns>Current page object</returns>
@@ -309,7 +314,7 @@ namespace DocumentCentreTests.Pages
         }
 
         /// <summary>
-        /// Simulate the deletion of an order
+        /// Simulate the deletion of an order. 
         /// </summary>
         /// <returns>View Orders page object</returns>
         public ViewOrdersPage DeleteOrder()
