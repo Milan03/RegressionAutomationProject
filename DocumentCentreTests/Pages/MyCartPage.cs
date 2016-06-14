@@ -95,8 +95,6 @@ namespace DocumentCentreTests.Pages
                 _logger.Fatal("-- TEST FAILURE @ URL: '" + _driver.Url + "' --");
                 BaseDriverTest.TakeScreenshot("screenshot");
             }
-            else
-                LoadItemsInCart();           
         }
 
         /// <summary>
@@ -107,14 +105,21 @@ namespace DocumentCentreTests.Pages
         {
             _logger.Info(" > Attempting to load cart items...");
 
-            // get row elements
-            _itemDeleteButtons = CartTable.FindElements(By.XPath(Constants.ITEM_DEL_BTN_XP));
-            _itemProdNums = CartTable.FindElements(By.XPath(Constants.ITEM_PN_XP));
-            _itemPrices = CartTable.FindElements(By.XPath(Constants.ITEM_PRICE_XP));
-            _itemQtys = CartTable.FindElements(By.XPath(Constants.ITEM_QTY_XP));
-            _itemTotals = CartTable.FindElements(By.XPath(Constants.ITEM_TOTAL_XP));
+            _itemDeleteButtons = new List<IWebElement>();
+            _itemProdNums = new List<IWebElement>();
+            _itemPrices = new List<IWebElement>();
+            _itemQtys = new List<IWebElement>();
+            _itemTotals = new List<IWebElement>();
+
+
             try
             {
+                // get row elements
+                _itemDeleteButtons = CartTable.FindElements(By.XPath(Constants.ITEM_DEL_BTN_XP));
+                _itemProdNums = CartTable.FindElements(By.XPath(Constants.ITEM_PN_XP));
+                _itemPrices = CartTable.FindElements(By.XPath(Constants.ITEM_PRICE_XP));
+                _itemQtys = CartTable.FindElements(By.XPath(Constants.ITEM_QTY_XP));
+                _itemTotals = CartTable.FindElements(By.XPath(Constants.ITEM_TOTAL_XP));
                 // make cart item objects to work with
                 for (int i = 0; i < _itemProdNums.Count - 1; ++i)
                 {
@@ -173,9 +178,10 @@ namespace DocumentCentreTests.Pages
                         break;
                     }
                 }
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
-                _logger.Fatal(" > Attempting to find MyCart item [FAILED] - " +e.Message);
+                _logger.Fatal(" > Attempting to find MyCart item [FAILED] - " + e.Message);
                 _logger.Fatal("-- TEST FAILURE @ URL: '" + _driver.Url + "' --");
                 BaseDriverTest.TakeScreenshot("screenshot");
             }
@@ -206,18 +212,18 @@ namespace DocumentCentreTests.Pages
                 return false;
             else
             {
-                _logger.Info("Verifying items added vs. items in cart...");
-                restart:
-                foreach ( CartItem cartLineItem in _cartLineItems )
+                _logger.Info(" > Verifying items added vs. items in cart...");
+            restart:
+                foreach (CartItem cartLineItem in _cartLineItems)
                 {
-                    foreach ( Product prod in prodsInCart )
+                    foreach (Product prod in prodsInCart)
                     {
-                        if (prod.ProductNumber.Equals(cartLineItem.ProductNumber.Text) && 
+                        if (prod.ProductNumber.Equals(cartLineItem.ProductNumber.Text) &&
                             !prod.Checked && !cartLineItem.Checked)
                         {
                             int cartItemQty;
                             Int32.TryParse(cartLineItem.Quantity.Text, out cartItemQty);
-                            if(prod.Price.Equals(cartLineItem.Price.Text) &&
+                            if (prod.Price.Equals(cartLineItem.Price.Text) &&
                                 prod.Quantity.Equals(cartItemQty))
                             {
                                 prod.Checked = true;
@@ -279,7 +285,7 @@ namespace DocumentCentreTests.Pages
 
                             if (ItemDeleted)
                             {
-                                _logger.Info(" > Cart item deleted! Item: " +pn);
+                                _logger.Info(" > Cart item deleted! Item: " + pn);
                                 break;
                             }
                         }
@@ -368,7 +374,7 @@ namespace DocumentCentreTests.Pages
                 return this;
             }
         }
-   
+
         public ViewOrdersPage CompleteOrder()
         {
             Thread.Sleep(1000);
@@ -435,7 +441,7 @@ namespace DocumentCentreTests.Pages
             return this;
         }
 
-        public MyCartPage ChangeDeliveryAddress() 
+        public MyCartPage ChangeDeliveryAddress()
         {
             DelieveryAddressButton.Click();
             // TODO: modal logic

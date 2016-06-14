@@ -24,7 +24,7 @@ namespace DocumentCentreTests.Member_BD_Tests
             _catPage = _homePage.NavigateToCatalogues();
             _catPage.InputCatalogueName("milan");
             _catPage.InitiateSearch();
-            _prodPage = _catPage.ChooseCatalogue("Milan Automation Catalogue");
+            _prodPage = _catPage.ChooseCatalogue("Milan Automation Catalogue 02");
             _prodPage.LoadProductRows();
             _prodPage.AddItemToCart("IN-MILANTEST-05", 1);
         };

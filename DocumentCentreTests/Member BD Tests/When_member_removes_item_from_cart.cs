@@ -24,6 +24,7 @@ namespace DocumentCentreTests.Member_BD_Tests
             _homePage = loginPage.LoginAs(Constants.MEM_PORTAL_USER, Constants.MEM_PORTAL_PASS);
             _voPage = _homePage.NavigateToOrders("View Draft Orders");
             _cartPage = _voPage.ReCreateOrder("AC-0000238");
+            _cartPage.LoadItemsInCart();
             //_catPage = _homePage.NavigateToCatalogues();
             //_catPage.InputCatalogueName("milan");
             //_catPage.InitiateSearch();
