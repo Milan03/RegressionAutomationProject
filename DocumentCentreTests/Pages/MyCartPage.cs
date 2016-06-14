@@ -58,6 +58,11 @@ namespace DocumentCentreTests.Pages
             OrderComplete = false;
             _driver = driver;
             _cartLineItems = new List<CartItem>();
+            _itemDeleteButtons = new List<IWebElement>();
+            _itemProdNums = new List<IWebElement>();
+            _itemPrices = new List<IWebElement>();
+            _itemQtys = new List<IWebElement>();
+            _itemTotals = new List<IWebElement>();
             ItemDeleted = false;
             ReportsDropdown = HelperMethods.FindElement(_driver, "xpath", Constants.XPATH_REPORTS_LOCATOR);
 
@@ -104,12 +109,6 @@ namespace DocumentCentreTests.Pages
         internal void LoadItemsInCart()
         {
             _logger.Info(" > Attempting to load cart items...");
-
-            _itemDeleteButtons = new List<IWebElement>();
-            _itemProdNums = new List<IWebElement>();
-            _itemPrices = new List<IWebElement>();
-            _itemQtys = new List<IWebElement>();
-            _itemTotals = new List<IWebElement>();
 
             try
             {
@@ -200,10 +199,12 @@ namespace DocumentCentreTests.Pages
         }
 
         /// <summary>
-        /// Compares values in of items in cart vs values of items recorded while on the Products page
+        /// Compares values of items in cart vs values of items recorded while on the Products page.
+        /// Adds 1 to 'consistencyCount' if all values of an item match those of cart item. If the 
+        /// count matches the prodsInCart.Count then the verification is successful.
         /// </summary>
-        /// <param name="prodsInCart"></param>
-        /// <returns>true if matching, false if not matching</returns>
+        /// <param name="prodsInCart">List of products added at the Product page</param>
+        /// <returns>True if matching, false if not matching</returns>
         internal bool VerifyItemsInCart(List<Product> prodsInCart)
         {
             int consistencyCount = 0;
@@ -358,7 +359,6 @@ namespace DocumentCentreTests.Pages
                 // click OK on Information dialog
                 Thread.Sleep(500);
                 HelperMethods.FindElement(_driver, "xpath", Constants.XPATH_ORDER_OK).Click();
-                //this.AlertSuccess = HelperMethods.CheckAlert(_driver);
                 // click Finish on next dialog
                 Thread.Sleep(4000);
                 HelperMethods.FindElement(_driver, "xpath", Constants.XPATH_INFO_FINISH).Click();
