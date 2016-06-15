@@ -191,13 +191,14 @@ namespace DocumentCentreTests.Pages
 
         internal MyCartPage AddItemInline(List<Product> prodsInCart, string pnToAdd)
         {
-            CartItem item = new CartItem();
-            item.DeleteButton = _cartLineItems.First().DeleteButton;
-            item.ProductNumber = _cartLineItems.First().ProductNumber;
-            item.Price = _cartLineItems.First().Price;
-            item.Quantity = _cartLineItems.First().Quantity;
-            item.ItemTotalAmt = _cartLineItems.First().ItemTotalAmt;
-
+            Thread.Sleep(1000);
+            IWebElement PNCell, PNInput;
+            PNCell = _driver.FindElement(By.XPath("//td[@class='editable']"));
+            //PNCell.Click();
+            new Actions(_driver).MoveToElement(PNCell).Click().Perform();
+            int i = 0;
+            PNInput = _driver.FindElement(By.XPath("//td/input[contains(@class,'k-textbox')]"), 3);
+            //PNInput.SendKeys("IN-MILANTEST-01");
             return this;
         }
 

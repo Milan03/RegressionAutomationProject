@@ -8,7 +8,7 @@ namespace DocumentCentreTests.Member_BD_Tests
 {
     [Timeout(100000)]
     [Subject(typeof(LoginPage))]
-    public class When_member_adds_item_to_cart : BaseDriverTest
+    public class When_member_makes_a_purchase_order : BaseDriverTest
     {
         static HomePage _homePage;
         static CataloguesPage _catPage;
@@ -44,7 +44,7 @@ namespace DocumentCentreTests.Member_BD_Tests
 
         It should_return_alert_of_success = () =>
         {
-            if (!_productsVerified)
+            if (!_productsVerified || !_cartPage.OrderComplete)
             {
                 _logger.Fatal("-- Member Add Item to Cart Test: [FAILED] --");
                 _prodPage.ItemAdded.ShouldBeTrue();

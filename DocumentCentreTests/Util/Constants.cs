@@ -42,6 +42,8 @@
         /// <summary>cart page row identifiers
         internal const string ITEM_DEL_BTN_XP = "//tbody/tr/td/div/button[3]";
         internal const string ITEM_PN_XP = "//tbody/tr/td[3]";
+        internal const string ITEM_PN_CELLS_XP = "//tbody/tr/td[2]";
+        internal const string ITEM_PN_TB_XP = "//tbdoy/tr/td[2]/input";
         internal const string ITEM_PRICE_XP = "//tbody/tr/td[7]";
         internal const string ITEM_QTY_XP = "//tbody/tr/td[8]";
         internal const string ITEM_TOTAL_XP = "//tbody/tr/td[9]";

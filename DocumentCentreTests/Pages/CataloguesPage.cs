@@ -1,6 +1,7 @@
 ﻿using DocumentCentreTests.Util;
 using NLog;
 using OpenQA.Selenium;
+using System.Threading;
 
 namespace DocumentCentreTests.Pages
 {
@@ -64,6 +65,7 @@ namespace DocumentCentreTests.Pages
         {
             IWebElement catalogueTitle = HelperMethods.FindElement(driver, "xpath", "//h1[contains(@class, 'catalog-tile-text') and contains (text(), '"+name+"')]");
             catalogueTitle.Click();
+            Thread.Sleep(1000);
             return new ProductsPage(driver);
         }
     }

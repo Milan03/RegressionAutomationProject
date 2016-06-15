@@ -1,9 +1,12 @@
 ﻿using DocumentCentreTests.Pages;
 using DocumentCentreTests.Util;
 using Machine.Specifications;
+using NCrunch.Framework;
 
 namespace DocumentCentreTests.Member_BD_Tests
 {
+    [Timeout(100000)]
+    [Subject(typeof(LoginPage))]
     class When_members_adds_product_inline : BaseDriverTest
     {
         static HomePage _homePage;
@@ -21,8 +24,10 @@ namespace DocumentCentreTests.Member_BD_Tests
             _catPage.InputCatalogueName("milan");
             _catPage.InitiateSearch();
             _prodPage = _catPage.ChooseCatalogue("Milan Automation Catalogue");
-            _prodPage.LoadProductRows();
+            //_prodPage.LoadProductRows();
+            //_prodPage.AddItemToCart("IN-MILANTEST-01", 1);
             _cartPage = _prodPage.NavigateToCart();
+            //_cartPage.LoadItemsInCart();
         };
 
         Because of = () =>
