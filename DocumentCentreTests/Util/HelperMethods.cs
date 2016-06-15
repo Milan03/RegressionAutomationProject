@@ -4,6 +4,7 @@ using NLog;
 using System.Threading;
 using System.Linq;
 using OpenQA.Selenium.Support.UI;
+using OpenQA.Selenium.Remote;
 
 namespace DocumentCentreTests.Util
 {
@@ -49,16 +50,6 @@ namespace DocumentCentreTests.Util
                 BaseDriverTest.TakeScreenshot("screenshot");
                 throw new NoSuchElementException("Unable to locate element.");
             }
-        }
-
-        public static IWebElement FindElement(this IWebDriver driver, By by, int timeoutInSeconds)
-        {
-            if (timeoutInSeconds > 0)
-            {
-                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeoutInSeconds));
-                return wait.Until(drv => drv.FindElement(by));
-            }
-            return driver.FindElement(by);
         }
 
         /// <summary>
