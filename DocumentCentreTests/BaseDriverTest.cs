@@ -21,6 +21,7 @@ namespace DocumentCentreTests
     {
         protected static NLog.Logger _logger = LogManager.GetCurrentClassLogger();
         protected static IWebDriver _driver;
+        protected static ChromeOptions _chromeOptions;
 
         /// <summary>
         /// Spins up an instance of FireFox webdriver which controls the browser using a
@@ -28,9 +29,12 @@ namespace DocumentCentreTests
         /// </summary>
         protected static void LoadDriver()
         {
+            ChromeOptions options = new ChromeOptions();
             try
             {
-                _driver = new ChromeDriver();
+                
+                options.AddArgument("--start-maximized");
+                _driver = new ChromeDriver(options);
                 _driver.Navigate().GoToUrl("http://portal.test-web01.lbmx.com/login?redirect=%2f");
             }
             catch(Exception e)

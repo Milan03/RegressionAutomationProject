@@ -117,12 +117,13 @@
     <Compile Include="BaseDriverTest.cs" />
     <Compile Include="Catalogue\CartItem.cs" />
     <Compile Include="Catalogue\Product.cs" />
-    <Compile Include="Member BD Tests\When_members_adds_product_inline.cs" />
-    <Compile Include="Member BD Tests\When_member_makes_a_purchase_order.cs" />
-    <Compile Include="Member BD Tests\When_member_removes_item_from_cart.cs" />
-    <Compile Include="Member BD Tests\When_member_searches_for_an_invalid_order.cs" />
-    <Compile Include="Member BD Tests\When_member_searches_for_catalogue.cs" />
-    <Compile Include="Member BD Tests\When_member_wants_to_delete_an_order.cs" />
+    <Compile Include="Pages\InboxPage.cs" />
+    <Compile Include="Supply America Tests\When_members_adds_product_inline.cs" />
+    <Compile Include="Supply America Tests\When_member_makes_a_purchase_order.cs" />
+    <Compile Include="Supply America Tests\When_member_removes_item_from_cart.cs" />
+    <Compile Include="Supply America Tests\When_member_searches_for_an_invalid_order.cs" />
+    <Compile Include="Supply America Tests\When_member_searches_for_catalogue.cs" />
+    <Compile Include="Supply America Tests\When_member_wants_to_delete_an_order.cs" />
     <Compile Include="Pages\CataloguesPage.cs" />
     <Compile Include="Pages\MyCartPage.cs" />
     <Compile Include="Pages\ProductsPage.cs" />
@@ -133,9 +134,9 @@
     <Compile Include="Pages\MemberHomePage.cs" />
     <Compile Include="Pages\ViewOrdersPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Member BD Tests\When_member_searches_for_an_order.cs" />
-    <Compile Include="Member BD Tests\When_member_logs_in_with_invalid_creds.cs" />
-    <Compile Include="Member BD Tests\When_member_logs_in_with_valid_creds.cs" />
+    <Compile Include="Supply America Tests\When_member_searches_for_an_order.cs" />
+    <Compile Include="General Tests\When_member_logs_in_with_invalid_creds.cs" />
+    <Compile Include="General Tests\When_member_logs_in_with_valid_creds.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\packages\Selenium.Mozilla.Firefox.Webdriver.0.6.0.1\driver\wires-0.6.0-win.exe">
