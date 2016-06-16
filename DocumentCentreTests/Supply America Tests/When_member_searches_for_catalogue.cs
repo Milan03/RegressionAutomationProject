@@ -35,7 +35,7 @@ namespace DocumentCentreTests.Member_BD_Tests
 
         It should_search_for_the_specified_catalogue = () =>
         {
-            string catText = _driver.FindElement(By.XPath(Constants.XPATH_CAT_LOCATOR)).Text;
+            string catText = _driver.FindElement(By.XPath(Constants.CAT_LOCATOR_XP)).Text;
             if (catText.Equals(Constants.TEST_CAT)) { 
                 _logger.Info("-- Member Search for Catalogue Test: [PASSED] --");
                 catText.ShouldEqual(Constants.TEST_CAT);

@@ -64,7 +64,7 @@ namespace DocumentCentreTests.Pages
             _itemQtys = new List<IWebElement>();
             _itemTotals = new List<IWebElement>();
             ItemDeleted = false;
-            ReportsDropdown = HelperMethods.FindElement(_driver, "xpath", Constants.XPATH_REPORTS_LOCATOR);
+            ReportsDropdown = HelperMethods.FindElement(_driver, "xpath", Constants.REPORTS_LOCATOR_XP);
 
             if (type.Equals("new_order"))
             {
@@ -283,7 +283,7 @@ namespace DocumentCentreTests.Pages
                             item.DeleteButton.Click();
 
                             Thread.Sleep(1000);
-                            _driver.FindElement(By.XPath(Constants.XPATH_DEL_ITEM_OK)).Click();
+                            _driver.FindElement(By.XPath(Constants.DEL_ITEM_OK_XP)).Click();
 
                             // check alert for confirmation of delete
                             ItemDeleted = HelperMethods.CheckAlert(_driver);
@@ -324,7 +324,7 @@ namespace DocumentCentreTests.Pages
 
             // click OK on Information dialog
             Thread.Sleep(500);
-            _driver.FindElement(By.XPath(Constants.XPATH_INFO_OK)).Click();
+            _driver.FindElement(By.XPath(Constants.INFO_OK_XP)).Click();
             AlertSuccess = HelperMethods.CheckAlert(_driver);
             return new ViewOrdersPage(_driver);
         }
@@ -363,10 +363,10 @@ namespace DocumentCentreTests.Pages
             {
                 // click OK on Information dialog
                 Thread.Sleep(500);
-                HelperMethods.FindElement(_driver, "xpath", Constants.XPATH_ORDER_OK).Click();
+                HelperMethods.FindElement(_driver, "xpath", Constants.ORDER_OK_XP).Click();
                 // click Finish on next dialog
                 Thread.Sleep(4000);
-                HelperMethods.FindElement(_driver, "xpath", Constants.XPATH_INFO_FINISH).Click();
+                HelperMethods.FindElement(_driver, "xpath", Constants.INFO_FINISH_XP).Click();
                 OrderComplete = true;
                 return new MyCartPage(_driver, "order_complete");
             }

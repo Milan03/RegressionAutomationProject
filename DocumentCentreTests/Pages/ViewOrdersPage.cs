@@ -54,13 +54,13 @@ namespace DocumentCentreTests.Pages
         public void CheckFirstRow()
         {
             Thread.Sleep(800);
-            if (HelperMethods.IsElementPresent(_driver, By.XPath(Constants.XPATH_PO_LOCATOR)))
+            if (HelperMethods.IsElementPresent(_driver, By.XPath(Constants.PO_LOCATOR_XP)))
             {
-                FirstTableElem = _driver.FindElement(By.XPath(Constants.XPATH_PO_LOCATOR));
+                FirstTableElem = _driver.FindElement(By.XPath(Constants.PO_LOCATOR_XP));
                 if (OrderType.Equals("Draft") || OrderType.Equals("Pending Approval"))
                 {
-                    DeleteOrderLocator = _driver.FindElement(By.XPath(Constants.XPATH_DEL_ORDER));
-                    CreateEditLocator = _driver.FindElement(By.XPath(Constants.XPATH_EDIT_ORDER));
+                    DeleteOrderLocator = _driver.FindElement(By.XPath(Constants.DEL_ORDER_XP));
+                    CreateEditLocator = _driver.FindElement(By.XPath(Constants.EDIT_ORDER_XP));
                 }
             }
             else // no table elements found, set to message
@@ -148,7 +148,7 @@ namespace DocumentCentreTests.Pages
             
             // click OK on Information dialog
             Thread.Sleep(500);
-            _driver.FindElement(By.XPath(Constants.XPATH_INFO_OK)).Click();
+            _driver.FindElement(By.XPath(Constants.INFO_OK_XP)).Click();
             AlertSuccess = HelperMethods.CheckAlert(_driver);
             return this;
         }
