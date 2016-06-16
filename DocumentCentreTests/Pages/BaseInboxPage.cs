@@ -1,13 +1,5 @@
-﻿using DocumentCentreTests.Catalogue;
-using DocumentCentreTests.Util;
-using NLog;
+﻿using NLog;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Interactions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DocumentCentreTests.Pages
 {
@@ -26,6 +18,7 @@ namespace DocumentCentreTests.Pages
         private IWebElement PrintBtn { get; set; }
         private IWebElement MarkProcBtn { get; set; }
         private IWebElement AdvSearchBtn { get; set; }
+        private IWebElement ResultGrid { get; set; }
         #endregion
 
         #region More Dropdown
@@ -36,7 +29,7 @@ namespace DocumentCentreTests.Pages
         private IWebElement MDOptions { get; set; }
         #endregion
 
-        protected internal BaseInboxPage()
+        protected internal BaseInboxPage(IWebDriver driver)
         {
 
         }
