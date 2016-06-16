@@ -1,4 +1,5 @@
-﻿using NLog;
+﻿using DocumentCentreTests.Util;
+using NLog;
 using OpenQA.Selenium;
 
 namespace DocumentCentreTests.Pages
@@ -9,8 +10,6 @@ namespace DocumentCentreTests.Pages
         private IWebDriver _driver;
 
         #region Main UI Controls
-        private IWebElement HeaderLbl { get; set; }
-        private IWebElement SubHeaderLbls { get; set; }
         private IWebElement StatusDropdown { get; set; }
         private IWebElement PeriodDropdown { get; set; }
         private IWebElement QuickSearchTextbox { get; set; }
@@ -22,7 +21,7 @@ namespace DocumentCentreTests.Pages
         #endregion
 
         #region More Dropdown
-        private IWebElement MoreDropdown { get; set; }
+        private IWebElement ActionsBtn { get; set; }
         private IWebElement MDMarkProc { get; set; }
         private IWebElement MDMarkUnproc { get; set; }
         private IWebElement MDPrintList { get; set; }
@@ -31,7 +30,21 @@ namespace DocumentCentreTests.Pages
 
         protected internal BaseInboxPage(IWebDriver driver)
         {
+            _driver = driver;
+            QuickSearchTextbox = HelperMethods.FindElement(_driver, "id", Constants.QS_TEXTBOX_ID);
+            QuickSearchBtn = HelperMethods.FindElement(_driver, "id", Constants.QS_BTN_ID);
+            ResultGrid = HelperMethods.FindElement(_driver, "id", Constants.RSLT_GRID_ID);
+            PrintBtn = HelperMethods.FindElement(_driver, "id", Constants.PRINT_BTN_ID);
+            MarkProcBtn = HelperMethods.FindElement(_driver, "id", Constants.MP_BTN_ID);
+            AdvSearchBtn = HelperMethods.FindElement(_driver, "id", Constants.AS_LINK_ID);
+            ActionsBtn = HelperMethods.FindElement(_driver, "id", Constants.ACTIONS_BTN_ID);
 
+            if (!_driver.Url.Contains("Mailbox"))
+            {
+                _logger.Fatal(" > Mailbox navigation [FAILED]");
+                _logger.Fatal("-- TEST FAILURE @ URL: '" + _driver.Url + "' --");
+                BaseDriverTest.TakeScreenshot("screenshot");
+            }
         }
     }
 }
