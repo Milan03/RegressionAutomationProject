@@ -192,14 +192,18 @@ namespace DocumentCentreTests.Pages
         internal MyCartPage AddItemInline(List<Product> prodsInCart, string pnToAdd)
         {
             Thread.Sleep(1000);
-            IWebElement PNCell, PNInput;
-            PNInput = null;
+            IWebElement PNCell, QtyInput, Outside, Active;
+            //PNInput = null;
             PNCell = _driver.FindElement(By.XPath("//td[@class='editable']"));
-            //PNCell.Click();
+            QtyInput = HelperMethods.FindElement(_driver, "xpath", "//td[contains(@class, 'editable') and contains(@class,'grid-col-int')]");
+            Outside = HelperMethods.FindElement(_driver, "id", "mainOrderScreenTabs-2");
             Actions action = new Actions(_driver);
-            action.MoveToElement(PNCell).Click().SendKeys("IN-MILANTEST-01").SendKeys(Keys.Tab);
+            action.MoveToElement(PNCell).Click().SendKeys("IIN-MILANTEST-01");
             action.Perform();
-            NotesTextbox.Click();
+            //Outside.Click();
+            Active = HelperMethods.FindElement(_driver, "id", "orderItemsGrid_active_cell");
+            action.MoveToElement(Active).Click().SendKeys("5");
+            action.Perform();
             return this;
         }
 
