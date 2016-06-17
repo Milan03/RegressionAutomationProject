@@ -47,6 +47,7 @@
         internal const string ITEM_PRICE_XP = "//tbody/tr/td[7]";
         internal const string ITEM_QTY_XP = "//tbody/tr/td[8]";
         internal const string ITEM_TOTAL_XP = "//tbody/tr/td[9]";
+        internal const string FR_TB_XP = "//td/input[contains(@class,'k-textbox')]";
 
         /// <summary>purchase order locators</summary>
         internal const string PO_LOCATOR_XP = "id('ordersGrid')/div[2]/table/tbody/tr[1]/td[3]";
