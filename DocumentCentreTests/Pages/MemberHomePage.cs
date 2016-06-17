@@ -43,7 +43,7 @@ namespace DocumentCentreTests.Pages
         /// <returns>New page object representing the destination.</returns>
         public override ViewOrdersPage NavigateToOrders(string linktext)
         {
-            _logger.Info(" > Attempting to navigate to View Orders");
+            _logger.Trace(" > Attempting to navigate to View Orders...");
 
             // dropdown interaction
             OrdersDropdown.Click();
@@ -64,7 +64,7 @@ namespace DocumentCentreTests.Pages
 
         public override CataloguesPage NavigateToCatalogues()
         {
-            _logger.Info(" > Attempting to navigate to Catalogues Page");
+            _logger.Trace(" > Attempting to navigate to Catalogues Page...");
 
             OrdersDropdown.Click();
             Thread.Sleep(500);

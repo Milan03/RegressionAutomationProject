@@ -110,7 +110,7 @@ namespace DocumentCentreTests.Pages
         /// </summary>
         internal void LoadItemsInCart()
         {
-            _logger.Info(" > Attempting to load cart items...");
+            _logger.Trace(" > Attempting to load cart items...");
             try
             {
                 // get row elements
@@ -161,7 +161,7 @@ namespace DocumentCentreTests.Pages
         /// <returns>Cart object to interact with</returns>
         private CartItem LoadCartItem(string prodNum)
         {
-            _logger.Info(" > Attempting to find cart item: " + prodNum);
+            _logger.Trace(" > Attempting to find cart item: " + prodNum);
             CartItem currentItem = new CartItem();
             try
             {
@@ -215,7 +215,7 @@ namespace DocumentCentreTests.Pages
                 return false;
             else
             {
-                _logger.Info(" > Verifying items added vs. items in cart...");
+                _logger.Trace(" > Verifying items added vs. items in cart...");
             restart:
                 foreach (CartItem cartLineItem in _cartLineItems)
                 {
@@ -271,7 +271,7 @@ namespace DocumentCentreTests.Pages
             CartItem item;
             try
             {
-                _logger.Info(" > Attempting to delete a cart item...");
+                _logger.Trace(" > Attempting to delete a cart item...");
                 if (_cartLineItems.Any())
                 {
                     foreach (CartItem cItem in _cartLineItems)
@@ -337,7 +337,7 @@ namespace DocumentCentreTests.Pages
         {
             AlertSuccess = false;
 
-            // attempt to save
+            _logger.Trace(" > Attempting to save draft order...");
             SaveDraftButton.Click();
             Thread.Sleep(300);
             AlertSuccess = HelperMethods.CheckAlert(_driver);
@@ -358,6 +358,7 @@ namespace DocumentCentreTests.Pages
         public MyCartPage SendOrder()
         {
             AlertSuccess = false;
+            _logger.Trace(" > Attempting to send order...");
             SendOrderButton.Click();
             if (HelperMethods.IsElementPresent(_driver, By.ClassName("modal-content")))
             {

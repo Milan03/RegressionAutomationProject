@@ -90,7 +90,7 @@ namespace DocumentCentreTests.Pages
         /// </summary>
         internal void LoadProductRows()
         {
-            _logger.Info(" > Attempting to load catalogue products...");
+            _logger.Trace(" > Attempting to load catalogue products...");
             Thread.Sleep(2000);
 
             _productVariants = ProductsTable.FindElements(By.CssSelector(Constants.ALL_PROD_VARIANTS_XP));
@@ -99,7 +99,7 @@ namespace DocumentCentreTests.Pages
             try
             {
                 // apply variant information
-                _logger.Info(" > Building catalogue: variant info...");
+                _logger.Trace(" > Building catalogue: variant info...");
                 for (int i = 0; i < _productVariants.Count; ++i)
                 {
                     string prodInfo = "start" + _productVariants[i].GetAttribute("title") + "end";
@@ -125,7 +125,7 @@ namespace DocumentCentreTests.Pages
             try
             {
                 // apply quantity box locators
-                _logger.Info(" > Building catalogue: quantity locators...");
+                _logger.Trace(" > Building catalogue: quantity locators...");
                 for (int i = 0; i < _productQtyLocators.Count; ++i)
                 {
                     _products[i].QtyLocator = _productQtyLocators[i];
@@ -142,7 +142,7 @@ namespace DocumentCentreTests.Pages
             try
             {
                 // apply update buttons
-                _logger.Info(" > Building catalogue: update buttons...");
+                _logger.Trace(" > Building catalogue: update buttons...");
                 for (int i = 0; i < _productRows.Count; ++i)
                 {
                     int btnCount = _productRows[i].Text.Count(f => f == '$');
@@ -166,7 +166,7 @@ namespace DocumentCentreTests.Pages
         /// <returns>Product object to interact with</returns>
         internal Product LoadProduct(string prodNum)
         {
-            _logger.Info(" > Searching for product: " + prodNum);
+            _logger.Trace(" > Searching for product: " + prodNum);
             Product currentProd = new Product();
             try
             {
@@ -206,16 +206,16 @@ namespace DocumentCentreTests.Pages
         /// <returns>current page object</returns>
         public ProductsPage AddItemToCart(string prodNum, int qty)
         {
-            _logger.Info(" > Attempting to add [" + qty +"] '" +prodNum +"' to cart.");
+            _logger.Trace(" > Attempting to add [" + qty +"] '" +prodNum +"' to cart.");
             WaitForLoad();
             Thread.Sleep(1000);
             Product product = LoadProduct(prodNum);
-            _logger.Info(" > Setting product quantity...");
+            _logger.Trace(" > Setting product quantity...");
             product.SetQuantity(qty);
             int qtyValue;
             Int32.TryParse(product.QtyLocator.GetAttribute("value"), out qtyValue);
             product.Quantity = qtyValue;
-            _logger.Info(" > Adding item to cart...");
+            _logger.Trace(" > Adding item to cart...");
             Thread.Sleep(1000);
             product.UpdateButton.Click();
             ItemAdded = HelperMethods.CheckAlert(_driver);
@@ -229,7 +229,7 @@ namespace DocumentCentreTests.Pages
         /// <returns>new MyCart page object</returns>
         public MyCartPage NavigateToCart()
         {
-            _logger.Info(" > Attempting to navigate to cart...");
+            _logger.Trace(" > Attempting to navigate to cart...");
             try {
                 Thread.Sleep(1000);
                 MyCartButton.Click();
@@ -282,7 +282,7 @@ namespace DocumentCentreTests.Pages
         /// <returns>current page object</returns>
         public ProductsPage InitiateSearch()
         {
-            _logger.Info(" > Searching for item...");
+            _logger.Trace(" > Searching for item...");
             SearchButton.Click();
             return this;
         }

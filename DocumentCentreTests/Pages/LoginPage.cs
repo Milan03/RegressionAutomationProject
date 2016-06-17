@@ -73,7 +73,7 @@ namespace DocumentCentreTests.Pages
         /// <returns>New page object representing the destination.</returns>
         public HomePage SubmitLogin()
         {
-            _logger.Info(" > Submitting login");
+            _logger.Info(" > Submitting login...");
             LoginButtonLocator.Click();
             if (LoginPageType.Equals("member"))
             {
@@ -106,7 +106,7 @@ namespace DocumentCentreTests.Pages
         /// <returns>New page object representing the destination page.</returns>
         public HomePage LoginAs(string username, string password)
         {
-            _logger.Info(" > Attempting to login as: " + username);
+            _logger.Info(" > Attempting to login as: " + username + "...");
             TypeUsername(username);
             TypePassword(password);
             return SubmitLogin();

@@ -117,7 +117,7 @@ namespace DocumentCentreTests.Pages
         /// <returns>Current page object</returns>
         public ViewOrdersPage InitiateSearch()
         {
-            _logger.Info(" > Searching for order");
+            _logger.Trace(" > Searching for order...");
             SearchOrdersButton.Click();
             return this;
         }
@@ -129,7 +129,7 @@ namespace DocumentCentreTests.Pages
         /// <returns>Current page object</returns>
         public ViewOrdersPage InputPurchaseOrder(string po)
         {
-            _logger.Info(" > Inputting purchase order number: " + po);
+            _logger.Trace(" > Inputting purchase order number: " + po);
             POInputTextbox.Click();
             POInputTextbox.Clear();
             POInputTextbox.SendKeys(po);
@@ -142,7 +142,7 @@ namespace DocumentCentreTests.Pages
         /// <returns>Current page object</returns>
         public ViewOrdersPage DeleteOrder()
         {
-            _logger.Info(" > Attempting to delete order");
+            _logger.Trace(" > Attempting to delete order...");
             AlertSuccess = false;
             DeleteOrderLocator.Click();
             
@@ -155,6 +155,7 @@ namespace DocumentCentreTests.Pages
 
         public MyCartPage ReCreateOrder(string PONumber)
         {
+            _logger.Trace(" > Attempting to recreate PO: " + PONumber + "...");
             InputPurchaseOrder(PONumber);
             InitiateSearch();
             OrderType = "Draft";
@@ -162,10 +163,10 @@ namespace DocumentCentreTests.Pages
             if (!CreateEditLocator.Equals(null))
             {
                 CreateEditLocator.Click();
-                _logger.Error(" > Attempting to recreate PO " + PONumber + " [SUCCESS].");
+                _logger.Error(" > Recreation of PO: " + PONumber + " [SUCCESS].");
             }
             else
-                _logger.Error(" > Attempting to recreate PO " + PONumber + " [FAILED].");
+                _logger.Error(" > Recreation of PO: " + PONumber + " [FAILED].");
 
             return new MyCartPage(_driver, "new_order");
         }
