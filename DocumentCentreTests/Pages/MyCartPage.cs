@@ -189,7 +189,7 @@ namespace DocumentCentreTests.Pages
             return currentItem;
         }
 
-        internal MyCartPage AddItemInline(List<Product> prodsInCart, string pnToAdd)
+        internal MyCartPage AddItemInline(List<Product> prodsInCart, string pnToAdd, int qtyToAdd)
         {
             Thread.Sleep(1000);
             IWebElement PNCell, QtyInput, Outside, Active;
@@ -199,11 +199,16 @@ namespace DocumentCentreTests.Pages
             Outside = HelperMethods.FindElement(_driver, "id", "mainOrderScreenTabs-2");
             Actions action = new Actions(_driver);
             action.MoveToElement(PNCell).Click().SendKeys("IIN-MILANTEST-01");
+            //Thread.Sleep(1000);
             action.Perform();
-            //Outside.Click();
-            Active = HelperMethods.FindElement(_driver, "id", "orderItemsGrid_active_cell");
-            action.MoveToElement(Active).Click().SendKeys("5");
-            action.Perform();
+            Outside.Click();
+            
+            for (int i = 0; i < qtyToAdd; ++i)
+            {
+                Active = HelperMethods.FindElement(_driver, "xpath", "//td[contains(@class,'editable')]//span[contains(@class,'k-i-arrow-n')]");
+                action.MoveToElement(Active).Click().Click().Click();
+                action.Perform();
+            }
             return this;
         }
 
@@ -323,16 +328,15 @@ namespace DocumentCentreTests.Pages
         /// Simulate the deletion of an order. 
         /// </summary>
         /// <returns>View Orders page object</returns>
-        public ViewOrdersPage DeleteOrder()
+        public MemberHomePage DeleteOrder()
         {
-            AlertSuccess = false;
+            IWebElement OK;
             DeleteOrderButton.Click();
-
             // click OK on Information dialog
             Thread.Sleep(500);
-            _driver.FindElement(By.XPath(Constants.INFO_OK_XP)).Click();
-            AlertSuccess = HelperMethods.CheckAlert(_driver);
-            return new ViewOrdersPage(_driver);
+            OK = _driver.FindElement(By.XPath(Constants.ORDER_OK_XP));
+            OK.Click();
+            return new MemberHomePage(_driver);
         }
 
         /// <summary>
