@@ -189,26 +189,33 @@ namespace DocumentCentreTests.Pages
             return currentItem;
         }
 
-        internal MyCartPage AddItemInline(List<Product> prodsInCart, string pnToAdd, int qtyToAdd)
+        /// <summary>
+        /// Basic inline product addition simulation. Adds one product to an empty MyCart grid.
+        /// Uses Selenium Actions to interact with MyCart grid.
+        /// </summary>
+        /// <param name="pnToAdd">Product number to add. May need to have an extra same starting letter
+        /// as the Action is too fast to register the first.
+        /// </param>
+        /// <returns>Current page</returns>
+        internal MyCartPage AddItemInline(string pnToAdd)
         {
+            AlertSuccess = false; 
             Thread.Sleep(1000);
-            IWebElement PNCell, QtyInput, Outside, Active;
-            //PNInput = null;
-            PNCell = _driver.FindElement(By.XPath("//td[@class='editable']"));
-            QtyInput = HelperMethods.FindElement(_driver, "xpath", "//td[contains(@class, 'editable') and contains(@class,'grid-col-int')]");
-            Outside = HelperMethods.FindElement(_driver, "id", "mainOrderScreenTabs-2");
+            IWebElement PNCell, Outside, Active;
+            PNCell = _driver.FindElement(By.XPath(Constants.EDITABLE_ROW_XP));
+            Outside = HelperMethods.FindElement(_driver, "id", Constants.CART_ORDER_GRID);
             Actions action = new Actions(_driver);
-            action.MoveToElement(PNCell).Click().SendKeys("IIN-MILANTEST-01");
-            //Thread.Sleep(1000);
+            action.MoveToElement(PNCell).Click().SendKeys(pnToAdd);
+
             action.Perform();
             Outside.Click();
-            
-            for (int i = 0; i < qtyToAdd; ++i)
-            {
-                Active = HelperMethods.FindElement(_driver, "xpath", "//td[contains(@class,'editable')]//span[contains(@class,'k-i-arrow-n')]");
-                action.MoveToElement(Active).Click().Click().Click();
-                action.Perform();
-            }
+
+            Active = HelperMethods.FindElement(_driver, "xpath", Constants.ACTIVE_ROW_QTY_XP);
+            action.MoveToElement(Active).Click();
+            action.Perform();
+
+            AlertSuccess = HelperMethods.CheckAlert(_driver);
+
             return this;
         }
 
@@ -351,7 +358,7 @@ namespace DocumentCentreTests.Pages
             SaveDraftButton.Click();
             Thread.Sleep(300);
             AlertSuccess = HelperMethods.CheckAlert(_driver);
-            if (AlertSuccess.Equals(Constants.MISSING_INFO_MSG)) // if po missing
+            if (AlertSuccess.Equals(false)) // if po missing
             {
                 // enter a po and attempt to save again
                 EnterRandomPONumber(7);
@@ -367,7 +374,6 @@ namespace DocumentCentreTests.Pages
         /// <returns>Current page object</returns>
         public MyCartPage SendOrder()
         {
-            AlertSuccess = false;
             _logger.Trace(" > Attempting to send order...");
             SendOrderButton.Click();
             if (HelperMethods.IsElementPresent(_driver, By.ClassName("modal-content")))

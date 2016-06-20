@@ -17,27 +17,33 @@ namespace DocumentCentreTests.Member_BD_Tests
         Establish context = () =>
         {
             LoadDriver();
-            _logger.Info("-- Member Add Item to Cart Test Initiating --");
+            _logger.Info("-- Member Add Item Inline to Cart Test Initiating --");
             LoginPage loginPage = new LoginPage(_driver, "member");
             _homePage = loginPage.LoginAs(Constants.SA_PORTAL_USER, Constants.SA_PORTAL_PASS);
             _catPage = _homePage.NavigateToCatalogues();
             _catPage.InputCatalogueName("milan");
             _catPage.InitiateSearch();
             _prodPage = _catPage.ChooseCatalogue("Milan Automation Catalogue");
-            //_prodPage.LoadProductRows();
-            //_prodPage.AddItemToCart("IN-MILANTEST-01", 1);
             _cartPage = _prodPage.NavigateToCart();
-            //_cartPage.LoadItemsInCart();
         };
 
         Because of = () =>
         {
-            _cartPage.AddItemInline(_prodPage._prodsInCart, "IN-MILANTEST-05", 3);
+            _cartPage.AddItemInline("IIN-MILANTEST-05");
         };
 
         It should_add_item_to_cart = () => 
         {
-
+            if (_cartPage.AlertSuccess.Equals(true))
+            {
+                _logger.Fatal("-- Member Add Item Inline to Cart Test: [FAILED] --");
+                _cartPage.ItemDeleted.ShouldBeTrue();
+            }
+            else
+            {
+                _logger.Fatal("-- Member Add Item Inline to Cart Test: [FAILED] --");
+                _cartPage.ItemDeleted.ShouldBeTrue();
+            }
         };
     }
 }
