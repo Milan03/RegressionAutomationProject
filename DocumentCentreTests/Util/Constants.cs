@@ -58,7 +58,7 @@
         internal const string INFO_PRINT_XP = "//button[.='Print']";
         internal const string INFO_EXPORT_XP = "//button[.='Export']";
         internal const string INFO_EMAIL_XP = "//button[.='Email']";
-        internal const string INFO_FINISH_XP = "//button[.='Finish']";
+        internal const string INFO_FINISH_XP = "//div[@class='bootstrap-dialog-footer-buttons']/button[4]";
         internal const string ALERT_SUCCESS_XP = "//div[contains(@class, 'toast-success')]";
         internal const string ALERT_FAILURE_XP = "//div[contains(@class, 'toast-failure')]";
         internal const string CAT_LOCATOR_XP = "//h1[contains(@class, 'catalog-tile-text') and contains (text(), 'Milan Automation Catalogue')]";

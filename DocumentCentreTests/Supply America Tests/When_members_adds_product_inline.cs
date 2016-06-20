@@ -32,7 +32,7 @@ namespace DocumentCentreTests.Member_BD_Tests
 
         Because of = () =>
         {
-            _cartPage.AddItemInline(_prodPage._prodsInCart, "IN-MILANTEST-05");
+            _cartPage.AddItemInline(_prodPage._prodsInCart, "IN-MILANTEST-05", 3);
         };
 
         It should_add_item_to_cart = () => 
