@@ -77,7 +77,7 @@ namespace DocumentCentreTests.Pages
             LoginButtonLocator.Click();
             if (LoginPageType.Equals("member"))
             {
-                this.LoginSuccess = true;
+                LoginSuccess = true;
                 return new MemberHomePage(_driver);
             }
             else
