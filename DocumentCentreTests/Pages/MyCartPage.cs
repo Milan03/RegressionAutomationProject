@@ -372,7 +372,7 @@ namespace DocumentCentreTests.Pages
                 Thread.Sleep(500);
                 HelperMethods.FindElement(_driver, "xpath", Constants.ORDER_OK_XP).Click();
                 // click Finish on next dialog
-                Thread.Sleep(4000);
+                Thread.Sleep(5000);
                 HelperMethods.FindElement(_driver, "xpath", Constants.INFO_FINISH_XP).Click();
                 OrderComplete = true;
                 return new MyCartPage(_driver, "order_complete");

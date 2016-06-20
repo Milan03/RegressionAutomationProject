@@ -54,11 +54,11 @@
         internal const string DEL_ORDER_XP = "//button[contains(@class, 'btn-delete')]";
         internal const string EDIT_ORDER_XP = "//button[contains(@class, 'btn-copy')]";
         internal const string INFO_OK_XP = "//button[.='OK']";
-        internal const string ORDER_OK_XP = "//div[contains(@class, 'modal-content')]/div[3]/div/div/button[2]";
+        internal const string ORDER_OK_XP = "//div[@class='bootstrap-dialog-footer-buttons']/button[2]";
         internal const string INFO_PRINT_XP = "//button[.='Print']";
         internal const string INFO_EXPORT_XP = "//button[.='Export']";
         internal const string INFO_EMAIL_XP = "//button[.='Email']";
-        internal const string INFO_FINISH_XP = "//div[contains(@class, 'modal-content')]/div[3]/div/div/button[4]";
+        internal const string INFO_FINISH_XP = "//button[.='Finish']";
         internal const string ALERT_SUCCESS_XP = "//div[contains(@class, 'toast-success')]";
         internal const string ALERT_FAILURE_XP = "//div[contains(@class, 'toast-failure')]";
         internal const string CAT_LOCATOR_XP = "//h1[contains(@class, 'catalog-tile-text') and contains (text(), 'Milan Automation Catalogue')]";
