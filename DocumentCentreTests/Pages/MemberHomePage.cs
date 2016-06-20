@@ -13,6 +13,8 @@ namespace DocumentCentreTests.Pages
 
         private IWebElement OrdersDropdown;
 
+        internal bool PageReached;
+
         /// <summary>
         /// Member home page constructor
         /// </summary>
@@ -20,7 +22,7 @@ namespace DocumentCentreTests.Pages
         public MemberHomePage(IWebDriver driver)
         {
             _driver = driver;
-            //PageFactory.InitElements(driver, this);
+            PageReached = false;
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(1));
             IWebElement element =
             wait.Until<IWebElement>(ExpectedConditions.ElementIsVisible(By.Id("userActionsButton")));
@@ -30,8 +32,12 @@ namespace DocumentCentreTests.Pages
                 _logger.Fatal(" > Member Homepage navigation [FAILED]");
                 _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
                 BaseDriverTest.TakeScreenshot("screenshot");
-            } else
+            }
+            else
+            {
                 _logger.Info(" > Member Homepage reached!");
+                PageReached = true;
+            }
 
             _logger.Info(" > Login successful");
             OrdersDropdown = HelperMethods.FindElement(driver, "linktext", "My Orders");
