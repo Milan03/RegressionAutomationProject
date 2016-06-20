@@ -5,7 +5,7 @@ using NCrunch.Framework;
 
 namespace DocumentCentreTests.Member_BD_Tests
 {
-    [Timeout(100000)]
+    [Timeout(500000)]
     [Subject(typeof(LoginPage))]
     class When_members_adds_product_inline : BaseDriverTest
     {
