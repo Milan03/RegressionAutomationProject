@@ -48,6 +48,10 @@
         internal const string ITEM_QTY_XP = "//tbody/tr/td[8]";
         internal const string ITEM_TOTAL_XP = "//tbody/tr/td[9]";
         internal const string FR_TB_XP = "//td/input[contains(@class,'k-textbox')]";
+        internal const string CART_ORDER_GRID = "mainOrderScreenTabs-2";
+        internal const string EDITABLE_ROW_XP = "//td[@class='editable']";
+        internal const string ACTIVE_ROW_QTY_XP = "//td[contains(@class,'editable')]//span[contains(@class,'k-i-arrow-n')]";
+
 
         /// <summary>purchase order locators</summary>
         internal const string PO_LOCATOR_XP = "id('ordersGrid')/div[2]/table/tbody/tr[1]/td[3]";
