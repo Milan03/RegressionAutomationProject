@@ -8,7 +8,7 @@ namespace DocumentCentreTests.Pages
     public class CataloguesPage
     {
         private static Logger _logger = LogManager.GetCurrentClassLogger();
-        private IWebDriver driver;
+        private IWebDriver _driver;
 
         private IWebElement SearchInputTextbox;
         private IWebElement SearchButton;
@@ -19,9 +19,10 @@ namespace DocumentCentreTests.Pages
         /// <param name="driver">Main interface for testing</param>
         public CataloguesPage(IWebDriver driver)
         {
-            this.driver = driver;
-            this.SearchInputTextbox = HelperMethods.FindElement(driver, "id", "searchTerm");
-            this.SearchButton = HelperMethods.FindElement(driver, "id", "catalogSearchButton");
+            _driver = driver;
+            Thread.Sleep(1000);
+            SearchInputTextbox = HelperMethods.FindElement(driver, "id", "searchTerm");
+            SearchButton = HelperMethods.FindElement(driver, "id", "catalogSearchButton");
 
             if (!Constants.CAT_PAGE_TITLE.Equals(driver.Title))
             {
@@ -39,7 +40,7 @@ namespace DocumentCentreTests.Pages
         /// <returns>current page object</returns>
         public CataloguesPage InputCatalogueName(string catalogue)
         {
-            _logger.Info(" > Inputting catalogue name for search: " + catalogue);
+            _logger.Trace(" > Inputting catalogue name for search: " + catalogue);
             SearchInputTextbox.Clear();
             SearchInputTextbox.SendKeys(catalogue);
             return this;
@@ -51,7 +52,7 @@ namespace DocumentCentreTests.Pages
         /// <returns>current page object</returns>
         public CataloguesPage InitiateSearch()
         {
-            _logger.Info(" > Searching for catalogue...");
+            _logger.Trace(" > Searching for catalogue...");
             SearchButton.Click();
             return this;
         }
@@ -63,10 +64,10 @@ namespace DocumentCentreTests.Pages
         /// <returns>new Product page object related to catalogue choosen</returns>
         public ProductsPage ChooseCatalogue(string name)
         {
-            IWebElement catalogueTitle = HelperMethods.FindElement(driver, "xpath", "//h1[contains(@class, 'catalog-tile-text') and contains (text(), '"+name+"')]");
+            IWebElement catalogueTitle = HelperMethods.FindElement(_driver, "xpath", "//h1[contains(@class, 'catalog-tile-text') and contains (text(), '"+name+"')]");
             catalogueTitle.Click();
             Thread.Sleep(1000);
-            return new ProductsPage(driver);
+            return new ProductsPage(_driver);
         }
     }
 }
