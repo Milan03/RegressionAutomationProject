@@ -199,6 +199,7 @@ namespace DocumentCentreTests.Pages
         /// <returns>Current page</returns>
         internal MyCartPage AddItemInline(string pnToAdd)
         {
+            _logger.Trace(" > Attempting to add a product inline...");
             AlertSuccess = false; 
             Thread.Sleep(1000);
             IWebElement PNCell, Outside, Active;
@@ -206,8 +207,8 @@ namespace DocumentCentreTests.Pages
             Outside = HelperMethods.FindElement(_driver, "id", Constants.CART_ORDER_GRID);
             Actions action = new Actions(_driver);
             action.MoveToElement(PNCell).Click().SendKeys(pnToAdd);
-
             action.Perform();
+
             Outside.Click();
 
             Active = HelperMethods.FindElement(_driver, "xpath", Constants.ACTIVE_ROW_QTY_XP);
@@ -215,6 +216,10 @@ namespace DocumentCentreTests.Pages
             action.Perform();
 
             AlertSuccess = HelperMethods.CheckAlert(_driver);
+            if (AlertSuccess.Equals(true))
+                _logger.Info(" > Product added inline!");
+            else
+                _logger.Info(" > Problem adding product inline!");
 
             return this;
         }
