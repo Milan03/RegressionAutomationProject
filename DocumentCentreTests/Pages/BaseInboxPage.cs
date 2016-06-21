@@ -6,11 +6,11 @@ namespace DocumentCentreTests.Pages
 {
     public class BaseInboxPage
     {
-        private static Logger _logger = LogManager.GetCurrentClassLogger();
-        private IWebDriver _driver;
+        protected static Logger _logger = LogManager.GetCurrentClassLogger();
+        protected static IWebDriver _driver;
 
         #region Main UI Controls
-        private IWebElement StatusDropdown { get; set; }
+        protected internal IWebElement StatusDropdown { get; set; }
         private IWebElement PeriodDropdown { get; set; }
         private IWebElement QuickSearchTextbox { get; set; }
         private IWebElement QuickSearchBtn { get; set; }
@@ -31,6 +31,8 @@ namespace DocumentCentreTests.Pages
         protected internal BaseInboxPage(IWebDriver driver)
         {
             _driver = driver;
+            StatusDropdown = HelperMethods.FindElement(_driver, "id", Constants.STATUS_DD_ID);
+            PeriodDropdown = HelperMethods.FindElement(_driver, "id", Constants.PERIOD_DD_ID);
             QuickSearchTextbox = HelperMethods.FindElement(_driver, "id", Constants.QS_TEXTBOX_ID);
             QuickSearchBtn = HelperMethods.FindElement(_driver, "id", Constants.QS_BTN_ID);
             ResultGrid = HelperMethods.FindElement(_driver, "id", Constants.RSLT_GRID_ID);
