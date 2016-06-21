@@ -7,7 +7,7 @@ namespace DocumentCentreTests.Member_BD_Tests
     [Subject(typeof(LoginPage))]
     public class When_member_wants_to_delete_an_order : BaseDriverTest
     {
-        static ViewOrdersPage _voPage;
+        //static ViewOrdersPage _voPage;
         static MemberHomePage _memHomePage;
         static CataloguesPage _catPage;
         static ProductsPage _prodPage;
