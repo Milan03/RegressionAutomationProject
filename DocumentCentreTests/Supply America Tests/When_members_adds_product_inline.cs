@@ -36,7 +36,7 @@ namespace DocumentCentreTests.Member_BD_Tests
         {
             if (_cartPage.AlertSuccess.Equals(true))
             {
-                _logger.Fatal("-- Member Add Item Inline to Cart Test: [FAILED] --");
+                _logger.Fatal("-- Member Add Item Inline to Cart Test: [PASSED] --");
                 _cartPage.ItemDeleted.ShouldBeTrue();
             }
             else
