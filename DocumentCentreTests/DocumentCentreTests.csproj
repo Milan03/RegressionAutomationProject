@@ -117,6 +117,7 @@
     <Compile Include="BaseDriverTest.cs" />
     <Compile Include="Catalogue\CartItem.cs" />
     <Compile Include="Catalogue\Product.cs" />
+    <Compile Include="Mailbox Tests\When_member_navigates_to_PO_mailbox.cs" />
     <Compile Include="Pages\BaseInboxPage.cs" />
     <Compile Include="Pages\POInboxPage.cs" />
     <Compile Include="Supply America Tests\When_members_adds_product_inline.cs" />

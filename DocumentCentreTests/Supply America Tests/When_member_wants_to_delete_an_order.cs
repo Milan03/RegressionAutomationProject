@@ -24,7 +24,7 @@ namespace DocumentCentreTests.Member_BD_Tests
             //_voPage.OrderType = Constants.ORDER_SEARCH_DRAFT;
             //_voPage.InitiateSearch();
             //_voPage.CheckFirstRow();
-            _catPage = _homePage.NavigateToCatalogues();
+            _catPage = _memHomePage.NavigateToCatalogues();
             _catPage.InputCatalogueName("milan");
             _catPage.InitiateSearch();
             _prodPage = _catPage.ChooseCatalogue("Milan Automation Catalogue");

@@ -9,8 +9,6 @@ namespace DocumentCentreTests.Pages
     /// <summary>class representing Doc Centre Member Portal</summary>
     public class MemberHomePage : HomePage
     {
-        private IWebDriver _driver;
-
         private IWebElement OrdersDropdown;
 
         internal bool PageReached;
@@ -47,7 +45,7 @@ namespace DocumentCentreTests.Pages
         /// Logic to navigate to View Orders page
         /// </summary>
         /// <returns>New page object representing the destination.</returns>
-        public override ViewOrdersPage NavigateToOrders(string linktext)
+        public ViewOrdersPage NavigateToOrders(string linktext)
         {
             _logger.Trace(" > Attempting to navigate to View Orders...");
 
@@ -68,7 +66,7 @@ namespace DocumentCentreTests.Pages
             return new ViewOrdersPage(_driver);
         }
 
-        public override CataloguesPage NavigateToCatalogues()
+        public CataloguesPage NavigateToCatalogues()
         {
             _logger.Trace(" > Attempting to navigate to Catalogues Page...");
 

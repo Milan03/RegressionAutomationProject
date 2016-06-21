@@ -13,8 +13,6 @@ namespace DocumentCentreTests.Pages
     public abstract class HomePage
     {
         protected static Logger _logger = LogManager.GetCurrentClassLogger();
-
-        public abstract ViewOrdersPage NavigateToOrders(string linktext);
-        public abstract CataloguesPage NavigateToCatalogues();
+        protected static IWebDriver _driver;
     }
 }

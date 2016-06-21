@@ -4,7 +4,7 @@ namespace DocumentCentreTests.Pages
 {
     public class POInboxPage : BaseInboxPage
     {
-        private IWebDriver _driver;
+        //private IWebDriver _driver;
 
         private IWebElement AdvSearchStatus { get; set; }
         private IWebElement AdvSearchPeriod { get; set; }

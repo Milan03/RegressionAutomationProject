@@ -8,14 +8,14 @@ namespace DocumentCentreTests.Member_BD_Tests
     public class When_member_searches_for_an_order : BaseDriverTest
     {
         static ViewOrdersPage _voPage;
-        static HomePage _homePage;
+        static MemberHomePage _homePage;
 
         Establish context = () =>
         {
             LoadDriver();
             _logger.Info("-- Member Valid Order Search Test Initiating --");
             LoginPage loginPage = new LoginPage(_driver, "member");
-            _homePage = loginPage.LoginAs(Constants.SA_PORTAL_USER, Constants.SA_PORTAL_PASS);
+            _homePage = (MemberHomePage)loginPage.LoginAs(Constants.SA_PORTAL_USER, Constants.SA_PORTAL_PASS);
         };
 
         Because of = () =>

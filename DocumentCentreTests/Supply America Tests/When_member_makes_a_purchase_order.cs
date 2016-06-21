@@ -10,7 +10,7 @@ namespace DocumentCentreTests.Member_BD_Tests
     [Subject(typeof(LoginPage))]
     public class When_member_makes_a_purchase_order : BaseDriverTest
     {
-        static HomePage _homePage;
+        static MemberHomePage _homePage;
         static CataloguesPage _catPage;
         static ProductsPage _prodPage;
         static MyCartPage _cartPage;
@@ -21,7 +21,7 @@ namespace DocumentCentreTests.Member_BD_Tests
             LoadDriver();
             _logger.Info("-- Member Add Item to Cart Test Initiating --");
             LoginPage loginPage = new LoginPage(_driver, "member");
-            _homePage = loginPage.LoginAs(Constants.SA_PORTAL_USER, Constants.SA_PORTAL_PASS);
+            _homePage = (MemberHomePage)loginPage.LoginAs(Constants.SA_PORTAL_USER, Constants.SA_PORTAL_PASS);
             _catPage = _homePage.NavigateToCatalogues();
             _catPage.InputCatalogueName("milan");
             _catPage.InitiateSearch();
