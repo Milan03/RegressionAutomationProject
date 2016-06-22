@@ -15,7 +15,6 @@
         internal const string ORDER_DELETE_MSG = "Order has been deleted.";
         internal const string MISSING_INFO_MSG = "Some information is missing or invalid.";
         internal const string ORDER_COMPLETE_MSG = "Order has been sent for fulfillment.";
-
         internal const string CAT_PAGE_TITLE = "Select a Catalog to Order Products";
         internal const string TEST_CAT = "MILAN AUTOMATION CATALOGUE";
 
@@ -75,7 +74,7 @@
         internal const string DEL_ITEM_OK_XP = "//div[contains(@class, 'modal-footer')]/div/div/button[2]";
 
         /// <summary>mailbox IDs/locators</summary>
-        internal const string STATUS_DD_XP = "//span[contains(@title,'PO Received')]//span[contains(@class,'k-i-arrow-s')]";
+        internal const string STATUS_DD_XP = "Find XPath after Title attribute is defined";
         internal const string PERIOD_DD_XP = "//span[contains(@title,'PO Received')]//span[contains(@class,'k-i-arrow-s')]";
         internal const string QS_TEXTBOX_ID = "searchTerm";
         internal const string QS_BTN_ID = "invoiceSearchButton";
@@ -88,10 +87,14 @@
         internal const string ACTIONS_PRINT_ID = "reportsPrintGrid";
         internal const string ACTIONS_OPTIONS_ID = "actionsOptions";
         internal const string RSLT_GRID_ID = "searchResults";
+        internal const string AS_SEARCH_BTN_ID = "advancedSearchButton";
+        internal const string AS_CLEAR_BTN_ID = "clearAdvancedSearchLink";
+        internal const string AS_BASIC_BTN_ID = "basicSearchLink";
 
         /// <summary>PO mailbox</summary>
         internal const string AS_FROM_XP = "//span[contains(@title,'From')]//span[contains(@class,'k-i-arrow-s')]";
         internal const string AS_SHIP_TO_XP = "//span[contains(@title,'Ship To')]//span[contains(@class,'k-i-arrow-s')]";
+        
 
         /// <summary>supplier home page</summary>
         internal const string ORDER_FULFILLMENT = "Order Fulfillment";

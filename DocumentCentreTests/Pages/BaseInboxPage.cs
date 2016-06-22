@@ -3,6 +3,7 @@ using NLog;
 using OpenQA.Selenium;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 namespace DocumentCentreTests.Pages
 {
@@ -12,22 +13,22 @@ namespace DocumentCentreTests.Pages
         protected static IWebDriver _driver;
 
         #region Main UI Controls
-        protected internal IWebElement StatusDropdown { get; set; }
-        protected internal IWebElement PeriodDropdown { get; set; }
-        protected internal IWebElement QuickSearchTextbox { get; set; }
-        protected internal IWebElement QuickSearchBtn { get; set; }
-        protected internal IWebElement PrintBtn { get; set; }
-        protected internal IWebElement MarkProcBtn { get; set; }
-        protected internal IWebElement AdvSearchBtn { get; set; }
-        protected internal IWebElement ResultGrid { get; set; }
+        protected internal IWebElement StatusDropdown;
+        protected internal IWebElement PeriodDropdown;
+        protected internal IWebElement QuickSearchTextbox;
+        protected internal IWebElement QuickSearchBtn;
+        protected internal IWebElement PrintBtn;
+        protected internal IWebElement MarkProcBtn;
+        protected internal IWebElement ASButton;
+        protected internal IWebElement ResultGrid;
         #endregion
 
         #region More Dropdown
-        protected internal IWebElement ActionsBtn { get; set; }
-        protected internal IWebElement MDMarkProc { get; set; }
-        protected internal IWebElement MDMarkUnproc { get; set; }
-        protected internal IWebElement MDPrintList { get; set; }
-        protected internal IWebElement MDOptions { get; set; }
+        protected internal IWebElement ActionsBtn;
+        protected internal IWebElement MDMarkProc;
+        protected internal IWebElement MDMarkUnproc;
+        protected internal IWebElement MDPrintList;
+        protected internal IWebElement MDOptions;
         #endregion
 
         protected internal IList<IWebElement> StatusDropdowns;
@@ -36,15 +37,16 @@ namespace DocumentCentreTests.Pages
         protected internal BaseInboxPage(IWebDriver driver)
         {
             _driver = driver;
+            Thread.Sleep(500);
             PeriodDropdowns = _driver.FindElements(By.XPath(Constants.PERIOD_DD_XP));
-            PeriodDropdown = StatusDropdowns.First();
-            StatusDropdown = HelperMethods.FindElement(_driver, "id", Constants.STATUS_DD_XP);
+            PeriodDropdown = PeriodDropdowns.First();
+            //StatusDropdown = HelperMethods.FindElement(_driver, "id", Constants.STATUS_DD_XP);
             QuickSearchTextbox = HelperMethods.FindElement(_driver, "id", Constants.QS_TEXTBOX_ID);
             QuickSearchBtn = HelperMethods.FindElement(_driver, "id", Constants.QS_BTN_ID);
             ResultGrid = HelperMethods.FindElement(_driver, "id", Constants.RSLT_GRID_ID);
             PrintBtn = HelperMethods.FindElement(_driver, "id", Constants.PRINT_BTN_ID);
             MarkProcBtn = HelperMethods.FindElement(_driver, "id", Constants.MP_BTN_ID);
-            AdvSearchBtn = HelperMethods.FindElement(_driver, "id", Constants.AS_LINK_ID);
+            ASButton = HelperMethods.FindElement(_driver, "id", Constants.AS_LINK_ID);
             ActionsBtn = HelperMethods.FindElement(_driver, "id", Constants.ACTIONS_BTN_ID);
 
             if (!_driver.Url.Contains("Mailbox"))

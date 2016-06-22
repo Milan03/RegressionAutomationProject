@@ -1,4 +1,4 @@
-﻿using DocumentCentreTests.Catalogue;
+﻿using DocumentCentreTests.Models;
 using DocumentCentreTests.Util;
 using NLog;
 using OpenQA.Selenium;

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using DocumentCentreTests.Util;
 using NLog;
 using System.Threading;
-using DocumentCentreTests.Catalogue;
+using DocumentCentreTests.Models;
 using OpenQA.Selenium.Interactions;
 
 namespace DocumentCentreTests.Pages
