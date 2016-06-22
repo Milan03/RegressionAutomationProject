@@ -22,7 +22,7 @@ namespace DocumentCentreTests.Member_BD_Tests
             LoadDriver();
             _logger.Info("-- Member Search for Catalogue Test Initiating --");
             LoginPage loginPage = new LoginPage(_driver, "member");
-            _homePage = (MemberHomePage)loginPage.LoginAs(Constants.SA_PORTAL_USER, Constants.SA_PORTAL_PASS);
+            _homePage = (MemberHomePage)loginPage.LoginAs(Constants.SA_MEMBER_USER, Constants.SA_MEMBER_PASS);
         };
 
         Because of = () =>

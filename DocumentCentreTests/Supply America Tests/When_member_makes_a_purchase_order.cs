@@ -21,7 +21,7 @@ namespace DocumentCentreTests.Member_BD_Tests
             LoadDriver();
             _logger.Info("-- Member Add Item to Cart Test Initiating --");
             LoginPage loginPage = new LoginPage(_driver, "member");
-            _homePage = (MemberHomePage)loginPage.LoginAs(Constants.SA_PORTAL_USER, Constants.SA_PORTAL_PASS);
+            _homePage = (MemberHomePage)loginPage.LoginAs(Constants.SA_MEMBER_USER, Constants.SA_MEMBER_PASS);
             _catPage = _homePage.NavigateToCatalogues();
             _catPage.InputCatalogueName("milan");
             _catPage.InitiateSearch();

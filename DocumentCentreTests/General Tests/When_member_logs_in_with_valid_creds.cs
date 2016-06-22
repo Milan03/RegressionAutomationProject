@@ -22,7 +22,7 @@ namespace DocumentCentreTests.Member_BD_Tests
             _loginPage = new LoginPage(_driver, "member");
         };
 
-        Because of = () => _loginPage.LoginAs(Constants.SA_PORTAL_USER, Constants.SA_PORTAL_PASS);
+        Because of = () => _loginPage.LoginAs(Constants.SA_MEMBER_USER, Constants.SA_MEMBER_PASS);
 
         It should_have_successfully_logged_in = () =>
         {
