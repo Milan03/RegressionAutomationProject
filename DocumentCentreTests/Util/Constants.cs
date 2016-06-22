@@ -4,8 +4,10 @@
     internal static class Constants
     {
         /// <summary>member portal login info</summary>
-        internal const string SA_PORTAL_USER = "test01dealer";
-        internal const string SA_PORTAL_PASS = "imatestthis";
+        internal const string SA_MEMBER_USER = "test01dealer";
+        internal const string SA_MEMBER_PASS = "imatestthis";
+        internal const string SA_SUPPLIER_USER = "test01vendor";
+        internal const string SA_SUPPLIER_PASS = "imatestthis";
 
         /// <summary>UI messages</summary>
         internal const string LOGIN_ERROR_MSG = "The combination of username and password is incorrect";
@@ -86,5 +88,9 @@
         internal const string ACTIONS_PRINT_ID = "reportsPrintGrid";
         internal const string ACTIONS_OPTIONS_ID = "actionsOptions";
         internal const string RSLT_GRID_ID = "searchResults";
+
+        /// <summary>supplier home page</summary>
+        internal const string ORDER_FULFILLMENT = "Order Fulfillment";
+        internal const string VIEW_POS = "View POs";
     }
 }
