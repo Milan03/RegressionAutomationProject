@@ -75,8 +75,8 @@
         internal const string DEL_ITEM_OK_XP = "//div[contains(@class, 'modal-footer')]/div/div/button[2]";
 
         /// <summary>mailbox IDs/locators</summary>
-        internal const string STATUS_DD_ID = "processStatusList";
-        internal const string PERIOD_DD_ID = "yearsList";
+        internal const string STATUS_DD_XP = "//span[contains(@title,'PO Received')]//span[contains(@class,'k-i-arrow-s')]";
+        internal const string PERIOD_DD_XP = "//span[contains(@title,'PO Received')]//span[contains(@class,'k-i-arrow-s')]";
         internal const string QS_TEXTBOX_ID = "searchTerm";
         internal const string QS_BTN_ID = "invoiceSearchButton";
         internal const string AS_LINK_ID = "advancedSearchLink";
@@ -88,6 +88,10 @@
         internal const string ACTIONS_PRINT_ID = "reportsPrintGrid";
         internal const string ACTIONS_OPTIONS_ID = "actionsOptions";
         internal const string RSLT_GRID_ID = "searchResults";
+
+        /// <summary>PO mailbox</summary>
+        internal const string AS_FROM_XP = "//span[contains(@title,'From')]//span[contains(@class,'k-i-arrow-s')]";
+        internal const string AS_SHIP_TO_XP = "//span[contains(@title,'Ship To')]//span[contains(@class,'k-i-arrow-s')]";
 
         /// <summary>supplier home page</summary>
         internal const string ORDER_FULFILLMENT = "Order Fulfillment";

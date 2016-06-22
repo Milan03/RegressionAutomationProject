@@ -117,6 +117,7 @@
     <Compile Include="BaseDriverTest.cs" />
     <Compile Include="Catalogue\CartItem.cs" />
     <Compile Include="Catalogue\Product.cs" />
+    <Compile Include="Mailbox Tests\When_member_clicks_PObox_adv_search.cs" />
     <Compile Include="Mailbox Tests\When_member_navigates_to_PO_mailbox.cs" />
     <Compile Include="Pages\BaseInboxPage.cs" />
     <Compile Include="Pages\POInboxPage.cs" />

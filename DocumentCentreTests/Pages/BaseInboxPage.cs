@@ -1,6 +1,8 @@
 ﻿using DocumentCentreTests.Util;
 using NLog;
 using OpenQA.Selenium;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DocumentCentreTests.Pages
 {
@@ -11,28 +13,32 @@ namespace DocumentCentreTests.Pages
 
         #region Main UI Controls
         protected internal IWebElement StatusDropdown { get; set; }
-        private IWebElement PeriodDropdown { get; set; }
-        private IWebElement QuickSearchTextbox { get; set; }
-        private IWebElement QuickSearchBtn { get; set; }
-        private IWebElement PrintBtn { get; set; }
-        private IWebElement MarkProcBtn { get; set; }
-        private IWebElement AdvSearchBtn { get; set; }
-        private IWebElement ResultGrid { get; set; }
+        protected internal IWebElement PeriodDropdown { get; set; }
+        protected internal IWebElement QuickSearchTextbox { get; set; }
+        protected internal IWebElement QuickSearchBtn { get; set; }
+        protected internal IWebElement PrintBtn { get; set; }
+        protected internal IWebElement MarkProcBtn { get; set; }
+        protected internal IWebElement AdvSearchBtn { get; set; }
+        protected internal IWebElement ResultGrid { get; set; }
         #endregion
 
         #region More Dropdown
-        private IWebElement ActionsBtn { get; set; }
-        private IWebElement MDMarkProc { get; set; }
-        private IWebElement MDMarkUnproc { get; set; }
-        private IWebElement MDPrintList { get; set; }
-        private IWebElement MDOptions { get; set; }
+        protected internal IWebElement ActionsBtn { get; set; }
+        protected internal IWebElement MDMarkProc { get; set; }
+        protected internal IWebElement MDMarkUnproc { get; set; }
+        protected internal IWebElement MDPrintList { get; set; }
+        protected internal IWebElement MDOptions { get; set; }
         #endregion
+
+        protected internal IList<IWebElement> StatusDropdowns;
+        protected internal IList<IWebElement> PeriodDropdowns;
 
         protected internal BaseInboxPage(IWebDriver driver)
         {
             _driver = driver;
-            StatusDropdown = HelperMethods.FindElement(_driver, "id", Constants.STATUS_DD_ID);
-            PeriodDropdown = HelperMethods.FindElement(_driver, "id", Constants.PERIOD_DD_ID);
+            PeriodDropdowns = _driver.FindElements(By.XPath(Constants.PERIOD_DD_XP));
+            PeriodDropdown = StatusDropdowns.First();
+            StatusDropdown = HelperMethods.FindElement(_driver, "id", Constants.STATUS_DD_XP);
             QuickSearchTextbox = HelperMethods.FindElement(_driver, "id", Constants.QS_TEXTBOX_ID);
             QuickSearchBtn = HelperMethods.FindElement(_driver, "id", Constants.QS_BTN_ID);
             ResultGrid = HelperMethods.FindElement(_driver, "id", Constants.RSLT_GRID_ID);
