@@ -22,13 +22,13 @@ namespace DocumentCentreTests.Pages
         /// <param name="driver">Main interface for testing, represents idealised web browser</param>
         public LoginPage(IWebDriver driver, string type)
         {
-            this._driver = driver;
-            
-            this.LoginPageType = type;
-            this.LoginSuccess = false;
-            this.UsernameLocator = HelperMethods.FindElement(driver, "name", "UserName");
-            this.PasswordLocator = HelperMethods.FindElement(driver, "name", "Password");
-            this.LoginButtonLocator = HelperMethods.FindElement(driver, "id", "loginButton");
+            _driver = driver;
+
+            LoginPageType = type;
+            LoginSuccess = false;
+            UsernameLocator = HelperMethods.FindElement(driver, "name", "UserName");
+            PasswordLocator = HelperMethods.FindElement(driver, "name", "Password");
+            LoginButtonLocator = HelperMethods.FindElement(driver, "id", "loginButton");
 
             // check if on correct page
             if (!"User Login".Equals(driver.Title))
@@ -75,13 +75,17 @@ namespace DocumentCentreTests.Pages
         {
             _logger.Info(" > Submitting login...");
             LoginButtonLocator.Click();
-            if (LoginPageType.Equals("member"))
+            switch (LoginPageType)
             {
-                LoginSuccess = true;
-                return new MemberHomePage(_driver);
-            }
-            else
-                return null;      
+                case "member":
+                    LoginSuccess = true;
+                    return new MemberHomePage(_driver);
+                case "supplier":
+                    LoginSuccess = true;
+                    return new SupplierHomePage(_driver);
+                default:
+                    return null;
+            }   
         }
 
         /// <summary>

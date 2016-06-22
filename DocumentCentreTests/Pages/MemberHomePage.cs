@@ -21,11 +21,9 @@ namespace DocumentCentreTests.Pages
         {
             _driver = driver;
             PageReached = false;
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(1));
-            IWebElement element =
-            wait.Until<IWebElement>(ExpectedConditions.ElementIsVisible(By.Id("userActionsButton")));
+            OrdersDropdown = HelperMethods.FindElement(driver, "linktext", "My Orders");
             // check if on correct page
-            if (!HelperMethods.FindElement(driver, "id", "userActionsButton").Displayed)
+            if (OrdersDropdown.Equals(null))
             {
                 _logger.Fatal(" > Member Homepage navigation [FAILED]");
                 _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
@@ -34,11 +32,9 @@ namespace DocumentCentreTests.Pages
             else
             {
                 _logger.Info(" > Member Homepage reached!");
+                _logger.Info(" > Login successful");
                 PageReached = true;
             }
-
-            _logger.Info(" > Login successful");
-            OrdersDropdown = HelperMethods.FindElement(driver, "linktext", "My Orders");
         }
 
         /// <summary>
