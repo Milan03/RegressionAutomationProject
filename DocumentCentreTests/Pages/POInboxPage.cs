@@ -1,6 +1,7 @@
 ﻿using DocumentCentreTests.Models;
 using DocumentCentreTests.Util;
 using OpenQA.Selenium;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -13,7 +14,7 @@ namespace DocumentCentreTests.Pages
         internal IList<IWebElement> _poRecCheckboxes;
         internal IList<IWebElement> _poRecStatuses;
         internal IList<IWebElement> _poRecSenderNames;
-        internal IList<IWebElement> _poRecShipToName;
+        internal IList<IWebElement> _poRecShipToNames;
         internal IList<IWebElement> _poRecPONumbers;
         internal IList<IWebElement> _poRecPODates;
         internal IList<IWebElement> _poRecBillToNames;
@@ -35,12 +36,14 @@ namespace DocumentCentreTests.Pages
         internal bool PageReached;
         internal bool AdvLoadSuccess;
         internal bool BasicLoadSuccess;
+        internal bool GridLoadSuccess;
         public POInboxPage(IWebDriver driver) : base(driver)
         {
             _driver = driver;
             PageReached = false;
             AdvLoadSuccess = false;
             BasicLoadSuccess = true;
+            GridLoadSuccess = false;
             if (!_driver.Url.Contains("PurchaseOrderReceived"))
             {
                 _logger.Fatal(" > MyCart navigation [FAILED]");
@@ -102,6 +105,59 @@ namespace DocumentCentreTests.Pages
                 _logger.Info(" > PO Inbox Basic Search Loaded!");
                 AdvLoadSuccess = false;
                 BasicLoadSuccess = true;
+            }
+            return this;
+        }
+
+        /// <summary>
+        /// Loading of grid row elements. Default columns are parsed; if they contain any information,
+        /// it is added as a property to PurchaseOrderReceived object. Objects are contained in
+        /// _poRecLineItems.
+        /// </summary>
+        /// <returns>Current page object.</returns>
+        internal POInboxPage LoadGridRows()
+        {
+            _poRecLineItems = new List<PurchaseOrderReceived>();
+            _poRecCheckboxes = _driver.FindElements(By.XPath(Constants.PO_CHECKBOXES_XP));
+            _poRecStatuses = _driver.FindElements(By.XPath(Constants.PO_STATUSES_XP));
+            _poRecSenderNames = _driver.FindElements(By.XPath(Constants.PO_SENDER_NAMES_XP));
+            _poRecShipToNames = _driver.FindElements(By.XPath(Constants.PO_SHIP_TOS_XP));
+            _poRecPONumbers = _driver.FindElements(By.XPath(Constants.PO_PONUMBERS_XP));
+            _poRecPODates = _driver.FindElements(By.XPath(Constants.PO_PODATES_XP));
+            _poRecBillToNames = _driver.FindElements(By.XPath(Constants.PO_BILL_TO_NAMES_XP));
+            _poRecTotalAmounts = _driver.FindElements(By.XPath(Constants.PO_TOTAL_AMOUNTS_XP));
+            _poRecDateAdded = _driver.FindElements(By.XPath(Constants.PO_DATES_ADDED_XP));
+
+            try
+            {
+                _logger.Trace(" > Attempting to load PO Received grid elements...");
+                for (int i = 0; i < _poRecPONumbers.Count; ++i)
+                {
+                    PurchaseOrderReceived newPO = new PurchaseOrderReceived();
+                    newPO.Checkbox = _poRecCheckboxes[i];
+                    newPO.Status = _poRecStatuses[i].Text;
+                    newPO.SenderName = _poRecSenderNames[i].Text;
+                    newPO.ShipToName = _poRecShipToNames[i].Text;
+                    newPO.PONumber = _poRecPONumbers[i].Text;
+                    newPO.PODate = DateTime.Parse(_poRecPODates[i].Text);
+                    newPO.BillToName = _poRecBillToNames[i].Text;
+                    newPO.TotalAmount = decimal.Parse(_poRecTotalAmounts[i].Text);
+                    newPO.DateAdded = DateTime.Parse(_poRecDateAdded[i].Text);
+                    _poRecLineItems.Add(newPO);
+                }
+            }
+            catch (Exception e)
+            {
+                _logger.Fatal(" > Loading PO Received grid elements [FAILED]");
+                _logger.Error(e);
+                _logger.Fatal("-- TEST FAILURE @ URL: '" + _driver.Url + "' --");
+                BaseDriverTest.TakeScreenshot("screenshot");
+            }
+
+            if (_poRecLineItems.Any())
+            {
+                _logger.Info(" > Loading of PO Received grid elements complete!");
+                GridLoadSuccess = true;
             }
             return this;
         }
