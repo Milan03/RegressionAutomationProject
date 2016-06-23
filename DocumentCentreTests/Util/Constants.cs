@@ -74,7 +74,7 @@
         internal const string DEL_ITEM_OK_XP = "//div[contains(@class, 'modal-footer')]/div/div/button[2]";
 
         /// <summary>mailbox IDs/locators</summary>
-        internal const string STATUS_DD_XP = "Find XPath after Title attribute is defined";
+        internal const string STATUS_DD_XP = "[Find XPath after Title attribute is defined]";
         internal const string PERIOD_DD_XP = "//span[contains(@title,'PO Received')]//span[contains(@class,'k-i-arrow-s')]";
         internal const string QS_TEXTBOX_ID = "searchTerm";
         internal const string QS_BTN_ID = "invoiceSearchButton";
@@ -94,7 +94,15 @@
         /// <summary>PO mailbox</summary>
         internal const string AS_FROM_XP = "//span[contains(@title,'From')]//span[contains(@class,'k-i-arrow-s')]";
         internal const string AS_SHIP_TO_XP = "//span[contains(@title,'Ship To')]//span[contains(@class,'k-i-arrow-s')]";
-        
+        internal const string PO_CHECKBOXES_XP = "//div[contains(@class,'k-grid-content')]//tbody/tr/td[1]";
+        internal const string PO_STATUSES_XP = "//div[contains(@class,'k-grid-content')]//tbody/tr/td[2]";
+        internal const string PO_SENDER_NAMES_XP = "//div[contains(@class,'k-grid-content')]//tbody/tr/td[3]";
+        internal const string PO_SHIP_TOS_XP = "//div[contains(@class,'k-grid-content')]//tbody/tr/td[4]";
+        internal const string PO_PONUMBERS_XP = "//div[contains(@class,'k-grid-content')]//tbody/tr/td[5]";
+        internal const string PO_PODATES_XP = "//div[contains(@class,'k-grid-content')]//tbody/tr/td[6]";
+        internal const string PO_BILL_TO_NAMES_XP = "//div[contains(@class,'k-grid-content')]//tbody/tr/td[7]";
+        internal const string PO_TOTAL_AMOUNTS_XP = "//div[contains(@class,'k-grid-content')]//tbody/tr/td[8]";
+        internal const string PO_DATES_ADDED_XP = "//div[contains(@class,'k-grid-content')]//tbody/tr/td[9]";
 
         /// <summary>supplier home page</summary>
         internal const string ORDER_FULFILLMENT = "Order Fulfillment";
