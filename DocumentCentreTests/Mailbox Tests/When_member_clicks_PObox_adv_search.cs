@@ -2,6 +2,7 @@
 using DocumentCentreTests.Util;
 using Machine.Specifications;
 using NCrunch.Framework;
+using System.Threading;
 
 namespace DocumentCentreTests.Mailbox_Tests
 {
@@ -21,7 +22,10 @@ namespace DocumentCentreTests.Mailbox_Tests
             _poInboxPage = (POInboxPage)_suppHomepage.NavigateToMailbox(Constants.VIEW_POS);
         };
 
-        Because of = () => _poInboxPage.LoadAdvancedSearch();
+        Because of = () =>
+        {
+            _poInboxPage.LoadAdvancedSearch();
+        };
 
         It should_display_the_po_mailbox = () =>
         {
