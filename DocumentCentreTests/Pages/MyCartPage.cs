@@ -256,8 +256,8 @@ namespace DocumentCentreTests.Pages
                                 cartLineItem.Checked = true;
                                 double prodPrice = 0;
                                 double cartLineItemTotal = 0;
-                                Double.TryParse(prod.Price, out prodPrice);
-                                Double.TryParse(cartLineItem.ItemTotalAmt.Text, out cartLineItemTotal);
+                                double.TryParse(prod.Price, out prodPrice);
+                                double.TryParse(cartLineItem.ItemTotalAmt.Text, out cartLineItemTotal);
                                 double prodTotal = prodPrice * prod.Quantity;
                                 if (prodTotal.Equals(cartLineItemTotal))
                                     consistencyCount++;
