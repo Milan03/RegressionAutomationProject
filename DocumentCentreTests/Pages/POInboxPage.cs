@@ -22,17 +22,17 @@ namespace DocumentCentreTests.Pages
         internal IList<IWebElement> _poRecTotalAmounts;
         internal IList<IWebElement> _poRecDateAdded;
 
-        private IWebElement ASStatus;
+        //private IWebElement ASStatus;
         private IWebElement ASPeriod;
         private IWebElement ASFrom;
         private IWebElement ASShipTo;
         private IWebElement ASSearchBtn;
         private IWebElement ASClearBtn;
         private IWebElement ASBackToBasicBtn;
-        private IWebElement ASDateAdded;
-        private IWebElement ASPORecDate;
-        private IWebElement ASAmtFrom;
-        private IWebElement ASAmtTo;
+        //private IWebElement ASDateAdded;
+        //private IWebElement ASPORecDate;
+        //private IWebElement ASAmtFrom;
+        //private IWebElement ASAmtTo;
         #endregion
 
         internal bool PageReached;
