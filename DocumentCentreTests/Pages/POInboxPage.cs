@@ -2,6 +2,7 @@
 using DocumentCentreTests.Util;
 using OpenQA.Selenium;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 
 namespace DocumentCentreTests.Pages
@@ -65,7 +66,18 @@ namespace DocumentCentreTests.Pages
             ASBackToBasicBtn = HelperMethods.FindElement(_driver, "id", Constants.AS_BASIC_BTN_ID);
             if (!ASPeriod.Equals(null))
                 AdvLoadSuccess = true;
+            return this;
+        }
 
+        internal POInboxPage LoadBasicSearch()
+        {
+            ASBackToBasicBtn.Click();
+            Thread.Sleep(500);
+            //TODO: update after changes pushed
+            //ASStatus = StatusDropdowns[1]; 
+            PeriodDropdowns = _driver.FindElements(By.XPath(Constants.PERIOD_DD_XP));
+            PeriodDropdown = PeriodDropdowns.First();
+            QuickSearchTextbox = HelperMethods.FindElement(_driver, "id", Constants.QS_TEXTBOX_ID);
             return this;
         }
     }
