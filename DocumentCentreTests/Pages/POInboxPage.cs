@@ -10,6 +10,7 @@ namespace DocumentCentreTests.Pages
 {
     public class POInboxPage : BaseInboxPage
     {
+        #region Web Elements
         internal List<PurchaseOrderReceived> _poRecLineItems;
         internal IList<IWebElement> _poRecCheckboxes;
         internal IList<IWebElement> _poRecStatuses;
@@ -32,6 +33,7 @@ namespace DocumentCentreTests.Pages
         private IWebElement ASPORecDate;
         private IWebElement ASAmtFrom;
         private IWebElement ASAmtTo;
+        #endregion
 
         internal bool PageReached;
         internal bool AdvLoadSuccess;
@@ -98,7 +100,7 @@ namespace DocumentCentreTests.Pages
             //TODO: update after changes pushed
             //ASStatus = StatusDropdowns[1]; 
             PeriodDropdowns = _driver.FindElements(By.XPath(Constants.PERIOD_DD_XP));
-            PeriodDropdown = PeriodDropdowns.First();
+            PeriodDropdown = PeriodDropdowns[0];
             QuickSearchTextbox = HelperMethods.FindElement(_driver, "id", Constants.QS_TEXTBOX_ID);
             if (!PeriodDropdown.Equals(null) && !QuickSearchBtn.Equals(null))
             {
