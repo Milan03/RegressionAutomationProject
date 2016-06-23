@@ -11,8 +11,9 @@ namespace DocumentCentreTests.Models
         internal string ShipToName { get; set; }
         internal string PONumber { get; set; }
         internal DateTime PODate { get; set; }
-        internal IWebElement TotalAmount { get; set; }
+        internal Decimal TotalAmount { get; set; }
         internal string BillToName { get; set; }
+        internal DateTime DateAdded { get; set; }
         
         internal PurchaseOrderReceived() { } 
     }
