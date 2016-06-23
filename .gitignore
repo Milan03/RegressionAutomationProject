@@ -1,6 +1,10 @@
 #OS junk files
 [Tt]humbs.db
 **/*.DS_Store
+DocumentCentreTests/bin/Debug/DocumentCentreTests.dll
+DocumentCentreTests/bin/Debug/DocumentCentreTests.pdb
+DocumentCentreTests/obj/Debug/DocumentCentreTests.dll
+DocumentCentreTests/obj/Debug/DocumentCentreTests.pdb
 
 #Visual Studio files
 **/*.[Oo]bj
