@@ -27,7 +27,7 @@ namespace DocumentCentreTests.Mailbox_Tests
             _poInboxPage.LoadAdvancedSearch();
         };
 
-        It should_display_the_po_mailbox = () =>
+        It should_load_advanced_search = () =>
         {
             if (!_poInboxPage.AdvLoadSuccess)
             {

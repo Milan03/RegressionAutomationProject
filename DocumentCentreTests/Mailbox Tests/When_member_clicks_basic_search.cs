@@ -28,7 +28,7 @@ namespace DocumentCentreTests.Mailbox_Tests
             _poInboxPage.LoadBasicSearch();
         };
 
-        It should_display_the_po_mailbox = () =>
+        It should_load_basic_search = () =>
         {
             if (!_poInboxPage.BasicLoadSuccess)
             {
