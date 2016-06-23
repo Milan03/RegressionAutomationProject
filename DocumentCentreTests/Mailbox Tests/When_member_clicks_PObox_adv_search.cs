@@ -29,15 +29,15 @@ namespace DocumentCentreTests.Mailbox_Tests
 
         It should_display_the_po_mailbox = () =>
         {
-            if (!_poInboxPage.PageReached)
+            if (!_poInboxPage.AdvLoadSuccess)
             {
                 _logger.Fatal("-- Member PO Mailbox Load Adv Search Test: [FAILED] --");
-                _poInboxPage.PageReached.ShouldBeTrue();
+                _poInboxPage.AdvLoadSuccess.ShouldBeTrue();
             }
             else
             {
                 _logger.Info("-- Member PO Mailbox Load Adv Search Test: [PASSED] --");
-                _poInboxPage.PageReached.ShouldBeTrue();
+                _poInboxPage.AdvLoadSuccess.ShouldBeTrue();
             }
         };
     }
