@@ -54,6 +54,11 @@ namespace DocumentCentreTests.Pages
             }
         }
 
+        /// <summary>
+        /// Loads advanced search options for this mailbox. Clicks the Advanced Search link
+        /// and loads the corresponding elements.
+        /// </summary>
+        /// <returns>Current page element.</returns>
         internal POInboxPage LoadAdvancedSearch()
         {
             _logger.Trace(" > Attempting to load PO Inbox Advanced Search...");
@@ -77,6 +82,11 @@ namespace DocumentCentreTests.Pages
             return this;
         }
 
+        /// <summary>
+        /// Loads basic search options if on Advanced Search options. Clicks the Basic Search
+        /// link and loads the corresponding elements.
+        /// </summary>
+        /// <returns>Current page item.</returns>
         internal POInboxPage LoadBasicSearch()
         {
             _logger.Trace(" > Attempting to load PO Inbox Basic Search...");
