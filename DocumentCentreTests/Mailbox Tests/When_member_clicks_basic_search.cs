@@ -30,15 +30,15 @@ namespace DocumentCentreTests.Mailbox_Tests
 
         It should_display_the_po_mailbox = () =>
         {
-            if (!_poInboxPage.PageReached)
+            if (!_poInboxPage.BasicLoadSuccess)
             {
                 _logger.Fatal("-- Member PO Mailbox Load Basic Search Test: [FAILED] --");
-                _poInboxPage.PageReached.ShouldBeTrue();
+                _poInboxPage.BasicLoadSuccess.ShouldBeTrue();
             }
             else
             {
                 _logger.Info("-- Member PO Mailbox Load Basic Search Test: [PASSED] --");
-                _poInboxPage.PageReached.ShouldBeTrue();
+                _poInboxPage.BasicLoadSuccess.ShouldBeTrue();
             }
         };
     }
