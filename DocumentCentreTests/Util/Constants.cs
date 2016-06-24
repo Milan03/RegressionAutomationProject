@@ -108,6 +108,13 @@
         internal const string NEXT_PAGE_NAV_XP = "//a[contains(@title,'next page')]";
         internal const string LAST_PAGE_NAV_XP = "//a[contains(@title,'last page')]";
         internal const string PAGE_NUM_XP = "//span[contains(@class,'k-pager-nav')]";
+        internal const string PAGE_DROPDOWN_XP = "//span[contains(@class,'k-pager-sizes')]//span[contains(@class,'k-i-arrow-s')]";
+        internal const string PAGE_INFO_LBL_XP = "//span[contains(@class,'k-pager-info')]";
+        internal const string PAGE_REFRESH_XP = "//span[contains(@class,'k-i-refresh')]";
+        internal const string PAGE_AMT_10 = "//li[text()='10']";
+        internal const string PAGE_AMT_20 = "//li[text()='20']";
+        internal const string PAGE_AMT_50 = "//li[text()='50']";
+        internal const string PAGE_AMT_100 = "//li[text()='100']";
 
         /// <summary>supplier home page</summary>
         internal const string ORDER_FULFILLMENT = "Order Fulfillment";

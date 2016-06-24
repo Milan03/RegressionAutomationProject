@@ -33,12 +33,29 @@ namespace DocumentCentreTests.Pages
         protected IWebElement PrevPageBtn;
         protected IWebElement NextPageBtn;
         protected IWebElement LastPageBtn;
+        protected IWebElement GridItemAmountDropdown;
+        protected IWebElement GridItemAmt10;
+        protected IWebElement GridItemAmt20;
+        protected IWebElement GridItemAmt50;
+        protected IWebElement GridItemAmt100;
+        protected IWebElement PageLabel;
+        protected IWebElement PageRefreshBtn;
         #endregion
+
+        protected internal enum GridElementsToDisplay
+        {
+            Ten = 10,
+            Twenty = 20,
+            Fifty = 50,
+            Hundred = 100
+        };
 
         protected IList<IWebElement> StatusDropdowns;
         protected IList<IWebElement> PeriodDropdowns;
 
         protected internal bool NavRowSuccess;
+        protected internal bool GridAmountDropdownSuccess;
+        protected internal bool GridAmountSetSuccess;
         protected internal BaseInboxPage(IWebDriver driver)
         {
             _driver = driver;
@@ -77,10 +94,14 @@ namespace DocumentCentreTests.Pages
             PrevPageBtn = HelperMethods.FindElement(_driver, "xpath", Constants.PREV_PAGE_NAV_XP);
             NextPageBtn = HelperMethods.FindElement(_driver, "xpath", Constants.NEXT_PAGE_NAV_XP);
             LastPageBtn = HelperMethods.FindElement(_driver, "xpath", Constants.LAST_PAGE_NAV_XP);
+            GridItemAmountDropdown = HelperMethods.FindElement(_driver, "xpath", Constants.PAGE_DROPDOWN_XP);
+            PageLabel = HelperMethods.FindElement(_driver, "xpath", Constants.PAGE_INFO_LBL_XP);
+            PageRefreshBtn = HelperMethods.FindElement(_driver, "xpath", Constants.PAGE_REFRESH_XP);
 
             // verification
             if(!FirstPageBtn.Equals(null) && !PrevPageBtn.Equals(null) && !NextPageBtn.Equals(null)
-                && !LastPageBtn.Equals(null) && !_navPages.Any())
+                && !LastPageBtn.Equals(null) && !GridItemAmountDropdown.Equals(null) && !PageLabel.Equals(null)
+                && !PageRefreshBtn.Equals(null) && !_navPages.Any())
             {
                 _logger.Info(" > Mailbox navigation row loaded!");
                 NavRowSuccess = true;
@@ -93,20 +114,38 @@ namespace DocumentCentreTests.Pages
             return this;
         }
 
+        protected internal BaseInboxPage LoadGridItemAmountDropdown()
+        {
+            _logger.Trace(" > Loading grid item amount dropdown...");
+            GridItemAmt10 = HelperMethods.FindElement(_driver, "xpath", Constants.PAGE_AMT_10);
+            GridItemAmt20 = HelperMethods.FindElement(_driver, "xpath", Constants.PAGE_AMT_20);
+            GridItemAmt50 = HelperMethods.FindElement(_driver, "xpath", Constants.PAGE_AMT_50);
+            GridItemAmt100 = HelperMethods.FindElement(_driver, "xpath", Constants.PAGE_AMT_100);
+
+            if (!GridItemAmt10.Equals(null) && !GridItemAmt20.Equals(null) &&
+                !GridItemAmt50.Equals(null) && !GridItemAmt100.Equals(null))
+                GridAmountDropdownSuccess = true;
+
+            return this;
+        }
+
         protected internal BaseInboxPage NavToFirstPage()
         {
+            _logger.Trace(" > Navigating to first page of grid...");
             LoadNavigationRow();
             FirstPageBtn.Click();
             return this;
         }
         protected internal BaseInboxPage NavToPrevPage()
         {
+            _logger.Trace(" > Navigating to previous page of grid...");
             LoadNavigationRow();
             PrevPageBtn.Click();
             return this;
         }
         protected internal BaseInboxPage NavToNextPage()
         {
+            _logger.Trace(" > Navigating to next page of grid...");
             LoadNavigationRow();
             NextPageBtn.Click();
             return this;
@@ -114,8 +153,44 @@ namespace DocumentCentreTests.Pages
 
         protected internal BaseInboxPage NavToLastPage()
         {
+            _logger.Trace(" > Navigating to last page of grid...");
             LoadNavigationRow();
             LastPageBtn.Click();
+            return this;
+        }
+
+        protected internal BaseInboxPage SetGridItemAmount(GridElementsToDisplay toDisplay)
+        {
+            LoadNavigationRow();
+            GridItemAmountDropdown.Click();
+            GridAmountSetSuccess = false;
+            switch (toDisplay)
+            {
+                case GridElementsToDisplay.Ten:
+                    LoadGridItemAmountDropdown();
+                    GridItemAmt10.Click();
+                    GridAmountSetSuccess = true;
+                    _logger.Info(" > Mailbox grid set to display 10 items max.");
+                    break;
+                case GridElementsToDisplay.Twenty:
+                    LoadGridItemAmountDropdown();
+                    GridItemAmt20.Click();
+                    GridAmountSetSuccess = true;
+                    _logger.Info(" > Mailbox grid set to display 20 items max.");
+                    break;
+                case GridElementsToDisplay.Fifty:
+                    LoadGridItemAmountDropdown();
+                    GridItemAmt50.Click();
+                    GridAmountSetSuccess = true;
+                    _logger.Info(" > Mailbox grid set to display 50 items max.");
+                    break;
+                case GridElementsToDisplay.Hundred:
+                    LoadGridItemAmountDropdown();
+                    GridItemAmt100.Click();
+                    GridAmountSetSuccess = true;
+                    _logger.Info(" > Mailbox grid set to display 100 items max.");
+                    break;
+            }
             return this;
         }
     }
