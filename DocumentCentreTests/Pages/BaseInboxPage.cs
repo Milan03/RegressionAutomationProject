@@ -114,21 +114,6 @@ namespace DocumentCentreTests.Pages
             return this;
         }
 
-        protected internal BaseInboxPage LoadGridItemAmountDropdown()
-        {
-            _logger.Trace(" > Loading grid item amount dropdown...");
-            GridItemAmt10 = HelperMethods.FindElement(_driver, "xpath", Constants.PAGE_AMT_10);
-            GridItemAmt20 = HelperMethods.FindElement(_driver, "xpath", Constants.PAGE_AMT_20);
-            GridItemAmt50 = HelperMethods.FindElement(_driver, "xpath", Constants.PAGE_AMT_50);
-            GridItemAmt100 = HelperMethods.FindElement(_driver, "xpath", Constants.PAGE_AMT_100);
-
-            if (!GridItemAmt10.Equals(null) && !GridItemAmt20.Equals(null) &&
-                !GridItemAmt50.Equals(null) && !GridItemAmt100.Equals(null))
-                GridAmountDropdownSuccess = true;
-
-            return this;
-        }
-
         protected internal BaseInboxPage NavToFirstPage()
         {
             _logger.Trace(" > Navigating to first page of grid...");
@@ -156,6 +141,21 @@ namespace DocumentCentreTests.Pages
             _logger.Trace(" > Navigating to last page of grid...");
             LoadNavigationRow();
             LastPageBtn.Click();
+            return this;
+        }
+
+        protected internal BaseInboxPage LoadGridItemAmountDropdown()
+        {
+            _logger.Trace(" > Loading grid item amount dropdown...");
+            GridItemAmt10 = HelperMethods.FindElement(_driver, "xpath", Constants.PAGE_AMT_10);
+            GridItemAmt20 = HelperMethods.FindElement(_driver, "xpath", Constants.PAGE_AMT_20);
+            GridItemAmt50 = HelperMethods.FindElement(_driver, "xpath", Constants.PAGE_AMT_50);
+            GridItemAmt100 = HelperMethods.FindElement(_driver, "xpath", Constants.PAGE_AMT_100);
+
+            if (!GridItemAmt10.Equals(null) && !GridItemAmt20.Equals(null) &&
+                !GridItemAmt50.Equals(null) && !GridItemAmt100.Equals(null))
+                GridAmountDropdownSuccess = true;
+
             return this;
         }
 
