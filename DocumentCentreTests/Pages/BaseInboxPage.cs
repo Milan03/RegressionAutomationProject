@@ -13,30 +13,36 @@ namespace DocumentCentreTests.Pages
         protected static IWebDriver _driver;
 
         #region Main UI Controls
-        protected internal IWebElement StatusDropdown;
-        protected internal IWebElement PeriodDropdown;
-        protected internal IWebElement QuickSearchTextbox;
-        protected internal IWebElement QuickSearchBtn;
-        protected internal IWebElement PrintBtn;
-        protected internal IWebElement MarkProcBtn;
-        protected internal IWebElement ASButton;
-        protected internal IWebElement ResultGrid;
+        protected IWebElement StatusDropdown;
+        protected IWebElement PeriodDropdown;
+        protected IWebElement QuickSearchTextbox;
+        protected IWebElement QuickSearchBtn;
+        protected IWebElement PrintBtn;
+        protected IWebElement MarkProcBtn;
+        protected IWebElement ASButton;
+        protected IWebElement ResultGrid;
+
+        protected IWebElement ActionsBtn;
+        protected IWebElement MDMarkProc;
+        protected IWebElement MDMarkUnproc;
+        protected IWebElement MDPrintList;
+        protected IWebElement MDOptions;
+
+        protected IList<IWebElement> _navPages;
+        protected IWebElement FirstPageBtn;
+        protected IWebElement PrevPageBtn;
+        protected IWebElement NextPageBtn;
+        protected IWebElement LastPageBtn;
         #endregion
 
-        #region More Dropdown
-        protected internal IWebElement ActionsBtn;
-        protected internal IWebElement MDMarkProc;
-        protected internal IWebElement MDMarkUnproc;
-        protected internal IWebElement MDPrintList;
-        protected internal IWebElement MDOptions;
-        #endregion
+        protected IList<IWebElement> StatusDropdowns;
+        protected IList<IWebElement> PeriodDropdowns;
 
-        protected internal IList<IWebElement> StatusDropdowns;
-        protected internal IList<IWebElement> PeriodDropdowns;
-
+        protected internal bool NavRowSuccess;
         protected internal BaseInboxPage(IWebDriver driver)
         {
             _driver = driver;
+            NavRowSuccess = false;
             Thread.Sleep(500);
             PeriodDropdowns = _driver.FindElements(By.XPath(Constants.PERIOD_DD_XP));
             PeriodDropdown = PeriodDropdowns.First();
@@ -55,6 +61,62 @@ namespace DocumentCentreTests.Pages
                 _logger.Fatal("-- TEST FAILURE @ URL: '" + _driver.Url + "' --");
                 BaseDriverTest.TakeScreenshot("screenshot");
             }
+        }
+
+        /// <summary>
+        /// Method to load the bottom navigation row of the grid. This method is used to load
+        /// the row elements before each navigation to avoid stale elements.
+        /// </summary>
+        /// <returns>Current page object.</returns>
+        private BaseInboxPage LoadNavigationRow()
+        {
+            _logger.Trace(" > Attempting to load navigation row...");
+            _navPages = new List<IWebElement>();
+            _navPages = _driver.FindElements(By.XPath(Constants.PAGE_NUM_XP));
+            FirstPageBtn = HelperMethods.FindElement(_driver, "xpath", Constants.FIRST_PAGE_NAV_XP);
+            PrevPageBtn = HelperMethods.FindElement(_driver, "xpath", Constants.PREV_PAGE_NAV_XP);
+            NextPageBtn = HelperMethods.FindElement(_driver, "xpath", Constants.NEXT_PAGE_NAV_XP);
+            LastPageBtn = HelperMethods.FindElement(_driver, "xpath", Constants.LAST_PAGE_NAV_XP);
+
+            // verification
+            if(!FirstPageBtn.Equals(null) && !PrevPageBtn.Equals(null) && !NextPageBtn.Equals(null)
+                && !LastPageBtn.Equals(null) && !_navPages.Any())
+            {
+                _logger.Info(" > Mailbox navigation row loaded!");
+                NavRowSuccess = true;
+            } 
+            else
+            {
+                _logger.Info(" > Problem loading mailbox navigation row!");
+                NavRowSuccess = true;
+            }
+            return this;
+        }
+
+        protected internal BaseInboxPage NavToFirstPage()
+        {
+            LoadNavigationRow();
+            FirstPageBtn.Click();
+            return this;
+        }
+        protected internal BaseInboxPage NavToPrevPage()
+        {
+            LoadNavigationRow();
+            PrevPageBtn.Click();
+            return this;
+        }
+        protected internal BaseInboxPage NavToNextPage()
+        {
+            LoadNavigationRow();
+            NextPageBtn.Click();
+            return this;
+        }
+
+        protected internal BaseInboxPage NavToLastPage()
+        {
+            LoadNavigationRow();
+            LastPageBtn.Click();
+            return this;
         }
     }
 }

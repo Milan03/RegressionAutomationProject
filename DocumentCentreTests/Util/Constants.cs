@@ -103,6 +103,11 @@
         internal const string PO_BILL_TO_NAMES_XP = "//div[contains(@class,'k-grid-content')]//tbody/tr/td[7]";
         internal const string PO_TOTAL_AMOUNTS_XP = "//div[contains(@class,'k-grid-content')]//tbody/tr/td[8]";
         internal const string PO_DATES_ADDED_XP = "//div[contains(@class,'k-grid-content')]//tbody/tr/td[9]";
+        internal const string FIRST_PAGE_NAV_XP = "//a[contains(@title,'first page')]";
+        internal const string PREV_PAGE_NAV_XP = "//a[contains(@title,'previous page')]";
+        internal const string NEXT_PAGE_NAV_XP = "//a[contains(@title,'next page')]";
+        internal const string LAST_PAGE_NAV_XP = "//a[contains(@title,'last page')]";
+        internal const string PAGE_NUM_XP = "//span[contains(@class,'k-pager-nav')]";
 
         /// <summary>supplier home page</summary>
         internal const string ORDER_FULFILLMENT = "Order Fulfillment";
