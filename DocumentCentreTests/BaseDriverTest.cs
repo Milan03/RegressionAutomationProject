@@ -34,8 +34,8 @@ namespace DocumentCentreTests
             {
                 
                 options.AddArgument("--start-maximized");
-                //_driver = new ChromeDriver(options);
-                _driver = new FirefoxDriver();
+                _driver = new ChromeDriver(options);
+                //_driver = new FirefoxDriver();
                 _driver.Navigate().GoToUrl("http://portal.test-web01.lbmx.com/login?redirect=%2f");
             }
             catch(Exception e)
