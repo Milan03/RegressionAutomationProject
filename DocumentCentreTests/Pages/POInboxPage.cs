@@ -11,16 +11,16 @@ namespace DocumentCentreTests.Pages
     public class POInboxPage : BaseInboxPage
     {
         #region Web Elements
-        internal List<PurchaseOrderReceived> _poRecLineItems;
-        internal IList<IWebElement> _poRecCheckboxes;
-        internal IList<IWebElement> _poRecStatuses;
-        internal IList<IWebElement> _poRecSenderNames;
-        internal IList<IWebElement> _poRecShipToNames;
-        internal IList<IWebElement> _poRecPONumbers;
-        internal IList<IWebElement> _poRecPODates;
-        internal IList<IWebElement> _poRecBillToNames;
-        internal IList<IWebElement> _poRecTotalAmounts;
-        internal IList<IWebElement> _poRecDateAdded;
+        private List<PurchaseOrderReceived> _poRecLineItems;
+        private IList<IWebElement> _poRecCheckboxes;
+        private IList<IWebElement> _poRecStatuses;
+        private IList<IWebElement> _poRecSenderNames;
+        private IList<IWebElement> _poRecShipToNames;
+        private IList<IWebElement> _poRecPONumbers;
+        private IList<IWebElement> _poRecPODates;
+        private IList<IWebElement> _poRecBillToNames;
+        private IList<IWebElement> _poRecTotalAmounts;
+        private IList<IWebElement> _poRecDateAdded;
 
         //private IWebElement ASStatus;
         private IWebElement ASPeriod;
@@ -33,6 +33,8 @@ namespace DocumentCentreTests.Pages
         //private IWebElement ASPORecDate;
         //private IWebElement ASAmtFrom;
         //private IWebElement ASAmtTo;
+
+
         #endregion
 
         internal bool PageReached;
