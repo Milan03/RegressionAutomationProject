@@ -46,12 +46,13 @@ namespace DocumentCentreTests.Pages
         #endregion
 
         internal bool ItemAdded;
-
+        internal bool PDFDownloaded;
         public ProductsPage(IWebDriver driver)
         {
             #region Assigning Accessors
             _driver = driver;
             ItemAdded = false;
+            PDFDownloaded = false;
             ProductsTable = HelperMethods.FindElement(this._driver, "xpath", "//tbody");
             ReportsDropdown = HelperMethods.FindElement(this._driver, "xpath", Constants.REPORTS_LOCATOR_XP);
             SaveDraftButton = HelperMethods.FindElement(_driver, "id", "saveOrderButton");
@@ -80,9 +81,9 @@ namespace DocumentCentreTests.Pages
         public void LoadReportsOptions()
         {
             DLCatAsPDFOption = HelperMethods.FindElement(_driver, "id", "exportCatalogButtonPDF");
-            DLCatAsExcelOption = HelperMethods.FindElement(_driver, "id", "exportCatalogButtonXLS");
+            DLCatAsExcelOption = HelperMethods.FindElement(_driver, "id", "exportCatalogButtonXLSX");
             OrderReportOption = HelperMethods.FindElement(_driver, "id", "orderReportButton");
-            SummaryOption = HelperMethods.FindElement(_driver, "id", "ordersSummaryButton");
+            SummaryOption = HelperMethods.FindElement(_driver, "id", "orderSummaryButton");
         }
 
         /// <summary>
@@ -314,9 +315,11 @@ namespace DocumentCentreTests.Pages
         /// <returns>current page object</returns>
         public ProductsPage CataloguePDFExport()
         {
+            _logger.Trace(" > Attempting to download catalogue as PDF...");
             ReportsDropdown.Click();
             LoadReportsOptions();
             DLCatAsPDFOption.Click();
+            PDFDownloaded = true;
             return this;
         }
 

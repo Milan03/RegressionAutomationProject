@@ -8,6 +8,7 @@
         internal const string SA_MEMBER_PASS = "imatestthis";
         internal const string SA_SUPPLIER_USER = "test01vendor";
         internal const string SA_SUPPLIER_PASS = "imatestthis";
+        internal const string DOWNLOAD_PATH = "C:\\logging\\downloads";
 
         /// <summary>UI messages</summary>
         internal const string LOGIN_ERROR_MSG = "The combination of username and password is incorrect";
