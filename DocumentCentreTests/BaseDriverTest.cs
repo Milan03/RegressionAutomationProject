@@ -1,19 +1,10 @@
 ﻿using Machine.Specifications;
 using NLog;
-using NLog.Config;
-using NLog.Targets;
-using NUnit.Core;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.PhantomJS;
-using OpenQA.Selenium.Edge;
 using System;
-using System.Collections.Generic;
-using System.Drawing.Imaging;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using DocumentCentreTests.Util;
 
 namespace DocumentCentreTests
 {
@@ -32,10 +23,11 @@ namespace DocumentCentreTests
             ChromeOptions options = new ChromeOptions();
             try
             {
-                
                 options.AddArgument("--start-maximized");
-                _driver = new ChromeDriver(options);
-                //_driver = new FirefoxDriver();
+                //_driver = new ChromeDriver(options);
+                var profile = new FirefoxProfile();
+                SetProfile(profile);
+                _driver = new FirefoxDriver(profile);
                 _driver.Navigate().GoToUrl("http://portal.test-web01.lbmx.com/login?redirect=%2f");
             }
             catch(Exception e)
@@ -43,6 +35,17 @@ namespace DocumentCentreTests
                 Console.WriteLine(e.Message);
                 throw;
             }
+        }
+
+        private static FirefoxProfile SetProfile(FirefoxProfile profile)
+        {
+            profile.SetPreference("browser.helperApps.alwaysAsk.force", false);
+            profile.SetPreference("browser.download.folderList", 2);
+            profile.SetPreference("browser.download.dir", Constants.DOWNLOAD_PATH);
+            profile.SetPreference("browser.download.useDownloadDir", true);
+            profile.SetPreference("services.sync.prefs.sync.browser.download.manager.showWhenStarting", false);
+            profile.SetPreference("browser.helperApps.neverAsk.saveToDisk", "application/octet-stream doc xls pdf txt");
+            return profile;
         }
 
         /// <summary>
