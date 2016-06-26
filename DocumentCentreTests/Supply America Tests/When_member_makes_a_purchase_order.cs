@@ -6,7 +6,7 @@ using System.Threading;
 
 namespace DocumentCentreTests.Member_BD_Tests
 {
-    [Timeout(100000)]
+    [Timeout(900000)]
     [Subject(typeof(LoginPage))]
     public class When_member_makes_a_purchase_order : BaseDriverTest
     {
