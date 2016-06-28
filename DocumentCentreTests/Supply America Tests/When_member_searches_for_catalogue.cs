@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DocumentCentreTests.Member_BD_Tests
+namespace DocumentCentreTests.Supply_America_Tests
 {
     [Subject(typeof(LoginPage))]
     public class When_member_searches_for_catalogue : BaseDriverTest

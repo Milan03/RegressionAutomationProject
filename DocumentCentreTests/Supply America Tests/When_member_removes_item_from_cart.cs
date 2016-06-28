@@ -4,7 +4,7 @@ using Machine.Specifications;
 using NCrunch.Framework;
 using System.Threading;
 
-namespace DocumentCentreTests.Member_BD_Tests
+namespace DocumentCentreTests.Supply_America_Tests
 {
     [Timeout(100000)]
     [Subject(typeof(LoginPage))]

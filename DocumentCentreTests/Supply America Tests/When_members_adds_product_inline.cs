@@ -3,7 +3,7 @@ using DocumentCentreTests.Util;
 using Machine.Specifications;
 using NCrunch.Framework;
 
-namespace DocumentCentreTests.Member_BD_Tests
+namespace DocumentCentreTests.Supply_America_Tests
 {
     [Timeout(500000)]
     [Subject(typeof(LoginPage))]

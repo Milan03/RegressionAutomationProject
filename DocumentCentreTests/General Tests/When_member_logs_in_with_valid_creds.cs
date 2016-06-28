@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DocumentCentreTests.Member_BD_Tests
+namespace DocumentCentreTests.Supply_America_Tests
 {
     [Subject(typeof(LoginPage))]
     public class When_member_logs_in_with_valid_creds : BaseDriverTest

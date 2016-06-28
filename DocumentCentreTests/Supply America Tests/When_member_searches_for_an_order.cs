@@ -2,7 +2,7 @@
 using DocumentCentreTests.Util;
 using Machine.Specifications;
 
-namespace DocumentCentreTests.Member_BD_Tests
+namespace DocumentCentreTests.Supply_America_Tests
 {
     [Subject(typeof(LoginPage))]
     public class When_member_searches_for_an_order : BaseDriverTest
