@@ -24,10 +24,10 @@ namespace DocumentCentreTests
             try
             {
                 options.AddArgument("--start-maximized");
-                //_driver = new ChromeDriver(options);
+                _driver = new ChromeDriver(options);
                 var profile = new FirefoxProfile();
                 SetProfile(profile);
-                _driver = new FirefoxDriver(profile);
+                //_driver = new FirefoxDriver(profile);
                 _driver.Navigate().GoToUrl("http://portal.test-web01.lbmx.com/login?redirect=%2f");
             }
             catch(Exception e)
