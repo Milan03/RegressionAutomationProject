@@ -20,7 +20,7 @@ namespace DocumentCentreTests.Mailbox_Tests
 
         Because of = () =>
         {
-            _poInboxPage.SetGridItemAmount(BaseInboxPage.GridElementsToDisplay.Ten);
+            _poInboxPage.SetGridItemAmount(Constants.GridElementsToDisplay.Ten);
         };
 
         It should_go_to_the_last_page_of_grid = () =>

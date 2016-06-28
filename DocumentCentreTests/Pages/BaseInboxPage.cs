@@ -14,6 +14,9 @@ namespace DocumentCentreTests.Pages
 
         #region Main UI Controls
         protected IWebElement StatusDropdown;
+        protected IWebElement StatusAll;
+        protected IWebElement StatusUnprocessed;
+        protected IWebElement StatusProcessed;
         protected IWebElement PeriodDropdown;
         protected IWebElement QuickSearchTextbox;
         protected IWebElement QuickSearchBtn;
@@ -42,28 +45,22 @@ namespace DocumentCentreTests.Pages
         protected IWebElement PageRefreshBtn;
         #endregion
 
-        protected internal enum GridElementsToDisplay
-        {
-            Ten = 10,
-            Twenty = 20,
-            Fifty = 50,
-            Hundred = 100
-        };
-
         protected IList<IWebElement> StatusDropdowns;
         protected IList<IWebElement> PeriodDropdowns;
 
         protected internal bool NavRowSuccess;
         protected internal bool GridAmountDropdownSuccess;
         protected internal bool GridAmountSetSuccess;
+        protected internal bool StatusDropdownSuccess;
+        protected internal bool StatusSetSuccess;
         protected internal BaseInboxPage(IWebDriver driver)
         {
             _driver = driver;
-            NavRowSuccess = false;
-            Thread.Sleep(500);
             PeriodDropdowns = _driver.FindElements(By.XPath(Constants.PERIOD_DD_XP));
+            StatusDropdowns = _driver.FindElements(By.XPath(Constants.STATUS_DD_XP));
+            Thread.Sleep(500);
             PeriodDropdown = PeriodDropdowns.First();
-            //StatusDropdown = HelperMethods.FindElement(_driver, "id", Constants.STATUS_DD_XP);
+            StatusDropdown = StatusDropdowns.First();
             QuickSearchTextbox = HelperMethods.FindElement(_driver, "id", Constants.QS_TEXTBOX_ID);
             QuickSearchBtn = HelperMethods.FindElement(_driver, "id", Constants.QS_BTN_ID);
             ResultGrid = HelperMethods.FindElement(_driver, "id", Constants.RSLT_GRID_ID);
@@ -78,6 +75,50 @@ namespace DocumentCentreTests.Pages
                 _logger.Fatal("-- TEST FAILURE @ URL: '" + _driver.Url + "' --");
                 BaseDriverTest.TakeScreenshot("screenshot");
             }
+        }
+
+        private BaseInboxPage LoadStatusDropdown()
+        {
+            _logger.Trace(" > Loading mailbox Status dropdown...");
+            StatusAll = HelperMethods.FindElement(_driver, "xpath", Constants.STATUS_ALL_XP);
+            StatusProcessed = HelperMethods.FindElement(_driver, "xpath", Constants.STATUS_PROCESSED_XP);
+            StatusUnprocessed = HelperMethods.FindElement(_driver, "xpath", Constants.STATUS_UNPROCESSED_XP);
+
+            if (!StatusAll.Equals(null) && !StatusProcessed.Equals(null) && !StatusUnprocessed.Equals(null))
+            {
+                _logger.Info(" > Mailbox Status dropdown loaded!");
+                StatusDropdownSuccess = true;
+            }
+            return this;
+        }
+
+        internal BaseInboxPage SetSearchStatus(Constants.SearchStatus status)
+        {
+            _logger.Trace(" > Attempting to set search Status...");
+            StatusDropdown.Click();
+            StatusSetSuccess = false;
+            switch(status)
+            {
+                case Constants.SearchStatus.All:
+                    LoadStatusDropdown();
+                    StatusAll.Click();
+                    StatusSetSuccess = true;
+                    _logger.Info(" > Search status set to All.");
+                    break;
+                case Constants.SearchStatus.Processed:
+                    LoadStatusDropdown();
+                    StatusProcessed.Click();
+                    StatusSetSuccess = true;
+                    _logger.Info(" > Search status set to Processed.");
+                    break;
+                case Constants.SearchStatus.Unprocessed:
+                    LoadStatusDropdown();
+                    StatusUnprocessed.Click();
+                    StatusSetSuccess = true;
+                    _logger.Info(" > Search status set to Unprocessed.");
+                    break;
+            }
+            return this;
         }
 
         /// <summary>
@@ -113,38 +154,35 @@ namespace DocumentCentreTests.Pages
             }
             return this;
         }
-
-        protected internal BaseInboxPage NavToFirstPage()
+        internal BaseInboxPage NavToFirstPage()
         {
             _logger.Trace(" > Navigating to first page of grid...");
             LoadNavigationRow();
             FirstPageBtn.Click();
             return this;
         }
-        protected internal BaseInboxPage NavToPrevPage()
+        internal BaseInboxPage NavToPrevPage()
         {
             _logger.Trace(" > Navigating to previous page of grid...");
             LoadNavigationRow();
             PrevPageBtn.Click();
             return this;
         }
-        protected internal BaseInboxPage NavToNextPage()
+        internal BaseInboxPage NavToNextPage()
         {
             _logger.Trace(" > Navigating to next page of grid...");
             LoadNavigationRow();
             NextPageBtn.Click();
             return this;
         }
-
-        protected internal BaseInboxPage NavToLastPage()
+        internal BaseInboxPage NavToLastPage()
         {
             _logger.Trace(" > Navigating to last page of grid...");
             LoadNavigationRow();
             LastPageBtn.Click();
             return this;
         }
-
-        protected internal BaseInboxPage LoadGridItemAmountDropdown()
+        private BaseInboxPage LoadGridItemAmountDropdown()
         {
             _logger.Trace(" > Loading grid item amount dropdown...");
             GridItemAmt10 = HelperMethods.FindElement(_driver, "xpath", Constants.PAGE_AMT_10);
@@ -159,32 +197,37 @@ namespace DocumentCentreTests.Pages
             return this;
         }
 
-        protected internal BaseInboxPage SetGridItemAmount(GridElementsToDisplay toDisplay)
+        /// <summary>
+        /// Simulates setting the amount of elements to display in grid.
+        /// </summary>
+        /// <param name="toDisplay">Amount to display.</param>
+        /// <returns>Current page object.</returns>
+        internal BaseInboxPage SetGridItemAmount(Constants.GridElementsToDisplay toDisplay)
         {
             LoadNavigationRow();
             GridItemAmountDropdown.Click();
             GridAmountSetSuccess = false;
             switch (toDisplay)
             {
-                case GridElementsToDisplay.Ten:
+                case Constants.GridElementsToDisplay.Ten:
                     LoadGridItemAmountDropdown();
                     GridItemAmt10.Click();
                     GridAmountSetSuccess = true;
                     _logger.Info(" > Mailbox grid set to display 10 items max.");
                     break;
-                case GridElementsToDisplay.Twenty:
+                case Constants.GridElementsToDisplay.Twenty:
                     LoadGridItemAmountDropdown();
                     GridItemAmt20.Click();
                     GridAmountSetSuccess = true;
                     _logger.Info(" > Mailbox grid set to display 20 items max.");
                     break;
-                case GridElementsToDisplay.Fifty:
+                case Constants.GridElementsToDisplay.Fifty:
                     LoadGridItemAmountDropdown();
                     GridItemAmt50.Click();
                     GridAmountSetSuccess = true;
                     _logger.Info(" > Mailbox grid set to display 50 items max.");
                     break;
-                case GridElementsToDisplay.Hundred:
+                case Constants.GridElementsToDisplay.Hundred:
                     LoadGridItemAmountDropdown();
                     GridItemAmt100.Click();
                     GridAmountSetSuccess = true;
