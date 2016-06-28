@@ -1,8 +1,6 @@
 ﻿using DocumentCentreTests.Pages;
 using DocumentCentreTests.Util;
 using Machine.Specifications;
-using NCrunch.Framework;
-using System.Threading;
 
 namespace DocumentCentreTests.Supply_America_Tests
 {

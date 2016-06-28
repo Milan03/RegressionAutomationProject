@@ -5,7 +5,7 @@ using System.Threading;
 
 namespace DocumentCentreTests.Mailbox_Tests
 {
-    [Subject(typeof(LoginPage))]
+    
     public class When_member_clicks_PObox_basic_search : BaseDriverTest
     {
         static SupplierHomePage _suppHomepage;

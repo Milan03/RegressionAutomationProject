@@ -7,7 +7,7 @@ using System.Threading;
 namespace DocumentCentreTests.Mailbox_Tests
 {
     [Timeout(100000)]
-    [Subject(typeof(LoginPage))]
+    
     public class When_member_clicks_PObox_adv_search : BaseDriverTest
     {
         static SupplierHomePage _suppHomepage;

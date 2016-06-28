@@ -3,8 +3,7 @@ using DocumentCentreTests.Util;
 using Machine.Specifications;
 
 namespace DocumentCentreTests.Supply_America_Tests
-{
-    [Subject(typeof(LoginPage))]
+{    
     public class When_member_wants_to_delete_an_order : BaseDriverTest
     {
         //static ViewOrdersPage _voPage;

@@ -6,7 +6,7 @@ using NCrunch.Framework;
 namespace DocumentCentreTests.Mailbox_Tests
 {
     [Timeout(100000)]
-    [Subject(typeof(LoginPage))]
+    
     public class When_member_navigates_to_PO_mailbox : BaseDriverTest
     {
         static SupplierHomePage _suppHomepage;

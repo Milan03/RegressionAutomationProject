@@ -1,16 +1,9 @@
 ﻿using DocumentCentreTests.Pages;
 using DocumentCentreTests.Util;
 using Machine.Specifications;
-using OpenQA.Selenium.Firefox;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DocumentCentreTests.Supply_America_Tests
+namespace DocumentCentreTests.General_Tests
 {
-    [Subject(typeof(LoginPage))]
     public class When_member_logs_in_with_invalid_creds : BaseDriverTest
     {
         static LoginPage _loginPage;

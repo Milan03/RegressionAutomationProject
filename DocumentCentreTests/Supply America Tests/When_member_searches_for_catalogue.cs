@@ -10,8 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 namespace DocumentCentreTests.Supply_America_Tests
-{
-    [Subject(typeof(LoginPage))]
+{  
     public class When_member_searches_for_catalogue : BaseDriverTest
     {
         static MemberHomePage _homePage;

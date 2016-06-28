@@ -7,7 +7,6 @@ using System.Threading;
 namespace DocumentCentreTests.Supply_America_Tests
 {
     [Timeout(100000)]
-    [Subject(typeof(LoginPage))]
     public class When_member_removes_item_from_cart : BaseDriverTest
     {
         static MemberHomePage _homePage;
