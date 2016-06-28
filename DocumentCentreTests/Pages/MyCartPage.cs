@@ -215,6 +215,8 @@ namespace DocumentCentreTests.Pages
             action.MoveToElement(Active).Click();
             action.Perform();
 
+            Outside.Click();
+
             AlertSuccess = HelperMethods.CheckAlert(_driver);
             if (AlertSuccess.Equals(true))
                 _logger.Info(" > Product added inline!");
