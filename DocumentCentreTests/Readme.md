@@ -2,8 +2,7 @@
 
 Document Centre Tests is an automated testing project. The project utilizes the 
 [Page Object Design Pattern](http://www.assertselenium.com/automation-design-practices/page-object-pattern/) 
-along with the principles of Behaviour Driven Development (BDD) in the sense 
-that a page is modelled on what it does and how a user interacts with it. As the test engine
+along with the principles of Behaviour Driven Development (BDD). As the test engine,
 Document Centre Tests uses [NCrunch](http://www.ncrunch.net/) which is an automated concurrent 
 testing tool. This project aims to automate the regression testing of the Document Centre Member, 
 Group, and Supplier Portals hosted by LBMX Incorporated.
