@@ -73,7 +73,7 @@ namespace DocumentCentreTests.Pages
             Thread.Sleep(500);
             //TODO: update after changes pushed
             //ASStatus = StatusDropdowns[1]; 
-            ASPeriod = PeriodDropdowns[1];
+            ASPeriod = _periodDropdowns[1];
             ASFrom = HelperMethods.FindElement(_driver, "xpath", Constants.AS_FROM_XP);
             ASShipTo = HelperMethods.FindElement(_driver, "xpath", Constants.AS_SHIP_TO_XP);
             ASSearchBtn = HelperMethods.FindElement(_driver, "id", Constants.AS_SEARCH_BTN_ID);
@@ -101,8 +101,8 @@ namespace DocumentCentreTests.Pages
             Thread.Sleep(500);
             //TODO: update after changes pushed
             //ASStatus = StatusDropdowns[1]; 
-            PeriodDropdowns = _driver.FindElements(By.XPath(Constants.PERIOD_DD_XP));
-            PeriodDropdown = PeriodDropdowns[0];
+            _periodDropdowns = _driver.FindElements(By.XPath(Constants.PERIOD_DD_XP));
+            PeriodDropdown = _periodDropdowns[0];
             QuickSearchTextbox = HelperMethods.FindElement(_driver, "id", Constants.QS_TEXTBOX_ID);
             if (!PeriodDropdown.Equals(null) && !QuickSearchBtn.Equals(null))
             {

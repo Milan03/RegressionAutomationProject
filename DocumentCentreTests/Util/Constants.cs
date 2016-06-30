@@ -94,6 +94,17 @@
         internal const string STATUS_ALL_XP = "//div[@id='processStatusList-list']//li[.='All']";
         internal const string STATUS_PROCESSED_XP = "//div[@id='processStatusList-list']//li[.='Processed']";
         internal const string STATUS_UNPROCESSED_XP = "//div[@id='processStatusList-list']//li[.='Unprocessed']";
+        internal const string PERIOD_COUNT_XP = "//ul[@id='yearsList_listbox']//li";
+        internal const string PERIOD_LAST90_XP = "//ul[@id='yearsList_listbox']//li[.='Last 90 Days']";
+        internal const string PERIOD_2016_XP = "//ul[@id='yearsList_listbox']//li[.='2016']";
+        internal const string PERIOD_2015_XP = "//ul[@id='yearsList_listbox']//li[.='2015']";
+        internal const string PERIOD_2014_XP = "//ul[@id='yearsList_listbox']//li[.='2014']";
+        internal const string PERIOD_2013_XP = "//ul[@id='yearsList_listbox']//li[.='2013']";
+        internal const string PERIOD_2012_XP = "//ul[@id='yearsList_listbox']//li[.='2012']";
+        internal const string PERIOD_2011_XP = "//ul[@id='yearsList_listbox']//li[.='2011']";
+        internal const string PERIOD_2010_XP = "//ul[@id='yearsList_listbox']//li[.='2010']";
+        internal const string PERIOD_2009_XP = "//ul[@id='yearsList_listbox']//li[.='2009']";
+        internal const string PERIOD_2008_XP = "//ul[@id='yearsList_listbox']//li[.='2008']";
 
         internal enum GridElementsToDisplay
         {
@@ -108,6 +119,7 @@
             Processed,
             Unprocessed
         }
+
 
         /// <summary>PO mailbox</summary>
         internal const string AS_FROM_XP = "//span[contains(@title,'From')]//span[contains(@class,'k-i-arrow-s')]";

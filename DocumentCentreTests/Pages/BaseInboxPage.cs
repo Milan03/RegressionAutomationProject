@@ -45,8 +45,23 @@ namespace DocumentCentreTests.Pages
         protected IWebElement PageRefreshBtn;
         #endregion
 
-        protected IList<IWebElement> StatusDropdowns;
-        protected IList<IWebElement> PeriodDropdowns;
+        #region Period Years
+        protected IWebElement PeriodLast90;
+        protected IWebElement Period2017;
+        protected IWebElement Period2016;
+        protected IWebElement Period2015;
+        protected IWebElement Period2014;
+        protected IWebElement Period2013;
+        protected IWebElement Period2012;
+        protected IWebElement Period2011;
+        protected IWebElement Period2010;
+        protected IWebElement Period2009;
+        protected IWebElement Period2008;
+        #endregion
+
+        protected IList<IWebElement> _statusDropdowns;
+        protected IList<IWebElement> _periodDropdowns;
+        protected IList<IWebElement> _periodListCount;
 
         protected internal bool NavRowSuccess;
         protected internal bool GridAmountDropdownSuccess;
@@ -56,11 +71,11 @@ namespace DocumentCentreTests.Pages
         protected internal BaseInboxPage(IWebDriver driver)
         {
             _driver = driver;
-            PeriodDropdowns = _driver.FindElements(By.XPath(Constants.PERIOD_DD_XP));
-            StatusDropdowns = _driver.FindElements(By.XPath(Constants.STATUS_DD_XP));
+            _periodDropdowns = _driver.FindElements(By.XPath(Constants.PERIOD_DD_XP));
+            _statusDropdowns = _driver.FindElements(By.XPath(Constants.STATUS_DD_XP));
             Thread.Sleep(500);
-            PeriodDropdown = PeriodDropdowns.First();
-            StatusDropdown = StatusDropdowns.First();
+            PeriodDropdown = _periodDropdowns.First();
+            StatusDropdown = _statusDropdowns.First();
             QuickSearchTextbox = HelperMethods.FindElement(_driver, "id", Constants.QS_TEXTBOX_ID);
             QuickSearchBtn = HelperMethods.FindElement(_driver, "id", Constants.QS_BTN_ID);
             ResultGrid = HelperMethods.FindElement(_driver, "id", Constants.RSLT_GRID_ID);
@@ -75,6 +90,33 @@ namespace DocumentCentreTests.Pages
                 _logger.Fatal("-- TEST FAILURE @ URL: '" + _driver.Url + "' --");
                 BaseDriverTest.TakeScreenshot("screenshot");
             }
+        }
+
+        private BaseInboxPage LoadPeriodDropdown()
+        {
+            _logger.Trace(" > Loading mailbox Period  dropdown...");
+            _periodListCount = _driver.FindElements(By.XPath(Constants.PERIOD_COUNT_XP));
+            if (_periodListCount.Count <= 4)
+            {
+                PeriodLast90 = HelperMethods.FindElement(_driver, "xpath", Constants.PERIOD_LAST90_XP);
+                Period2016 = HelperMethods.FindElement(_driver, "xpath", Constants.PERIOD_2016_XP);
+                Period2015 = HelperMethods.FindElement(_driver, "xpath", Constants.PERIOD_2015_XP);
+                Period2014 = HelperMethods.FindElement(_driver, "xpath", Constants.PERIOD_2014_XP);
+            }
+            else
+            {
+                PeriodLast90 = HelperMethods.FindElement(_driver, "xpath", Constants.PERIOD_LAST90_XP);
+                Period2016 = HelperMethods.FindElement(_driver, "xpath", Constants.PERIOD_2016_XP);
+                Period2015 = HelperMethods.FindElement(_driver, "xpath", Constants.PERIOD_2015_XP);
+                Period2014 = HelperMethods.FindElement(_driver, "xpath", Constants.PERIOD_2014_XP);
+                Period2013 = HelperMethods.FindElement(_driver, "xpath", Constants.PERIOD_2013_XP);
+                Period2012 = HelperMethods.FindElement(_driver, "xpath", Constants.PERIOD_2012_XP);
+                Period2011 = HelperMethods.FindElement(_driver, "xpath", Constants.PERIOD_2011_XP);
+                Period2010 = HelperMethods.FindElement(_driver, "xpath", Constants.PERIOD_2010_XP);
+                Period2009 = HelperMethods.FindElement(_driver, "xpath", Constants.PERIOD_2009_XP);
+                Period2008 = HelperMethods.FindElement(_driver, "xpath", Constants.PERIOD_2008_XP);
+            }
+            return this;
         }
 
         private BaseInboxPage LoadStatusDropdown()
