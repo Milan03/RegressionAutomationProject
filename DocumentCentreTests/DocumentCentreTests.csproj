@@ -123,8 +123,8 @@
     <Compile Include="Mailbox Tests\When_member_navs_to_prev_page_of_grid.cs" />
     <Compile Include="Mailbox Tests\When_member_sets_doc_search_status.cs" />
     <Compile Include="Mailbox Tests\When_member_sets_grid_item_amount.cs" />
+    <Compile Include="Mailbox Tests\When_member_sets_period_dropdown.cs" />
     <Compile Include="Models\CartItem.cs" />
-    <Compile Include="Models\Period.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Mailbox Tests\When_member_clicks_PObox_adv_search.cs" />
     <Compile Include="Mailbox Tests\When_member_navigates_to_PO_mailbox.cs" />

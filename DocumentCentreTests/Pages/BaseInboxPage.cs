@@ -68,6 +68,8 @@ namespace DocumentCentreTests.Pages
         protected internal bool GridAmountSetSuccess;
         protected internal bool StatusDropdownSuccess;
         protected internal bool StatusSetSuccess;
+        protected internal bool PeriodDropdownSuccess;
+        protected internal bool PeriodSetSuccess;
         protected internal BaseInboxPage(IWebDriver driver)
         {
             _driver = driver;
@@ -102,19 +104,48 @@ namespace DocumentCentreTests.Pages
                 Period2016 = HelperMethods.FindElement(_driver, "xpath", Constants.PERIOD_2016_XP);
                 Period2015 = HelperMethods.FindElement(_driver, "xpath", Constants.PERIOD_2015_XP);
                 Period2014 = HelperMethods.FindElement(_driver, "xpath", Constants.PERIOD_2014_XP);
+
+                if (!PeriodLast90.Equals(null) && !Period2016.Equals(null) && !Period2015.Equals(null) && !Period2014.Equals(null))
+                {
+                    _logger.Info(" > Load Period dropdown success!");
+                    PeriodDropdownSuccess = true;
+                }
             }
-            else
+            return this;
+        }
+
+        /// <summary>
+        /// Method to set the Period dropdown in Basic search of mailboxes. Currently only takes into
+        /// account 2 years previous.
+        /// </summary>
+        /// <param name="period">Available periods</param>
+        /// <returns>Current page object.</returns>
+        internal BaseInboxPage SetPeriodDropdown(Constants.PeriodYear period)
+        {
+            _logger.Trace(" > Attempting to set search Period...");
+            PeriodDropdown.Click();
+            PeriodSetSuccess = false;
+            switch(period)
             {
-                PeriodLast90 = HelperMethods.FindElement(_driver, "xpath", Constants.PERIOD_LAST90_XP);
-                Period2016 = HelperMethods.FindElement(_driver, "xpath", Constants.PERIOD_2016_XP);
-                Period2015 = HelperMethods.FindElement(_driver, "xpath", Constants.PERIOD_2015_XP);
-                Period2014 = HelperMethods.FindElement(_driver, "xpath", Constants.PERIOD_2014_XP);
-                Period2013 = HelperMethods.FindElement(_driver, "xpath", Constants.PERIOD_2013_XP);
-                Period2012 = HelperMethods.FindElement(_driver, "xpath", Constants.PERIOD_2012_XP);
-                Period2011 = HelperMethods.FindElement(_driver, "xpath", Constants.PERIOD_2011_XP);
-                Period2010 = HelperMethods.FindElement(_driver, "xpath", Constants.PERIOD_2010_XP);
-                Period2009 = HelperMethods.FindElement(_driver, "xpath", Constants.PERIOD_2009_XP);
-                Period2008 = HelperMethods.FindElement(_driver, "xpath", Constants.PERIOD_2008_XP);
+                case Constants.PeriodYear.Last90:
+                    LoadPeriodDropdown();
+                    PeriodLast90.Click();
+                    PeriodSetSuccess = true;
+                    break;
+                case Constants.PeriodYear._2016:
+                    LoadPeriodDropdown();
+                    Period2016.Click();
+                    PeriodSetSuccess = true;
+                    break;
+                case Constants.PeriodYear._2015:
+                    LoadPeriodDropdown();
+                    Period2015.Click();
+                    PeriodSetSuccess = true;
+                    break;
+                case Constants.PeriodYear._2014:
+                    LoadPeriodDropdown();
+                    Period2014.Click();
+                    break;
             }
             return this;
         }
@@ -134,6 +165,11 @@ namespace DocumentCentreTests.Pages
             return this;
         }
 
+        /// <summary>
+        /// Method to set the Status dropdown in mailbox Basic search.
+        /// </summary>
+        /// <param name="status">Enum w/ status states</param>
+        /// <returns>Current page object</returns>
         internal BaseInboxPage SetSearchStatus(Constants.SearchStatus status)
         {
             _logger.Trace(" > Attempting to set search Status...");

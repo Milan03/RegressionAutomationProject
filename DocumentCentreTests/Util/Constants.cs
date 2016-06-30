@@ -119,7 +119,20 @@
             Processed,
             Unprocessed
         }
-
+        internal enum PeriodYear
+        {
+            Last90,
+            _2017,
+            _2016,
+            _2015,
+            _2014,
+            _2013, 
+            _2012,
+            _2011,
+            _2010,
+            _2009,
+            _2008 
+        }
 
         /// <summary>PO mailbox</summary>
         internal const string AS_FROM_XP = "//span[contains(@title,'From')]//span[contains(@class,'k-i-arrow-s')]";
