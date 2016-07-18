@@ -208,9 +208,9 @@ namespace DocumentCentreTests.Pages
             Actions action = new Actions(_driver);
             action.MoveToElement(PNCell).Click().SendKeys(pnToAdd);
             action.Perform();
-
+            Thread.Sleep(1000);
             Outside.Click();
-
+            Thread.Sleep(500);
             Active = HelperMethods.FindElement(_driver, "xpath", Constants.ACTIVE_ROW_QTY_XP);
             action.MoveToElement(Active).Click();
             action.Perform();

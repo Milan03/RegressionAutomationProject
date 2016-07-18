@@ -28,7 +28,7 @@ namespace DocumentCentreTests.Supply_America_Tests
 
         Because of = () =>
         {
-            _cartPage.AddItemInline("IN-MILANTEST-05");
+            _cartPage.AddItemInline("IIN-MILANTEST-05");
         };
 
         It should_add_item_to_cart = () => 
