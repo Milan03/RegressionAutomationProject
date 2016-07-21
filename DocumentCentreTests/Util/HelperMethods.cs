@@ -22,31 +22,40 @@ namespace DocumentCentreTests.Util
             IWebElement foundElement;
             try
             {
-                if (type.Equals("name"))
-                    foundElement = driver.FindElement(By.Name(element));
-                else if (type.Equals("id"))
-                    foundElement = driver.FindElement(By.Id(element));
-                else if (type.Equals("classname"))
-                    foundElement = driver.FindElement(By.ClassName(element));
-                else if (type.Equals("linktext"))
-                    foundElement = driver.FindElement(By.LinkText(element));
-                else if (type.Equals("tagname"))
-                    foundElement = driver.FindElement(By.TagName(element));
-                else if (type.Equals("css"))
-                    foundElement = driver.FindElement(By.CssSelector(element));
-                else if (type.Equals("xpath"))
-                    foundElement = driver.FindElement(By.XPath(element));
-                else
+                switch (type)
                 {
-                    _logger.Error(" > ERROR: Element [type: " + type + ", name: " + element + "] could not be located.");
-                    foundElement = null;
+                    case "name":
+                        foundElement = driver.FindElement(By.Name(element));
+                        break;
+                    case "id":
+                        foundElement = driver.FindElement(By.Id(element));
+                        break;
+                    case "classname":
+                        foundElement = driver.FindElement(By.ClassName(element));
+                        break;
+                    case "linktext":
+                        foundElement = driver.FindElement(By.LinkText(element));
+                        break;
+                    case "tagname":
+                        foundElement = driver.FindElement(By.TagName(element));
+                        break;
+                    case "css":
+                        foundElement = driver.FindElement(By.CssSelector(element));
+                        break;
+                    case "xpath":
+                        foundElement = driver.FindElement(By.XPath(element));
+                        break;
+                    default:
+                        _logger.Error(" > ERROR: Element [type: " + type + ", name: " + element + "] could not be located.");
+                        foundElement = null;
+                        break;
                 }
                 return foundElement;
             }
             catch (NoSuchElementException)
             {
                 _logger.Error(" > ERROR: Element [type: " + type + ", name: " + element + "] could not be located.");
-                _logger.Fatal("-- TEST FAILURE @ URL: '" +driver.Url +"' --");
+                _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
                 BaseDriverTest.TakeScreenshot("screenshot");
                 throw new NoSuchElementException("Unable to locate element.");
             }
