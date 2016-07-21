@@ -26,7 +26,9 @@ namespace DocumentCentreTests
                 options.AddArgument("--start-maximized");
                 //_driver = new ChromeDriver(options);
                 var profile = new FirefoxProfile();
-                SetProfile(profile);
+                //SetProfile(profile);
+                profile.SetPreference("browser.helperApps.neverAsk.saveToDisk", "application/octet-stream doc xls pdf txt");
+
                 _driver = new FirefoxDriver(profile);
                 _driver.Navigate().GoToUrl("http://portal.test-web01.lbmx.com/login?redirect=%2f");
             }
@@ -39,11 +41,6 @@ namespace DocumentCentreTests
 
         private static FirefoxProfile SetProfile(FirefoxProfile profile)
         {
-            profile.SetPreference("browser.helperApps.alwaysAsk.force", false);
-            profile.SetPreference("browser.download.folderList", 2);
-            profile.SetPreference("browser.download.dir", Constants.DOWNLOAD_PATH);
-            profile.SetPreference("browser.download.useDownloadDir", true);
-            profile.SetPreference("services.sync.prefs.sync.browser.download.manager.showWhenStarting", false);
             profile.SetPreference("browser.helperApps.neverAsk.saveToDisk", "application/octet-stream doc xls pdf txt");
             return profile;
         }
