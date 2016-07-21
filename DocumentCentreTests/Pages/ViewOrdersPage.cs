@@ -160,13 +160,15 @@ namespace DocumentCentreTests.Pages
             InitiateSearch();
             OrderType = "Draft";
             CheckFirstRow();
-            if (!CreateEditLocator.Equals(null))
+            try
             {
                 CreateEditLocator.Click();
                 _logger.Error(" > Recreation of PO: " + PONumber + " [SUCCESS].");
             }
-            else
+            catch (NullReferenceException)
+            {
                 _logger.Error(" > Recreation of PO: " + PONumber + " [FAILED].");
+            }
 
             return new MyCartPage(_driver, "new_order");
         }

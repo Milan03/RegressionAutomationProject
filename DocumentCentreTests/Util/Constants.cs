@@ -8,6 +8,8 @@
         internal const string SA_MEMBER_PASS = "imatestthis";
         internal const string SA_SUPPLIER_USER = "test01vendor";
         internal const string SA_SUPPLIER_PASS = "imatestthis";
+        internal const string TAF_MEMBER_USER = "TES9GPTFC5";
+        internal const string TAF_MEMBER_PASS = "2RTTL4SZ";
         internal const string DOWNLOAD_PATH = "C:\\logging\\downloads";
 
         /// <summary>UI messages</summary>
