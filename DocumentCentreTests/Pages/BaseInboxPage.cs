@@ -43,10 +43,6 @@ namespace DocumentCentreTests.Pages
         protected internal bool NavRowSuccess;
         protected internal bool GridAmountDropdownSuccess;
         protected internal bool GridAmountSetSuccess;
-        protected internal bool StatusDropdownSuccess;
-        protected internal bool StatusSetSuccess;
-        protected internal bool PeriodDropdownSuccess;
-        protected internal bool PeriodSetSuccess;
         protected internal BaseInboxPage(IWebDriver driver)
         {
             _driver = driver;
