@@ -63,6 +63,10 @@ namespace DocumentCentreTests.Pages
         internal bool AdvLoadSuccess;
         internal bool BasicLoadSuccess;
         internal bool GridLoadSuccess;
+        internal bool StatusDropdownSuccess;
+        internal bool StatusSetSuccess;
+        internal bool PeriodDropdownSuccess;
+        internal bool PeriodSetSuccess;
         public POInboxPage(IWebDriver driver) : base(driver)
         {
             _driver = driver;
@@ -80,13 +84,13 @@ namespace DocumentCentreTests.Pages
             }
             if (!_driver.Url.Contains("PurchaseOrderReceived"))
             {
-                _logger.Fatal(" > MyCart navigation [FAILED]");
+                _logger.Fatal(" > PO Inbox navigation [FAILED]");
                 _logger.Fatal("-- TEST FAILURE @ URL: '" + _driver.Url + "' --");
                 BaseDriverTest.TakeScreenshot("screenshot");
             }
             else
             {
-                _logger.Info(" > PuInboxInvoicerchase Order Received page reached.");
+                _logger.Info(" > Purchase Order Received page reached.");
                 PageReached = true;
             }
         }
