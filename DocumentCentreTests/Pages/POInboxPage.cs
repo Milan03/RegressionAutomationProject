@@ -29,6 +29,11 @@ namespace DocumentCentreTests.Pages
         private IWebElement ASSearchBtn;
         private IWebElement ASClearBtn;
         private IWebElement ASBackToBasicBtn;
+        private IWebElement StatusDropdown;
+        private IWebElement StatusAll;
+        private IWebElement StatusUnprocessed;
+        private IWebElement StatusProcessed;
+        private IWebElement PeriodDropdown;
         //private IWebElement ASDateAdded;
         //private IWebElement ASPORecDate;
         //private IWebElement ASAmtFrom;
@@ -86,7 +91,7 @@ namespace DocumentCentreTests.Pages
             }
         }
 
-        private BaseInboxPage LoadPeriodDropdown()
+        private POInboxPage LoadPeriodDropdown()
         {
             _logger.Trace(" > Loading mailbox Period  dropdown...");
             _periodListCount = _driver.FindElements(By.XPath(Constants.PERIOD_COUNT_XP));
@@ -112,7 +117,7 @@ namespace DocumentCentreTests.Pages
         /// </summary>
         /// <param name="period">Available periods</param>
         /// <returns>Current page object.</returns>
-        internal BaseInboxPage SetPeriodDropdown(Constants.PeriodYear period)
+        internal POInboxPage SetPeriodDropdown(Constants.PeriodYear period)
         {
             _logger.Trace(" > Attempting to set search Period...");
             PeriodDropdown.Click();
@@ -143,7 +148,7 @@ namespace DocumentCentreTests.Pages
         }
 
 
-        private BaseInboxPage LoadStatusDropdown()
+        private POInboxPage LoadStatusDropdown()
         {
             _logger.Trace(" > Loading mailbox Status dropdown...");
             StatusAll = HelperMethods.FindElement(_driver, "xpath", Constants.STATUS_ALL_XP);
@@ -163,7 +168,7 @@ namespace DocumentCentreTests.Pages
         /// </summary>
         /// <param name="status">Enum w/ status states</param>
         /// <returns>Current page object</returns>
-        internal BaseInboxPage SetSearchStatus(Constants.SearchStatus status)
+        internal POInboxPage SetSearchStatus(Constants.SearchStatus status)
         {
             _logger.Trace(" > Attempting to set search Status...");
             StatusDropdown.Click();

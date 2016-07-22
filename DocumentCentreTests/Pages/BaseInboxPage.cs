@@ -13,11 +13,6 @@ namespace DocumentCentreTests.Pages
         protected static IWebDriver _driver;
 
         #region Main UI Controls
-        protected IWebElement StatusDropdown;
-        protected IWebElement StatusAll;
-        protected IWebElement StatusUnprocessed;
-        protected IWebElement StatusProcessed;
-        protected IWebElement PeriodDropdown;
         protected IWebElement QuickSearchTextbox;
         protected IWebElement QuickSearchBtn;
         protected IWebElement PrintBtn;
@@ -44,8 +39,6 @@ namespace DocumentCentreTests.Pages
         protected IWebElement PageLabel;
         protected IWebElement PageRefreshBtn;
         #endregion
-
-
 
         protected internal bool NavRowSuccess;
         protected internal bool GridAmountDropdownSuccess;
