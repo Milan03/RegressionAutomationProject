@@ -39,12 +39,6 @@ namespace DocumentCentreTests
             }
         }
 
-        private static FirefoxProfile SetProfile(FirefoxProfile profile)
-        {
-            profile.SetPreference("browser.helperApps.neverAsk.saveToDisk", "application/octet-stream doc xls pdf txt");
-            return profile;
-        }
-
         /// <summary>
         /// Takes a screenshot stamped w/ current date/time and is saved to c:\logging\screenshots
         /// </summary>
