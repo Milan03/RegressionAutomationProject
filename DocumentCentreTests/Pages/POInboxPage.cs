@@ -22,6 +22,11 @@ namespace DocumentCentreTests.Pages
         private IList<IWebElement> _poRecTotalAmounts;
         private IList<IWebElement> _poRecDateAdded;
 
+        private IWebElement StatusDropdown;
+        private IWebElement StatusAll;
+        private IWebElement StatusUnprocessed;
+        private IWebElement StatusProcessed;
+        private IWebElement PeriodDropdown;
         private IWebElement ASStatus;
         private IWebElement ASPeriod;
         private IWebElement ASFrom;
@@ -29,11 +34,6 @@ namespace DocumentCentreTests.Pages
         private IWebElement ASSearchBtn;
         private IWebElement ASClearBtn;
         private IWebElement ASBackToBasicBtn;
-        private IWebElement StatusDropdown;
-        private IWebElement StatusAll;
-        private IWebElement StatusUnprocessed;
-        private IWebElement StatusProcessed;
-        private IWebElement PeriodDropdown;
         //private IWebElement ASDateAdded;
         //private IWebElement ASPORecDate;
         //private IWebElement ASAmtFrom;
@@ -86,7 +86,7 @@ namespace DocumentCentreTests.Pages
             }
             else
             {
-                _logger.Info(" > Purchase Order Received page reached.");
+                _logger.Info(" > PuInboxInvoicerchase Order Received page reached.");
                 PageReached = true;
             }
         }
