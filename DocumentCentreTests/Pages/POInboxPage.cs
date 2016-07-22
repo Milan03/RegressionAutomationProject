@@ -8,7 +8,7 @@ using System.Threading;
 
 namespace DocumentCentreTests.Pages
 {
-    public class POInboxPage : BaseInboxPage
+    public class POInboxPage : CommonInboxPage
     {
         #region Web Elements
         private List<PurchaseOrderReceived> _poRecLineItems;
@@ -22,11 +22,11 @@ namespace DocumentCentreTests.Pages
         private IList<IWebElement> _poRecTotalAmounts;
         private IList<IWebElement> _poRecDateAdded;
 
-        private IWebElement StatusDropdown;
-        private IWebElement StatusAll;
-        private IWebElement StatusUnprocessed;
-        private IWebElement StatusProcessed;
-        private IWebElement PeriodDropdown;
+        //private IWebElement StatusDropdown;
+        //private IWebElement StatusAll;
+        //private IWebElement StatusUnprocessed;
+        //private IWebElement StatusProcessed;
+        //private IWebElement PeriodDropdown;
         private IWebElement ASStatus;
         private IWebElement ASPeriod;
         private IWebElement ASFrom;
@@ -39,34 +39,34 @@ namespace DocumentCentreTests.Pages
         //private IWebElement ASAmtFrom;
         //private IWebElement ASAmtTo;
 
-        #region Period Years
-        protected IWebElement PeriodLast90;
-        protected IWebElement Period2017;
-        protected IWebElement Period2016;
-        protected IWebElement Period2015;
-        protected IWebElement Period2014;
-        protected IWebElement Period2013;
-        protected IWebElement Period2012;
-        protected IWebElement Period2011;
-        protected IWebElement Period2010;
-        protected IWebElement Period2009;
-        protected IWebElement Period2008;
+        //#region Period Years
+        //protected IWebElement PeriodLast90;
+        //protected IWebElement Period2017;
+        //protected IWebElement Period2016;
+        //protected IWebElement Period2015;
+        //protected IWebElement Period2014;
+        //protected IWebElement Period2013;
+        //protected IWebElement Period2012;
+        //protected IWebElement Period2011;
+        //protected IWebElement Period2010;
+        //protected IWebElement Period2009;
+        //protected IWebElement Period2008;
+        //#endregion
+
+        //protected IList<IWebElement> _statusDropdowns;
+        //protected IList<IWebElement> _periodDropdowns;
+        //protected IList<IWebElement> _periodListCount;
+
         #endregion
 
-        protected IList<IWebElement> _statusDropdowns;
-        protected IList<IWebElement> _periodDropdowns;
-        protected IList<IWebElement> _periodListCount;
-
-        #endregion
-
-        internal bool PageReached;
-        internal bool AdvLoadSuccess;
-        internal bool BasicLoadSuccess;
-        internal bool GridLoadSuccess;
-        internal bool StatusDropdownSuccess;
-        internal bool StatusSetSuccess;
-        internal bool PeriodDropdownSuccess;
-        internal bool PeriodSetSuccess;
+        //internal bool PageReached;
+        //internal bool AdvLoadSuccess;
+        //internal bool BasicLoadSuccess;
+        //internal bool GridLoadSuccess;
+        //internal bool StatusDropdownSuccess;
+        //internal bool StatusSetSuccess;
+        //internal bool PeriodDropdownSuccess;
+        //internal bool PeriodSetSuccess;
         public POInboxPage(IWebDriver driver) : base(driver)
         {
             _driver = driver;
@@ -82,15 +82,15 @@ namespace DocumentCentreTests.Pages
                 PeriodDropdown = _periodDropdowns.First();
                 StatusDropdown = _statusDropdowns.First();
             }
-            if (!_driver.Url.Contains("PurchaseOrderReceived"))
+            if (!_driver.Url.Contains("Invoice"))
             {
-                _logger.Fatal(" > PO Inbox navigation [FAILED]");
+                _logger.Fatal(" > Inbox navigation [FAILED]");
                 _logger.Fatal("-- TEST FAILURE @ URL: '" + _driver.Url + "' --");
                 BaseDriverTest.TakeScreenshot("screenshot");
             }
             else
             {
-                _logger.Info(" > Purchase Order Received page reached.");
+                _logger.Info(" > Invoice Inbox page reached.");
                 PageReached = true;
             }
         }
