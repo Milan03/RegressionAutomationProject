@@ -1,6 +1,5 @@
 ﻿namespace DocumentCentreTests.Util
 {
-    /// <summary>contains constants used by the tests such as the user name and password for the sauce labs</summary>
     internal static class Constants
     {
         #region Group Portal Data
