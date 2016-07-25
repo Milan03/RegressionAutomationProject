@@ -1,8 +1,9 @@
 ﻿namespace DocumentCentreTests.Util
 {
+    /// <summary>contains constants used by the tests such as the user name and password for the sauce labs</summary>
     internal static class Constants
     {
-        #region Group Portal Data
+        /// <summary>member portal login info</summary>
         internal const string SA_MEMBER_USER = "test01dealer";
         internal const string SA_MEMBER_PASS = "imatestthis";
         internal const string SA_SUPPLIER_USER = "test01vendor";
@@ -10,9 +11,8 @@
         internal const string TAF_MEMBER_USER = "TES9GPTFC5";
         internal const string TAF_MEMBER_PASS = "2RTTL4SZ";
         internal const string DOWNLOAD_PATH = "C:\\logging\\downloads";
-        #endregion
 
-        #region UI Messages
+        /// <summary>UI messages</summary>
         internal const string LOGIN_ERROR_MSG = "The combination of username and password is incorrect";
         internal const string ORDER_ERROR_MSG = "Nothing to show";
         internal const string ORDER_DELETE_MSG = "Order has been deleted.";
@@ -20,19 +20,19 @@
         internal const string ORDER_COMPLETE_MSG = "Order has been sent for fulfillment.";
         internal const string CAT_PAGE_TITLE = "Select a Catalog to Order Products";
         internal const string TEST_CAT = "MILAN AUTOMATION CATALOGUE";
-        #endregion
 
-        #region PO Search 
+        /// <summary>search options to be used with View Orders page</summary>
         internal const string ORDER_SEARCH_DRAFT = "Draft";
         internal const string ORDER_SEARCH_PENDING = "Pending Approval";
         internal const string ORDER_SEARCH_SENT = "Sent";
         internal const string ORDER_SEARCH_PROC = "Processing";
         internal const string ORDER_SEARCH_DEL = "Delivered";
+
+        /// <summary>individual PO #s to be used while testing</summary>
         internal const string ORDER_PO_PROC = "0000019";
         internal const string INVALID_PO = "asdf1234adfs";
-        #endregion
 
-        #region ProductPage Row Identifiers
+        /// <summary>products page row identifiers</summary>
         internal const string PROD_ROW_WRAPPERS_XP = "//div[contains(@class, 'product-row-wrapper')]";
         internal const string ALL_PROD_VARIANTS_XP = "div[id^='variant_']";
         internal const string PROD_VAR_QTYS_XP = "//div[contains(@id, 'variant')]/div[3]/span/span/input[2]";
@@ -42,9 +42,8 @@
         internal const string ROW_QTY_DOWN_XP = "//span[contains(@class,'k-i-arrow-s')]";
         internal const string ROW_PRICE_XP = "//[contains(@class, 'price') and contains(@class ,'Hover')]";
         internal const string ROW_UPDATE_XP = "//tbody/tr/td[2]/div[2]/div[2]/button";
-        #endregion
 
-        #region CartPage Row Identifiers
+        /// <summary>cart page row identifiers</summary>
         internal const string ITEM_DEL_BTN_XP = "//tbody/tr/td/div/button[3]";
         internal const string ITEM_PN_XP = "//tbody/tr/td[3]";
         internal const string ITEM_PN_CELLS_XP = "//tbody/tr/td[2]";
@@ -56,9 +55,9 @@
         internal const string CART_ORDER_GRID = "mainOrderScreenTabs-2";
         internal const string EDITABLE_ROW_XP = "//td[@class='editable']";
         internal const string ACTIVE_ROW_QTY_XP = "//td[contains(@class,'editable')]//span[contains(@class,'k-i-arrow-n')]";
-        #endregion
 
-        #region Purchase Order Locators
+
+        /// <summary>purchase order locators</summary>
         internal const string PO_LOCATOR_XP = "id('ordersGrid')/div[2]/table/tbody/tr[1]/td[3]";
         internal const string DEL_ORDER_XP = "//button[contains(@class, 'btn-delete')]";
         internal const string EDIT_ORDER_XP = "//button[contains(@class, 'btn-copy')]";
@@ -76,9 +75,8 @@
         internal const string CANCELAFTER_CAL_XP = "id('orderHeaderContainer')/div[2]/div[2]/div/span/span/span/span";
         internal const string MYCART_LINK_XP = "//span[contains(text(), 'My Cart')]";
         internal const string DEL_ITEM_OK_XP = "//div[contains(@class, 'modal-footer')]/div/div/button[2]";
-        #endregion
 
-        #region Mailbox Identifiers/Locators
+        /// <summary>mailbox IDs/locators</summary>
         internal const string STATUS_DD_XP = "//span[contains(@title,'PO Received by status')]//span[contains(@class,'k-i-arrow-s')]";
         internal const string PERIOD_DD_XP = "//span[contains(@title,'PO Received by year')]//span[contains(@class,'k-i-arrow-s')]";
         internal const string QS_TEXTBOX_ID = "searchTerm";
@@ -137,9 +135,8 @@
             _2009,
             _2008 
         }
-        #endregion
 
-        #region PO Mailbox
+        /// <summary>PO mailbox</summary>
         internal const string AS_FROM_XP = "//span[contains(@title,'From')]//span[contains(@class,'k-i-arrow-s')]";
         internal const string AS_SHIP_TO_XP = "//span[contains(@title,'Ship To')]//span[contains(@class,'k-i-arrow-s')]";
         internal const string PO_CHECKBOXES_XP = "//div[contains(@class,'k-grid-content')]//tbody/tr/td[1]";
@@ -163,11 +160,9 @@
         internal const string PAGE_AMT_20 = "//li[text()='20']";
         internal const string PAGE_AMT_50 = "//li[text()='50']";
         internal const string PAGE_AMT_100 = "//li[text()='100']";
-        #endregion
 
-        #region Supplier Home Page
+        /// <summary>supplier home page</summary>
         internal const string ORDER_FULFILLMENT = "Order Fulfillment";
         internal const string VIEW_POS = "View POs";
-        #endregion
     }
 }

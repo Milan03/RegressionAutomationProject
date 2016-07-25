@@ -138,8 +138,6 @@
     <Compile Include="Mailbox Tests\When_member_navigates_to_PO_mailbox.cs" />
     <Compile Include="Models\PurchaseOrderReceived.cs" />
     <Compile Include="Pages\BaseInboxPage.cs" />
-    <Compile Include="Pages\CommonInboxPage.cs" />
-    <Compile Include="Pages\InvoiceInboxPage.cs" />
     <Compile Include="Pages\POInboxPage.cs" />
     <Compile Include="Pages\SupplierHomePage.cs" />
     <Compile Include="Supply America Tests\When_members_adds_product_inline.cs" />
