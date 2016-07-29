@@ -10,8 +10,8 @@
         internal const string SA_SUPPLIER_PASS = "imatestthis";
         internal const string TAF_MEMBER_USER = "TES9GPTFC5";
         internal const string TAF_MEMBER_PASS = "2RTTL4SZ";
-        internal const string DRAKE_MEMBER_USER = "Gry2HNG47A";
-        internal const string DRAKE_MEMBER_PASS = "KX5YEKWR";
+        internal const string DRAKE_MEMBER_USER = "DraAFC7J9E";
+        internal const string DRAKE_MEMBER_PASS = "WTRPM2BN";
         internal const string DOWNLOAD_PATH = "C:\\logging\\downloads";
         #endregion
 
@@ -56,7 +56,7 @@
         internal const string ITEM_QTY_XP = "//tbody/tr/td[8]";
         internal const string ITEM_TOTAL_XP = "//tbody/tr/td[9]";
         internal const string FR_TB_XP = "//td/input[contains(@class,'k-textbox')]";
-        internal const string CART_ORDER_GRID = "mainOrderScreenTabs-2";
+        internal const string CART_ORDER_GRID = "bgHover";
         internal const string EDITABLE_ROW_XP = "//td[@class='editable']";
         internal const string ACTIVE_ROW_QTY_XP = "//td[contains(@class,'editable')]//span[contains(@class,'k-i-arrow-n')]";
         #endregion
