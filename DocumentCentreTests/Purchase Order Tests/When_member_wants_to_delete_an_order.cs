@@ -8,29 +8,20 @@ namespace DocumentCentreTests.Purhcase_Order_Tests
     {
         static ViewOrdersPage _voPage;
         static MemberHomePage _memHomePage;
-        static CataloguesPage _catPage;
-        static ProductsPage _prodPage;
-        static MyCartPage _cartPage;
-        static HomePage _homePage;
 
         Establish context = () =>
         {
             LoadDriver();
             _logger.Info("-- Member Order Delete Test Initiating --");
             LoginPage loginPage = new LoginPage(_driver, "member");
-            _homePage = loginPage.LoginAs(Constants.SA_MEMBER_USER, Constants.SA_MEMBER_PASS);
+            _memHomePage = (MemberHomePage)loginPage.LoginAs(Constants.SA_MEMBER_USER, Constants.SA_MEMBER_PASS);
             _voPage = _memHomePage.NavigateToOrders("View Draft Orders");
             _voPage.OrderType = Constants.ORDER_SEARCH_DRAFT;
             _voPage.InitiateSearch();
             _voPage.CheckFirstRow();
-            //_catPage = _memHomePage.NavigateToCatalogues();
-            //_catPage.InputCatalogueName("milan");
-            //_catPage.InitiateSearch();
-            //_prodPage = _catPage.ChooseCatalogue("Milan Automation Catalogue");
-            //_cartPage = _prodPage.NavigateToCart();
         };
 
-        Because of = () => _memHomePage = _cartPage.DeleteOrder();
+        Because of = () => _voPage.DeleteOrder();
 
         It should_delete_the_order = () =>
         {
