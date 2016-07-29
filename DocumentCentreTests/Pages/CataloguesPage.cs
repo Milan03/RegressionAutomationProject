@@ -69,5 +69,13 @@ namespace DocumentCentreTests.Pages
             Thread.Sleep(1000);
             return new ProductsPage(_driver);
         }
+
+        public MyCartPage ChooseDrakeCatalogue(string name)
+        {
+            IWebElement catalogueTitle = HelperMethods.FindElement(_driver, "xpath", "//h1[contains(@class, 'catalog-tile-text') and contains (text(), '" + name + "')]");
+            catalogueTitle.Click();
+            Thread.Sleep(1000);
+            return new MyCartPage(_driver, "new order");
+        }
     }
 }

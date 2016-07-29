@@ -140,6 +140,15 @@
     <Compile Include="Pages\BaseInboxPage.cs" />
     <Compile Include="Pages\POInboxPage.cs" />
     <Compile Include="Pages\SupplierHomePage.cs" />
+    <Compile Include="Purchase Order Tests\When_Drake_member_makes_po.cs" />
+    <Compile Include="Purchase Order Tests\When_members_adds_product_inline.cs" />
+    <Compile Include="Purchase Order Tests\When_member_downloads_catalogue_pdf.cs" />
+    <Compile Include="Purchase Order Tests\When_member_makes_a_purchase_order.cs" />
+    <Compile Include="Purchase Order Tests\When_member_removes_item_from_cart.cs" />
+    <Compile Include="Purchase Order Tests\When_member_searches_for_an_invalid_order.cs" />
+    <Compile Include="Purchase Order Tests\When_member_searches_for_an_order.cs" />
+    <Compile Include="Purchase Order Tests\When_member_searches_for_catalogue.cs" />
+    <Compile Include="Purchase Order Tests\When_member_wants_to_delete_an_order.cs" />
     <Compile Include="Supply America Tests\When_members_adds_product_inline.cs" />
     <Compile Include="Supply America Tests\When_member_downloads_catalogue_pdf.cs" />
     <Compile Include="Supply America Tests\When_member_makes_a_purchase_order.cs" />
