@@ -6,7 +6,7 @@ using NCrunch.Framework;
 namespace DocumentCentreTests.Supply_America_Tests
 {
     [Timeout(500000)]
-    class When_members_adds_product_inline : BaseDriverTest
+    public class When_members_adds_product_inline : BaseDriverTest
     {
         static MemberHomePage _homePage;
         static CataloguesPage _catPage;
