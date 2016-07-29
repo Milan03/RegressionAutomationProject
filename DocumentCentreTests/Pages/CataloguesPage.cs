@@ -70,12 +70,17 @@ namespace DocumentCentreTests.Pages
             return new ProductsPage(_driver);
         }
 
+        /// <summary>
+        /// Simulates choosing a catalogue for Drake members
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public MyCartPage ChooseDrakeCatalogue(string name)
         {
             IWebElement catalogueTitle = HelperMethods.FindElement(_driver, "xpath", "//h1[contains(@class, 'catalog-tile-text') and contains (text(), '" + name + "')]");
             catalogueTitle.Click();
             Thread.Sleep(1000);
-            return new MyCartPage(_driver, "new order");
+            return new MyCartPage(_driver, Constants.CART_NEW);
         }
     }
 }
