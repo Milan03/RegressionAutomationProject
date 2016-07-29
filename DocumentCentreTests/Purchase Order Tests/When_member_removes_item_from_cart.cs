@@ -4,7 +4,7 @@ using Machine.Specifications;
 using NCrunch.Framework;
 using System.Threading;
 
-namespace DocumentCentreTests.Supply_America_Tests
+namespace DocumentCentreTests.Purhcase_Order_Tests
 {
     [Timeout(100000)]
     public class When_member_removes_item_from_cart : BaseDriverTest

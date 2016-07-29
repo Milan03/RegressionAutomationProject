@@ -4,7 +4,7 @@ using Machine.Specifications;
 using NCrunch.Framework;
 using System.Threading;
 
-namespace DocumentCentreTests.Supply_America_Tests
+namespace DocumentCentreTests.Purhcase_Order_Tests
 {
     [Timeout(900000)]
     public class When_member_makes_a_purchase_order : BaseDriverTest

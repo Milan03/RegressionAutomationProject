@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DocumentCentreTests.Supply_America_Tests
+namespace DocumentCentreTests.Purhcase_Order_Tests
 {
     public class When_member_searches_for_an_invalid_order : BaseDriverTest
     {

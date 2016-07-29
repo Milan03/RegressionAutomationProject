@@ -2,7 +2,7 @@
 using DocumentCentreTests.Util;
 using Machine.Specifications;
 
-namespace DocumentCentreTests.Supply_America_Tests
+namespace DocumentCentreTests.Purhcase_Order_Tests
 {
     public class When_member_wants_to_delete_an_order : BaseDriverTest
     {
