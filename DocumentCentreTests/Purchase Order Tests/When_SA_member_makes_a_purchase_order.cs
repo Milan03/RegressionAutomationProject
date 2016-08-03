@@ -7,7 +7,7 @@ using System.Threading;
 namespace DocumentCentreTests.Purchase_Order_Tests
 {
     [Timeout(900000)]
-    public class When_member_makes_a_purchase_order : BaseDriverTest
+    public class When_SA_member_makes_a_purchase_order : BaseDriverTest
     {
         static MemberHomePage _homePage;
         static CataloguesPage _catPage;

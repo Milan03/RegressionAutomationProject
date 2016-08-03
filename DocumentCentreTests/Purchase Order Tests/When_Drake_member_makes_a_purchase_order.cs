@@ -5,7 +5,7 @@ using NCrunch.Framework;
 
 namespace DocumentCentreTests.Purchase_Order_Tests
 {
-    public class When_Drake_member_makes_po : BaseDriverTest
+    public class When_Drake_member_makes_a_purchase_order : BaseDriverTest
     {
         static MemberHomePage _homePage;
         static CataloguesPage _cataPage;
@@ -25,7 +25,7 @@ namespace DocumentCentreTests.Purchase_Order_Tests
 
         Because of = () =>
         {
-            _cartPage.AddItemInline("EE100");
+            _cartPage.AddItemInline("EE100", Constants.DRAKE_USER);
         };
 
         It should_complete_purchase_order = () =>

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DocumentCentreTests.Purchase_Order_Tests
 {  
-    public class When_member_searches_for_catalogue : BaseDriverTest
+    public class When_SA_member_searches_for_catalogue : BaseDriverTest
     {
         static MemberHomePage _homePage;
         static CataloguesPage _catPage;

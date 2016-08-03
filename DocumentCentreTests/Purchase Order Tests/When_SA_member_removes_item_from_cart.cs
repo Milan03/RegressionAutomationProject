@@ -7,12 +7,10 @@ using System.Threading;
 namespace DocumentCentreTests.Purchase_Order_Tests
 {
     [Timeout(100000)]
-    public class When_member_removes_item_from_cart : BaseDriverTest
+    public class When_SA_member_removes_item_from_cart : BaseDriverTest
     {
         static MemberHomePage _homePage;
         static ViewOrdersPage _voPage;
-        //static CataloguesPage _catPage;
-        //static ProductsPage _prodPage;
         static MyCartPage _cartPage;
 
         Establish context = () =>

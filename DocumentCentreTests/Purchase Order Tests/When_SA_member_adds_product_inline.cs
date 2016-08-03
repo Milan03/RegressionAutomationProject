@@ -6,7 +6,7 @@ using NCrunch.Framework;
 namespace DocumentCentreTests.Purchase_Order_Tests
 {
     [Timeout(500000)]
-    public class When_members_adds_product_inline : BaseDriverTest
+    public class When_SA_member_adds_product_inline : BaseDriverTest
     {
         static MemberHomePage _homePage;
         static CataloguesPage _catPage;
@@ -28,7 +28,7 @@ namespace DocumentCentreTests.Purchase_Order_Tests
 
         Because of = () =>
         {
-            _cartPage.AddItemInline("IIN-MILANTEST-05");
+            _cartPage.AddItemInline("IIN-MILANTEST-05", Constants.SA_USER);
         };
 
         It should_add_item_to_cart = () => 

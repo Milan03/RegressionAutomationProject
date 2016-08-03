@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DocumentCentreTests.Purchase_Order_Tests
 {
-    public class When_member_searches_for_an_invalid_order : BaseDriverTest
+    public class When_SA_member_searches_for_an_invalid_order : BaseDriverTest
     {
         static ViewOrdersPage _voPage;
         static MemberHomePage _homePage;

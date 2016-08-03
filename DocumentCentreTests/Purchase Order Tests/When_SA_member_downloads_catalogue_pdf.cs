@@ -4,7 +4,7 @@ using Machine.Specifications;
 
 namespace DocumentCentreTests.Purchase_Order_Tests
 {
-    public class When_member_downloads_catalogue_pdf : BaseDriverTest
+    public class When_SA_member_downloads_catalogue_pdf : BaseDriverTest
     {
         static MemberHomePage _memHomepage;
         static CataloguesPage _catPage;

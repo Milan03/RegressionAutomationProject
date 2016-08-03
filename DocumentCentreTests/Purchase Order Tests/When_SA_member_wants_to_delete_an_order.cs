@@ -4,7 +4,7 @@ using Machine.Specifications;
 
 namespace DocumentCentreTests.Purchase_Order_Tests
 {
-    public class When_member_wants_to_delete_an_order : BaseDriverTest
+    public class When_SA_member_wants_to_delete_an_order : BaseDriverTest
     {
         static ViewOrdersPage _voPage;
         static MemberHomePage _memHomePage;
