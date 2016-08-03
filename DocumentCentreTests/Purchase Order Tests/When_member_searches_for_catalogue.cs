@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DocumentCentreTests.Purhcase_Order_Tests
+namespace DocumentCentreTests.Purchase_Order_Tests
 {  
     public class When_member_searches_for_catalogue : BaseDriverTest
     {
