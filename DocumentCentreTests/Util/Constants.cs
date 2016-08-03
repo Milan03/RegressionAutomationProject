@@ -4,6 +4,8 @@
     internal static class Constants
     {
         #region Group Portal Login Information
+        internal const string SA_USER = "Supply America User";
+        internal const string DRAKE_USER = "Drake User";
         internal const string SA_MEMBER_USER = "test01dealer";
         internal const string SA_MEMBER_PASS = "imatestthis";
         internal const string SA_SUPPLIER_USER = "test01vendor";
