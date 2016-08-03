@@ -197,7 +197,7 @@ namespace DocumentCentreTests.Pages
         /// as the Action is too fast to register the first.
         /// </param>
         /// <returns>Current page</returns>
-        internal MyCartPage AddItemInline(string pnToAdd)
+        internal MyCartPage AddItemInline(string pnToAdd, string affiliation)
         {
             _logger.Trace(" > Attempting to add a product inline...");
             AlertSuccess = false; 
@@ -205,20 +205,18 @@ namespace DocumentCentreTests.Pages
             IWebElement PNCell, Outside, Active;
             PNCell = _driver.FindElement(By.XPath(Constants.EDITABLE_ROW_XP));
             Outside = HelperMethods.FindElement(_driver, "id", Constants.CART_ORDER_GRID);
+            // Enter Product Number into cell
             Actions action = new Actions(_driver);
-            action.MoveToElement(PNCell).Click().SendKeys(pnToAdd);
-            action.Perform();
-            Thread.Sleep(1000);
-            //Outside.Click();
-            action.SendKeys(Keys.Tab).SendKeys(Keys.Tab);
-            action.Perform();
+            action.MoveToElement(PNCell).Click().SendKeys(pnToAdd).Perform();
+            // Tab over to quantity
+            if (affiliation.Equals(Constants.DRAKE_USER))
+                action.SendKeys(Keys.Tab).SendKeys(Keys.Tab).SendKeys(Keys.Tab).SendKeys(Keys.Tab).SendKeys(Keys.Tab).Perform();
+            else
+                action.SendKeys(Keys.Tab).Perform();
+            // Add quantity and complete product entry
             Thread.Sleep(500);
             Active = HelperMethods.FindElement(_driver, "xpath", Constants.ACTIVE_ROW_QTY_XP);
-            action.MoveToElement(Active).Click();
-            action.Perform();
-
-            Outside.Click();
-
+            action.MoveToElement(Active).Click().SendKeys(Keys.Tab).Perform();
             AlertSuccess = HelperMethods.CheckAlert(_driver);
             if (AlertSuccess.Equals(true))
                 _logger.Info(" > Product added inline!");
