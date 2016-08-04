@@ -14,7 +14,7 @@ namespace DocumentCentreTests.Purchase_Order_Tests
         Establish context = () =>
         {
             LoadDriver();
-            _logger.Info("-- Drake Member PO Test Initiating --");
+            _logger.Info("-- Drake Purchase Order Test Initiating --");
             LoginPage loginPage = new LoginPage(_driver, "member");
             _homePage = (MemberHomePage)loginPage.LoginAs(Constants.DRAKE_MEMBER_USER, Constants.DRAKE_MEMBER_PASS);
             _cataPage = _homePage.NavigateToCatalogues();
@@ -33,12 +33,12 @@ namespace DocumentCentreTests.Purchase_Order_Tests
         {
             if (_cartPage.AlertSuccess.Equals(true))
             {
-                _logger.Fatal("-- Drake Member PO Test: [PASSED] --");
+                _logger.Info("-- Drake PO Test: [PASSED] --");
                 _cartPage.AlertSuccess.ShouldBeTrue();
             }
             else
             {
-                _logger.Fatal("-- Drake Member PO Test: [FAILED] --");
+                _logger.Fatal("-- Drake PO Test: [FAILED] --");
                 _cartPage.AlertSuccess.ShouldBeTrue();
             }
         };
