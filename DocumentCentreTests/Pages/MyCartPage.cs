@@ -382,6 +382,11 @@ namespace DocumentCentreTests.Pages
         public MyCartPage SendOrder()
         {
             _logger.Trace(" > Attempting to send order...");
+            if (PONumberTextbox.Text.Equals(""))
+            {
+                EnterRandomPONumber(7);
+            }
+            Thread.Sleep(500);
             SendOrderButton.Click();
             if (HelperMethods.IsElementPresent(_driver, By.ClassName("modal-content")))
             {
@@ -390,7 +395,8 @@ namespace DocumentCentreTests.Pages
                 HelperMethods.FindElement(_driver, "xpath", Constants.ORDER_OK_XP).Click();
                 // click Finish on next dialog
                 Thread.Sleep(5000);
-                HelperMethods.FindElement(_driver, "xpath", Constants.INFO_FINISH_XP).Click();
+                IWebElement finish = HelperMethods.FindElement(_driver, "xpath", Constants.INFO_FINISH_XP);
+                finish.Click();
                 OrderComplete = true;
                 return new MyCartPage(_driver, "order_complete");
             }

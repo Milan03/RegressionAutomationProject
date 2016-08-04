@@ -26,6 +26,7 @@ namespace DocumentCentreTests.Purchase_Order_Tests
         Because of = () =>
         {
             _cartPage.AddItemInline("EE100", Constants.DRAKE_USER);
+            _cartPage.SendOrder();
         };
 
         It should_complete_purchase_order = () =>
