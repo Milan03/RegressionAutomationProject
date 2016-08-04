@@ -56,7 +56,6 @@ namespace DocumentCentreTests.Pages
         public MyCartPage(IWebDriver driver, string type)
         {
             #region Assigning Accessors
-            
             _driver = driver;
             _cartLineItems = new List<CartItem>();
             _itemDeleteButtons = new List<IWebElement>();
