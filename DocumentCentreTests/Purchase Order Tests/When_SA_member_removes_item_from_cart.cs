@@ -26,7 +26,7 @@ namespace DocumentCentreTests.Purchase_Order_Tests
         
         Because of = () =>
         {
-            _cartPage.RemoveItemFromCart("IN-MILANTEST-03");
+            _cartPage.RemoveItemFromCart("IN-MILANTEST-04");
         };
 
         It should_return_alert_of_sueccess = () =>
