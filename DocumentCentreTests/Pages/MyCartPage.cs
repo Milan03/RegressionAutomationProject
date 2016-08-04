@@ -51,11 +51,12 @@ namespace DocumentCentreTests.Pages
         internal bool ItemDeleted;
         internal bool OrderComplete;
         internal bool AlertSuccess;
+        internal bool SaveDraftSuccess;
 
         public MyCartPage(IWebDriver driver, string type)
         {
             #region Assigning Accessors
-            OrderComplete = false;
+            
             _driver = driver;
             _cartLineItems = new List<CartItem>();
             _itemDeleteButtons = new List<IWebElement>();
@@ -63,7 +64,6 @@ namespace DocumentCentreTests.Pages
             _itemPrices = new List<IWebElement>();
             _itemQtys = new List<IWebElement>();
             _itemTotals = new List<IWebElement>();
-            ItemDeleted = false;
             ReportsDropdown = HelperMethods.FindElement(_driver, "xpath", Constants.REPORTS_LOCATOR_XP);
 
             if (type.Equals("new_order"))
@@ -94,7 +94,7 @@ namespace DocumentCentreTests.Pages
             NotesTextbox = HelperMethods.FindElement(_driver, "id", "notes");
             #endregion
 
-            if (!_driver.Url.Contains("MyOrder") && !OrderComplete)
+            if (!_driver.Url.Contains("Orders") && !OrderComplete && !SaveDraftSuccess)
             {
                 _logger.Fatal(" > MyCart navigation [FAILED]");
                 _logger.Fatal("-- TEST FAILURE @ URL: '" + _driver.Url + "' --");
@@ -217,6 +217,7 @@ namespace DocumentCentreTests.Pages
             Thread.Sleep(500);
             Active = HelperMethods.FindElement(_driver, "xpath", Constants.ACTIVE_ROW_QTY_XP);
             action.MoveToElement(Active).Click().SendKeys(Keys.Tab).Perform();
+            Thread.Sleep(500);
             AlertSuccess = HelperMethods.CheckAlert(_driver);
             if (AlertSuccess.Equals(true))
                 _logger.Info(" > Product added inline!");
@@ -361,19 +362,15 @@ namespace DocumentCentreTests.Pages
         /// <returns>current page element</returns>
         public MyCartPage SaveDraftOrder()
         {
-            AlertSuccess = false;
-
             _logger.Trace(" > Attempting to save draft order...");
+            SaveDraftSuccess = false;
+            if (PONumberTextbox.Text.Equals(""))
+            {
+                EnterRandomPONumber(7);
+            }
             SaveDraftButton.Click();
             Thread.Sleep(300);
-            AlertSuccess = HelperMethods.CheckAlert(_driver);
-            if (AlertSuccess.Equals(false)) // if po missing
-            {
-                // enter a po and attempt to save again
-                EnterRandomPONumber(7);
-                SaveDraftButton.Click();
-                AlertSuccess = HelperMethods.CheckAlert(_driver);
-            }
+            SaveDraftSuccess = HelperMethods.CheckAlert(_driver);
             return this;
         }
 
