@@ -20,13 +20,13 @@ namespace DocumentCentreTests.Purchase_Order_Tests
             LoginPage loginPage = new LoginPage(_driver, "member");
             _homePage = (MemberHomePage)loginPage.LoginAs(Constants.SA_MEMBER_USER, Constants.SA_MEMBER_PASS);
             _voPage = _homePage.NavigateToOrders("View Draft Orders");
-            _cartPage = _voPage.ReCreateOrder("AC-0000238");
+            _cartPage = _voPage.ReCreateOrder("RE01");
             _cartPage.LoadItemsInCart();
         };
         
         Because of = () =>
         {
-            _cartPage.RemoveItemFromCart("IN-MILANTEST-02");
+            _cartPage.RemoveItemFromCart("IN-MILANTEST-03");
         };
 
         It should_return_alert_of_sueccess = () =>

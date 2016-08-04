@@ -320,6 +320,8 @@ namespace DocumentCentreTests.Pages
                             }
                         }
                     }
+                    if (!ItemDeleted)
+                        _logger.Info(" > Could not find item: " + pn + "!");
                 }
                 else
                     _logger.Error(" > No items in cart!");
