@@ -36,7 +36,7 @@ namespace DocumentCentreTests.Pages
             {
                 case Constants.VIEW_POS:
                     OrdersDropdown.Click();
-                    Thread.Sleep(500);
+                    Thread.Sleep(1000);
                     HelperMethods.FindElement(_driver, "linktext", Constants.VIEW_POS).Click();
                     return new POInboxPage(_driver);
                 default:
