@@ -2,7 +2,7 @@
 using DocumentCentreTests.Util;
 using Machine.Specifications;
 
-namespace DocumentCentreTests.Functional_Tests
+namespace DocumentCentreTests.Functional_Tests.Member.Login
 {
     public class When_member_logs_in_with_invalid_creds : BaseDriverTest
     {
