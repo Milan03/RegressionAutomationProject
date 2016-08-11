@@ -2,7 +2,7 @@
 using DocumentCentreTests.Util;
 using Machine.Specifications;
 
-namespace DocumentCentreTests.Mailbox_Tests
+namespace DocumentCentreTests.Functional_Tests.Member.Mailbox
 {
     public class When_member_sets_doc_search_status : BaseDriverTest
     {

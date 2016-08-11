@@ -3,9 +3,8 @@ using DocumentCentreTests.Util;
 using Machine.Specifications;
 using System.Threading;
 
-namespace DocumentCentreTests.Mailbox_Tests
+namespace DocumentCentreTests.Functional_Tests.Member.Mailbox
 {
-    
     public class When_member_clicks_PObox_basic_search : BaseDriverTest
     {
         static SupplierHomePage _suppHomepage;

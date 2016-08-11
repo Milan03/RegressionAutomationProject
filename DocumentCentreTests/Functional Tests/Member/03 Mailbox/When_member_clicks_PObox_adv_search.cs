@@ -4,7 +4,7 @@ using Machine.Specifications;
 using NCrunch.Framework;
 using System.Threading;
 
-namespace DocumentCentreTests.Mailbox_Tests
+namespace DocumentCentreTests.Functional_Tests.Member.Mailbox
 {
     [Timeout(100000)]
     
