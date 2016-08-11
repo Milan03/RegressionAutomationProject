@@ -209,7 +209,7 @@ namespace DocumentCentreTests.Pages
             action.MoveToElement(PNCell).Click().SendKeys(pnToAdd).Perform();
             // Tab over to quantity
             if (affiliation.Equals(Constants.DRAKE_USER))
-                action.SendKeys(Keys.Tab).SendKeys(Keys.Tab).SendKeys(Keys.Tab).SendKeys(Keys.Tab).SendKeys(Keys.Tab).Perform();
+                action.SendKeys(Keys.Tab).SendKeys(Keys.Tab).SendKeys(Keys.Tab).SendKeys(Keys.Tab).SendKeys(Keys.Tab).SendKeys(Keys.Tab).Perform();
             else
                 action.SendKeys(Keys.Tab).Perform();
             // Add quantity and complete product entry
