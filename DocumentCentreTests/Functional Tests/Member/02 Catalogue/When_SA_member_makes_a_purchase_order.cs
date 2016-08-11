@@ -4,7 +4,7 @@ using Machine.Specifications;
 using NCrunch.Framework;
 using System.Threading;
 
-namespace DocumentCentreTests.Purchase_Order_Tests
+namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
 {
     [Timeout(900000)]
     public class When_SA_member_makes_a_purchase_order : BaseDriverTest

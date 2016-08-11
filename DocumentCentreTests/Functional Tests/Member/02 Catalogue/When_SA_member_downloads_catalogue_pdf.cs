@@ -2,7 +2,7 @@
 using DocumentCentreTests.Util;
 using Machine.Specifications;
 
-namespace DocumentCentreTests.Purchase_Order_Tests
+namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
 {
     public class When_SA_member_downloads_catalogue_pdf : BaseDriverTest
     {

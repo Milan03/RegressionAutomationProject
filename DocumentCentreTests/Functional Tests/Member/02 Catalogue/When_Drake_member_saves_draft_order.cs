@@ -3,7 +3,7 @@ using DocumentCentreTests.Util;
 using Machine.Specifications;
 using NCrunch.Framework;
 
-namespace DocumentCentreTests.Purchase_Order_Tests
+namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
 {
     public class When_Drake_member_saves_draft_order : BaseDriverTest
     {

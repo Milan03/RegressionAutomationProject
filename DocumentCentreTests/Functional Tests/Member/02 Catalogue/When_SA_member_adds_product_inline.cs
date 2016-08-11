@@ -3,7 +3,7 @@ using DocumentCentreTests.Util;
 using Machine.Specifications;
 using NCrunch.Framework;
 
-namespace DocumentCentreTests.Purchase_Order_Tests
+namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
 {
     [Timeout(500000)]
     public class When_SA_member_adds_product_inline : BaseDriverTest

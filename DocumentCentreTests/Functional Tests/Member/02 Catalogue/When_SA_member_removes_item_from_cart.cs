@@ -4,7 +4,7 @@ using Machine.Specifications;
 using NCrunch.Framework;
 using System.Threading;
 
-namespace DocumentCentreTests.Purchase_Order_Tests
+namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
 {
     [Timeout(100000)]
     public class When_SA_member_removes_item_from_cart : BaseDriverTest
