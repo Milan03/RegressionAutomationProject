@@ -17,7 +17,7 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
         {
             LoadDriver();
             _logger.Info("-- Member Remove Item From Cart Test Initiating --");
-            LoginPage loginPage = new LoginPage(_driver, "member");
+            LoginPage loginPage = new LoginPage(_driver, Constants.UserType.MEMBER);
             _homePage = (MemberHomePage)loginPage.LoginAs(Constants.Affiliation.SA.MEMBER_USER, Constants.Affiliation.SA.MEMBER_PASS);
             _voPage = _homePage.NavigateToOrders(Constants.Text.VIEW_DRAFT_ORDERS, Constants.OrderStatus.DRAFT);
             _cartPage = _voPage.ReCreateOrder("RE01");

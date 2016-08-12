@@ -26,6 +26,12 @@
                 internal const string MEMBER_PASS = "2RTTL4SZ";
             }
         }
+        internal static class UserType
+        {
+            internal const string MEMBER = "member";
+            internal const string SUPPLIER = "supplier";
+            internal const string GROUP = "group";
+        }
         internal static class UIMessages
         {
             internal const string LOGIN_ERROR = "The combination of username and password is incorrect";

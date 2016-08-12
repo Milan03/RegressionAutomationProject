@@ -15,7 +15,7 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
         {
             LoadDriver();
             _logger.Info("-- Drake Purchase Order Test Initiating --");
-            LoginPage loginPage = new LoginPage(_driver, "member");
+            LoginPage loginPage = new LoginPage(_driver, Constants.UserType.MEMBER);
             _homePage = (MemberHomePage)loginPage.LoginAs(Constants.Affiliation.Drake.MEMBER_USER, Constants.Affiliation.Drake.MEMBER_PASS);
             _cataPage = _homePage.NavigateToCatalogues();
             _cataPage.InputCatalogueName("Knauf Insulation");

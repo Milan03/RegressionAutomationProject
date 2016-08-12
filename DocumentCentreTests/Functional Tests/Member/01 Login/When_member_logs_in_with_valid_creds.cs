@@ -12,7 +12,7 @@ namespace DocumentCentreTests.Functional_Tests.Member.Login
         {
             LoadDriver();
             _logger.Info("-- Member Valid Login Test Initiating --");
-            _loginPage = new LoginPage(_driver, "member");
+            _loginPage = new LoginPage(_driver, Constants.UserType.MEMBER);
         };
 
         Because of = () => _loginPage.LoginAs(Constants.Affiliation.SA.MEMBER_USER, Constants.Affiliation.SA.MEMBER_PASS);

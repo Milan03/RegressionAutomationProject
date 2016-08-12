@@ -14,7 +14,7 @@ namespace DocumentCentreTests.Functional_Tests.Member._02_Catalogue
         {
             LoadDriver();
             _logger.Info("-- Drake Member Edit Draft PO Test --");
-            LoginPage loginPage = new LoginPage(_driver, "member");
+            LoginPage loginPage = new LoginPage(_driver, Constants.UserType.MEMBER);
             _homePage = (MemberHomePage)loginPage.LoginAs(Constants.Affiliation.Drake.MEMBER_USER, Constants.Affiliation.Drake.MEMBER_PASS);
         };
 

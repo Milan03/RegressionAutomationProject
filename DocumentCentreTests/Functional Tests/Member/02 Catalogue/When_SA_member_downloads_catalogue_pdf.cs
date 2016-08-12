@@ -14,7 +14,7 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
         {
             LoadDriver();
             _logger.Info("-- Member Catalogue PDF Download Test Initiating --");
-            LoginPage loginPage = new LoginPage(_driver, "member");
+            LoginPage loginPage = new LoginPage(_driver, Constants.UserType.MEMBER);
             _memHomepage = (MemberHomePage)loginPage.LoginAs(Constants.Affiliation.TAF.MEMBER_USER, Constants.Affiliation.TAF.MEMBER_PASS);
             _catPage = _memHomepage.NavigateToCatalogues();
             _catPage.InputCatalogueName("milan");

@@ -77,7 +77,7 @@ namespace DocumentCentreTests.Pages
             LoginButtonLocator.Click();
             switch (LoginPageType)
             {
-                case "member":
+                case Constants.UserType.MEMBER:
                     LoginSuccess = true;
                     return new MemberHomePage(_driver);
                 case "supplier":

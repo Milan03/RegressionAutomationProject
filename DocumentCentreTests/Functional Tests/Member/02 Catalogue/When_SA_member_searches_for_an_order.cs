@@ -13,7 +13,7 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
         {
             LoadDriver();
             _logger.Info("-- Member Valid Order Search Test Initiating --");
-            LoginPage loginPage = new LoginPage(_driver, "member");
+            LoginPage loginPage = new LoginPage(_driver, Constants.UserType.MEMBER);
             _homePage = (MemberHomePage)loginPage.LoginAs(Constants.Affiliation.SA.MEMBER_USER, Constants.Affiliation.SA.MEMBER_PASS);
         };
 

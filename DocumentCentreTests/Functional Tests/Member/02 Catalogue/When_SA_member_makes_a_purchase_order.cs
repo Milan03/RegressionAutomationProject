@@ -19,7 +19,7 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
         {
             LoadDriver();
             _logger.Info("-- Member Add Item to Cart Test Initiating --");
-            LoginPage loginPage = new LoginPage(_driver, "member");
+            LoginPage loginPage = new LoginPage(_driver, Constants.UserType.MEMBER);
             _homePage = (MemberHomePage)loginPage.LoginAs(Constants.Affiliation.SA.MEMBER_USER, Constants.Affiliation.SA.MEMBER_PASS);
             _catPage = _homePage.NavigateToCatalogues();
             _catPage.InputCatalogueName("milan");
