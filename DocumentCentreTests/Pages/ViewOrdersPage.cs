@@ -16,6 +16,7 @@ namespace DocumentCentreTests.Pages
         private IWebElement SearchOrdersButton;
         private IWebElement DeleteOrderLocator;
         private IWebElement CreateEditLocator;
+        private IWebElement EditOrderLocator;
 
         internal IWebElement FirstTableElem { get; set;  }
         internal bool AlertSuccess { get; set; }
@@ -56,7 +57,8 @@ namespace DocumentCentreTests.Pages
                 if (OrderType.Equals(Constants.OrderStatus.DRAFT) || OrderType.Equals("Pending Approval"))
                 {
                     DeleteOrderLocator = _driver.FindElement(By.XPath(Constants.PO.XP.DEL_ORDER));
-                    CreateEditLocator = _driver.FindElement(By.XPath(Constants.PO.XP.EDIT_ORDER));
+                    CreateEditLocator = _driver.FindElement(By.XPath(Constants.PO.XP.RECREATE_ORDER));
+                    EditOrderLocator = _driver.FindElement(By.XPath(Constants.PO.XP.EDIT_ORDER));
                 }
             }
             else // no table elements found, set to message
