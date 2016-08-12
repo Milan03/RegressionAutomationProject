@@ -26,9 +26,9 @@ namespace DocumentCentreTests.Pages
 
             LoginPageType = type;
             LoginSuccess = false;
-            UsernameLocator = HelperMethods.FindElement(driver, "name", "UserName");
-            PasswordLocator = HelperMethods.FindElement(driver, "name", "Password");
-            LoginButtonLocator = HelperMethods.FindElement(driver, "id", "loginButton");
+            UsernameLocator = HelperMethods.FindElement(driver, Constants.SearchType.NAME, "UserName");
+            PasswordLocator = HelperMethods.FindElement(driver, Constants.SearchType.NAME, "Password");
+            LoginButtonLocator = HelperMethods.FindElement(driver, Constants.SearchType.ID, "loginButton");
 
             // check if on correct page
             if (!"User Login".Equals(driver.Title))

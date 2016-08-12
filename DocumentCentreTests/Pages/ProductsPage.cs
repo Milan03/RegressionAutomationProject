@@ -53,15 +53,15 @@ namespace DocumentCentreTests.Pages
             _driver = driver;
             ItemAdded = false;
             PDFDownloaded = false;
-            ProductsTable = HelperMethods.FindElement(this._driver, "xpath", "//tbody");
-            ReportsDropdown = HelperMethods.FindElement(this._driver, "xpath", Constants.PO.XP.REPORTS_LOCATOR);
-            SaveDraftButton = HelperMethods.FindElement(_driver, "id", "saveOrderButton");
-            SearchBar = HelperMethods.FindElement(_driver, "id", "basicSearchTerm");
-            SearchButton = HelperMethods.FindElement(_driver, "id", "basicSearchButton");
-            AdvancedSearchLinktext = HelperMethods.FindElement(_driver, "id", "advancedSearchLink");
-            GridViewButton = HelperMethods.FindElement(_driver, "id", "gridViewChoice");
-            TilesViewButton = HelperMethods.FindElement(_driver, "id", "tileViewChoice");
-            MyCartButton = HelperMethods.FindElement(_driver, "xpath", Constants.PO.XP.MYCART_LINK);
+            ProductsTable = HelperMethods.FindElement(this._driver, Constants.SearchType.XPATH, "//tbody");
+            ReportsDropdown = HelperMethods.FindElement(_driver, Constants.SearchType.XPATH, Constants.PO.XP.REPORTS_LOCATOR);
+            SaveDraftButton = HelperMethods.FindElement(_driver, Constants.SearchType.ID, "saveOrderButton");
+            SearchBar = HelperMethods.FindElement(_driver, Constants.SearchType.ID, "basicSearchTerm");
+            SearchButton = HelperMethods.FindElement(_driver, Constants.SearchType.ID, "basicSearchButton");
+            AdvancedSearchLinktext = HelperMethods.FindElement(_driver, Constants.SearchType.ID, "advancedSearchLink");
+            GridViewButton = HelperMethods.FindElement(_driver, Constants.SearchType.ID, "gridViewChoice");
+            TilesViewButton = HelperMethods.FindElement(_driver, Constants.SearchType.ID, "tileViewChoice");
+            MyCartButton = HelperMethods.FindElement(_driver, Constants.SearchType.XPATH, Constants.PO.XP.MYCART_LINK);
             _products = new List<Product>();
             _prodsInCart = new List<Product>();
             #endregion
@@ -80,10 +80,10 @@ namespace DocumentCentreTests.Pages
         /// </summary>
         public void LoadReportsOptions()
         {
-            DLCatAsPDFOption = HelperMethods.FindElement(_driver, "id", "exportCatalogButtonPDF");
-            DLCatAsExcelOption = HelperMethods.FindElement(_driver, "id", "exportCatalogButtonXLSX");
-            OrderReportOption = HelperMethods.FindElement(_driver, "id", "orderReportButton");
-            SummaryOption = HelperMethods.FindElement(_driver, "id", "orderSummaryButton");
+            DLCatAsPDFOption = HelperMethods.FindElement(_driver, Constants.SearchType.ID, "exportCatalogButtonPDF");
+            DLCatAsExcelOption = HelperMethods.FindElement(_driver, Constants.SearchType.ID, "exportCatalogButtonXLSX");
+            OrderReportOption = HelperMethods.FindElement(_driver, Constants.SearchType.ID, "orderReportButton");
+            SummaryOption = HelperMethods.FindElement(_driver, Constants.SearchType.ID, "orderSummaryButton");
         }
 
         /// <summary>
@@ -214,7 +214,7 @@ namespace DocumentCentreTests.Pages
             _logger.Trace(" > Setting product quantity...");
             product.SetQuantity(qty);
             int qtyValue;
-            Int32.TryParse(product.QtyLocator.GetAttribute("value"), out qtyValue);
+            int.TryParse(product.QtyLocator.GetAttribute("value"), out qtyValue);
             product.Quantity = qtyValue;
             _logger.Trace(" > Adding item to cart...");
             Thread.Sleep(1000);
@@ -242,7 +242,7 @@ namespace DocumentCentreTests.Pages
                 _logger.Fatal("-- TEST FAILURE @ URL: '" + _driver.Url + "' --");
                 BaseDriverTest.TakeScreenshot("screenshot");
             }
-            return new MyCartPage(_driver, "new_order");
+            return new MyCartPage(_driver, Constants.OrderType.NEW);
         }
 
         public ProductsPage WaitForLoad()

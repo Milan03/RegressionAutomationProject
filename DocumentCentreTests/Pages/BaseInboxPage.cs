@@ -78,13 +78,13 @@ namespace DocumentCentreTests.Pages
             Thread.Sleep(500);
             PeriodDropdown = _periodDropdowns.First();
             StatusDropdown = _statusDropdowns.First();
-            QuickSearchTextbox = HelperMethods.FindElement(_driver, "id", Constants.BaseMailbox.ID.QS_TEXTBOX);
-            QuickSearchBtn = HelperMethods.FindElement(_driver, "id", Constants.BaseMailbox.ID.QS_BTN);
-            ResultGrid = HelperMethods.FindElement(_driver, "id", Constants.BaseMailbox.ID.RSLT_GRID);
-            PrintBtn = HelperMethods.FindElement(_driver, "id", Constants.BaseMailbox.ID.PRINT_BTN);
-            MarkProcBtn = HelperMethods.FindElement(_driver, "id", Constants.BaseMailbox.ID.MP_BTN);
-            ASButton = HelperMethods.FindElement(_driver, "id", Constants.BaseMailbox.ID.AS_LINK);
-            ActionsBtn = HelperMethods.FindElement(_driver, "id", Constants.BaseMailbox.ID.ACTIONS_BTN);
+            QuickSearchTextbox = HelperMethods.FindElement(_driver, Constants.SearchType.ID, Constants.BaseMailbox.ID.QS_TEXTBOX);
+            QuickSearchBtn = HelperMethods.FindElement(_driver, Constants.SearchType.ID, Constants.BaseMailbox.ID.QS_BTN);
+            ResultGrid = HelperMethods.FindElement(_driver, Constants.SearchType.ID, Constants.BaseMailbox.ID.RSLT_GRID);
+            PrintBtn = HelperMethods.FindElement(_driver, Constants.SearchType.ID, Constants.BaseMailbox.ID.PRINT_BTN);
+            MarkProcBtn = HelperMethods.FindElement(_driver, Constants.SearchType.ID, Constants.BaseMailbox.ID.MP_BTN);
+            ASButton = HelperMethods.FindElement(_driver, Constants.SearchType.ID, Constants.BaseMailbox.ID.AS_LINK);
+            ActionsBtn = HelperMethods.FindElement(_driver, Constants.SearchType.ID, Constants.BaseMailbox.ID.ACTIONS_BTN);
 
             if (!_driver.Url.Contains("Mailbox"))
             {
@@ -100,10 +100,10 @@ namespace DocumentCentreTests.Pages
             _periodListCount = _driver.FindElements(By.XPath(Constants.BaseMailbox.XP.PERIOD_COUNT));
             if (_periodListCount.Count <= 4)
             {
-                PeriodLast90 = HelperMethods.FindElement(_driver, "xpath", Constants.BaseMailbox.XP.PERIOD_LAST90);
-                Period2016 = HelperMethods.FindElement(_driver, "xpath", Constants.BaseMailbox.XP.PERIOD_2016);
-                Period2015 = HelperMethods.FindElement(_driver, "xpath", Constants.BaseMailbox.XP.PERIOD_2015);
-                Period2014 = HelperMethods.FindElement(_driver, "xpath", Constants.BaseMailbox.XP.PERIOD_2014);
+                PeriodLast90 = HelperMethods.FindElement(_driver, Constants.SearchType.XPATH, Constants.BaseMailbox.XP.PERIOD_LAST90);
+                Period2016 = HelperMethods.FindElement(_driver, Constants.SearchType.XPATH, Constants.BaseMailbox.XP.PERIOD_2016);
+                Period2015 = HelperMethods.FindElement(_driver, Constants.SearchType.XPATH, Constants.BaseMailbox.XP.PERIOD_2015);
+                Period2014 = HelperMethods.FindElement(_driver, Constants.SearchType.XPATH, Constants.BaseMailbox.XP.PERIOD_2014);
 
                 if (!PeriodLast90.Equals(null) && !Period2016.Equals(null) && !Period2015.Equals(null) && !Period2014.Equals(null))
                 {
@@ -153,9 +153,9 @@ namespace DocumentCentreTests.Pages
         private BaseInboxPage LoadStatusDropdown()
         {
             _logger.Trace(" > Loading mailbox Status dropdown...");
-            StatusAll = HelperMethods.FindElement(_driver, "xpath", Constants.BaseMailbox.XP.STATUS_ALL);
-            StatusProcessed = HelperMethods.FindElement(_driver, "xpath", Constants.BaseMailbox.XP.STATUS_PROCESSED);
-            StatusUnprocessed = HelperMethods.FindElement(_driver, "xpath", Constants.BaseMailbox.XP.STATUS_UNPROCESSED);
+            StatusAll = HelperMethods.FindElement(_driver, Constants.SearchType.XPATH, Constants.BaseMailbox.XP.STATUS_ALL);
+            StatusProcessed = HelperMethods.FindElement(_driver, Constants.SearchType.XPATH, Constants.BaseMailbox.XP.STATUS_PROCESSED);
+            StatusUnprocessed = HelperMethods.FindElement(_driver, Constants.SearchType.XPATH, Constants.BaseMailbox.XP.STATUS_UNPROCESSED);
 
             if (!StatusAll.Equals(null) && !StatusProcessed.Equals(null) && !StatusUnprocessed.Equals(null))
             {
@@ -209,13 +209,13 @@ namespace DocumentCentreTests.Pages
             _logger.Trace(" > Attempting to load navigation row...");
             _navPages = new List<IWebElement>();
             _navPages = _driver.FindElements(By.XPath(Constants.POMailbox.XP.PAGE_NUM));
-            FirstPageBtn = HelperMethods.FindElement(_driver, "xpath", Constants.POMailbox.XP.FIRST_PAGE_NAV);
-            PrevPageBtn = HelperMethods.FindElement(_driver, "xpath", Constants.POMailbox.XP.PREV_PAGE_NAV);
-            NextPageBtn = HelperMethods.FindElement(_driver, "xpath", Constants.POMailbox.XP.NEXT_PAGE_NAV);
-            LastPageBtn = HelperMethods.FindElement(_driver, "xpath", Constants.POMailbox.XP.LAST_PAGE_NAV);
-            GridItemAmountDropdown = HelperMethods.FindElement(_driver, "xpath", Constants.POMailbox.XP.PAGE_DROPDOWN);
-            PageLabel = HelperMethods.FindElement(_driver, "xpath", Constants.POMailbox.XP.PAGE_INFO_LBL);
-            PageRefreshBtn = HelperMethods.FindElement(_driver, "xpath", Constants.POMailbox.XP.PAGE_REFRESH);
+            FirstPageBtn = HelperMethods.FindElement(_driver, Constants.SearchType.XPATH, Constants.POMailbox.XP.FIRST_PAGE_NAV);
+            PrevPageBtn = HelperMethods.FindElement(_driver, Constants.SearchType.XPATH, Constants.POMailbox.XP.PREV_PAGE_NAV);
+            NextPageBtn = HelperMethods.FindElement(_driver, Constants.SearchType.XPATH, Constants.POMailbox.XP.NEXT_PAGE_NAV);
+            LastPageBtn = HelperMethods.FindElement(_driver, Constants.SearchType.XPATH, Constants.POMailbox.XP.LAST_PAGE_NAV);
+            GridItemAmountDropdown = HelperMethods.FindElement(_driver, Constants.SearchType.XPATH, Constants.POMailbox.XP.PAGE_DROPDOWN);
+            PageLabel = HelperMethods.FindElement(_driver, Constants.SearchType.XPATH, Constants.POMailbox.XP.PAGE_INFO_LBL);
+            PageRefreshBtn = HelperMethods.FindElement(_driver, Constants.SearchType.XPATH, Constants.POMailbox.XP.PAGE_REFRESH);
 
             // verification
             if(!FirstPageBtn.Equals(null) && !PrevPageBtn.Equals(null) && !NextPageBtn.Equals(null)
@@ -263,10 +263,10 @@ namespace DocumentCentreTests.Pages
         private BaseInboxPage LoadGridItemAmountDropdown()
         {
             _logger.Trace(" > Loading grid item amount dropdown...");
-            GridItemAmt10 = HelperMethods.FindElement(_driver, "xpath", Constants.POMailbox.XP.PAGE_AMT_10);
-            GridItemAmt20 = HelperMethods.FindElement(_driver, "xpath", Constants.POMailbox.XP.PAGE_AMT_20);
-            GridItemAmt50 = HelperMethods.FindElement(_driver, "xpath", Constants.POMailbox.XP.PAGE_AMT_50);
-            GridItemAmt100 = HelperMethods.FindElement(_driver, "xpath", Constants.POMailbox.XP.PAGE_AMT_100);
+            GridItemAmt10 = HelperMethods.FindElement(_driver, Constants.SearchType.XPATH, Constants.POMailbox.XP.PAGE_AMT_10);
+            GridItemAmt20 = HelperMethods.FindElement(_driver, Constants.SearchType.XPATH, Constants.POMailbox.XP.PAGE_AMT_20);
+            GridItemAmt50 = HelperMethods.FindElement(_driver, Constants.SearchType.XPATH, Constants.POMailbox.XP.PAGE_AMT_50);
+            GridItemAmt100 = HelperMethods.FindElement(_driver, Constants.SearchType.XPATH, Constants.POMailbox.XP.PAGE_AMT_100);
 
             if (!GridItemAmt10.Equals(null) && !GridItemAmt20.Equals(null) &&
                 !GridItemAmt50.Equals(null) && !GridItemAmt100.Equals(null))

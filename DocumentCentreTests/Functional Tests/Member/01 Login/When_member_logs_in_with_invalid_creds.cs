@@ -19,7 +19,7 @@ namespace DocumentCentreTests.Functional_Tests.Member.Login
 
         It should_have_failed_to_log_in = () =>
         {
-            var error = HelperMethods.FindElement(_driver, "classname", "login-error-message");
+            var error = HelperMethods.FindElement(_driver, Constants.SearchType.CLASSNAME, "login-error-message");
             if (error.Text.Equals(Constants.UIMessages.LOGIN_ERROR))
             {
                 _logger.Info("-- Member Invliad Login Test: [PASSED] --");

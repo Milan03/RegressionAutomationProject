@@ -21,7 +21,7 @@ namespace DocumentCentreTests.Pages
         {
             _driver = driver;
             PageReached = false;
-            OrdersDropdown = HelperMethods.FindElement(driver, "linktext", "My Orders");
+            OrdersDropdown = HelperMethods.FindElement(driver, Constants.SearchType.LINKTEXT, "My Orders");
             // check if on correct page
             if (OrdersDropdown.Equals(null))
             {
@@ -48,7 +48,7 @@ namespace DocumentCentreTests.Pages
             // dropdown interaction
             OrdersDropdown.Click();
             Thread.Sleep(500);
-            HelperMethods.FindElement(_driver, "linktext", linktext).Click();
+            HelperMethods.FindElement(_driver, Constants.SearchType.LINKTEXT, linktext).Click();
             
             // check if on correct page
             if (!"My Orders".Equals(_driver.Title))
@@ -68,7 +68,7 @@ namespace DocumentCentreTests.Pages
 
             OrdersDropdown.Click();
             Thread.Sleep(500);
-            HelperMethods.FindElement(_driver, "linktext", "Order from Catalog").Click();
+            HelperMethods.FindElement(_driver, Constants.SearchType.LINKTEXT, "Order from Catalog").Click();
 
             // check if on correct page
             if (!Constants.Text.CAT_PAGE_TITLE.Equals(_driver.Title))

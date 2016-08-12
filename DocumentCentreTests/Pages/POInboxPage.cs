@@ -74,11 +74,11 @@ namespace DocumentCentreTests.Pages
             //TODO: update after changes pushed
             //ASStatus = StatusDropdowns[1]; 
             ASPeriod = _periodDropdowns[1];
-            ASFrom = HelperMethods.FindElement(_driver, "xpath", Constants.POMailbox.XP.AS_FROM);
-            ASShipTo = HelperMethods.FindElement(_driver, "xpath", Constants.POMailbox.XP.AS_SHIP_TO);
-            ASSearchBtn = HelperMethods.FindElement(_driver, "id", Constants.BaseMailbox.ID.AS_SEARCH_BTN);
-            ASClearBtn = HelperMethods.FindElement(_driver, "id", Constants.BaseMailbox.ID.AS_CLEAR_BTN);
-            ASBackToBasicBtn = HelperMethods.FindElement(_driver, "id", Constants.BaseMailbox.ID.AS_BASIC_BTN);
+            ASFrom = HelperMethods.FindElement(_driver, Constants.SearchType.XPATH, Constants.POMailbox.XP.AS_FROM);
+            ASShipTo = HelperMethods.FindElement(_driver, Constants.SearchType.XPATH, Constants.POMailbox.XP.AS_SHIP_TO);
+            ASSearchBtn = HelperMethods.FindElement(_driver, Constants.SearchType.ID, Constants.BaseMailbox.ID.AS_SEARCH_BTN);
+            ASClearBtn = HelperMethods.FindElement(_driver, Constants.SearchType.ID, Constants.BaseMailbox.ID.AS_CLEAR_BTN);
+            ASBackToBasicBtn = HelperMethods.FindElement(_driver, Constants.SearchType.ID, Constants.BaseMailbox.ID.AS_BASIC_BTN);
             if (!ASPeriod.Equals(null) && !ASFrom.Equals(null) && !ASShipTo.Equals(null) &&
                 !ASSearchBtn.Equals(null) && !ASClearBtn.Equals(null) && !ASBackToBasicBtn.Equals(null))
             {
@@ -103,7 +103,7 @@ namespace DocumentCentreTests.Pages
             //ASStatus = StatusDropdowns[1]; 
             _periodDropdowns = _driver.FindElements(By.XPath(Constants.BaseMailbox.XP.PERIOD_DD));
             PeriodDropdown = _periodDropdowns[0];
-            QuickSearchTextbox = HelperMethods.FindElement(_driver, "id", Constants.BaseMailbox.ID.QS_TEXTBOX);
+            QuickSearchTextbox = HelperMethods.FindElement(_driver, Constants.SearchType.ID, Constants.BaseMailbox.ID.QS_TEXTBOX);
             if (!PeriodDropdown.Equals(null) && !QuickSearchBtn.Equals(null))
             {
                 _logger.Info(" > PO Inbox Basic Search Loaded!");

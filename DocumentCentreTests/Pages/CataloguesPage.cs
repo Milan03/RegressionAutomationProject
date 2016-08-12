@@ -21,8 +21,8 @@ namespace DocumentCentreTests.Pages
         {
             _driver = driver;
             Thread.Sleep(1000);
-            SearchInputTextbox = HelperMethods.FindElement(driver, "id", "searchTerm");
-            SearchButton = HelperMethods.FindElement(driver, "id", "catalogSearchButton");
+            SearchInputTextbox = HelperMethods.FindElement(driver, Constants.SearchType.ID, "searchTerm");
+            SearchButton = HelperMethods.FindElement(driver, Constants.SearchType.ID, "catalogSearchButton");
 
             if (!Constants.Text.CAT_PAGE_TITLE.Equals(driver.Title))
             {
@@ -60,11 +60,11 @@ namespace DocumentCentreTests.Pages
         /// <summary>
         /// Simulates choosing a catalogue from the ones listed on page
         /// </summary>
-        /// <param name="name">name of catalogue</param>
+        /// <param name=Constants.SearchType.NAME>name of catalogue</param>
         /// <returns>new Product page object related to catalogue choosen</returns>
         public ProductsPage ChooseCatalogue(string name)
         {
-            IWebElement catalogueTitle = HelperMethods.FindElement(_driver, "xpath", "//h1[contains(@class, 'catalog-tile-text') and contains (text(), '"+name+"')]");
+            IWebElement catalogueTitle = HelperMethods.FindElement(_driver, Constants.SearchType.XPATH, "//h1[contains(@class, 'catalog-tile-text') and contains (text(), '"+name+"')]");
             catalogueTitle.Click();
             Thread.Sleep(1000);
             return new ProductsPage(_driver);
@@ -73,11 +73,11 @@ namespace DocumentCentreTests.Pages
         /// <summary>
         /// Simulates choosing a catalogue for Drake members
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name=Constants.SearchType.NAME></param>
         /// <returns></returns>
         public MyCartPage ChooseDrakeCatalogue(string name)
         {
-            IWebElement catalogueTitle = HelperMethods.FindElement(_driver, "xpath", "//h1[contains(@class, 'catalog-tile-text') and contains (text(), '" + name + "')]");
+            IWebElement catalogueTitle = HelperMethods.FindElement(_driver, Constants.SearchType.XPATH, "//h1[contains(@class, 'catalog-tile-text') and contains (text(), '" + name + "')]");
             catalogueTitle.Click();
             Thread.Sleep(1000);
             return new MyCartPage(_driver, Constants.OrderType.NEW);

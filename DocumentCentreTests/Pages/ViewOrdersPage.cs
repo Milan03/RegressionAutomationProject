@@ -26,9 +26,9 @@ namespace DocumentCentreTests.Pages
         {
             _logger.Info(" > View Orders Page is being constructed...");
             _driver = driver;
-            OrderTypeDropdown = HelperMethods.FindElement(this._driver, "classname", "k-widget");
-            POInputTextbox = HelperMethods.FindElement(this._driver, "id", "poNumber");
-            SearchOrdersButton = HelperMethods.FindElement(this._driver, "id", "searchOrdersButton");
+            OrderTypeDropdown = HelperMethods.FindElement(_driver, Constants.SearchType.CLASSNAME, "k-widget");
+            POInputTextbox = HelperMethods.FindElement(_driver, Constants.SearchType.ID, "poNumber");
+            SearchOrdersButton = HelperMethods.FindElement(_driver, Constants.SearchType.ID, "searchOrdersButton");
             OrderType = orderType;
 
             // get first table element
