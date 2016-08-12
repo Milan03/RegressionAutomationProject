@@ -21,10 +21,6 @@ namespace DocumentCentreTests.Pages
         internal bool AlertSuccess { get; set; }
         internal string OrderType { get; set; }
 
-        /// <summary>
-        /// Class representing View Orders for Members
-        /// </summary>
-        /// <param name="_driver">Main interface for testing, represents idealised web browser</param>
         public ViewOrdersPage(IWebDriver driver)
         {
             _logger.Info(" > View Orders Page is being constructed...");
@@ -111,10 +107,6 @@ namespace DocumentCentreTests.Pages
             return this;
         }
 
-        /// <summary>
-        /// Simulates clicking the Search button
-        /// </summary>
-        /// <returns>Current page object</returns>
         public ViewOrdersPage InitiateSearch()
         {
             _logger.Trace(" > Searching for order...");
@@ -122,11 +114,6 @@ namespace DocumentCentreTests.Pages
             return this;
         }
 
-        /// <summary>
-        /// Enter specific PO to search for
-        /// </summary>
-        /// <param name="po">PO to search for</param>
-        /// <returns>Current page object</returns>
         public ViewOrdersPage InputPurchaseOrder(string po)
         {
             _logger.Trace(" > Inputting purchase order number: " + po);
@@ -136,10 +123,6 @@ namespace DocumentCentreTests.Pages
             return this;
         }
 
-        /// <summary>
-        /// Simulates deleting an order
-        /// </summary>
-        /// <returns>Current page object</returns>
         public ViewOrdersPage DeleteOrder()
         {
             _logger.Trace(" > Attempting to delete order...");
