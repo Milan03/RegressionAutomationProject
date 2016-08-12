@@ -18,7 +18,7 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
             LoadDriver();
             _logger.Info("-- Member Add Item Inline to Cart Test Initiating --");
             LoginPage loginPage = new LoginPage(_driver, "member");
-            _homePage = (MemberHomePage)loginPage.LoginAs(Constants.SA_MEMBER_USER, Constants.SA_MEMBER_PASS);
+            _homePage = (MemberHomePage)loginPage.LoginAs(Constants.Affiliation.SA.MEMBER_USER, Constants.Affiliation.SA.MEMBER_PASS);
             _catPage = _homePage.NavigateToCatalogues();
             _catPage.InputCatalogueName("milan");
             _catPage.InitiateSearch();
@@ -28,7 +28,7 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
 
         Because of = () =>
         {
-            _cartPage.AddItemInline("IIN-MILANTEST-05", Constants.SA_USER);
+            _cartPage.AddItemInline("IIN-MILANTEST-05", Constants.Affiliation.SA.USER);
         };
 
         It should_add_item_to_cart = () => 

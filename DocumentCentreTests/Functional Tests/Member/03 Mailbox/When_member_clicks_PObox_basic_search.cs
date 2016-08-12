@@ -15,8 +15,8 @@ namespace DocumentCentreTests.Functional_Tests.Member.Mailbox
             LoadDriver();
             _logger.Info("-- Member PO Mailbox Load Basic Search Test Initiating --");
             LoginPage loginPage = new LoginPage(_driver, "supplier");
-            _suppHomepage = (SupplierHomePage)loginPage.LoginAs(Constants.SA_SUPPLIER_USER, Constants.SA_SUPPLIER_PASS);
-            _poInboxPage = (POInboxPage)_suppHomepage.NavigateToMailbox(Constants.VIEW_POS);
+            _suppHomepage = (SupplierHomePage)loginPage.LoginAs(Constants.Affiliation.SA.SUPPLIER_USER, Constants.Affiliation.SA.SUPPLIER_PASS);
+            _poInboxPage = (POInboxPage)_suppHomepage.NavigateToMailbox(Constants.Text.VIEW_POS);
         };
 
         Because of = () =>

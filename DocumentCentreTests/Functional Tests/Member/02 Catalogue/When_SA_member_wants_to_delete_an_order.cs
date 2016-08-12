@@ -14,9 +14,9 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
             LoadDriver();
             _logger.Info("-- Member Order Delete Test Initiating --");
             LoginPage loginPage = new LoginPage(_driver, "member");
-            _memHomePage = (MemberHomePage)loginPage.LoginAs(Constants.SA_MEMBER_USER, Constants.SA_MEMBER_PASS);
+            _memHomePage = (MemberHomePage)loginPage.LoginAs(Constants.Affiliation.SA.MEMBER_USER, Constants.Affiliation.SA.MEMBER_PASS);
             _voPage = _memHomePage.NavigateToOrders("View Draft Orders", "Draft");
-            _voPage.OrderType = Constants.ORDER_SEARCH_DRAFT;
+            _voPage.OrderType = Constants.OrderStatus.DRAFT;
             _voPage.InitiateSearch();
             _voPage.CheckFirstRow();
         };

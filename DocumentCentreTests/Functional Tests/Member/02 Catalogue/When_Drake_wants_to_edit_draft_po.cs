@@ -15,7 +15,7 @@ namespace DocumentCentreTests.Functional_Tests.Member._02_Catalogue
             LoadDriver();
             _logger.Info("-- Drake Member Edit Draft PO Test --");
             LoginPage loginPage = new LoginPage(_driver, "member");
-            _homePage = (MemberHomePage)loginPage.LoginAs(Constants.DRAKE_MEMBER_USER, Constants.DRAKE_MEMBER_PASS);
+            _homePage = (MemberHomePage)loginPage.LoginAs(Constants.Affiliation.Drake.MEMBER_USER, Constants.Affiliation.Drake.MEMBER_PASS);
         };
 
         Because of = () =>

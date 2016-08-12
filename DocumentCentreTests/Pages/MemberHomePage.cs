@@ -71,7 +71,7 @@ namespace DocumentCentreTests.Pages
             HelperMethods.FindElement(_driver, "linktext", "Order from Catalog").Click();
 
             // check if on correct page
-            if (!Constants.CAT_PAGE_TITLE.Equals(_driver.Title))
+            if (!Constants.Text.CAT_PAGE_TITLE.Equals(_driver.Title))
             {
                 _logger.Fatal(" > Catalogue navigation [FAILED]");
                 _logger.Fatal("-- TEST FAILURE @ URL: '" + _driver.Url + "' --");

@@ -54,14 +54,14 @@ namespace DocumentCentreTests.Pages
             ItemAdded = false;
             PDFDownloaded = false;
             ProductsTable = HelperMethods.FindElement(this._driver, "xpath", "//tbody");
-            ReportsDropdown = HelperMethods.FindElement(this._driver, "xpath", Constants.REPORTS_LOCATOR_XP);
+            ReportsDropdown = HelperMethods.FindElement(this._driver, "xpath", Constants.PO.XP.REPORTS_LOCATOR);
             SaveDraftButton = HelperMethods.FindElement(_driver, "id", "saveOrderButton");
             SearchBar = HelperMethods.FindElement(_driver, "id", "basicSearchTerm");
             SearchButton = HelperMethods.FindElement(_driver, "id", "basicSearchButton");
             AdvancedSearchLinktext = HelperMethods.FindElement(_driver, "id", "advancedSearchLink");
             GridViewButton = HelperMethods.FindElement(_driver, "id", "gridViewChoice");
             TilesViewButton = HelperMethods.FindElement(_driver, "id", "tileViewChoice");
-            MyCartButton = HelperMethods.FindElement(_driver, "xpath", Constants.MYCART_LINK_XP );
+            MyCartButton = HelperMethods.FindElement(_driver, "xpath", Constants.PO.XP.MYCART_LINK);
             _products = new List<Product>();
             _prodsInCart = new List<Product>();
             #endregion
@@ -94,9 +94,9 @@ namespace DocumentCentreTests.Pages
             _logger.Trace(" > Attempting to load catalogue products...");
             Thread.Sleep(2000);
 
-            _productVariants = ProductsTable.FindElements(By.CssSelector(Constants.ALL_PROD_VARIANTS_XP));
-            _productQtyUp = ProductsTable.FindElements(By.XPath(Constants.ROW_QTY_UP_XP));
-            _productQtyDown = ProductsTable.FindElements(By.XPath(Constants.ROW_QTY_DOWN_XP));
+            _productVariants = ProductsTable.FindElements(By.CssSelector(Constants.ProductPage.XP.ALL_PROD_VARIANTS));
+            _productQtyUp = ProductsTable.FindElements(By.XPath(Constants.ProductPage.XP.ROW_QTY_UP));
+            _productQtyDown = ProductsTable.FindElements(By.XPath(Constants.ProductPage.XP.ROW_QTY_DOWN));
             try
             {
                 // apply variant information
@@ -122,7 +122,7 @@ namespace DocumentCentreTests.Pages
                 _logger.Error("IndexOutOfRangeException encountered.");
             }
 
-            _productQtyLocators = ProductsTable.FindElements(By.XPath(Constants.PROD_VAR_QTYS_XP));
+            _productQtyLocators = ProductsTable.FindElements(By.XPath(Constants.ProductPage.XP.PROD_VAR_QTYS));
             try
             {
                 // apply quantity box locators

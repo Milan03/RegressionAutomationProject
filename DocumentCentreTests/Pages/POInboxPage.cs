@@ -74,11 +74,11 @@ namespace DocumentCentreTests.Pages
             //TODO: update after changes pushed
             //ASStatus = StatusDropdowns[1]; 
             ASPeriod = _periodDropdowns[1];
-            ASFrom = HelperMethods.FindElement(_driver, "xpath", Constants.AS_FROM_XP);
-            ASShipTo = HelperMethods.FindElement(_driver, "xpath", Constants.AS_SHIP_TO_XP);
-            ASSearchBtn = HelperMethods.FindElement(_driver, "id", Constants.AS_SEARCH_BTN_ID);
-            ASClearBtn = HelperMethods.FindElement(_driver, "id", Constants.AS_CLEAR_BTN_ID);
-            ASBackToBasicBtn = HelperMethods.FindElement(_driver, "id", Constants.AS_BASIC_BTN_ID);
+            ASFrom = HelperMethods.FindElement(_driver, "xpath", Constants.POMailbox.XP.AS_FROM);
+            ASShipTo = HelperMethods.FindElement(_driver, "xpath", Constants.POMailbox.XP.AS_SHIP_TO);
+            ASSearchBtn = HelperMethods.FindElement(_driver, "id", Constants.BaseMailbox.ID.AS_SEARCH_BTN);
+            ASClearBtn = HelperMethods.FindElement(_driver, "id", Constants.BaseMailbox.ID.AS_CLEAR_BTN);
+            ASBackToBasicBtn = HelperMethods.FindElement(_driver, "id", Constants.BaseMailbox.ID.AS_BASIC_BTN);
             if (!ASPeriod.Equals(null) && !ASFrom.Equals(null) && !ASShipTo.Equals(null) &&
                 !ASSearchBtn.Equals(null) && !ASClearBtn.Equals(null) && !ASBackToBasicBtn.Equals(null))
             {
@@ -101,9 +101,9 @@ namespace DocumentCentreTests.Pages
             Thread.Sleep(500);
             //TODO: update after changes pushed
             //ASStatus = StatusDropdowns[1]; 
-            _periodDropdowns = _driver.FindElements(By.XPath(Constants.PERIOD_DD_XP));
+            _periodDropdowns = _driver.FindElements(By.XPath(Constants.BaseMailbox.XP.PERIOD_DD));
             PeriodDropdown = _periodDropdowns[0];
-            QuickSearchTextbox = HelperMethods.FindElement(_driver, "id", Constants.QS_TEXTBOX_ID);
+            QuickSearchTextbox = HelperMethods.FindElement(_driver, "id", Constants.BaseMailbox.ID.QS_TEXTBOX);
             if (!PeriodDropdown.Equals(null) && !QuickSearchBtn.Equals(null))
             {
                 _logger.Info(" > PO Inbox Basic Search Loaded!");
@@ -122,15 +122,15 @@ namespace DocumentCentreTests.Pages
         internal POInboxPage LoadGridRows()
         {
             _poRecLineItems = new List<PurchaseOrderReceived>();
-            _poRecCheckboxes = _driver.FindElements(By.XPath(Constants.PO_CHECKBOXES_XP));
-            _poRecStatuses = _driver.FindElements(By.XPath(Constants.PO_STATUSES_XP));
-            _poRecSenderNames = _driver.FindElements(By.XPath(Constants.PO_SENDER_NAMES_XP));
-            _poRecShipToNames = _driver.FindElements(By.XPath(Constants.PO_SHIP_TOS_XP));
-            _poRecPONumbers = _driver.FindElements(By.XPath(Constants.PO_PONUMBERS_XP));
-            _poRecPODates = _driver.FindElements(By.XPath(Constants.PO_PODATES_XP));
-            _poRecBillToNames = _driver.FindElements(By.XPath(Constants.PO_BILL_TO_NAMES_XP));
-            _poRecTotalAmounts = _driver.FindElements(By.XPath(Constants.PO_TOTAL_AMOUNTS_XP));
-            _poRecDateAdded = _driver.FindElements(By.XPath(Constants.PO_DATES_ADDED_XP));
+            _poRecCheckboxes = _driver.FindElements(By.XPath(Constants.POMailbox.XP.PO_CHECKBOXES));
+            _poRecStatuses = _driver.FindElements(By.XPath(Constants.POMailbox.XP.PO_STATUSES));
+            _poRecSenderNames = _driver.FindElements(By.XPath(Constants.POMailbox.XP.PO_SENDER_NAMES));
+            _poRecShipToNames = _driver.FindElements(By.XPath(Constants.POMailbox.XP.PO_SHIP_TOS));
+            _poRecPONumbers = _driver.FindElements(By.XPath(Constants.POMailbox.XP.PO_PONUMBERS));
+            _poRecPODates = _driver.FindElements(By.XPath(Constants.POMailbox.XP.PO_PODATES));
+            _poRecBillToNames = _driver.FindElements(By.XPath(Constants.POMailbox.XP.PO_BILL_TO_NAMES));
+            _poRecTotalAmounts = _driver.FindElements(By.XPath(Constants.POMailbox.XP.PO_TOTAL_AMOUNTS));
+            _poRecDateAdded = _driver.FindElements(By.XPath(Constants.POMailbox.XP.PO_DATES_ADDED));
 
             try
             {

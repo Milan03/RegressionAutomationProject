@@ -63,7 +63,7 @@ namespace DocumentCentreTests.Pages
             _itemPrices = new List<IWebElement>();
             _itemQtys = new List<IWebElement>();
             _itemTotals = new List<IWebElement>();
-            ReportsDropdown = HelperMethods.FindElement(_driver, "xpath", Constants.REPORTS_LOCATOR_XP);
+            ReportsDropdown = HelperMethods.FindElement(_driver, "xpath", Constants.PO.XP.REPORTS_LOCATOR);
 
             if (type.Equals("new_order"))
             {
@@ -113,11 +113,11 @@ namespace DocumentCentreTests.Pages
             try
             {
                 // get row elements
-                _itemDeleteButtons = CartTable.FindElements(By.XPath(Constants.ITEM_DEL_BTN_XP));
-                _itemProdNums = CartTable.FindElements(By.XPath(Constants.ITEM_PN_XP));
-                _itemPrices = CartTable.FindElements(By.XPath(Constants.ITEM_PRICE_XP));
-                _itemQtys = CartTable.FindElements(By.XPath(Constants.ITEM_QTY_XP));
-                _itemTotals = CartTable.FindElements(By.XPath(Constants.ITEM_TOTAL_XP));
+                _itemDeleteButtons = CartTable.FindElements(By.XPath(Constants.MyCart.XP.ITEM_DEL_BTN));
+                _itemProdNums = CartTable.FindElements(By.XPath(Constants.MyCart.XP.ITEM_PN));
+                _itemPrices = CartTable.FindElements(By.XPath(Constants.MyCart.XP.ITEM_PRICE));
+                _itemQtys = CartTable.FindElements(By.XPath(Constants.MyCart.XP.ITEM_QTY));
+                _itemTotals = CartTable.FindElements(By.XPath(Constants.MyCart.XP.ITEM_TOTAL));
                 // make cart item objects to work with
                 for (int i = 0; i < _itemProdNums.Count - 1; ++i)
                 {
@@ -202,19 +202,19 @@ namespace DocumentCentreTests.Pages
             AlertSuccess = false; 
             Thread.Sleep(1000);
             IWebElement PNCell, Outside, Active;
-            PNCell = _driver.FindElement(By.XPath(Constants.EDITABLE_ROW_XP));
-            Outside = HelperMethods.FindElement(_driver, "id", Constants.CART_ORDER_GRID);
+            PNCell = _driver.FindElement(By.XPath(Constants.MyCart.XP.EDITABLE_ROW));
+            Outside = HelperMethods.FindElement(_driver, "id", Constants.MyCart.XP.CART_ORDER_GRID);
             // Enter Product Number into cell
             Actions action = new Actions(_driver);
             action.MoveToElement(PNCell).Click().SendKeys(pnToAdd).Perform();
             // Tab over to quantity
-            if (affiliation.Equals(Constants.DRAKE_USER))
+            if (affiliation.Equals(Constants.Affiliation.Drake.USER))
                 action.SendKeys(Keys.Tab).SendKeys(Keys.Tab).SendKeys(Keys.Tab).SendKeys(Keys.Tab).SendKeys(Keys.Tab).SendKeys(Keys.Tab).Perform();
             else
                 action.SendKeys(Keys.Tab).Perform();
             // Add quantity and complete product entry
             Thread.Sleep(500);
-            Active = HelperMethods.FindElement(_driver, "xpath", Constants.ACTIVE_ROW_QTY_XP);
+            Active = HelperMethods.FindElement(_driver, "xpath", Constants.MyCart.XP.ACTIVE_ROW_QTY);
             action.MoveToElement(Active).Click().SendKeys(Keys.Tab).Perform();
             Thread.Sleep(500);
             AlertSuccess = HelperMethods.CheckAlert(_driver);
@@ -308,7 +308,7 @@ namespace DocumentCentreTests.Pages
                             item.DeleteButton.Click();
 
                             Thread.Sleep(1000);
-                            _driver.FindElement(By.XPath(Constants.DEL_ITEM_OK_XP)).Click();
+                            _driver.FindElement(By.XPath(Constants.PO.XP.DEL_ITEM_OK)).Click();
 
                             // check alert for confirmation of delete
                             ItemDeleted = HelperMethods.CheckAlert(_driver);
@@ -350,7 +350,7 @@ namespace DocumentCentreTests.Pages
             DeleteOrderButton.Click();
             // click OK on Information dialog
             Thread.Sleep(500);
-            OK = _driver.FindElement(By.XPath(Constants.ORDER_OK_XP));
+            OK = _driver.FindElement(By.XPath(Constants.PO.XP.ORDER_OK));
             OK.Click();
             return new MemberHomePage(_driver);
         }
@@ -390,10 +390,10 @@ namespace DocumentCentreTests.Pages
             {
                 // click OK on Information dialog
                 Thread.Sleep(500);
-                HelperMethods.FindElement(_driver, "xpath", Constants.ORDER_OK_XP).Click();
+                HelperMethods.FindElement(_driver, "xpath", Constants.PO.XP.ORDER_OK).Click();
                 // click Finish on next dialog
                 Thread.Sleep(5000);
-                IWebElement finish = HelperMethods.FindElement(_driver, "xpath", Constants.INFO_FINISH_XP);
+                IWebElement finish = HelperMethods.FindElement(_driver, "xpath", Constants.PO.XP.INFO_FINISH);
                 finish.Click();
                 OrderComplete = true;
                 return new MyCartPage(_driver, "order_complete");

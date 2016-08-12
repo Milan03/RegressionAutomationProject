@@ -24,7 +24,7 @@ namespace DocumentCentreTests.Pages
             SearchInputTextbox = HelperMethods.FindElement(driver, "id", "searchTerm");
             SearchButton = HelperMethods.FindElement(driver, "id", "catalogSearchButton");
 
-            if (!Constants.CAT_PAGE_TITLE.Equals(driver.Title))
+            if (!Constants.Text.CAT_PAGE_TITLE.Equals(driver.Title))
             {
                 _logger.Fatal(" > Member catalogue page navigation [FAILED]");
                 _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
@@ -80,7 +80,7 @@ namespace DocumentCentreTests.Pages
             IWebElement catalogueTitle = HelperMethods.FindElement(_driver, "xpath", "//h1[contains(@class, 'catalog-tile-text') and contains (text(), '" + name + "')]");
             catalogueTitle.Click();
             Thread.Sleep(1000);
-            return new MyCartPage(_driver, Constants.CART_NEW);
+            return new MyCartPage(_driver, Constants.OrderType.NEW);
         }
     }
 }

@@ -14,13 +14,13 @@ namespace DocumentCentreTests.Functional_Tests.Member.Mailbox
             LoadDriver();
             _logger.Info("-- Member PO Mailbox Set Grid Item Amount Dropdown Test Initiating --");
             LoginPage loginPage = new LoginPage(_driver, "supplier");
-            _suppHomepage = (SupplierHomePage)loginPage.LoginAs(Constants.SA_SUPPLIER_USER, Constants.SA_SUPPLIER_PASS);
-            _poInboxPage = (POInboxPage)_suppHomepage.NavigateToMailbox(Constants.VIEW_POS);
+            _suppHomepage = (SupplierHomePage)loginPage.LoginAs(Constants.Affiliation.SA.SUPPLIER_USER, Constants.Affiliation.SA.SUPPLIER_PASS);
+            _poInboxPage = (POInboxPage)_suppHomepage.NavigateToMailbox(Constants.Text.VIEW_POS);
         };
 
         Because of = () =>
         {
-            _poInboxPage.SetGridItemAmount(Constants.GridElementsToDisplay.Ten);
+            _poInboxPage.SetGridItemAmount(Constants.BaseMailbox.Enums.GridElementsToDisplay.TEN);
         };
 
         It should_go_to_the_last_page_of_grid = () =>

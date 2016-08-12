@@ -20,13 +20,13 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
             LoadDriver();
             _logger.Info("-- Member Invalid Order Search Test Initiating --");
             LoginPage loginPage = new LoginPage(_driver, "member");
-            _homePage = (MemberHomePage)loginPage.LoginAs(Constants.SA_MEMBER_USER, Constants.SA_MEMBER_PASS);
+            _homePage = (MemberHomePage)loginPage.LoginAs(Constants.Affiliation.SA.MEMBER_USER, Constants.Affiliation.SA.MEMBER_PASS);
         };
 
         Because of = () =>
         {
             _voPage = _homePage.NavigateToOrders("View Orders", "All");
-            _voPage.InputPurchaseOrder(Constants.INVALID_PO);
+            _voPage.InputPurchaseOrder(Constants.Text.INVALID_PO);
             _voPage.InitiateSearch();
             _voPage.CheckFirstRow();
         };
@@ -34,15 +34,15 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
 
         It should_show_no_orders_found = () =>
         {
-            if (_voPage.FirstTableElem.Text.Equals(Constants.ORDER_ERROR_MSG))
+            if (_voPage.FirstTableElem.Text.Equals(Constants.UIMessages.ORDER_ERROR))
             {
                 _logger.Info("-- Member Invalid Order Search Test: [PASSED] --");
-                _voPage.FirstTableElem.Text.ShouldEqual(Constants.ORDER_ERROR_MSG);
+                _voPage.FirstTableElem.Text.ShouldEqual(Constants.UIMessages.ORDER_ERROR);
             }
             else
             {
                 _logger.Fatal("-- Member Invalid Order Search Test: [FAILED] --");
-                _voPage.FirstTableElem.Text.ShouldEqual(Constants.ORDER_ERROR_MSG);
+                _voPage.FirstTableElem.Text.ShouldEqual(Constants.UIMessages.ORDER_ERROR);
             }
         };
     }

@@ -16,12 +16,12 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
             LoadDriver();
             _logger.Info("-- Drake Draft Order Test Initiating --");
             LoginPage loginPage = new LoginPage(_driver, "member");
-            _homePage = (MemberHomePage)loginPage.LoginAs(Constants.DRAKE_MEMBER_USER, Constants.DRAKE_MEMBER_PASS);
+            _homePage = (MemberHomePage)loginPage.LoginAs(Constants.Affiliation.Drake.MEMBER_USER, Constants.Affiliation.Drake.MEMBER_PASS);
             _cataPage = _homePage.NavigateToCatalogues();
             _cataPage.InputCatalogueName("Knauf Insulation");
             _cataPage.InitiateSearch();
             _cartPage = _cataPage.ChooseDrakeCatalogue("Knauf Insulation Copy");
-            _cartPage.AddItemInline("EE100", Constants.DRAKE_USER);
+            _cartPage.AddItemInline("EE100", Constants.Affiliation.Drake.USER);
         };
 
         Because of = () =>

@@ -34,10 +34,10 @@ namespace DocumentCentreTests.Pages
         {
             switch (mailboxName)
             {
-                case Constants.VIEW_POS:
+                case Constants.Text.VIEW_POS:
                     OrdersDropdown.Click();
                     Thread.Sleep(1000);
-                    HelperMethods.FindElement(_driver, "linktext", Constants.VIEW_POS).Click();
+                    HelperMethods.FindElement(_driver, "linktext", Constants.Text.VIEW_POS).Click();
                     return new POInboxPage(_driver);
                 default:
                     _logger.Fatal(" > Mailbox: " + mailboxName + " navigation [FAILED]");

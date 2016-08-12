@@ -14,14 +14,14 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
             LoadDriver();
             _logger.Info("-- Member Valid Order Search Test Initiating --");
             LoginPage loginPage = new LoginPage(_driver, "member");
-            _homePage = (MemberHomePage)loginPage.LoginAs(Constants.SA_MEMBER_USER, Constants.SA_MEMBER_PASS);
+            _homePage = (MemberHomePage)loginPage.LoginAs(Constants.Affiliation.SA.MEMBER_USER, Constants.Affiliation.SA.MEMBER_PASS);
         };
 
         Because of = () =>
         {
             _voPage = _homePage.NavigateToOrders("View Orders", "All");
-            _voPage.InputPurchaseOrder(Constants.ORDER_PO_PROC);
-            _voPage.ChooseOrderType(Constants.ORDER_SEARCH_PROC);
+            _voPage.InputPurchaseOrder(Constants.Text.ORDER_PO_PROC);
+            _voPage.ChooseOrderType(Constants.OrderStatus.PROCESSING);
             _voPage.InitiateSearch();
             _voPage.CheckFirstRow();
         };
@@ -29,15 +29,15 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
 
         It should_have_searched_for_an_order = () =>
         {
-            if (_voPage.FirstTableElem.Text.Equals(Constants.ORDER_PO_PROC))
+            if (_voPage.FirstTableElem.Text.Equals(Constants.Text.ORDER_PO_PROC))
             {
                 _logger.Info("-- Member Valid Order Search Test: [PASSED] --");
-                _voPage.FirstTableElem.Text.ShouldEqual(Constants.ORDER_PO_PROC);
+                _voPage.FirstTableElem.Text.ShouldEqual(Constants.Text.ORDER_PO_PROC);
             }
             else
             {
                 _logger.Fatal("-- Member Valid Order Search Test: [FAILED] --");
-                _voPage.FirstTableElem.Text.ShouldEqual(Constants.ORDER_PO_PROC);
+                _voPage.FirstTableElem.Text.ShouldEqual(Constants.Text.ORDER_PO_PROC);
             }
         };
     }

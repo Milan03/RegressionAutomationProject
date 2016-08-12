@@ -73,18 +73,18 @@ namespace DocumentCentreTests.Pages
         protected internal BaseInboxPage(IWebDriver driver)
         {
             _driver = driver;
-            _periodDropdowns = _driver.FindElements(By.XPath(Constants.PERIOD_DD_XP));
-            _statusDropdowns = _driver.FindElements(By.XPath(Constants.STATUS_DD_XP));
+            _periodDropdowns = _driver.FindElements(By.XPath(Constants.BaseMailbox.XP.PERIOD_DD));
+            _statusDropdowns = _driver.FindElements(By.XPath(Constants.BaseMailbox.XP.STATUS_DD));
             Thread.Sleep(500);
             PeriodDropdown = _periodDropdowns.First();
             StatusDropdown = _statusDropdowns.First();
-            QuickSearchTextbox = HelperMethods.FindElement(_driver, "id", Constants.QS_TEXTBOX_ID);
-            QuickSearchBtn = HelperMethods.FindElement(_driver, "id", Constants.QS_BTN_ID);
-            ResultGrid = HelperMethods.FindElement(_driver, "id", Constants.RSLT_GRID_ID);
-            PrintBtn = HelperMethods.FindElement(_driver, "id", Constants.PRINT_BTN_ID);
-            MarkProcBtn = HelperMethods.FindElement(_driver, "id", Constants.MP_BTN_ID);
-            ASButton = HelperMethods.FindElement(_driver, "id", Constants.AS_LINK_ID);
-            ActionsBtn = HelperMethods.FindElement(_driver, "id", Constants.ACTIONS_BTN_ID);
+            QuickSearchTextbox = HelperMethods.FindElement(_driver, "id", Constants.BaseMailbox.ID.QS_TEXTBOX);
+            QuickSearchBtn = HelperMethods.FindElement(_driver, "id", Constants.BaseMailbox.ID.QS_BTN);
+            ResultGrid = HelperMethods.FindElement(_driver, "id", Constants.BaseMailbox.ID.RSLT_GRID);
+            PrintBtn = HelperMethods.FindElement(_driver, "id", Constants.BaseMailbox.ID.PRINT_BTN);
+            MarkProcBtn = HelperMethods.FindElement(_driver, "id", Constants.BaseMailbox.ID.MP_BTN);
+            ASButton = HelperMethods.FindElement(_driver, "id", Constants.BaseMailbox.ID.AS_LINK);
+            ActionsBtn = HelperMethods.FindElement(_driver, "id", Constants.BaseMailbox.ID.ACTIONS_BTN);
 
             if (!_driver.Url.Contains("Mailbox"))
             {
@@ -97,13 +97,13 @@ namespace DocumentCentreTests.Pages
         private BaseInboxPage LoadPeriodDropdown()
         {
             _logger.Trace(" > Loading mailbox Period  dropdown...");
-            _periodListCount = _driver.FindElements(By.XPath(Constants.PERIOD_COUNT_XP));
+            _periodListCount = _driver.FindElements(By.XPath(Constants.BaseMailbox.XP.PERIOD_COUNT));
             if (_periodListCount.Count <= 4)
             {
-                PeriodLast90 = HelperMethods.FindElement(_driver, "xpath", Constants.PERIOD_LAST90_XP);
-                Period2016 = HelperMethods.FindElement(_driver, "xpath", Constants.PERIOD_2016_XP);
-                Period2015 = HelperMethods.FindElement(_driver, "xpath", Constants.PERIOD_2015_XP);
-                Period2014 = HelperMethods.FindElement(_driver, "xpath", Constants.PERIOD_2014_XP);
+                PeriodLast90 = HelperMethods.FindElement(_driver, "xpath", Constants.BaseMailbox.XP.PERIOD_LAST90);
+                Period2016 = HelperMethods.FindElement(_driver, "xpath", Constants.BaseMailbox.XP.PERIOD_2016);
+                Period2015 = HelperMethods.FindElement(_driver, "xpath", Constants.BaseMailbox.XP.PERIOD_2015);
+                Period2014 = HelperMethods.FindElement(_driver, "xpath", Constants.BaseMailbox.XP.PERIOD_2014);
 
                 if (!PeriodLast90.Equals(null) && !Period2016.Equals(null) && !Period2015.Equals(null) && !Period2014.Equals(null))
                 {
@@ -120,29 +120,29 @@ namespace DocumentCentreTests.Pages
         /// </summary>
         /// <param name="period">Available periods</param>
         /// <returns>Current page object.</returns>
-        internal BaseInboxPage SetPeriodDropdown(Constants.PeriodYear period)
+        internal BaseInboxPage SetPeriodDropdown(Constants.BaseMailbox.Enums.PeriodYear period)
         {
             _logger.Trace(" > Attempting to set search Period...");
             PeriodDropdown.Click();
             PeriodSetSuccess = false;
             switch(period)
             {
-                case Constants.PeriodYear.Last90:
+                case Constants.BaseMailbox.Enums.PeriodYear.LAST90:
                     LoadPeriodDropdown();
                     PeriodLast90.Click();
                     PeriodSetSuccess = true;
                     break;
-                case Constants.PeriodYear._2016:
+                case Constants.BaseMailbox.Enums.PeriodYear._2016:
                     LoadPeriodDropdown();
                     Period2016.Click();
                     PeriodSetSuccess = true;
                     break;
-                case Constants.PeriodYear._2015:
+                case Constants.BaseMailbox.Enums.PeriodYear._2015:
                     LoadPeriodDropdown();
                     Period2015.Click();
                     PeriodSetSuccess = true;
                     break;
-                case Constants.PeriodYear._2014:
+                case Constants.BaseMailbox.Enums.PeriodYear._2014:
                     LoadPeriodDropdown();
                     Period2014.Click();
                     break;
@@ -153,9 +153,9 @@ namespace DocumentCentreTests.Pages
         private BaseInboxPage LoadStatusDropdown()
         {
             _logger.Trace(" > Loading mailbox Status dropdown...");
-            StatusAll = HelperMethods.FindElement(_driver, "xpath", Constants.STATUS_ALL_XP);
-            StatusProcessed = HelperMethods.FindElement(_driver, "xpath", Constants.STATUS_PROCESSED_XP);
-            StatusUnprocessed = HelperMethods.FindElement(_driver, "xpath", Constants.STATUS_UNPROCESSED_XP);
+            StatusAll = HelperMethods.FindElement(_driver, "xpath", Constants.BaseMailbox.XP.STATUS_ALL);
+            StatusProcessed = HelperMethods.FindElement(_driver, "xpath", Constants.BaseMailbox.XP.STATUS_PROCESSED);
+            StatusUnprocessed = HelperMethods.FindElement(_driver, "xpath", Constants.BaseMailbox.XP.STATUS_UNPROCESSED);
 
             if (!StatusAll.Equals(null) && !StatusProcessed.Equals(null) && !StatusUnprocessed.Equals(null))
             {
@@ -170,26 +170,26 @@ namespace DocumentCentreTests.Pages
         /// </summary>
         /// <param name="status">Enum w/ status states</param>
         /// <returns>Current page object</returns>
-        internal BaseInboxPage SetSearchStatus(Constants.SearchStatus status)
+        internal BaseInboxPage SetSearchStatus(Constants.BaseMailbox.Enums.SearchStatus status)
         {
             _logger.Trace(" > Attempting to set search Status...");
             StatusDropdown.Click();
             StatusSetSuccess = false;
             switch(status)
             {
-                case Constants.SearchStatus.All:
+                case Constants.BaseMailbox.Enums.SearchStatus.ALL:
                     LoadStatusDropdown();
                     StatusAll.Click();
                     StatusSetSuccess = true;
                     _logger.Info(" > Search status set to All.");
                     break;
-                case Constants.SearchStatus.Processed:
+                case Constants.BaseMailbox.Enums.SearchStatus.PROCESSED:
                     LoadStatusDropdown();
                     StatusProcessed.Click();
                     StatusSetSuccess = true;
                     _logger.Info(" > Search status set to Processed.");
                     break;
-                case Constants.SearchStatus.Unprocessed:
+                case Constants.BaseMailbox.Enums.SearchStatus.UNPROCESSED:
                     LoadStatusDropdown();
                     StatusUnprocessed.Click();
                     StatusSetSuccess = true;
@@ -208,14 +208,14 @@ namespace DocumentCentreTests.Pages
         {
             _logger.Trace(" > Attempting to load navigation row...");
             _navPages = new List<IWebElement>();
-            _navPages = _driver.FindElements(By.XPath(Constants.PAGE_NUM_XP));
-            FirstPageBtn = HelperMethods.FindElement(_driver, "xpath", Constants.FIRST_PAGE_NAV_XP);
-            PrevPageBtn = HelperMethods.FindElement(_driver, "xpath", Constants.PREV_PAGE_NAV_XP);
-            NextPageBtn = HelperMethods.FindElement(_driver, "xpath", Constants.NEXT_PAGE_NAV_XP);
-            LastPageBtn = HelperMethods.FindElement(_driver, "xpath", Constants.LAST_PAGE_NAV_XP);
-            GridItemAmountDropdown = HelperMethods.FindElement(_driver, "xpath", Constants.PAGE_DROPDOWN_XP);
-            PageLabel = HelperMethods.FindElement(_driver, "xpath", Constants.PAGE_INFO_LBL_XP);
-            PageRefreshBtn = HelperMethods.FindElement(_driver, "xpath", Constants.PAGE_REFRESH_XP);
+            _navPages = _driver.FindElements(By.XPath(Constants.POMailbox.XP.PAGE_NUM));
+            FirstPageBtn = HelperMethods.FindElement(_driver, "xpath", Constants.POMailbox.XP.FIRST_PAGE_NAV);
+            PrevPageBtn = HelperMethods.FindElement(_driver, "xpath", Constants.POMailbox.XP.PREV_PAGE_NAV);
+            NextPageBtn = HelperMethods.FindElement(_driver, "xpath", Constants.POMailbox.XP.NEXT_PAGE_NAV);
+            LastPageBtn = HelperMethods.FindElement(_driver, "xpath", Constants.POMailbox.XP.LAST_PAGE_NAV);
+            GridItemAmountDropdown = HelperMethods.FindElement(_driver, "xpath", Constants.POMailbox.XP.PAGE_DROPDOWN);
+            PageLabel = HelperMethods.FindElement(_driver, "xpath", Constants.POMailbox.XP.PAGE_INFO_LBL);
+            PageRefreshBtn = HelperMethods.FindElement(_driver, "xpath", Constants.POMailbox.XP.PAGE_REFRESH);
 
             // verification
             if(!FirstPageBtn.Equals(null) && !PrevPageBtn.Equals(null) && !NextPageBtn.Equals(null)
@@ -263,10 +263,10 @@ namespace DocumentCentreTests.Pages
         private BaseInboxPage LoadGridItemAmountDropdown()
         {
             _logger.Trace(" > Loading grid item amount dropdown...");
-            GridItemAmt10 = HelperMethods.FindElement(_driver, "xpath", Constants.PAGE_AMT_10);
-            GridItemAmt20 = HelperMethods.FindElement(_driver, "xpath", Constants.PAGE_AMT_20);
-            GridItemAmt50 = HelperMethods.FindElement(_driver, "xpath", Constants.PAGE_AMT_50);
-            GridItemAmt100 = HelperMethods.FindElement(_driver, "xpath", Constants.PAGE_AMT_100);
+            GridItemAmt10 = HelperMethods.FindElement(_driver, "xpath", Constants.POMailbox.XP.PAGE_AMT_10);
+            GridItemAmt20 = HelperMethods.FindElement(_driver, "xpath", Constants.POMailbox.XP.PAGE_AMT_20);
+            GridItemAmt50 = HelperMethods.FindElement(_driver, "xpath", Constants.POMailbox.XP.PAGE_AMT_50);
+            GridItemAmt100 = HelperMethods.FindElement(_driver, "xpath", Constants.POMailbox.XP.PAGE_AMT_100);
 
             if (!GridItemAmt10.Equals(null) && !GridItemAmt20.Equals(null) &&
                 !GridItemAmt50.Equals(null) && !GridItemAmt100.Equals(null))
@@ -280,32 +280,32 @@ namespace DocumentCentreTests.Pages
         /// </summary>
         /// <param name="toDisplay">Amount to display.</param>
         /// <returns>Current page object.</returns>
-        internal BaseInboxPage SetGridItemAmount(Constants.GridElementsToDisplay toDisplay)
+        internal BaseInboxPage SetGridItemAmount(Constants.BaseMailbox.Enums.GridElementsToDisplay toDisplay)
         {
             LoadNavigationRow();
             GridItemAmountDropdown.Click();
             GridAmountSetSuccess = false;
             switch (toDisplay)
             {
-                case Constants.GridElementsToDisplay.Ten:
+                case Constants.BaseMailbox.Enums.GridElementsToDisplay.TEN:
                     LoadGridItemAmountDropdown();
                     GridItemAmt10.Click();
                     GridAmountSetSuccess = true;
                     _logger.Info(" > Mailbox grid set to display 10 items max.");
                     break;
-                case Constants.GridElementsToDisplay.Twenty:
+                case Constants.BaseMailbox.Enums.GridElementsToDisplay.TWENTY:
                     LoadGridItemAmountDropdown();
                     GridItemAmt20.Click();
                     GridAmountSetSuccess = true;
                     _logger.Info(" > Mailbox grid set to display 20 items max.");
                     break;
-                case Constants.GridElementsToDisplay.Fifty:
+                case Constants.BaseMailbox.Enums.GridElementsToDisplay.FIFTY:
                     LoadGridItemAmountDropdown();
                     GridItemAmt50.Click();
                     GridAmountSetSuccess = true;
                     _logger.Info(" > Mailbox grid set to display 50 items max.");
                     break;
-                case Constants.GridElementsToDisplay.Hundred:
+                case Constants.BaseMailbox.Enums.GridElementsToDisplay.HUNDRED:
                     LoadGridItemAmountDropdown();
                     GridItemAmt100.Click();
                     GridAmountSetSuccess = true;

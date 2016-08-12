@@ -15,7 +15,7 @@ namespace DocumentCentreTests.Functional_Tests.Member.Login
             _loginPage = new LoginPage(_driver, "member");
         };
 
-        Because of = () => _loginPage.LoginAs(Constants.SA_MEMBER_USER, Constants.SA_MEMBER_PASS);
+        Because of = () => _loginPage.LoginAs(Constants.Affiliation.SA.MEMBER_USER, Constants.Affiliation.SA.MEMBER_PASS);
 
         It should_have_successfully_logged_in = () =>
         {

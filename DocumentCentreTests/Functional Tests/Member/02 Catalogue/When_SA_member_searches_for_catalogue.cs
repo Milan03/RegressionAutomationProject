@@ -21,7 +21,7 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
             LoadDriver();
             _logger.Info("-- Member Search for Catalogue Test Initiating --");
             LoginPage loginPage = new LoginPage(_driver, "member");
-            _homePage = (MemberHomePage)loginPage.LoginAs(Constants.SA_MEMBER_USER, Constants.SA_MEMBER_PASS);
+            _homePage = (MemberHomePage)loginPage.LoginAs(Constants.Affiliation.SA.MEMBER_USER, Constants.Affiliation.SA.MEMBER_PASS);
         };
 
         Because of = () =>
@@ -34,15 +34,15 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
 
         It should_search_for_the_specified_catalogue = () =>
         {
-            string catText = _driver.FindElement(By.XPath(Constants.CAT_LOCATOR_XP)).Text;
-            if (catText.Equals(Constants.TEST_CAT)) { 
+            string catText = _driver.FindElement(By.XPath(Constants.PO.XP.CAT_LOCATOR)).Text;
+            if (catText.Equals(Constants.Text.TEST_CAT)) { 
                 _logger.Info("-- Member Search for Catalogue Test: [PASSED] --");
-                catText.ShouldEqual(Constants.TEST_CAT);
+                catText.ShouldEqual(Constants.Text.TEST_CAT);
             }
             else
             {
                 _logger.Fatal("-- Member Search for Catalogue Test: [FAILED] --");
-                catText.ShouldEqual(Constants.TEST_CAT);
+                catText.ShouldEqual(Constants.Text.TEST_CAT);
             }
         };
     }
