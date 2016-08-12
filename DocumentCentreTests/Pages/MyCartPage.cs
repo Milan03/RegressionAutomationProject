@@ -340,10 +340,6 @@ namespace DocumentCentreTests.Pages
             //return this;
         }
 
-        /// <summary>
-        /// Simulate the deletion of an order. 
-        /// </summary>
-        /// <returns>View Orders page object</returns>
         public MemberHomePage DeleteOrder()
         {
             IWebElement OK;
@@ -355,10 +351,6 @@ namespace DocumentCentreTests.Pages
             return new MemberHomePage(_driver);
         }
 
-        /// <summary>
-        /// Saves a purhcase order as 'Draft'.
-        /// </summary>
-        /// <returns>current page element</returns>
         public MyCartPage SaveDraftOrder()
         {
             _logger.Trace(" > Attempting to save draft order...");
@@ -373,10 +365,6 @@ namespace DocumentCentreTests.Pages
             return this;
         }
 
-        /// <summary>
-        /// Completes the Send order process.
-        /// </summary>
-        /// <returns>Current page object</returns>
         public MyCartPage SendOrder()
         {
             _logger.Trace(" > Attempting to send order...");
