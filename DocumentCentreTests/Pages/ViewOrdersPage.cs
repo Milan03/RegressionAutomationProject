@@ -53,7 +53,7 @@ namespace DocumentCentreTests.Pages
             if (HelperMethods.IsElementPresent(_driver, By.XPath(Constants.PO.XP.PO_LOCATOR)))
             {
                 FirstTableElem = _driver.FindElement(By.XPath(Constants.PO.XP.PO_LOCATOR));
-                if (OrderType.Equals("Draft") || OrderType.Equals("Pending Approval"))
+                if (OrderType.Equals(Constants.OrderStatus.DRAFT) || OrderType.Equals("Pending Approval"))
                 {
                     DeleteOrderLocator = _driver.FindElement(By.XPath(Constants.PO.XP.DEL_ORDER));
                     CreateEditLocator = _driver.FindElement(By.XPath(Constants.PO.XP.EDIT_ORDER));
@@ -78,7 +78,7 @@ namespace DocumentCentreTests.Pages
             {
                 switch (type)
                 {
-                    case "Draft":
+                    case Constants.OrderStatus.DRAFT:
                         _driver.FindElement(By.XPath("id('orderStatus_listbox')/li[2]")).Click();
                         break;
                     case "Pending":
@@ -141,7 +141,7 @@ namespace DocumentCentreTests.Pages
             _logger.Trace(" > Attempting to recreate PO: " + PONumber + "...");
             InputPurchaseOrder(PONumber);
             InitiateSearch();
-            OrderType = "Draft";
+            OrderType = Constants.OrderStatus.DRAFT;
             CheckFirstRow();
             try
             {

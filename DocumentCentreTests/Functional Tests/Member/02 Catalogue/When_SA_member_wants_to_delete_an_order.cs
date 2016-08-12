@@ -15,7 +15,7 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
             _logger.Info("-- Member Order Delete Test Initiating --");
             LoginPage loginPage = new LoginPage(_driver, "member");
             _memHomePage = (MemberHomePage)loginPage.LoginAs(Constants.Affiliation.SA.MEMBER_USER, Constants.Affiliation.SA.MEMBER_PASS);
-            _voPage = _memHomePage.NavigateToOrders("View Draft Orders", "Draft");
+            _voPage = _memHomePage.NavigateToOrders(Constants.Text.VIEW_DRAFT_ORDERS, Constants.OrderStatus.DRAFT);
             _voPage.OrderType = Constants.OrderStatus.DRAFT;
             _voPage.InitiateSearch();
             _voPage.CheckFirstRow();

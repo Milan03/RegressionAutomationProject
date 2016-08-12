@@ -20,7 +20,7 @@ namespace DocumentCentreTests.Functional_Tests.Member._02_Catalogue
 
         Because of = () =>
         {
-            _voPage = _homePage.NavigateToOrders("View Draft Orders", "Draft");
+            _voPage = _homePage.NavigateToOrders(Constants.Text.VIEW_DRAFT_ORDERS, Constants.OrderStatus.DRAFT);
         };
 
         It should_save_the_edit = () =>

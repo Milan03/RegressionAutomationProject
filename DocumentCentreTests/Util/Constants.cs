@@ -36,6 +36,7 @@
         }
         internal static class OrderStatus
         {
+            internal const string ALL = "All";
             internal const string DRAFT = "Draft";
             internal const string PENDING = "Pending Approval";
             internal const string SENT = "Sent";
@@ -199,6 +200,7 @@
         {
             internal const string ORDER_FULFILLMENT = "Order Fulfillment";
             internal const string VIEW_POS = "View POs";
+            internal const string VIEW_DRAFT_ORDERS = "View Draft Orders";
             internal const string INVALID_PO = "asdf1234adfs";
             internal const string ORDER_PO_PROC = "0000019";
             internal const string CAT_PAGE_TITLE = "Select a Catalog to Order Products";
