@@ -87,7 +87,8 @@
             {
                 internal const string PO_LOCATOR = "id('ordersGrid')/div[2]/table/tbody/tr[1]/td[3]";
                 internal const string DEL_ORDER = "//button[contains(@class, 'btn-delete')]";
-                internal const string EDIT_ORDER = "//button[contains(@class, 'btn-copy')]";
+                internal const string RECREATE_ORDER = "//button[contains(@class, 'btn-copy')]";
+                internal const string EDIT_ORDER = "//button[contains(@class, 'btn-edit')]";
                 internal const string INFO_OK = "//button[.='OK']";
                 internal const string ORDER_OK = "//div[@class='bootstrap-dialog-footer-buttons']/button[2]";
                 internal const string INFO_PRINT = "//button[.='Print']";
@@ -207,6 +208,7 @@
             internal const string ORDER_FULFILLMENT = "Order Fulfillment";
             internal const string VIEW_POS = "View POs";
             internal const string VIEW_DRAFT_ORDERS = "View Draft Orders";
+            internal const string VIEW_ORDERS = "View Orders";
             internal const string INVALID_PO = "asdf1234adfs";
             internal const string ORDER_PO_PROC = "0000019";
             internal const string CAT_PAGE_TITLE = "Select a Catalog to Order Products";
