@@ -81,19 +81,19 @@ namespace DocumentCentreTests.Pages
                 switch (type)
                 {
                     case Constants.OrderStatus.DRAFT:
-                        _driver.FindElement(By.XPath("id('orderStatus_listbox')/li[2]")).Click();
+                        _driver.FindElement(By.XPath(Constants.PO.XP.DRAFT_STATUS)).Click();
                         break;
-                    case "Pending":
-                        _driver.FindElement(By.XPath("id('orderStatus_listbox')/li[3]")).Click();
+                    case Constants.OrderStatus.PENDING:
+                        _driver.FindElement(By.XPath(Constants.PO.XP.PENDING_STATUS)).Click();
                         break;
-                    case "Sent":
-                        _driver.FindElement(By.XPath("id('orderStatus_listbox')/li[4]")).Click();
+                    case Constants.OrderStatus.SENT:
+                        _driver.FindElement(By.XPath(Constants.PO.XP.SENT_STATUS)).Click();
                         break;
-                    case "Processing":
-                        _driver.FindElement(By.XPath("id('orderStatus_listbox')/li[5]")).Click();
+                    case Constants.OrderStatus.PROCESSING:
+                        _driver.FindElement(By.XPath(Constants.PO.XP.PROCESSING_STATUS)).Click();
                         break;
-                    case "Delivered":
-                        _driver.FindElement(By.XPath("id('orderStatus_listbox')/li[6]")).Click();
+                    case Constants.OrderStatus.DELIVERED:
+                        _driver.FindElement(By.XPath(Constants.PO.XP.DELIVERED_STATUS)).Click();
                         break;
                     default:
                         throw new Exception("ViewOrdersPage: No category choosen.");

@@ -103,6 +103,11 @@
                 internal const string CANCELAFTER_CAL = "id('orderHeaderContainer')/div[2]/div[2]/div/span/span/span/span";
                 internal const string MYCART_LINK = "//span[contains(text(), 'My Cart')]";
                 internal const string DEL_ITEM_OK = "//div[contains(@class, 'modal-footer')]/div/div/button[2]";
+                internal const string DRAFT_STATUS = "id('orderStatus_listbox')/li[2]";
+                internal const string PENDING_STATUS = "id('orderStatus_listbox')/li[3]";
+                internal const string SENT_STATUS = "id('orderStatus_listbox')/li[4]";
+                internal const string PROCESSING_STATUS = "id('orderStatus_listbox')/li[5]";
+                internal const string DELIVERED_STATUS = "id('orderStatus_listbox')/li[6]";
             }
         }
         internal static class BaseMailbox
