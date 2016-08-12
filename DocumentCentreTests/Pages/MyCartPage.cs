@@ -411,7 +411,7 @@ namespace DocumentCentreTests.Pages
         {
             Thread.Sleep(1000);
             CloseOrderButton.Click();
-            return new ViewOrdersPage(_driver);
+            return new ViewOrdersPage(_driver, "All");
         }
 
         public void LoadReportsOptions()
