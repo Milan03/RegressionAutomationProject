@@ -155,7 +155,7 @@ namespace DocumentCentreTests.Pages
                 _logger.Error(" > Recreation of PO: " + PONumber + " [FAILED].");
             }
 
-            return new MyCartPage(_driver, "new_order");
+            return new MyCartPage(_driver, Constants.OrderType.NEW);
         }
     }
 }

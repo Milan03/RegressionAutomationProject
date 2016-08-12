@@ -336,7 +336,7 @@ namespace DocumentCentreTests.Pages
                 _logger.Fatal("-- TEST FAILURE @ URL: '" + _driver.Url + "' --");
                 BaseDriverTest.TakeScreenshot("screenshot");
             }
-            return new MyCartPage(_driver, "new_order");
+            return new MyCartPage(_driver, Constants.OrderType.NEW);
             //return this;
         }
 
