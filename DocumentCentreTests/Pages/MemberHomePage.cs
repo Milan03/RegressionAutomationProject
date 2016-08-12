@@ -41,7 +41,7 @@ namespace DocumentCentreTests.Pages
         /// Logic to navigate to View Orders page
         /// </summary>
         /// <returns>New page object representing the destination.</returns>
-        public ViewOrdersPage NavigateToOrders(string linktext)
+        public ViewOrdersPage NavigateToOrders(string linktext, string orderType)
         {
             _logger.Trace(" > Attempting to navigate to View Orders...");
 
@@ -59,7 +59,7 @@ namespace DocumentCentreTests.Pages
             }
 
             _logger.Info(" > View Orders page reached");
-            return new ViewOrdersPage(_driver);
+            return new ViewOrdersPage(_driver, orderType);
         }
 
         public CataloguesPage NavigateToCatalogues()

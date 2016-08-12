@@ -25,7 +25,7 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
 
         Because of = () =>
         {
-            _voPage = _homePage.NavigateToOrders("View Orders");
+            _voPage = _homePage.NavigateToOrders("View Orders", "All");
             _voPage.InputPurchaseOrder(Constants.INVALID_PO);
             _voPage.InitiateSearch();
             _voPage.CheckFirstRow();

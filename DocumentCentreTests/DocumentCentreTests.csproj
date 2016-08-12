@@ -85,6 +85,7 @@
     <Compile Include="BaseDriverTest.cs" />
     <Compile Include="Functional Tests\Member\01 Login\When_member_logs_in_with_invalid_creds.cs" />
     <Compile Include="Functional Tests\Member\01 Login\When_member_logs_in_with_valid_creds.cs" />
+    <Compile Include="Functional Tests\Member\02 Catalogue\When_Drake_wants_to_edit_draft_po.cs" />
     <Compile Include="Functional Tests\Member\03 Mailbox\When_member_clicks_PObox_basic_search.cs" />
     <Compile Include="Functional Tests\Member\03 Mailbox\When_member_loads_PObox_grid.cs" />
     <Compile Include="Functional Tests\Member\03 Mailbox\When_member_navs_to_first_page_of_grid.cs" />

@@ -21,14 +21,14 @@ namespace DocumentCentreTests.Pages
         internal bool AlertSuccess { get; set; }
         internal string OrderType { get; set; }
 
-        public ViewOrdersPage(IWebDriver driver)
+        public ViewOrdersPage(IWebDriver driver, string orderType)
         {
             _logger.Info(" > View Orders Page is being constructed...");
             _driver = driver;
             OrderTypeDropdown = HelperMethods.FindElement(this._driver, "classname", "k-widget");
             POInputTextbox = HelperMethods.FindElement(this._driver, "id", "poNumber");
             SearchOrdersButton = HelperMethods.FindElement(this._driver, "id", "searchOrdersButton");
-            OrderType = "All";
+            OrderType = orderType;
 
             // get first table element
             CheckFirstRow();
