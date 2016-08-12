@@ -65,7 +65,7 @@ namespace DocumentCentreTests.Pages
             _itemTotals = new List<IWebElement>();
             ReportsDropdown = HelperMethods.FindElement(_driver, "xpath", Constants.PO.XP.REPORTS_LOCATOR);
 
-            if (type.Equals("new_order"))
+            if (type.Equals(Constants.OrderType.NEW))
             {
                 OrderComplete = false;
                 DeleteOrderButton = HelperMethods.FindElement(_driver, "id", "deleteOrderButton");
@@ -74,7 +74,7 @@ namespace DocumentCentreTests.Pages
                 DelieveryAddressButton = HelperMethods.FindElement(_driver, "id", "changeAddressButton");
                 _logger.Info(" > MyCart page reached!");
             }
-            else if (type.Equals("order_complete"))
+            else if (type.Equals(Constants.OrderType.COMPLETE))
             {
                 CloseOrderButton = HelperMethods.FindElement(_driver, "id", "closeOrderButton");
                 OrderComplete = true;
@@ -396,7 +396,7 @@ namespace DocumentCentreTests.Pages
                 IWebElement finish = HelperMethods.FindElement(_driver, "xpath", Constants.PO.XP.INFO_FINISH);
                 finish.Click();
                 OrderComplete = true;
-                return new MyCartPage(_driver, "order_complete");
+                return new MyCartPage(_driver, Constants.OrderType.COMPLETE);
             }
             else
             {
