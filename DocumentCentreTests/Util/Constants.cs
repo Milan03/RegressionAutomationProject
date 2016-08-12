@@ -228,5 +228,15 @@
         {
             internal const string DOWNLOAD_PATH = "C:\\logging\\downloads";
         }
+        internal static class SearchType
+        {
+            internal const string NAME = "name";
+            internal const string ID = "id";
+            internal const string CLASSNAME = "classname";
+            internal const string LINKTEXT = "linktext";
+            internal const string TAGNAME = "tagname";
+            internal const string CSS = "css";
+            internal const string XPATH = "xpath";
+        }
     }
 }

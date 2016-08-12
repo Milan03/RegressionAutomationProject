@@ -24,25 +24,25 @@ namespace DocumentCentreTests.Util
             {
                 switch (type)
                 {
-                    case "name":
+                    case Constants.SearchType.NAME:
                         foundElement = driver.FindElement(By.Name(element));
                         break;
-                    case "id":
+                    case Constants.SearchType.ID:
                         foundElement = driver.FindElement(By.Id(element));
                         break;
-                    case "classname":
+                    case Constants.SearchType.CLASSNAME:
                         foundElement = driver.FindElement(By.ClassName(element));
                         break;
-                    case "linktext":
+                    case Constants.SearchType.LINKTEXT:
                         foundElement = driver.FindElement(By.LinkText(element));
                         break;
-                    case "tagname":
+                    case Constants.SearchType.TAGNAME:
                         foundElement = driver.FindElement(By.TagName(element));
                         break;
-                    case "css":
+                    case Constants.SearchType.CSS:
                         foundElement = driver.FindElement(By.CssSelector(element));
                         break;
-                    case "xpath":
+                    case Constants.SearchType.XPATH:
                         foundElement = driver.FindElement(By.XPath(element));
                         break;
                     default:
@@ -146,9 +146,7 @@ namespace DocumentCentreTests.Util
                 return strSource.Substring(Start, End - Start);
             }
             else
-            {
                 return "";
-            }
         }
 
     }
