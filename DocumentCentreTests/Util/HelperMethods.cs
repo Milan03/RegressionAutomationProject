@@ -55,6 +55,7 @@ namespace DocumentCentreTests.Util
             catch (NoSuchElementException)
             {
                 _logger.Error(" > ERROR: Element [type: " + type + ", name: " + element + "] could not be located.");
+                _logger.Fatal(" > Test Name: ");
                 _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
                 BaseDriverTest.TakeScreenshot("screenshot");
                 throw new NoSuchElementException("Unable to locate element.");

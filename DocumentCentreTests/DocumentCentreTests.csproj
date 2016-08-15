@@ -100,6 +100,7 @@
     <Compile Include="Functional Tests\Member\03 Mailbox\When_member_clicks_PObox_adv_search.cs" />
     <Compile Include="Functional Tests\Member\03 Mailbox\When_member_navigates_to_PO_mailbox.cs" />
     <Compile Include="Models\PurchaseOrderReceived.cs" />
+    <Compile Include="MyWebDriver.cs" />
     <Compile Include="Pages\BaseInboxPage.cs" />
     <Compile Include="Pages\POInboxPage.cs" />
     <Compile Include="Pages\SupplierHomePage.cs" />
