@@ -85,6 +85,7 @@
         {
             internal static class XP
             {
+                internal const string NO_DATA = "//div[.='Nothing to show' and contains(@class,'no-data')]";
                 internal const string PO_LOCATOR = "id('ordersGrid')/div[2]/table/tbody/tr[1]/td[3]";
                 internal const string DEL_ORDER = "//button[contains(@class, 'btn-delete')]";
                 internal const string RECREATE_ORDER = "//button[contains(@class, 'btn-copy')]";
@@ -216,6 +217,7 @@
             internal const string VIEW_ORDERS = "View Orders";
             internal const string INVALID_PO = "asdf1234adfs";
             internal const string ORDER_PO_PROC = "0000019";
+            internal const string ORDER_PO_DRAFT = "AuotmationDraft01";
             internal const string CAT_PAGE_TITLE = "Select a Catalog to Order Products";
             internal const string TEST_CAT = "MILAN AUTOMATION CATALOGUE";
         }
