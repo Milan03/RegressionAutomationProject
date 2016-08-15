@@ -20,7 +20,7 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
             _cataPage = _homePage.NavigateToCatalogues();
             _cataPage.InputCatalogueName("Knauf Insulation");
             _cataPage.InitiateSearch();
-            _cartPage = _cataPage.ChooseDrakeCatalogue("Knauf Insulation Copy");
+            _cartPage = _cataPage.ChooseDrakeCatalogue("Knauf Insulation");
             _cartPage.AddItemInline("EE100", Constants.Affiliation.Drake.USER);
         };
 
