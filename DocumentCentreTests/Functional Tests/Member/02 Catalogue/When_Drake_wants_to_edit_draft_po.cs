@@ -12,7 +12,7 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
 
         Establish context = () =>
         {
-            LoadDriver("Drake Edit PO Test");
+            LoadDriver();
             _logger.Info("-- Drake Edit Draft PO Test --");
             LoginPage loginPage = new LoginPage(_driver, Constants.UserType.MEMBER);
             _homePage = (MemberHomePage)loginPage.LoginAs(Constants.Affiliation.Drake.MEMBER_USER, Constants.Affiliation.Drake.MEMBER_PASS);
