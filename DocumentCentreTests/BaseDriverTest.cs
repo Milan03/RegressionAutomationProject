@@ -12,7 +12,7 @@ namespace DocumentCentreTests
     {
         protected static NLog.Logger _logger = LogManager.GetCurrentClassLogger();
         protected static IWebDriver _driver;
-        protected static ChromeOptions _chromeOptions;
+        //protected static ChromeOptions _chromeOptions;
 
         /// <summary>
         /// Spins up an instance of FireFox webdriver which controls the browser using a
@@ -23,10 +23,9 @@ namespace DocumentCentreTests
             ChromeOptions options = new ChromeOptions();
             try
             {
-                options.AddArgument("--start-maximized");
+                //options.AddArgument("--start-maximized");
                 //_driver = new ChromeDriver(options);
                 var profile = new FirefoxProfile();
-                //SetProfile(profile);
                 profile.SetPreference("browser.helperApps.neverAsk.saveToDisk", "application/octet-stream doc xls pdf txt");
 
                 _driver = new FirefoxDriver(profile);
