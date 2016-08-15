@@ -54,7 +54,7 @@ namespace DocumentCentreTests.Pages
             if (HelperMethods.IsElementPresent(_driver, By.XPath(Constants.PO.XP.PO_LOCATOR)))
             {
                 FirstTableElem = _driver.FindElement(By.XPath(Constants.PO.XP.PO_LOCATOR));
-                if (OrderType.Equals(Constants.OrderStatus.DRAFT) || OrderType.Equals("Pending Approval"))
+                if (OrderType.Equals(Constants.OrderStatus.DRAFT) || OrderType.Equals(Constants.OrderStatus.PENDING))
                 {
                     DeleteOrderLocator = _driver.FindElement(By.XPath(Constants.PO.XP.DEL_ORDER));
                     CreateEditLocator = _driver.FindElement(By.XPath(Constants.PO.XP.RECREATE_ORDER));
@@ -62,7 +62,7 @@ namespace DocumentCentreTests.Pages
                 }
             }
             else // no table elements found, set to message
-                FirstTableElem = _driver.FindElement(By.XPath("id('ordersGrid')/div[2]/div[2]"));    
+                FirstTableElem = _driver.FindElement(By.XPath(Constants.PO.XP.NO_DATA));    
         }
 
         /// <summary>
@@ -113,6 +113,9 @@ namespace DocumentCentreTests.Pages
         {
             _logger.Trace(" > Searching for order...");
             SearchOrdersButton.Click();
+            CheckFirstRow();
+            if (FirstTableElem.Text.Equals(Constants.UIMessages.ORDER_ERROR))
+                _logger.Info(" > Unable to find order!");
             return this;
         }
 
@@ -150,9 +153,31 @@ namespace DocumentCentreTests.Pages
                 CreateEditLocator.Click();
                 _logger.Error(" > Recreation of PO: " + PONumber + " [SUCCESS].");
             }
-            catch (NullReferenceException)
+            catch (Exception e)
             {
-                _logger.Error(" > Recreation of PO: " + PONumber + " [FAILED].");
+                _logger.Info(" > Recreation of PO: " + PONumber + " [FAILED].");
+                _logger.Error(" > Failure info: " + e.Message);
+            }
+
+            return new MyCartPage(_driver, Constants.OrderType.NEW);
+        }
+
+        public MyCartPage EditOrder(string PONumber)
+        {
+            _logger.Trace(" > Attempting to edit PO: " + PONumber + "...");
+            InputPurchaseOrder(PONumber);
+            InitiateSearch();
+            OrderType = Constants.OrderStatus.DRAFT;
+            CheckFirstRow();
+            try
+            {
+                EditOrderLocator.Click();
+                _logger.Error(" > Edit attempt of PO: " + PONumber + " [SUCCESS].");
+            }
+            catch (Exception e)
+            {
+                _logger.Info(" > Edit attempt of PO: " + PONumber + " [FAILED].");
+                _logger.Error(" > Failure info: " + e.Message);
             }
 
             return new MyCartPage(_driver, Constants.OrderType.NEW);
