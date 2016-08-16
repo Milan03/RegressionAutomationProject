@@ -20,7 +20,15 @@ namespace DocumentCentreTests.Functional_Tests.Member.Mailbox
 
         Because of = () =>
         {
-            _poInboxPage.NavToFirstPage();
+            try
+            {
+                _poInboxPage.NavToFirstPage();
+            }
+            catch(System.Exception)
+            {
+                _logger.Fatal("-- Member PO Mailbox Nav First Page Test: [FAILED] --");
+            }
+            
         };
 
         It should_go_to_the_first_page_of_grid = () =>

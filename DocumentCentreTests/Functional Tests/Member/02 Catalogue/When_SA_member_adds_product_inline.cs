@@ -28,7 +28,14 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
 
         Because of = () =>
         {
-            _cartPage.AddItemInline("IIN-MILANTEST-05", Constants.Affiliation.SA.USER);
+            try
+            {
+                _cartPage.AddItemInline("IIN-MILANTEST-05", Constants.Affiliation.SA.USER);
+            }
+            catch (System.Exception)
+            {
+                _logger.Fatal("-- Member Add Item Inline to Cart Test: [FAILED] --");
+            }
         };
 
         It should_add_item_to_cart = () => 

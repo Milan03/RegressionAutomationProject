@@ -26,7 +26,14 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
         
         Because of = () =>
         {
-            _cartPage.RemoveItemFromCart("IN-MILANTEST-04");
+            try
+            {
+                _cartPage.RemoveItemFromCart("IN-MILANTEST-04");
+            }
+            catch(System.Exception)
+            {
+                _logger.Fatal("-- Member Remove Item From Cart Test: [FAILED] --");
+            }
         };
 
         It should_return_alert_of_sueccess = () =>

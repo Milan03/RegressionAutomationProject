@@ -20,7 +20,14 @@ namespace DocumentCentreTests.Functional_Tests.Member.Mailbox
 
         Because of = () =>
         {
-            _poInboxPage.NavToNextPage();
+            try
+            {
+                _poInboxPage.NavToNextPage();
+            }
+            catch(System.Exception)
+            {
+                _logger.Fatal("-- Member PO Mailbox Nav Next Page Test: [FAILED] --");
+            }
         };
 
         It should_go_to_the_next_page_of_grid = () =>

@@ -18,7 +18,17 @@ namespace DocumentCentreTests.Functional_Tests.Member.Mailbox
             _poInboxPage = (POInboxPage)_suppHomepage.NavigateToMailbox(Constants.Text.VIEW_POS);
         };
 
-        Because of = () => _poInboxPage.SetSearchStatus(Constants.BaseMailbox.Enums.SearchStatus.UNPROCESSED);
+        Because of = () => 
+        {
+            try
+            {
+                _poInboxPage.SetSearchStatus(Constants.BaseMailbox.Enums.SearchStatus.UNPROCESSED);
+            }
+            catch (System.Exception)
+            {
+                _logger.Fatal("-- Member PO Mailbox Set Status Dropdown Test: [FAILED] --");
+            }
+        };
 
         It should_set_the_status = () =>
         {

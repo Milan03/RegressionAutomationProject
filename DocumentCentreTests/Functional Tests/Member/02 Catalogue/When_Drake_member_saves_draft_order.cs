@@ -26,7 +26,14 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
 
         Because of = () =>
         {
-            _cartPage.SaveDraftOrder();
+            try
+            {
+                _cartPage.SaveDraftOrder();
+            }
+            catch (System.Exception)
+            {
+                _logger.Fatal("-- Drake Draft Order Test: [FAILED] --");
+            }
         };
 
         It should_save_the_order = () =>

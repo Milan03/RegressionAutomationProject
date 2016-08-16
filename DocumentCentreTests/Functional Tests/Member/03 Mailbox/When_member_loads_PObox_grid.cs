@@ -20,7 +20,14 @@ namespace DocumentCentreTests.Functional_Tests.Member.Mailbox
 
         Because of = () =>
         {
-            _poInboxPage.LoadGridRows();
+            try
+            {
+                _poInboxPage.LoadGridRows();
+            }
+            catch(System.Exception)
+            {
+                _logger.Fatal("-- Member PO Mailbox Load Grid Test: [FAILED] --");
+            }
         };
 
         It should_load_all_grid_elements = () =>

@@ -24,7 +24,14 @@ namespace DocumentCentreTests.Functional_Tests.Member.Mailbox
 
         Because of = () =>
         {
-            _poInboxPage.LoadAdvancedSearch();
+            try
+            {
+                _poInboxPage.LoadAdvancedSearch();
+            }
+            catch(System.Exception)
+            {
+                _logger.Fatal("-- Member PO Mailbox Load Adv Search Test: [FAILED] --");
+            }
         };
 
         It should_load_advanced_search = () =>

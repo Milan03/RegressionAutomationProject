@@ -18,7 +18,17 @@ namespace DocumentCentreTests.Functional_Tests.Member.Mailbox
             _poInboxPage = (POInboxPage)_suppHomepage.NavigateToMailbox(Constants.Text.VIEW_POS);
         };
 
-        Because of = () => _poInboxPage.SetPeriodDropdown(Constants.BaseMailbox.Enums.PeriodYear.LAST90);
+        Because of = () => 
+        {
+            try
+            {
+                _poInboxPage.SetPeriodDropdown(Constants.BaseMailbox.Enums.PeriodYear.LAST90);
+            }
+            catch(System.Exception)
+            {
+                _logger.Fatal("-- Member PO Mailbox Set Period Dropdown Test: [FAILED] --");
+            }
+        };
 
         It should_set_the_period = () =>
         {

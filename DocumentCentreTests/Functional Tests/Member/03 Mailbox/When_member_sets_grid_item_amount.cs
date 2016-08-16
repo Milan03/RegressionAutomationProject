@@ -20,7 +20,14 @@ namespace DocumentCentreTests.Functional_Tests.Member.Mailbox
 
         Because of = () =>
         {
-            _poInboxPage.SetGridItemAmount(Constants.BaseMailbox.Enums.GridElementsToDisplay.TEN);
+            try
+            {
+                _poInboxPage.SetGridItemAmount(Constants.BaseMailbox.Enums.GridElementsToDisplay.TEN);
+            }
+            catch(System.Exception)
+            {
+                _logger.Fatal("-- Member PO Mailbox Set Grid Item Amount Dropdown Test: [FAILED] --");
+            }
         };
 
         It should_go_to_the_last_page_of_grid = () =>

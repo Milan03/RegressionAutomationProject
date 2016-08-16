@@ -20,7 +20,17 @@ namespace DocumentCentreTests.Functional_Tests.Member.Mailbox
             _suppHomepage = (SupplierHomePage)loginPage.LoginAs(Constants.Affiliation.SA.SUPPLIER_USER, Constants.Affiliation.SA.SUPPLIER_PASS);
         };
 
-        Because of = () => _poInboxPage = (POInboxPage)_suppHomepage.NavigateToMailbox(Constants.Text.VIEW_POS);
+        Because of = () => 
+        {
+            try
+            {
+                _poInboxPage = (POInboxPage)_suppHomepage.NavigateToMailbox(Constants.Text.VIEW_POS);
+            }
+            catch(System.Exception)
+            {
+                _logger.Fatal("-- Member PO Mailbox Navigation Test: [FAILED] --");
+            }
+        };
 
         It should_display_the_po_mailbox = () =>
         {

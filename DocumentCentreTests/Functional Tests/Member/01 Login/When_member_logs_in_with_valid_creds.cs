@@ -15,7 +15,17 @@ namespace DocumentCentreTests.Functional_Tests.Member.Login
             _loginPage = new LoginPage(_driver, Constants.UserType.MEMBER);
         };
 
-        Because of = () => _loginPage.LoginAs(Constants.Affiliation.SA.MEMBER_USER, Constants.Affiliation.SA.MEMBER_PASS);
+        Because of = () => 
+        {
+            try
+            {
+                _loginPage.LoginAs(Constants.Affiliation.SA.MEMBER_USER, Constants.Affiliation.SA.MEMBER_PASS);
+            }
+            catch(System.Exception)
+            {
+                _logger.Fatal("-- Member Valid Login Test: [FAILED] --");
+            }
+        };
 
         It should_have_successfully_logged_in = () =>
         {

@@ -20,7 +20,14 @@ namespace DocumentCentreTests.Functional_Tests.Member.Mailbox
 
         Because of = () =>
         {
-            _poInboxPage.NavToPrevPage();
+            try
+            {
+                _poInboxPage.NavToPrevPage();
+            }
+            catch(System.Exception)
+            {
+                _logger.Fatal("-- Member PO Mailbox Nav Previous Page Test: [FAILED] --");
+            }
         };
 
         It should_go_to_the_prev_page_of_grid = () =>

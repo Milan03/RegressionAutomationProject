@@ -25,8 +25,15 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
 
         Because of = () =>
         {
-            _cartPage.AddItemInline("EE100", Constants.Affiliation.Drake.USER);
-            _cartPage.SendOrder();
+            try
+            {
+                _cartPage.AddItemInline("EE100", Constants.Affiliation.Drake.USER);
+                _cartPage.SendOrder();
+            }
+            catch(System.Exception)
+            {
+                _logger.Fatal("-- Drake PO Test: [FAILED] --");
+            }
         };
 
         It should_complete_purchase_order = () =>

@@ -3,14 +3,10 @@ using DocumentCentreTests.Util;
 using Machine.Specifications;
 using OpenQA.Selenium;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
-{  
+{
     public class When_SA_member_searches_for_catalogue : BaseDriverTest
     {
         static MemberHomePage _homePage;
@@ -26,10 +22,17 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
 
         Because of = () =>
         {
-            _catPage = _homePage.NavigateToCatalogues();
-            _catPage.InputCatalogueName("milan");
-            _catPage.InitiateSearch();
-            Thread.Sleep(1000);
+            try
+            {
+                _catPage = _homePage.NavigateToCatalogues();
+                _catPage.InputCatalogueName("milan");
+                _catPage.InitiateSearch();
+                Thread.Sleep(1000);
+            }
+            catch(Exception)
+            {
+                _logger.Fatal("-- Member Search for Catalogue Test: [FAILED] --");
+            }
         };
 
         It should_search_for_the_specified_catalogue = () =>

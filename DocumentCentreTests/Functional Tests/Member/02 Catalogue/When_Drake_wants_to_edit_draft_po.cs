@@ -21,9 +21,16 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
 
         Because of = () =>
         {
-            _cartPage = _voPage.EditOrder(Constants.Text.ORDER_PO_DRAFT);
-            _cartPage.AddItemInline("EE100", Constants.Affiliation.Drake.USER);
-            _cartPage.SaveDraftOrder();
+            try
+            {
+                _cartPage = _voPage.EditOrder(Constants.Text.ORDER_PO_DRAFT);
+                _cartPage.AddItemInline("EE100", Constants.Affiliation.Drake.USER);
+                _cartPage.SaveDraftOrder();
+            }
+            catch (System.Exception e)
+            {
+                _logger.Info("-- Drake Edit Draft PO Test: [FAILED] --");
+            }
         };
 
         It should_save_the_edit = () =>

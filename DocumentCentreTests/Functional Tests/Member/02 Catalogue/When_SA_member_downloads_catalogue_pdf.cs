@@ -22,7 +22,17 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
             _prodPage = _catPage.ChooseCatalogue("MilanTest");
         };
 
-        Because of = () => _prodPage.CataloguePDFExport();
+        Because of = () => 
+        {
+            try
+            {
+                _prodPage.CataloguePDFExport();
+            }
+            catch (System.Exception)
+            {
+                _logger.Fatal("-- Member Catalogue PDF Download Test: [FAILED]");
+            }
+        };
        
         It should_download_the_catalogue_as_pdf = () =>
         {

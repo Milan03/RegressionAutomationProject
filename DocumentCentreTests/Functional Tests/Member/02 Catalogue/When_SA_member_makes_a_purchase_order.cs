@@ -28,17 +28,23 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
 
         Because of = () =>
         {
-            _prodPage = _catPage.ChooseCatalogue("Milan Automation Catalogue 02");
-            _prodPage.LoadProductRows();
-            _prodPage.AddItemToCart("IN-MILANTEST-01", 1);
-            _prodPage.AddItemToCart("IN-MILANTEST-02", 1);
-            _prodPage.AddItemToCart("IN-MILANTEST-03", 1);
-            _prodPage.AddItemToCart("IN-MILANTEST-04", 1);
-            _cartPage = _prodPage.NavigateToCart();
-            _cartPage.LoadItemsInCart();
-            _productsVerified = _cartPage.VerifyItemsInCart(_prodPage._prodsInCart);
-            _cartPage.SendOrder();
-
+            try
+            {
+                _prodPage = _catPage.ChooseCatalogue("Milan Automation Catalogue 02");
+                _prodPage.LoadProductRows();
+                _prodPage.AddItemToCart("IN-MILANTEST-01", 1);
+                _prodPage.AddItemToCart("IN-MILANTEST-02", 1);
+                _prodPage.AddItemToCart("IN-MILANTEST-03", 1);
+                _prodPage.AddItemToCart("IN-MILANTEST-04", 1);
+                _cartPage = _prodPage.NavigateToCart();
+                _cartPage.LoadItemsInCart();
+                _productsVerified = _cartPage.VerifyItemsInCart(_prodPage._prodsInCart);
+                _cartPage.SendOrder();
+            }
+            catch(System.Exception)
+            {
+                _logger.Fatal("-- Member Add Item to Cart Test: [FAILED] --");
+            }
         };
 
         It should_return_alert_of_success = () =>

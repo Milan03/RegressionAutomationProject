@@ -21,7 +21,17 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
             _voPage.CheckFirstRow();
         };
 
-        Because of = () => _voPage.DeleteOrder();
+        Because of = () => 
+        {
+            try
+            {
+                _voPage.DeleteOrder();
+            }
+            catch(System.Exception)
+            {
+                _logger.Fatal("-- Member Order Delete Test: [FAILED] --");
+            }
+        };
 
         It should_delete_the_order = () =>
         {

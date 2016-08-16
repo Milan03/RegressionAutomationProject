@@ -21,9 +21,16 @@ namespace DocumentCentreTests.Functional_Tests.Member.Mailbox
 
         Because of = () =>
         {
-            _poInboxPage.LoadAdvancedSearch();
-            Thread.Sleep(500);
-            _poInboxPage.LoadBasicSearch();
+            try
+            {
+                _poInboxPage.LoadAdvancedSearch();
+                Thread.Sleep(500);
+                _poInboxPage.LoadBasicSearch();
+            }
+            catch(System.Exception)
+            {
+                _logger.Fatal("-- Member PO Mailbox Load Basic Search Test: [FAILED] --");
+            }
         };
 
         It should_load_basic_search = () =>

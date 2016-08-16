@@ -25,10 +25,17 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
 
         Because of = () =>
         {
-            _voPage = _homePage.NavigateToOrders(Constants.Text.VIEW_ORDERS, Constants.OrderStatus.ALL);
-            _voPage.InputPurchaseOrder(Constants.Text.INVALID_PO);
-            _voPage.InitiateSearch();
-            _voPage.CheckFirstRow();
+            try
+            {
+                _voPage = _homePage.NavigateToOrders(Constants.Text.VIEW_ORDERS, Constants.OrderStatus.ALL);
+                _voPage.InputPurchaseOrder(Constants.Text.INVALID_PO);
+                _voPage.InitiateSearch();
+                _voPage.CheckFirstRow();
+            }
+            catch(System.Exception)
+            {
+                _logger.Fatal("-- Member Invalid Order Search Test: [FAILED] --");
+            }
         };
 
 

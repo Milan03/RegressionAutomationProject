@@ -19,11 +19,18 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
 
         Because of = () =>
         {
-            _voPage = _homePage.NavigateToOrders(Constants.Text.VIEW_ORDERS, Constants.OrderStatus.ALL);
-            _voPage.InputPurchaseOrder(Constants.Text.ORDER_PO_PROC);
-            _voPage.ChooseOrderType(Constants.OrderStatus.PROCESSING);
-            _voPage.InitiateSearch();
-            _voPage.CheckFirstRow();
+            try
+            {
+                _voPage = _homePage.NavigateToOrders(Constants.Text.VIEW_ORDERS, Constants.OrderStatus.ALL);
+                _voPage.InputPurchaseOrder(Constants.Text.ORDER_PO_PROC);
+                _voPage.ChooseOrderType(Constants.OrderStatus.PROCESSING);
+                _voPage.InitiateSearch();
+                _voPage.CheckFirstRow();
+            }
+            catch(System.Exception)
+            {
+                _logger.Fatal("-- Member Valid Order Search Test: [FAILED] --");
+            }
         };
 
 

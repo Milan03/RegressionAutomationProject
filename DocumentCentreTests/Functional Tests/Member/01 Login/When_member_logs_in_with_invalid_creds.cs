@@ -19,7 +19,17 @@ namespace DocumentCentreTests.Functional_Tests.Member.Login
             _loginPage = new LoginPage(_driver, Constants.UserType.MEMBER);
         };
 
-        Because of = () => _loginPage.SubmitLoginExpectingFailure();
+        Because of = () => 
+        {
+            try
+            {
+                _loginPage.SubmitLoginExpectingFailure();
+            }
+            catch (Exception)
+            {
+                _logger.Fatal("-- Member Invalid Login Test: [FAILED] --");
+            }
+        };
 
         It should_have_failed_to_log_in = () =>
         {
