@@ -1,6 +1,10 @@
-﻿using DocumentCentreTests.Pages;
+﻿using DocumentCentreTests.Models;
+using DocumentCentreTests.Pages;
 using DocumentCentreTests.Util;
 using Machine.Specifications;
+using OpenQA.Selenium;
+using System;
+using System.Runtime.CompilerServices;
 
 namespace DocumentCentreTests.Functional_Tests.Member.Login
 {
@@ -9,11 +13,11 @@ namespace DocumentCentreTests.Functional_Tests.Member.Login
         static LoginPage _loginPage;
 
         Establish context = () =>
-            {
-                LoadDriver();
-                _logger.Info("-- Member Invalid Login Test Initiating --");
-                _loginPage = new LoginPage(_driver, Constants.UserType.MEMBER);
-            };
+        {
+            LoadDriver();
+            _logger.Info("-- Member Invalid Login Test Initiating --");
+            _loginPage = new LoginPage(_driver, Constants.UserType.MEMBER);
+        };
 
         Because of = () => _loginPage.SubmitLoginExpectingFailure();
 

@@ -46,17 +46,17 @@ namespace DocumentCentreTests.Util
                         foundElement = driver.FindElement(By.XPath(element));
                         break;
                     default:
-                        _logger.Error(" > ERROR: Element [type: " + type + ", name: " + element + "] could not be located.");
+                        _logger.Error(" > Unable to find element!");
                         foundElement = null;
                         break;
                 }
                 return foundElement;
             }
-            catch (NoSuchElementException)
+            catch (Exception e)
             {
-                _logger.Error(" > ERROR: Element [type: " + type + ", name: " + element + "] could not be located.");
-                _logger.Fatal(" > Test Name: ");
+                _logger.Error("-- TEST FAILURE @ ELEMENT NOT FOUND: " +element);
                 _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
+                _logger.Fatal("-- TEST FAILURE @ EXCEPTION: " + e.Message);
                 BaseDriverTest.TakeScreenshot("screenshot");
                 throw new NoSuchElementException("Unable to locate element.");
             }
