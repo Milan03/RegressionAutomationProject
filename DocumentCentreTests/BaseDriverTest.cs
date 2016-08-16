@@ -5,6 +5,8 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using System;
 using DocumentCentreTests.Util;
+using System.Runtime.CompilerServices;
+using DocumentCentreTests.Models;
 
 namespace DocumentCentreTests
 {
@@ -27,7 +29,6 @@ namespace DocumentCentreTests
                 //_driver = new ChromeDriver(options);
                 var profile = new FirefoxProfile();
                 profile.SetPreference("browser.helperApps.neverAsk.saveToDisk", "application/octet-stream doc xls pdf txt");
-
                 _driver = new FirefoxDriver(profile);
                 _driver.Navigate().GoToUrl("http://portal.test-web01.lbmx.com/login?redirect=%2f");
             }

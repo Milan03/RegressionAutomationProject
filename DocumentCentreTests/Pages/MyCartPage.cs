@@ -202,26 +202,33 @@ namespace DocumentCentreTests.Pages
             AlertSuccess = false; 
             Thread.Sleep(1000);
             IWebElement PNCell, Outside, Active;
-            PNCell = _driver.FindElement(By.XPath(Constants.MyCart.XP.EDITABLE_ROW));
-            Outside = HelperMethods.FindElement(_driver, Constants.SearchType.ID, Constants.MyCart.XP.CART_ORDER_GRID);
-            // Enter Product Number into cell
-            Actions action = new Actions(_driver);
-            action.MoveToElement(PNCell).Click().SendKeys(pnToAdd).Perform();
-            // Tab over to quantity
-            if (affiliation.Equals(Constants.Affiliation.Drake.USER))
-                action.SendKeys(Keys.Tab).SendKeys(Keys.Tab).SendKeys(Keys.Tab).SendKeys(Keys.Tab).SendKeys(Keys.Tab).SendKeys(Keys.Tab).Perform();
-            else
-                action.SendKeys(Keys.Tab).Perform();
-            // Add quantity and complete product entry
-            Thread.Sleep(500);
-            Active = HelperMethods.FindElement(_driver, Constants.SearchType.XPATH, Constants.MyCart.XP.ACTIVE_ROW_QTY);
-            action.MoveToElement(Active).Click().SendKeys(Keys.Tab).Perform();
-            Thread.Sleep(500);
-            AlertSuccess = HelperMethods.CheckAlert(_driver);
-            if (AlertSuccess.Equals(true))
-                _logger.Info(" > Product added inline!");
-            else
-                _logger.Info(" > Problem adding product inline!");
+            try
+            {
+                PNCell = HelperMethods.FindElement(_driver, Constants.SearchType.XPATH, Constants.MyCart.XP.EDITABLE_ROW);
+                Outside = HelperMethods.FindElement(_driver, Constants.SearchType.ID, Constants.MyCart.XP.CART_ORDER_GRID);
+                // Enter Product Number into cell
+                Actions action = new Actions(_driver);
+                action.MoveToElement(PNCell).Click().SendKeys(pnToAdd).Perform();
+                // Tab over to quantity
+                if (affiliation.Equals(Constants.Affiliation.Drake.USER))
+                    action.SendKeys(Keys.Tab).SendKeys(Keys.Tab).SendKeys(Keys.Tab).SendKeys(Keys.Tab).SendKeys(Keys.Tab).SendKeys(Keys.Tab).Perform();
+                else
+                    action.SendKeys(Keys.Tab).Perform();
+                // Add quantity and complete product entry
+                Thread.Sleep(500);
+                Active = HelperMethods.FindElement(_driver, Constants.SearchType.XPATH, Constants.MyCart.XP.ACTIVE_ROW_QTY);
+                action.MoveToElement(Active).Click().SendKeys(Keys.Tab).Perform();
+                Thread.Sleep(500);
+                AlertSuccess = HelperMethods.CheckAlert(_driver);
+                if (AlertSuccess.Equals(true))
+                    _logger.Info(" > Product added inline!");
+                else
+                    _logger.Info(" > Problem adding product inline!");
+            }
+            catch (Exception e)
+            {
+                _logger.Error(" > Exception encountered AddItemInLine(): " + e.Message);
+            }
 
             return this;
         }
