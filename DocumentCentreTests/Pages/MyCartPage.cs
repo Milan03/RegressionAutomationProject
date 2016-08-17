@@ -257,7 +257,7 @@ namespace DocumentCentreTests.Pages
                             !prod.Checked && !cartLineItem.Checked)
                         {
                             int cartItemQty;
-                            Int32.TryParse(cartLineItem.Quantity.Text, out cartItemQty);
+                            int.TryParse(cartLineItem.Quantity.Text, out cartItemQty);
                             if (prod.Price.Equals(cartLineItem.Price.Text) &&
                                 prod.Quantity.Equals(cartItemQty))
                             {
