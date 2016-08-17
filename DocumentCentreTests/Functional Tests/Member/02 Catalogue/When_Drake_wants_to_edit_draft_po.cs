@@ -1,9 +1,11 @@
 ﻿using DocumentCentreTests.Pages;
 using DocumentCentreTests.Util;
 using Machine.Specifications;
+using NCrunch.Framework;
 
 namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
 {
+    [Timeout(900000)]
     public class When_Drake_wants_to_edit_draft_po : BaseDriverTest
     {
         static MemberHomePage _homePage;

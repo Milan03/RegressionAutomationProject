@@ -5,6 +5,7 @@ using NCrunch.Framework;
 
 namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
 {
+    [Timeout(900000)]
     public class When_Drake_member_makes_a_purchase_order : BaseDriverTest
     {
         static MemberHomePage _homePage;
