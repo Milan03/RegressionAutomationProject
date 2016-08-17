@@ -108,12 +108,12 @@ namespace DocumentCentreTests.Util
                     return false;
 
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 _logger.Fatal(" > Checking for alert [FAILED]");
                 _logger.Fatal("-- TEST FAILURE @ URL: '" + driver.Url + "' --");
                 BaseDriverTest.TakeScreenshot("screenshot");
-                return false;
+                throw new Exception(e.Message);
             }
         }
 

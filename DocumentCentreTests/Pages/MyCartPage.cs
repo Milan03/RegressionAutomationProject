@@ -369,6 +369,10 @@ namespace DocumentCentreTests.Pages
             SaveDraftButton.Click();
             Thread.Sleep(300);
             SaveDraftSuccess = HelperMethods.CheckAlert(_driver);
+            if (SaveDraftSuccess)
+                _logger.Info(" > Draft order saved!");
+            else
+                _logger.Error(" > Umable to save draft order!");
             return this;
         }
 
