@@ -27,21 +27,15 @@ namespace DocumentCentreTests.Functional_Tests.Member.Mailbox
             catch(System.Exception)
             {
                 _logger.Fatal("-- Member PO Mailbox Load Grid Test: [FAILED] --");
+                _poInboxPage.GridLoadSuccess.ShouldBeTrue();
             }
         };
 
         It should_load_all_grid_elements = () =>
         {
-            if (!_poInboxPage.GridLoadSuccess)
-            {
-                _logger.Fatal("-- Member PO Mailbox Load Grid Test: [FAILED] --");
-                _poInboxPage.GridLoadSuccess.ShouldBeTrue();
-            }
-            else
-            {
-                _logger.Info("-- Member PO Mailbox Load Grid Test: [PASSED] --");
-                _poInboxPage.GridLoadSuccess.ShouldBeTrue();
-            }
+            if (_poInboxPage.GridLoadSuccess)
+                _logger.Info("-- Member PO Mailbox Load Grid Test: [SUCCESS] --");
+
         };
     }
 }

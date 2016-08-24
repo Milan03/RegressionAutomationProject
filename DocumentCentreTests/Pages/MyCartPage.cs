@@ -394,6 +394,7 @@ namespace DocumentCentreTests.Pages
                 Thread.Sleep(5000);
                 IWebElement finish = HelperMethods.FindElement(_driver, Constants.SearchType.XPATH, Constants.PO.XP.INFO_FINISH);
                 finish.Click();
+                Thread.Sleep(300);
                 OrderComplete = true;
                 return new MyCartPage(_driver, Constants.OrderType.COMPLETE);
             }

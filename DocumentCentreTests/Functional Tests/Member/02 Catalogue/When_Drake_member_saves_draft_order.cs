@@ -34,21 +34,14 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
             catch (System.Exception)
             {
                 _logger.Fatal("-- Drake Draft Order Test: [FAILED] --");
+                _cartPage.SaveDraftSuccess.ShouldBeTrue();
             }
         };
 
         It should_save_the_order = () =>
         {
             if (_cartPage.SaveDraftSuccess)
-            {
                 _logger.Info("-- Drake Draft Order Test: [PASSED] --");
-                _cartPage.SaveDraftSuccess.ShouldBeTrue();
-            }
-            else
-            {
-                _logger.Fatal("-- Drake Draft Order Test: [FAILED] --");
-                _cartPage.SaveDraftSuccess.ShouldBeTrue();
-            }
         };
     }
 }

@@ -114,7 +114,6 @@
     <Compile Include="Functional Tests\Member\02 Catalogue\When_SA_member_removes_item_from_cart.cs" />
     <Compile Include="Functional Tests\Member\02 Catalogue\When_SA_member_searches_for_an_invalid_order.cs" />
     <Compile Include="Functional Tests\Member\02 Catalogue\When_SA_member_searches_for_an_order.cs" />
-    <Compile Include="Functional Tests\Member\02 Catalogue\When_SA_member_searches_for_catalogue.cs" />
     <Compile Include="Functional Tests\Member\02 Catalogue\When_SA_member_deletes_an_order.cs" />
     <Compile Include="Pages\CataloguesPage.cs" />
     <Compile Include="Pages\MyCartPage.cs" />

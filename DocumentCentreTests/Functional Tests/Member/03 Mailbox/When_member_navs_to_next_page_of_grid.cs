@@ -27,21 +27,14 @@ namespace DocumentCentreTests.Functional_Tests.Member.Mailbox
             catch(System.Exception)
             {
                 _logger.Fatal("-- Member PO Mailbox Nav Next Page Test: [FAILED] --");
+                _poInboxPage.NavRowSuccess.ShouldBeTrue();
             }
         };
 
         It should_go_to_the_next_page_of_grid = () =>
         {
             if (!_poInboxPage.NavRowSuccess)
-            {
-                _logger.Fatal("-- Member PO Mailbox Nav Next Page Test: [FAILED] --");
-                _poInboxPage.NavRowSuccess.ShouldBeTrue();
-            }
-            else
-            {
-                _logger.Info("-- Member PO Mailbox Nav Next Page Test: [PASSED] --");
-                _poInboxPage.NavRowSuccess.ShouldBeTrue();
-            }
+                _logger.Info("-- Member PO Mailbox Nav Next Page Test: [SUCCESS] --");
         };
     }
 }

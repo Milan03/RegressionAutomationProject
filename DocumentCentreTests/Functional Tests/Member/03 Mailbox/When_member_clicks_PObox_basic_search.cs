@@ -30,21 +30,14 @@ namespace DocumentCentreTests.Functional_Tests.Member.Mailbox
             catch(System.Exception)
             {
                 _logger.Fatal("-- Member PO Mailbox Load Basic Search Test: [FAILED] --");
+                _poInboxPage.BasicLoadSuccess.ShouldBeTrue();
             }
         };
 
         It should_load_basic_search = () =>
         {
-            if (!_poInboxPage.BasicLoadSuccess)
-            {
-                _logger.Fatal("-- Member PO Mailbox Load Basic Search Test: [FAILED] --");
-                _poInboxPage.BasicLoadSuccess.ShouldBeTrue();
-            }
-            else
-            {
+            if (_poInboxPage.BasicLoadSuccess)
                 _logger.Info("-- Member PO Mailbox Load Basic Search Test: [PASSED] --");
-                _poInboxPage.BasicLoadSuccess.ShouldBeTrue();
-            }
         };
     }
 }

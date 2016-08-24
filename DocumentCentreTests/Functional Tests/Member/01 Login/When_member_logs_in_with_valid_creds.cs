@@ -24,21 +24,14 @@ namespace DocumentCentreTests.Functional_Tests.Member.Login
             catch(System.Exception)
             {
                 _logger.Fatal("-- Member Valid Login Test: [FAILED] --");
+                _loginPage.LoginSuccess.ShouldBeTrue();
             }
         };
 
         It should_have_successfully_logged_in = () =>
         {
             if (_loginPage.LoginSuccess)
-            {
                 _logger.Info("-- Member Valid Login Test: [PASSED] --");
-                _loginPage.LoginSuccess.ShouldBeTrue();
-            }
-            else
-            {
-                _logger.Fatal("-- Member Valid Login Test: [FAILED] --");
-                _loginPage.LoginSuccess.ShouldBeTrue();
-            }
         };
     }
 }

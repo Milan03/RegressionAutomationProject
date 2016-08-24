@@ -28,21 +28,14 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
             catch (System.Exception)
             {
                 _logger.Info("-- Drake Recreate PO Test: [FAILED] --");
+                _voPage.AlertSuccess.ShouldBeTrue();
             }
         };
 
         It should_recreate_the_order_in_MyCart = () =>
         {
             if(_voPage.AlertSuccess)
-            {
                 _logger.Info("-- Drake Recreate PO Test: [PASSED] --");
-                _voPage.AlertSuccess.ShouldBeTrue();
-            }
-            else
-            {
-                _logger.Info("-- Drake Recreate PO Test: [FAILED] --");
-                _voPage.AlertSuccess.ShouldBeTrue();
-            }
         };
     }
 }

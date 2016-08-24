@@ -30,6 +30,7 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
             catch(System.Exception)
             {
                 _logger.Fatal("-- Member Valid Order Search Test: [FAILED] --");
+                _voPage.FirstTableElem.Text.ShouldEqual(Constants.Text.ORDER_PO_PROC);
             }
         };
 
@@ -37,15 +38,7 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
         It should_have_searched_for_an_order = () =>
         {
             if (_voPage.FirstTableElem.Text.Equals(Constants.Text.ORDER_PO_PROC))
-            {
                 _logger.Info("-- Member Valid Order Search Test: [PASSED] --");
-                _voPage.FirstTableElem.Text.ShouldEqual(Constants.Text.ORDER_PO_PROC);
-            }
-            else
-            {
-                _logger.Fatal("-- Member Valid Order Search Test: [FAILED] --");
-                _voPage.FirstTableElem.Text.ShouldEqual(Constants.Text.ORDER_PO_PROC);
-            }
         };
     }
 }

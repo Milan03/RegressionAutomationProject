@@ -27,21 +27,14 @@ namespace DocumentCentreTests.Functional_Tests.Member.Mailbox
             catch(System.Exception)
             {
                 _logger.Fatal("-- Member PO Mailbox Set Grid Item Amount Dropdown Test: [FAILED] --");
+                _poInboxPage.GridAmountSetSuccess.ShouldBeTrue();
             }
         };
 
         It should_go_to_the_last_page_of_grid = () =>
         {
-            if (!_poInboxPage.GridAmountSetSuccess)
-            {
-                _logger.Fatal("-- Member PO Mailbox Set Grid Item Amount Dropdown Test: [FAILED] --");
-                _poInboxPage.GridAmountSetSuccess.ShouldBeTrue();
-            }
-            else
-            {
-                _logger.Info("-- Member PO Mailbox Set Grid Item Amount Dropdown Test: [PASSED] --");
-                _poInboxPage.GridAmountSetSuccess.ShouldBeTrue();
-            }
+            if (_poInboxPage.GridAmountSetSuccess)
+                _logger.Info("-- Member PO Mailbox Set Grid Item Amount Dropdown Test: [FAILED] --");
         };
     }
 }

@@ -27,21 +27,14 @@ namespace DocumentCentreTests.Functional_Tests.Member.Mailbox
             catch(System.Exception)
             {
                 _logger.Fatal("-- Member PO Mailbox Set Period Dropdown Test: [FAILED] --");
+                _poInboxPage.PeriodSetSuccess.ShouldBeTrue();
             }
         };
 
         It should_set_the_period = () =>
         {
-            if (!_poInboxPage.PeriodSetSuccess)
-            {
-                _logger.Fatal("-- Member PO Mailbox Set Period Dropdown Test: [FAILED] --");
-                _poInboxPage.PeriodSetSuccess.ShouldBeTrue();
-            }
-            else
-            {
-                _logger.Info("-- Member PO Mailbox Set Period Dropdown Test: [PASSED] --");
-                _poInboxPage.PeriodSetSuccess.ShouldBeTrue();
-            }
+            if (_poInboxPage.PeriodSetSuccess)
+                _logger.Info("-- Member PO Mailbox Set Period Dropdown Test: [SUCCESS] --");
         };
     }
 }

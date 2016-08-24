@@ -32,21 +32,14 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
             catch (System.Exception)
             {
                 _logger.Info("-- Drake Edit Draft PO Test: [FAILED] --");
+                _cartPage.SaveDraftSuccess.ShouldBeTrue();
             }
         };
 
         It should_save_the_edit = () =>
         {
             if (_cartPage.SaveDraftSuccess)
-            {
                 _logger.Info("-- Drake Edit Draft PO Test: [PASSED] --");
-                _cartPage.SaveDraftSuccess.ShouldBeTrue();
-            }
-            else
-            {
-                _logger.Info("-- Drake Edit Draft PO Test: [FAILED] --");
-                _cartPage.SaveDraftSuccess.ShouldBeTrue();
-            }
         };
     }
 }

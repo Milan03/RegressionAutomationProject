@@ -27,21 +27,14 @@ namespace DocumentCentreTests.Functional_Tests.Member.Mailbox
             catch (System.Exception)
             {
                 _logger.Fatal("-- Member PO Mailbox Set Status Dropdown Test: [FAILED] --");
+                _poInboxPage.StatusSetSuccess.ShouldBeTrue();
             }
         };
 
         It should_set_the_status = () =>
         {
-            if (!_poInboxPage.StatusSetSuccess)
-            {
-                _logger.Fatal("-- Member PO Mailbox Set Status Dropdown Test: [FAILED] --");
-                _poInboxPage.StatusSetSuccess.ShouldBeTrue();
-            }
-            else
-            {
-                _logger.Info("-- Member PO Mailbox Set Status Dropdown Test: [PASSED] --");
-                _poInboxPage.StatusSetSuccess.ShouldBeTrue();
-            }
+            if (_poInboxPage.StatusSetSuccess)
+                _logger.Info("-- Member PO Mailbox Set Status Dropdown Test: [FAILED] --");
         };
     }
 }

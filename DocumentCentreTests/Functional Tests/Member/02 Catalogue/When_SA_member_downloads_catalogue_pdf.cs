@@ -31,21 +31,14 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
             catch (System.Exception)
             {
                 _logger.Fatal("-- Member Catalogue PDF Download Test: [FAILED]");
+                _prodPage.PDFDownloaded.ShouldBeTrue();
             }
         };
        
         It should_download_the_catalogue_as_pdf = () =>
         {
-            if (!_prodPage.PDFDownloaded)
-            {
-                _logger.Fatal("-- Member Catalogue PDF Download Test: [FAILED]");
-                _prodPage.PDFDownloaded.ShouldBeTrue();
-            }
-            else
-            {
-                _logger.Info("-- Member Catalogue PDF Download Test: [PASSED]");
-                _prodPage.PDFDownloaded.ShouldBeTrue();
-            }
+            if (_prodPage.PDFDownloaded)
+                _logger.Info("-- Member Catalogue PDF Download Test: [SUCCESS]");
         };
     }
 }

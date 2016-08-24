@@ -33,21 +33,15 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
             catch(System.Exception)
             {
                 _logger.Fatal("-- Member Remove Item From Cart Test: [FAILED] --");
+                _cartPage.ItemDeleted.ShouldBeTrue();
             }
         };
 
         It should_return_alert_of_sueccess = () =>
         {
-            if (!_cartPage.ItemDeleted)
-            {
-                _logger.Fatal("-- Member Remove Item From Cart Test: [FAILED] --");
-                _cartPage.ItemDeleted.ShouldBeTrue();
-            }
-            else
-            {
+            if (_cartPage.ItemDeleted)
                 _logger.Info("-- Member Remove Item From Cart Test: [PASSED] --");
-                _cartPage.ItemDeleted.ShouldBeTrue();
-            }
+
         };
     }
 }

@@ -34,21 +34,14 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
             catch(System.Exception)
             {
                 _logger.Fatal("-- Drake PO Test: [FAILED] --");
+                _cartPage.AlertSuccess.ShouldBeTrue();
             }
         };
 
         It should_complete_purchase_order = () =>
         {
             if (_cartPage.AlertSuccess.Equals(true))
-            {
                 _logger.Info("-- Drake PO Test: [PASSED] --");
-                _cartPage.AlertSuccess.ShouldBeTrue();
-            }
-            else
-            {
-                _logger.Fatal("-- Drake PO Test: [FAILED] --");
-                _cartPage.AlertSuccess.ShouldBeTrue();
-            }
         };
     }
 }

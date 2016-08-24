@@ -32,9 +32,10 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
                 _voPage.InitiateSearch();
                 _voPage.CheckFirstRow();
             }
-            catch(System.Exception)
+            catch(Exception)
             {
                 _logger.Fatal("-- Member Invalid Order Search Test: [FAILED] --");
+                _voPage.FirstTableElem.Text.ShouldEqual(Constants.UIMessages.ORDER_ERROR);
             }
         };
 
@@ -42,15 +43,7 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
         It should_show_no_orders_found = () =>
         {
             if (_voPage.FirstTableElem.Text.Equals(Constants.UIMessages.ORDER_ERROR))
-            {
                 _logger.Info("-- Member Invalid Order Search Test: [PASSED] --");
-                _voPage.FirstTableElem.Text.ShouldEqual(Constants.UIMessages.ORDER_ERROR);
-            }
-            else
-            {
-                _logger.Fatal("-- Member Invalid Order Search Test: [FAILED] --");
-                _voPage.FirstTableElem.Text.ShouldEqual(Constants.UIMessages.ORDER_ERROR);
-            }
         };
     }
 }

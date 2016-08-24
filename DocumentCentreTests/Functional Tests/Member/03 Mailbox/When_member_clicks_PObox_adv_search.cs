@@ -7,7 +7,6 @@ using System.Threading;
 namespace DocumentCentreTests.Functional_Tests.Member.Mailbox
 {
     [Timeout(100000)]
-    
     public class When_member_clicks_PObox_adv_search : BaseDriverTest
     {
         static SupplierHomePage _suppHomepage;
@@ -31,22 +30,15 @@ namespace DocumentCentreTests.Functional_Tests.Member.Mailbox
             catch(System.Exception)
             {
                 _logger.Fatal("-- Member PO Mailbox Load Adv Search Test: [FAILED] --");
+                _poInboxPage.AdvLoadSuccess.ShouldBeTrue();
             }
         };
 
         It should_load_advanced_search = () =>
         {
-            if (!_poInboxPage.AdvLoadSuccess)
-            {
-                _logger.Fatal("-- Member PO Mailbox Load Adv Search Test: [FAILED] --");
-                _poInboxPage.AdvLoadSuccess.ShouldBeTrue();
-            }
-            else
-            {
-                _logger.Info("-- Member PO Mailbox Load Adv Search Test: [PASSED] --");
-                _poInboxPage.AdvLoadSuccess.ShouldBeTrue();
-            }
+            if (_poInboxPage.AdvLoadSuccess)
+                _logger.Info("-- Member PO Mailbox Load Adv Search Test: [SUCCESS] --");
         };
-    }
+    }   
 }
 

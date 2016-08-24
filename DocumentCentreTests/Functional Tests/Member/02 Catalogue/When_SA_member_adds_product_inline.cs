@@ -35,21 +35,14 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
             catch (System.Exception)
             {
                 _logger.Fatal("-- Member Add Item Inline to Cart Test: [FAILED] --");
+                _cartPage.AlertSuccess.ShouldBeTrue();
             }
         };
 
         It should_add_item_to_cart = () => 
         {
-            if (_cartPage.AlertSuccess.Equals(true))
-            {
+            if (_cartPage.AlertSuccess)
                 _logger.Fatal("-- Member Add Item Inline to Cart Test: [PASSED] --");
-                _cartPage.AlertSuccess.ShouldBeTrue();
-            }
-            else
-            {
-                _logger.Fatal("-- Member Add Item Inline to Cart Test: [FAILED] --");
-                _cartPage.AlertSuccess.ShouldBeTrue();
-            }
         };
     }
 }

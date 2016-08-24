@@ -31,21 +31,15 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
             catch (System.Exception)
             {
                 _logger.Fatal("-- Drake Order Grid Delete Test: [FAILED] --");
+                _memHomePage.PageReached.ShouldBeTrue();
             }
         };
 
         It should_delete_the_order = () =>
         {
             if (_memHomePage.PageReached)
-            {
                 _logger.Info("-- Drake Order Grid Delete Test: [PASSED] --");
-                _memHomePage.PageReached.ShouldBeTrue(); ;
-            }
-            else
-            {
-                _logger.Fatal("-- Drake Order Grid Delete Test: [FAILED] --");
-                _memHomePage.PageReached.ShouldBeTrue();
-            }
+
         };
     }
 }

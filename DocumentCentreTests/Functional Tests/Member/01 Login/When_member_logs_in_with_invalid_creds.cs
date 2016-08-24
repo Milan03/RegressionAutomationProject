@@ -28,6 +28,7 @@ namespace DocumentCentreTests.Functional_Tests.Member.Login
             catch (Exception)
             {
                 _logger.Fatal("-- Member Invalid Login Test: [FAILED] --");
+                _loginPage.LoginSuccess.ShouldBeFalse();
             }
         };
 
@@ -35,17 +36,7 @@ namespace DocumentCentreTests.Functional_Tests.Member.Login
         {
             var error = HelperMethods.FindElement(_driver, Constants.SearchType.CLASSNAME, "login-error-message");
             if (error.Text.Equals(Constants.UIMessages.LOGIN_ERROR))
-            {
                 _logger.Info("-- Member Invliad Login Test: [PASSED] --");
-                error.Text.ShouldEqual(Constants.UIMessages.LOGIN_ERROR);
-                _loginPage.LoginSuccess.ShouldBeFalse();
-            }
-            else
-            {
-                _logger.Fatal("-- Member Invalid Login Test: [FAILED] --");
-                error.Text.ShouldEqual(Constants.UIMessages.LOGIN_ERROR);
-                _loginPage.LoginSuccess.ShouldBeFalse();
-            }
         };
     }
 }
