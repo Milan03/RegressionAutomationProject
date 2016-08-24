@@ -4,7 +4,7 @@ using Machine.Specifications;
 
 namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
 {
-    public class When_SA_member_wants_to_delete_an_order : BaseDriverTest
+    public class When_SA_member_deletes_an_order : BaseDriverTest
     {
         static ViewOrdersPage _voPage;
         static MemberHomePage _memHomePage;

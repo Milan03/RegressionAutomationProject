@@ -6,7 +6,7 @@ using NCrunch.Framework;
 namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
 {
     [Timeout(900000)]
-    public class When_Drake_wants_to_edit_draft_po : BaseDriverTest
+    public class When_Drake_member_edits_draft_po : BaseDriverTest
     {
         static MemberHomePage _homePage;
         static ViewOrdersPage _voPage;
