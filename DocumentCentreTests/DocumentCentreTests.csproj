@@ -85,7 +85,8 @@
     <Compile Include="BaseDriverTest.cs" />
     <Compile Include="Functional Tests\Member\01 Login\When_member_logs_in_with_invalid_creds.cs" />
     <Compile Include="Functional Tests\Member\01 Login\When_member_logs_in_with_valid_creds.cs" />
-    <Compile Include="Functional Tests\Member\02 Catalogue\When_Drake_wants_to_edit_draft_po.cs" />
+    <Compile Include="Functional Tests\Member\02 Catalogue\When_Drake_member_edits_draft_po.cs" />
+    <Compile Include="Functional Tests\Member\02 Catalogue\When_Drake_member_recreates_po.cs" />
     <Compile Include="Functional Tests\Member\03 Mailbox\When_member_clicks_PObox_basic_search.cs" />
     <Compile Include="Functional Tests\Member\03 Mailbox\When_member_loads_PObox_grid.cs" />
     <Compile Include="Functional Tests\Member\03 Mailbox\When_member_navs_to_first_page_of_grid.cs" />
@@ -113,7 +114,7 @@
     <Compile Include="Functional Tests\Member\02 Catalogue\When_SA_member_searches_for_an_invalid_order.cs" />
     <Compile Include="Functional Tests\Member\02 Catalogue\When_SA_member_searches_for_an_order.cs" />
     <Compile Include="Functional Tests\Member\02 Catalogue\When_SA_member_searches_for_catalogue.cs" />
-    <Compile Include="Functional Tests\Member\02 Catalogue\When_SA_member_wants_to_delete_an_order.cs" />
+    <Compile Include="Functional Tests\Member\02 Catalogue\When_SA_member_deletes_an_order.cs" />
     <Compile Include="Pages\CataloguesPage.cs" />
     <Compile Include="Pages\MyCartPage.cs" />
     <Compile Include="Pages\ProductsPage.cs" />

@@ -144,6 +144,7 @@ namespace DocumentCentreTests.Pages
         public MyCartPage ReCreateOrder(string PONumber)
         {
             _logger.Trace(" > Attempting to recreate PO: " + PONumber + "...");
+            AlertSuccess = false;
             InputPurchaseOrder(PONumber);
             InitiateSearch();
             OrderType = Constants.OrderStatus.DRAFT;
@@ -151,6 +152,7 @@ namespace DocumentCentreTests.Pages
             try
             {
                 CreateEditLocator.Click();
+                AlertSuccess = true;
                 _logger.Error(" > Recreation of PO: " + PONumber + " [SUCCESS].");
             }
             catch (Exception e)
