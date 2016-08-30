@@ -4,9 +4,6 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using System;
-using DocumentCentreTests.Util;
-using System.Runtime.CompilerServices;
-using DocumentCentreTests.Models;
 
 namespace DocumentCentreTests
 {
