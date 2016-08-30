@@ -218,7 +218,7 @@
             internal const string INVALID_PO = "asdf1234adfs";
             internal const string ORDER_PO_PROC = "0000019";
             internal const string ORDER_PO_DRAFT = "AutomationDraft01";
-            internal const string ORDER_PO_RECREATE = "RecreateTest01s";
+            internal const string ORDER_PO_RECREATE = "RecreateTest01";
             internal const string CAT_PAGE_TITLE = "Select a Catalog to Order Products";
             internal const string TEST_CAT = "MILAN AUTOMATION CATALOGUE";
         }
