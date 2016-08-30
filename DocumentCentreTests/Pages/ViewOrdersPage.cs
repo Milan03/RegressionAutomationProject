@@ -50,7 +50,7 @@ namespace DocumentCentreTests.Pages
         /// </summary>
         public void CheckFirstRow()
         {
-            Thread.Sleep(800);
+            Thread.Sleep(1500);
             if (HelperMethods.IsElementPresent(_driver, By.XPath(Constants.PO.XP.PO_LOCATOR)))
             {
                 FirstTableElem = _driver.FindElement(By.XPath(Constants.PO.XP.PO_LOCATOR));
