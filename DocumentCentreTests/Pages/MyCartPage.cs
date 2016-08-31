@@ -52,7 +52,7 @@ namespace DocumentCentreTests.Pages
         internal bool OrderComplete;
         internal bool AlertSuccess;
         internal bool SaveDraftSuccess;
-
+        internal bool DollarAmountSuccess;
         public MyCartPage(IWebDriver driver, string type)
         {
             #region Assigning Accessors
@@ -288,6 +288,24 @@ namespace DocumentCentreTests.Pages
                     return false;
                 }
             }
+        }
+
+        public MyCartPage VerifyTotalDollarAmount()
+        {
+            double amountTotal = 0;
+            double cartTotal = 0;
+            double.TryParse(AmountTextbox.Text, out amountTotal);
+            foreach(CartItem item in _cartLineItems)
+            {
+                double itemTotalAmount = 0;
+                double.TryParse(item.ItemTotalAmt.Text, out itemTotalAmount);
+                cartTotal += itemTotalAmount;
+            }
+            if (amountTotal.Equals(cartTotal))
+                DollarAmountSuccess = true;
+            else
+                DollarAmountSuccess = false;
+            return this;
         }
 
         /// <summary>
