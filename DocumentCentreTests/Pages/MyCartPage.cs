@@ -85,7 +85,6 @@ namespace DocumentCentreTests.Pages
             PONumberTextbox = HelperMethods.FindElement(_driver, Constants.SearchType.ID, "poNumber");
             POBuyerTextbox = HelperMethods.FindElement(_driver, Constants.SearchType.ID, "originalRefNumber");
             UnitsTextbox = HelperMethods.FindElement(_driver, Constants.SearchType.ID, "totalQuantityBox");
-            AmountTextbox = HelperMethods.FindElement(_driver, Constants.SearchType.ID, "totalAmountBox");
             ContactNameTextbox = HelperMethods.FindElement(_driver, Constants.SearchType.ID, "contactName");
             DeliveryAddressDisplay = HelperMethods.FindElement(_driver, Constants.SearchType.ID, "addresseeName");
             FreightTermsTextbox = HelperMethods.FindElement(_driver, Constants.SearchType.ID, "freightTerms");
@@ -294,14 +293,17 @@ namespace DocumentCentreTests.Pages
         {
             double amountTotal = 0;
             double cartTotal = 0;
-            double.TryParse(AmountTextbox.Text, out amountTotal);
+            AmountTextbox = HelperMethods.FindElement(_driver, Constants.SearchType.ID, "totalAmountBox");
+            string amountValue = AmountTextbox.GetAttribute("value");
+            double.TryParse(amountValue, out amountTotal);
+
             foreach(CartItem item in _cartLineItems)
             {
                 double itemTotalAmount = 0;
                 double.TryParse(item.ItemTotalAmt.Text, out itemTotalAmount);
                 cartTotal += itemTotalAmount;
             }
-            if (amountTotal.Equals(cartTotal))
+            if (amountTotal.Equals(Math.Round(cartTotal, 2)))
                 DollarAmountSuccess = true;
             else
                 DollarAmountSuccess = false;

@@ -7,7 +7,7 @@ using System.Threading;
 namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
 {
     [Timeout(900000)]
-    public class When_SA_member_makes_a_purchase_order : BaseDriverTest
+    public class When_SA_member_adds_items_from_prod_page : BaseDriverTest
     {
         static MemberHomePage _homePage;
         static CataloguesPage _catPage;
@@ -53,7 +53,7 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
             }
         };
 
-        It should_return_alert_of_success = () =>
+        It should_match_items_in_cart_page = () =>
         {
             if (_productsVerified && _cartPage.OrderComplete)
                 _logger.Info("-- Member Add Item to Cart Test: [SUCCESS] --");
