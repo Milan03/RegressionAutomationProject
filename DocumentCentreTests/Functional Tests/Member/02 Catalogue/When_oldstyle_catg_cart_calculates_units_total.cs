@@ -7,7 +7,7 @@ using System.Threading;
 namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
 {
     [Timeout(900000)]
-    public class When_SA_member_cart_calculates_amount_total : BaseDriverTest
+    public class When_oldstyle_catg_cart_calculates_units_total : BaseDriverTest
     {
         private static MemberHomePage _homePage;
         private static CataloguesPage _catPage;
@@ -17,13 +17,13 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
         Establish context = () =>
         {
             LoadDriver();
-            _logger.Info("-- SA Catalogue Amount Calculation Test Initiating --");
+            _logger.Info("-- Old Style Catalogue Units Calculation Test Initiating --");
             LoginPage loginPage = new LoginPage(_driver, Constants.UserType.MEMBER);
             _homePage = (MemberHomePage)loginPage.LoginAs(Constants.Affiliation.SA.MEMBER_USER, Constants.Affiliation.SA.MEMBER_PASS);
             _catPage = _homePage.NavigateToCatalogues();
             _catPage.InputCatalogueName("milan");
             _catPage.InitiateSearch();
-            _prodPage = _catPage.ChooseCatalogue("Milan Automation Catalogue 02");
+            _prodPage = _catPage.ChooseCatalogue("Milan Automation Catalogue");
             _prodPage.LoadProductRows();
             _prodPage.AddItemToCart("IN-MILANTEST-01", 1);
             _prodPage.AddItemToCart("IN-MILANTEST-02", 1);
@@ -37,15 +37,15 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
             {
                 _cartPage = _prodPage.NavigateToCart();
                 _cartPage.LoadItemsInCart();
-                _cartPage.VerifyTotalDollarAmount();
+                _cartPage.VerifyTotalUnits(); ;
             }
             catch (System.Exception)
             {
-                if (_cartPage.DollarAmountSuccess)
-                    _logger.Info("-- SA Catalogue Amount Calculation Test: [SUCCESS w/ EXCEPTION ENCOUNTERED] --");
+                if (_cartPage.VerifyUnitSuccess)
+                    _logger.Info("-- Old Style Catalogue Units Calculation Test: [SUCCESS w/ EXCEPTION ENCOUNTERED] --");
                 else
                 {
-                    _logger.Fatal("-- SA Catalogue Amount Calculation Test: [FAILED] --");
+                    _logger.Fatal("-- Old Style Catalogue Units Calculation Test: [FAILED] --");
                     _prodPage.ItemAdded.ShouldBeTrue();
                 }
             }
@@ -53,8 +53,8 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
 
         It should_calculate_all_items_in_cart = () =>
         {
-            if (_cartPage.DollarAmountSuccess)
-                _logger.Info("-- SA Catalogue Amount Calculation Test: [SUCCESS] --");
+            if (_cartPage.VerifyUnitSuccess)
+                _logger.Info("-- Old Style Catalogue Units Calculation Test: [SUCCESS] --");
         };
     }
 }

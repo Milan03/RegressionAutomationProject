@@ -88,7 +88,8 @@
     <Compile Include="Functional Tests\Member\02 Catalogue\When_Drake_member_deletes_po_from_grid.cs" />
     <Compile Include="Functional Tests\Member\02 Catalogue\When_Drake_member_edits_draft_po.cs" />
     <Compile Include="Functional Tests\Member\02 Catalogue\When_Drake_member_recreates_po.cs" />
-    <Compile Include="Functional Tests\Member\02 Catalogue\When_SA_member_cart_calculates_amount_total .cs" />
+    <Compile Include="Functional Tests\Member\02 Catalogue\When_oldstyle_catg_cart_calculates_units_total.cs" />
+    <Compile Include="Functional Tests\Member\02 Catalogue\When_oldstyle_catg_cart_calculates_amount_total .cs" />
     <Compile Include="Functional Tests\Member\03 Mailbox\When_member_clicks_PObox_basic_search.cs" />
     <Compile Include="Functional Tests\Member\03 Mailbox\When_member_loads_PObox_grid.cs" />
     <Compile Include="Functional Tests\Member\03 Mailbox\When_member_navs_to_first_page_of_grid.cs" />
