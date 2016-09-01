@@ -290,6 +290,10 @@ namespace DocumentCentreTests.Pages
             }
         }
 
+        /// <summary>
+        /// Compares the total dollar amount displayed in the po header vs what 
+        /// is actually in the cart.
+        /// </summary>
         public MyCartPage VerifyTotalDollarAmount()
         {
             double displayAmountTotal = 0;
@@ -311,6 +315,9 @@ namespace DocumentCentreTests.Pages
             return this;
         }
 
+        /// <summary>
+        /// Compares the total units displayed vs total units in cart.
+        /// </summary>
         public MyCartPage VerifyTotalUnits()
         {
             int displayUnitTotal = 0;
