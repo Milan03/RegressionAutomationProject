@@ -199,8 +199,7 @@ namespace DocumentCentreTests.Pages
         }
 
         /// <summary>
-        /// Simulates the addition of an item to the cart and checks if the alert popup
-        /// is accurate.
+        /// Adds item to cart and checks the resulting alert for verification of addition.
         /// </summary>
         /// <param name="prodNum">name of product to add to cart</param>
         /// <param name="qty">quantity of product to add to cart</param>
@@ -225,9 +224,15 @@ namespace DocumentCentreTests.Pages
         }
 
         /// <summary>
-        /// Simulates navigation to cart
+        /// Waits for catalogue UI to load.
         /// </summary>
-        /// <returns>new MyCart page object</returns>
+        public ProductsPage WaitForLoad()
+        {
+            var wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
+            wait.Until(_driver => !_driver.FindElement(By.Id("waitMessage")).Displayed);
+            return this;
+        }
+
         public MyCartPage NavigateToCart()
         {
             _logger.Trace(" > Attempting to navigate to cart...");
@@ -245,17 +250,6 @@ namespace DocumentCentreTests.Pages
             return new MyCartPage(_driver, Constants.OrderType.NEW);
         }
 
-        public ProductsPage WaitForLoad()
-        {
-            var wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
-            wait.Until(_driver => !_driver.FindElement(By.Id("waitMessage")).Displayed);
-            return this;
-        }
-
-        /// <summary>
-        /// Simulates switching to the Tile products view of a catalogue
-        /// </summary>
-        /// <returns>current page object</returns>
         public ProductsPage SwitchToTileView()
         {
             Thread.Sleep(1500);
@@ -277,10 +271,6 @@ namespace DocumentCentreTests.Pages
             return this;
         }
 
-        /// <summary>
-        /// Simulates click the search button for product search
-        /// </summary>
-        /// <returns>current page object</returns>
         public ProductsPage InitiateSearch()
         {
             _logger.Trace(" > Searching for item...");
@@ -288,10 +278,6 @@ namespace DocumentCentreTests.Pages
             return this;
         }
 
-        /// <summary>
-        /// Simulates opening the advanced search options partial form
-        /// </summary>
-        /// <returns>current page object</returns>
         public ProductsPage OpenAdvancedSearch()
         {
             _logger.Info(" > Opening Advanced Search");
@@ -299,20 +285,12 @@ namespace DocumentCentreTests.Pages
             return this;
         }
 
-        /// <summary>
-        /// Simulates saving the current draft order
-        /// </summary>
-        /// <returns>current page object</returns>
         public ProductsPage SaveDraftOrder()
         {
             SaveDraftButton.Click();
             return this;
         }
 
-        /// <summary>
-        /// Simulates clicking catalogue pdf export from Reports dropdown
-        /// </summary>
-        /// <returns>current page object</returns>
         public ProductsPage CataloguePDFExport()
         {
             _logger.Trace(" > Attempting to download catalogue as PDF...");
@@ -323,10 +301,6 @@ namespace DocumentCentreTests.Pages
             return this;
         }
 
-        /// <summary>
-        /// Simulates clicking catalgoue excel export from Reports dropdown
-        /// </summary>
-        /// <returns>current page object</returns>
         public ProductsPage CatalogueExcelExport()
         {
             ReportsDropdown.Click();
@@ -335,10 +309,6 @@ namespace DocumentCentreTests.Pages
             return this;
         }
 
-        /// <summary>
-        /// Simulates generate order report from Reports dropdown
-        /// </summary>
-        /// <returns>current page object</returns>
         public ProductsPage GenerateOrderReport()
         {
             ReportsDropdown.Click();
@@ -347,10 +317,6 @@ namespace DocumentCentreTests.Pages
             return this;
         }
 
-        /// <summary>
-        /// Simulates generating an order summary from Reports dropdown
-        /// </summary>
-        /// <returns>current page object</returns>
         public ProductsPage GenerateOrderSummary()
         {
             ReportsDropdown.Click();
