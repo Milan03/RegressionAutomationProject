@@ -20,19 +20,19 @@ namespace DocumentCentreTests.Models
 
         internal Product() {}
 
-        public void SetQuantity(int qty)
+        internal void SetQuantity(int qty)
         {
-            this.Quantity = qty;
+            Quantity = qty;
             for (int i = 0; i < qty; ++i)
             {
                 QtyUp.Click();
             }
         }
 
-        public Decimal getAmountTotal()
+        internal decimal getAmountTotal()
         {
             var priceStr = Price;
-            return Quantity * Decimal.Parse(priceStr.Substring(2, priceStr.Length - 2));
+            return Quantity * decimal.Parse(priceStr.Substring(2, priceStr.Length - 2));
         }
     }
 }
