@@ -9,9 +9,9 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
     [Timeout(100000)]
     public class When_SA_member_removes_item_from_cart : BaseDriverTest
     {
-        static MemberHomePage _homePage;
-        static ViewOrdersPage _voPage;
-        static MyCartPage _cartPage;
+        private static MemberHomePage _homePage;
+        private static ViewOrdersPage _voPage;
+        private static MyCartPage _cartPage;
 
         Establish context = () =>
         {

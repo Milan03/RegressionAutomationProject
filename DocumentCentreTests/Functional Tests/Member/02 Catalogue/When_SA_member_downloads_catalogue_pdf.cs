@@ -6,9 +6,9 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
 {
     public class When_SA_member_downloads_catalogue_pdf : BaseDriverTest
     {
-        static MemberHomePage _memHomepage;
-        static CataloguesPage _catPage;
-        static ProductsPage _prodPage;
+        private static MemberHomePage _memHomepage;
+        private static CataloguesPage _catPage;
+        private static ProductsPage _prodPage;
 
         Establish context = () =>
         {

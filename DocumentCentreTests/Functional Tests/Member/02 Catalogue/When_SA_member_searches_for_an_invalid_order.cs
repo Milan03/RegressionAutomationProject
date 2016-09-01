@@ -1,19 +1,14 @@
 ﻿using DocumentCentreTests.Pages;
 using DocumentCentreTests.Util;
 using Machine.Specifications;
-using OpenQA.Selenium.Firefox;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
 {
     public class When_SA_member_searches_for_an_invalid_order : BaseDriverTest
     {
-        static ViewOrdersPage _voPage;
-        static MemberHomePage _homePage;
+        private static ViewOrdersPage _voPage;
+        private static MemberHomePage _homePage;
 
         Establish context = () =>
         {

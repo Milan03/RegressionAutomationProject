@@ -8,9 +8,9 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
     [Timeout(900000)]
     public class When_Drake_member_saves_draft_order : BaseDriverTest
     {
-        static MemberHomePage _homePage;
-        static CataloguesPage _cataPage;
-        static MyCartPage _cartPage;
+        private static MemberHomePage _homePage;
+        private static CataloguesPage _cataPage;
+        private static MyCartPage _cartPage;
 
         Establish context = () =>
         {

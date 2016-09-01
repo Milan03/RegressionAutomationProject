@@ -8,10 +8,10 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
     [Timeout(500000)]
     public class When_SA_member_adds_product_inline : BaseDriverTest
     {
-        static MemberHomePage _homePage;
-        static CataloguesPage _catPage;
-        static ProductsPage _prodPage;
-        static MyCartPage _cartPage;
+        private static MemberHomePage _homePage;
+        private static CataloguesPage _catPage;
+        private static ProductsPage _prodPage;
+        private static MyCartPage _cartPage;
 
         Establish context = () =>
         {

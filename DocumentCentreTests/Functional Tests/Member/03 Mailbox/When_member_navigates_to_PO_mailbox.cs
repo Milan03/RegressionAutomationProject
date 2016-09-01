@@ -9,8 +9,8 @@ namespace DocumentCentreTests.Functional_Tests.Member.Mailbox
     
     public class When_member_navigates_to_PO_mailbox : BaseDriverTest
     {
-        static SupplierHomePage _suppHomepage;
-        static POInboxPage _poInboxPage;
+        private static SupplierHomePage _suppHomepage;
+        private static POInboxPage _poInboxPage;
 
         Establish context = () =>
         {

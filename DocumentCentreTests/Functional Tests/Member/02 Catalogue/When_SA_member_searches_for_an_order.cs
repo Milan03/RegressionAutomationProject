@@ -6,8 +6,8 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
 { 
     public class When_SA_member_searches_for_an_order : BaseDriverTest
     {
-        static ViewOrdersPage _voPage;
-        static MemberHomePage _homePage;
+        private static ViewOrdersPage _voPage;
+        private static MemberHomePage _homePage;
 
         Establish context = () =>
         {

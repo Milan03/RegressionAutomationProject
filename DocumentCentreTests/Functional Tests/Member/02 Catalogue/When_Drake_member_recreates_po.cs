@@ -7,8 +7,8 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
 {
     public class When_Drake_member_recreates_po : BaseDriverTest
     {
-        static MemberHomePage _homePage;
-        static ViewOrdersPage _voPage;
+        private static MemberHomePage _homePage;
+        private static ViewOrdersPage _voPage;
 
         Establish context = () =>
         {

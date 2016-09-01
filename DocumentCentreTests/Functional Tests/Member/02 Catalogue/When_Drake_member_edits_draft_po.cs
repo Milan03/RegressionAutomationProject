@@ -8,9 +8,9 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
     [Timeout(900000)]
     public class When_Drake_member_edits_draft_po : BaseDriverTest
     {
-        static MemberHomePage _homePage;
-        static ViewOrdersPage _voPage;
-        static MyCartPage _cartPage;
+        private static MemberHomePage _homePage;
+        private static ViewOrdersPage _voPage;
+        private static MyCartPage _cartPage;
 
         Establish context = () =>
         {

@@ -9,8 +9,8 @@ namespace DocumentCentreTests.Functional_Tests.Member.Mailbox
     [Timeout(100000)]
     public class When_member_clicks_PObox_adv_search : BaseDriverTest
     {
-        static SupplierHomePage _suppHomepage;
-        static POInboxPage _poInboxPage;
+        private static SupplierHomePage _suppHomepage;
+        private static POInboxPage _poInboxPage;
 
         Establish context = () =>
         {

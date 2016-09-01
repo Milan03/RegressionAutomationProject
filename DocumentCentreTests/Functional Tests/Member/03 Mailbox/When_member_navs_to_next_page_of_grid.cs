@@ -6,8 +6,8 @@ namespace DocumentCentreTests.Functional_Tests.Member.Mailbox
 {
     public class When_member_navs_to_next_page_of_grid : BaseDriverTest
     {
-        static SupplierHomePage _suppHomepage;
-        static POInboxPage _poInboxPage;
+        private static SupplierHomePage _suppHomepage;
+        private static POInboxPage _poInboxPage;
 
         Establish context = () =>
         {

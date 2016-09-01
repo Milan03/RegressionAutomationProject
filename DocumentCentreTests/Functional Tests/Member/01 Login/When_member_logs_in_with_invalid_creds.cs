@@ -10,7 +10,7 @@ namespace DocumentCentreTests.Functional_Tests.Member.Login
 {
     public class When_member_logs_in_with_invalid_creds : BaseDriverTest
     {
-        static LoginPage _loginPage;
+        private static LoginPage _loginPage;
 
         Establish context = () =>
         {

@@ -6,8 +6,8 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
 {
     public class When_SA_member_deletes_an_order : BaseDriverTest
     {
-        static ViewOrdersPage _voPage;
-        static MemberHomePage _memHomePage;
+        private static ViewOrdersPage _voPage;
+        private static MemberHomePage _memHomePage;
 
         Establish context = () =>
         {
