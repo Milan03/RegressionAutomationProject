@@ -9,11 +9,11 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
     [Timeout(900000)]
     public class When_SA_member_adds_items_from_prod_page : BaseDriverTest
     {
-        static MemberHomePage _homePage;
-        static CataloguesPage _catPage;
-        static ProductsPage _prodPage;
-        static MyCartPage _cartPage;
-        static bool _productsVerified;
+        private static MemberHomePage _homePage;
+        private static CataloguesPage _catPage;
+        private static ProductsPage _prodPage;
+        private static MyCartPage _cartPage;
+        private static bool _productsVerified;
 
         Establish context = () =>
         {
