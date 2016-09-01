@@ -296,6 +296,7 @@ namespace DocumentCentreTests.Pages
         /// </summary>
         public MyCartPage VerifyTotalDollarAmount()
         {
+            _logger.Info(" > Comparing total dollar amount displayed vs total amount in cart...");
             double displayAmountTotal = 0;
             double cartTotal = 0;
             AmountTextbox = HelperMethods.FindElement(_driver, Constants.SearchType.ID, "totalAmountBox");
@@ -309,9 +310,15 @@ namespace DocumentCentreTests.Pages
                 cartTotal += itemTotalAmount;
             }
             if (displayAmountTotal.Equals(Math.Round(cartTotal, 2)))
+            {
                 DollarAmountSuccess = true;
+                _logger.Info(" > Total amount verification [SUCCESS].");
+            }
             else
+            {
                 DollarAmountSuccess = false;
+                _logger.Error(" > Total amount verification [FAILED].");
+            }
             return this;
         }
 
@@ -320,6 +327,7 @@ namespace DocumentCentreTests.Pages
         /// </summary>
         public MyCartPage VerifyTotalUnits()
         {
+            _logger.Info(" > Comparing total units displayed vs total units in cart...");
             int displayUnitTotal = 0;
             int cartTotal = 0;
             UnitsTextbox = HelperMethods.FindElement(_driver, Constants.SearchType.ID, "totalQuantityBox");
@@ -333,9 +341,15 @@ namespace DocumentCentreTests.Pages
                 cartTotal += itemUnitTotal;
             }
             if (displayUnitTotal.Equals(cartTotal))
+            {
                 VerifyUnitSuccess = true;
+                _logger.Info(" > Total units verification [SUCCESS].");
+            }
             else
+            {
                 VerifyUnitSuccess = false;
+                _logger.Error(" > Total units verification [FAILED].");
+            }
             return this;
         }
 
