@@ -45,8 +45,8 @@ namespace DocumentCentreTests.Pages
         private IWebElement SummaryOption;
         #endregion
 
-        internal bool ItemAdded;
-        internal bool PDFDownloaded;
+        internal bool ItemAdded { get; private set; }
+        internal bool PDFDownloaded { get; private set; }
         public ProductsPage(IWebDriver driver)
         {
             #region Assigning Accessors

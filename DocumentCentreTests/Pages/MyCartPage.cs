@@ -48,11 +48,13 @@ namespace DocumentCentreTests.Pages
         private IWebElement OrderSummaryOption;
         #endregion
 
-        internal bool ItemDeleted;
-        internal bool OrderComplete;
-        internal bool AlertSuccess;
-        internal bool SaveDraftSuccess;
-        internal bool DollarAmountSuccess;
+        internal bool ItemDeleted { get; private set; }
+        internal bool OrderComplete { get; private set; }
+        internal bool AlertSuccess { get; private set; }
+        internal bool SaveDraftSuccess { get; private set; }
+        internal bool DollarAmountSuccess { get; private set; }
+        internal bool VerifyUnitSuccess { get; private set; }
+
         public MyCartPage(IWebDriver driver, string type)
         {
             #region Assigning Accessors
@@ -84,7 +86,6 @@ namespace DocumentCentreTests.Pages
             ShipToDropdown = HelperMethods.FindElement(_driver, Constants.SearchType.CLASSNAME, "k-input");
             PONumberTextbox = HelperMethods.FindElement(_driver, Constants.SearchType.ID, "poNumber");
             POBuyerTextbox = HelperMethods.FindElement(_driver, Constants.SearchType.ID, "originalRefNumber");
-            UnitsTextbox = HelperMethods.FindElement(_driver, Constants.SearchType.ID, "totalQuantityBox");
             ContactNameTextbox = HelperMethods.FindElement(_driver, Constants.SearchType.ID, "contactName");
             DeliveryAddressDisplay = HelperMethods.FindElement(_driver, Constants.SearchType.ID, "addresseeName");
             FreightTermsTextbox = HelperMethods.FindElement(_driver, Constants.SearchType.ID, "freightTerms");
@@ -291,11 +292,11 @@ namespace DocumentCentreTests.Pages
 
         public MyCartPage VerifyTotalDollarAmount()
         {
-            double amountTotal = 0;
+            double displayAmountTotal = 0;
             double cartTotal = 0;
             AmountTextbox = HelperMethods.FindElement(_driver, Constants.SearchType.ID, "totalAmountBox");
             string amountValue = AmountTextbox.GetAttribute("value");
-            double.TryParse(amountValue, out amountTotal);
+            double.TryParse(amountValue, out displayAmountTotal);
 
             foreach(CartItem item in _cartLineItems)
             {
@@ -303,10 +304,31 @@ namespace DocumentCentreTests.Pages
                 double.TryParse(item.ItemTotalAmt.Text, out itemTotalAmount);
                 cartTotal += itemTotalAmount;
             }
-            if (amountTotal.Equals(Math.Round(cartTotal, 2)))
+            if (displayAmountTotal.Equals(Math.Round(cartTotal, 2)))
                 DollarAmountSuccess = true;
             else
                 DollarAmountSuccess = false;
+            return this;
+        }
+
+        public MyCartPage VerifyTotalUnits()
+        {
+            int displayUnitTotal = 0;
+            int cartTotal = 0;
+            UnitsTextbox = HelperMethods.FindElement(_driver, Constants.SearchType.ID, "totalQuantityBox");
+            string unitValue = UnitsTextbox.GetAttribute("value");
+            int.TryParse(unitValue, out displayUnitTotal);
+
+            foreach (CartItem item in _cartLineItems)
+            {
+                int itemUnitTotal = 0;
+                int.TryParse(item.Quantity.Text, out itemUnitTotal);
+                cartTotal += itemUnitTotal;
+            }
+            if (displayUnitTotal.Equals(cartTotal))
+                VerifyUnitSuccess = true;
+            else
+                VerifyUnitSuccess = false;
             return this;
         }
 

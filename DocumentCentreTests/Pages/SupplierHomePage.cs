@@ -10,7 +10,7 @@ namespace DocumentCentreTests.Pages
     {
         private IWebElement OrdersDropdown;
 
-        internal bool PageReached;
+        internal bool PageReached { get; private set; }
 
         public SupplierHomePage(IWebDriver driver)
         {

@@ -63,13 +63,13 @@ namespace DocumentCentreTests.Pages
         protected IList<IWebElement> _periodDropdowns;
         protected IList<IWebElement> _periodListCount;
 
-        protected internal bool NavRowSuccess;
-        protected internal bool GridAmountDropdownSuccess;
-        protected internal bool GridAmountSetSuccess;
-        protected internal bool StatusDropdownSuccess;
-        protected internal bool StatusSetSuccess;
-        protected internal bool PeriodDropdownSuccess;
-        protected internal bool PeriodSetSuccess;
+        protected internal bool NavRowSuccess { get; private set; }
+        protected internal bool GridAmountDropdownSuccess { get; private set; }
+        protected internal bool GridAmountSetSuccess { get; private set; }
+        protected internal bool StatusDropdownSuccess { get; private set; }
+        protected internal bool StatusSetSuccess { get; private set; }
+        protected internal bool PeriodDropdownSuccess { get; private set; }
+        protected internal bool PeriodSetSuccess { get; private set; }
         protected internal BaseInboxPage(IWebDriver driver)
         {
             _driver = driver;

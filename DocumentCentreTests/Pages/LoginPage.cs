@@ -14,7 +14,7 @@ namespace DocumentCentreTests.Pages
         private IWebElement LoginButtonLocator;
         private string LoginPageType;
 
-        internal bool LoginSuccess;
+        internal bool LoginSuccess { get; private set; }
         /// <summary>
         /// Constructor assigns the Web Driver as well as all locators for elements needed
         /// in tests.

@@ -18,8 +18,8 @@ namespace DocumentCentreTests.Pages
         private IWebElement CreateEditLocator;
         private IWebElement EditOrderLocator;
 
-        internal IWebElement FirstTableElem { get; set;  }
-        internal bool AlertSuccess { get; set; }
+        internal IWebElement FirstTableElem { get; private set;  }
+        internal bool AlertSuccess { get; private set; }
         internal string OrderType { get; set; }
 
         public ViewOrdersPage(IWebDriver driver, string orderType)

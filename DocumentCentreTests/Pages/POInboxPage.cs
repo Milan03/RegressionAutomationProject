@@ -37,10 +37,10 @@ namespace DocumentCentreTests.Pages
 
         #endregion
 
-        internal bool PageReached;
-        internal bool AdvLoadSuccess;
-        internal bool BasicLoadSuccess;
-        internal bool GridLoadSuccess;
+        internal bool PageReached { get; private set; }
+        internal bool AdvLoadSuccess { get; private set; }
+        internal bool BasicLoadSuccess { get; private set; }
+        internal bool GridLoadSuccess { get; private set; }
         public POInboxPage(IWebDriver driver) : base(driver)
         {
             _driver = driver;
