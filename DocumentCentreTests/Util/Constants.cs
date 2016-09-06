@@ -25,6 +25,14 @@
                 internal const string MEMBER_USER = "TES9GPTFC5";
                 internal const string MEMBER_PASS = "2RTTL4SZ";
             }
+
+            internal static class WalMart
+            {
+                // Invoice Inbox
+                internal const string USER = "Wal-Mart User";
+                internal const string MEMBER_USER = "WalXJ7YGG4";
+                internal const string MEMBER_PASS = "AYFT3WF6";
+            }
         }
         internal static class UserType
         {
