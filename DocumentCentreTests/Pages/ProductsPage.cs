@@ -7,7 +7,6 @@ using DocumentCentreTests.Util;
 using NLog;
 using System.Threading;
 using DocumentCentreTests.Models;
-using OpenQA.Selenium.Interactions;
 
 namespace DocumentCentreTests.Pages
 {

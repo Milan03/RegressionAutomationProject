@@ -29,6 +29,8 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
             try
             {
                 _cartPage.AddItemInline("EE100", Constants.Affiliation.Drake.USER);
+                System.Threading.Thread.Sleep(500);
+                _cartPage.AddItemInline("EE1669", Constants.Affiliation.Drake.USER);
                 _cartPage.SendOrder();
             }
             catch(System.Exception)

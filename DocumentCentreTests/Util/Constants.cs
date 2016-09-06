@@ -85,7 +85,7 @@
                 internal const string ITEM_TOTAL = "//tbody/tr/td[9]";
                 internal const string FR_TB = "//td/input[contains(@class,'k-textbox')]";
                 internal const string CART_ORDER_GRID = "bgHover";
-                internal const string EDITABLE_ROW = "//td[@class='editable']";
+                internal const string EDITABLE_ROW = "//td[@class='editable' and contains(@title, 'product number')]";
                 internal const string ACTIVE_ROW_QTY = "//td[contains(@class,'editable')]//span[contains(@class,'k-i-arrow-n')]";
             }
         }
