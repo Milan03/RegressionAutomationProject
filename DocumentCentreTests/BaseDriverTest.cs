@@ -11,7 +11,7 @@ namespace DocumentCentreTests
     {
         protected static NLog.Logger _logger = LogManager.GetCurrentClassLogger();
         protected static IWebDriver _driver;
-        //protected static ChromeOptions _chromeOptions;
+        protected static ChromeOptions _chromeOptions;
 
         /// <summary>
         /// Spins up an instance of FireFox webdriver which controls the browser using a
@@ -19,14 +19,15 @@ namespace DocumentCentreTests
         /// </summary>
         protected static void LoadDriver()
         {
-            ChromeOptions options = new ChromeOptions();
+            //ChromeOptions options = new ChromeOptions();
             try
             {
                 //options.AddArgument("--start-maximized");
-                //_driver = new ChromeDriver(options);
-                var profile = new FirefoxProfile();
-                profile.SetPreference("browser.helperApps.neverAsk.saveToDisk", "application/octet-stream doc xls pdf txt");
-                _driver = new FirefoxDriver(profile);
+                //_driver = new ChromeDriver();
+                
+                //var profile = new FirefoxProfile();
+                //profile.SetPreference("browser.helperApps.neverAsk.saveToDisk", "application/octet-stream doc xls pdf txt");
+                _driver = new FirefoxDriver();
                 _driver.Navigate().GoToUrl("http://portal.test-web01.lbmx.com/login?redirect=%2f");
             }
             catch(Exception e)
