@@ -1,10 +1,7 @@
-﻿using DocumentCentreTests.Models;
-using DocumentCentreTests.Pages;
+﻿using DocumentCentreTests.Pages;
 using DocumentCentreTests.Util;
 using Machine.Specifications;
-using OpenQA.Selenium;
 using System;
-using System.Runtime.CompilerServices;
 
 namespace DocumentCentreTests.Functional_Tests.Member.Login
 {
@@ -24,19 +21,25 @@ namespace DocumentCentreTests.Functional_Tests.Member.Login
             try
             {
                 _loginPage.SubmitLoginExpectingFailure();
+                //var error = HelperMethods.FindElement(_driver, Constants.SearchType.CLASSNAME, "login-error-message");
+                if (!_loginPage.LoginSuccess)
+                    _logger.Info("-- Member Invliad Login Test: [PASSED] --");
+                else
+                {
+                    _logger.Fatal("-- Member Invalid Login Test: [FAILED] --");
+                    _loginPage.LoginSuccess.ShouldBeFalse();
+                }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                _logger.Fatal("-- Member Invalid Login Test: [FAILED] --");
-                _loginPage.LoginSuccess.ShouldBeFalse();
+                _logger.Fatal("-- Member Invalid Login Test: [EXCEPTION ENCOUNTERED] --");
+                _logger.Info("-- Exception info: " + e.Message);
             }
         };
 
         It should_have_failed_to_log_in = () =>
         {
-            var error = HelperMethods.FindElement(_driver, Constants.SearchType.CLASSNAME, "login-error-message");
-            if (error.Text.Equals(Constants.UIMessages.LOGIN_ERROR))
-                _logger.Info("-- Member Invliad Login Test: [PASSED] --");
+
         };
     }
 }

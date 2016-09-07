@@ -20,18 +20,21 @@ namespace DocumentCentreTests.Functional_Tests.Member.Login
             try
             {
                 _loginPage.LoginAs(Constants.Affiliation.SA.MEMBER_USER, Constants.Affiliation.SA.MEMBER_PASS);
+                if (_loginPage.LoginSuccess)
+                    _logger.Info("-- Member Valid Login Test: [PASSED] --");
+                else
+                {
+                    _logger.Fatal("-- Member Valid Login Test: [FAILED] --");
+                    _loginPage.LoginSuccess.ShouldBeTrue();
+                }
             }
-            catch(System.Exception)
+            catch(System.Exception e)
             {
-                _logger.Fatal("-- Member Valid Login Test: [FAILED] --");
-                _loginPage.LoginSuccess.ShouldBeTrue();
+                _logger.Fatal("-- Member Valid Login Test: [EXCEPTION ENCOUNTERED] --");
+                _logger.Info("-- Exception info: " + e.Message);
             }
         };
 
-        It should_have_successfully_logged_in = () =>
-        {
-            if (_loginPage.LoginSuccess)
-                _logger.Info("-- Member Valid Login Test: [PASSED] --");
-        };
+        It should_have_successfully_logged_in = () => _loginPage.LoginSuccess.ShouldBeTrue();
     }
 }

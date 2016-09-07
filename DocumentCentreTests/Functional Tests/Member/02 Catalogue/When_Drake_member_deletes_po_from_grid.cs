@@ -27,19 +27,21 @@ namespace DocumentCentreTests.Functional_Tests.Member.Catalogue
             try
             {
                 _voPage.DeleteOrder();
+                if (_voPage.AlertSuccess)
+                    _logger.Info("-- Drake Order Grid Delete Test: [PASSED] --");
+                else
+                {
+                    _logger.Fatal("-- Drake Order Grid Delete Test: [FAILED] --");
+                    _voPage.AlertSuccess.ShouldBeTrue();
+                }
             }
-            catch (System.Exception)
+            catch (System.Exception e)
             {
-                _logger.Fatal("-- Drake Order Grid Delete Test: [FAILED] --");
-                _memHomePage.PageReached.ShouldBeTrue();
+                _logger.Fatal("-- Drake Order Grid Delete Test: [EXCEPTION ENCOUNTERED] --");
+                _logger.Info("-- Exception info: " + e.Message);
             }
         };
 
-        It should_delete_the_order = () =>
-        {
-            if (_memHomePage.PageReached)
-                _logger.Info("-- Drake Order Grid Delete Test: [PASSED] --");
-
-        };
+        It should_delete_the_order = () => _voPage.AlertSuccess.ShouldBeTrue();
     }
 }
