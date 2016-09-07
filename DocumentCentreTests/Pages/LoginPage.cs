@@ -23,9 +23,7 @@ namespace DocumentCentreTests.Pages
         public LoginPage(IWebDriver driver, string type)
         {
             _driver = driver;
-
             LoginPageType = type;
-            LoginSuccess = false;
             UsernameLocator = HelperMethods.FindElement(driver, Constants.SearchType.NAME, "UserName");
             PasswordLocator = HelperMethods.FindElement(driver, Constants.SearchType.NAME, "Password");
             LoginButtonLocator = HelperMethods.FindElement(driver, Constants.SearchType.ID, "loginButton");
@@ -80,7 +78,7 @@ namespace DocumentCentreTests.Pages
                 case Constants.UserType.MEMBER:
                     LoginSuccess = true;
                     return new MemberHomePage(_driver);
-                case "supplier":
+                case Constants.UserType.SUPPLIER:
                     LoginSuccess = true;
                     return new SupplierHomePage(_driver);
                 default:
